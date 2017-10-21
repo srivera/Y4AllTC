@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top"
+    android:gravity="top"
+    android:keepScreenOn="true"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF">
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menu_down"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        fab:menu_labels_style="@style/MenuLabelsStyle"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:elevation="6dp"
+        fab:menu_fab_size="mini"
+        fab:menu_labels_ellipsize="end"
+        fab:menu_labels_singleLine="true"
+        fab:menu_backgroundColor="#cc585858"
+        fab:menu_openDirection="down"
+        fab:menu_colorNormal="@color/colorprincipal"
+        fab:menu_colorPressed="#00BCD4"
+        fab:menu_colorRipple="#4DD0E1">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_apps"
+            fab:fab_size="mini"
+            fab:fab_label="Necesito una aplicación móvil"
+            style="@style/MenuButtonsSmall"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnCompartir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_compartir"
+            fab:fab_size="mini"
+            fab:fab_label="Compartir mi equipo"
+            style="@style/MenuButtonsSmall"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnNuevo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_nuevo"
+            fab:fab_size="mini"
+            fab:fab_label="Agregar un equipo"
+            style="@style/MenuButtonsSmall"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnPreferencias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_preferencia"
+            fab:fab_size="mini"
+            fab:fab_label="Preferencias"
+            style="@style/MenuButtonsSmall"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnRespuesta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_respuesta"
+            fab:fab_size="mini"
+            fab:fab_label="Mis respuestas"
+            style="@style/MenuButtonsSmall"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_cuenta"
+            fab:fab_shadowColor="#cc585858"
+            fab:fab_size="mini"
+            fab:fab_label="Mi cuenta"
+            style="@style/MenuButtonsSmall"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_inicial"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="top"
+            android:layout_weight="0.13">
+
+            <View android:id="@+id/rectangle_at_the_top"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/gradient"
+                android:visibility="visible"/>
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentLeft="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/y4home"
+                android:id="@+id/fotoperfil"/>
+            <TextView
+                android:id="@+id/txtNombreEquipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mis Sitios"
+                android:textSize="14dp"
+                android:textColor="#FFFFFF"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rectangle_at_the_top"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txtEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado actual"
+                android:textSize="14dp"
+                android:paddingTop="5dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:textColor="@color/colorprincipal"
+                android:layout_centerInParent="true" />
+
+            <ec.com.yacare.y4all.lib.util.indicator.AVLoadingIndicatorView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/indicator"
+                app:indicatorName="BallScaleMultipleIndicator"
+                style="@style/AVLoadingIndicatorView"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:gravity="top"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/constraintLayout"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp">
+                    <TextView
+                        android:id="@+id/txtMensaje"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/back_mensaje"
+                        android:textColor="#000000"
+                        android:gravity="center_horizontal"
+                        android:textSize="12dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:elevation="1dp" />
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/textoNombreUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre Usuario"
+                    android:textSize="14dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/f_gris"
+                    android:padding="5dp"
+                    android:id="@+id/layoutAyuda"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tituloAyuda"
+                        android:gravity="center_horizontal"
+                        android:textColor="#FFFF00"
+                        android:text="TITULO"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imagenAyuda"
+                            android:padding="5dp"
+                            android:layout_weight="0.8"/>
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:id="@+id/btnAyuda"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="Siguiente"
+                            android:inputType="text"
+                            android:textSize="10dp"
+                            android:textColor="#FFFF00"
+                            android:background="@color/colorprincipal"
+                            android:textAlignment="center"
+                            android:layout_weight="0.2"/>
+                    </LinearLayout>
+                    <ScrollView
+                        android:id="@+id/scrollView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true" >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textoAyuda"
+                            android:padding="5dp"
+                            android:maxLines="100"
+                            android:textColor="#FFFFFF"
+                            android:scrollbars="vertical"/>
+                    </ScrollView>
+
+                </LinearLayout>
+                <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </android.support.v4.view.ViewPager>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                android:id="@+id/layoutReloj"
+                android:gravity="center_horizontal|center_vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.22"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginLeft="60dp"
+                    android:gravity="center_horizontal|center_vertical">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.5"
+                        android:text="luz"
+                        android:background="@drawable/back_boton_izq"
+                        android:textColor="#FFFFFF"
+                        android:textAllCaps="false"
+                        android:id="@+id/btnEncenderLuz"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"/>
+                    <ImageButton
+                        android:id="@+id/btnMonitorear"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/circle_button"
+                        android:src="@drawable/monitor"
+                        android:textColor="#fff" />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.5"
+                        android:text="abrir puerta"
+                        android:background="@drawable/back_boton_izq"
+                        android:textColor="#FFFFFF"
+                        android:id="@+id/btnAbrirPuerta"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.66"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal|center_vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:layout_centerInParent="true">
+
+                        <ec.com.yacare.y4all.lib.util.ViewRelojSegundo
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:id="@+id/circleProgress"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            custom:roadColor="#575757"
+                            custom:roadStrokeWidth="60"
+                            custom:roadInnerCircleColor="#ffffff"
+                            custom:roadInnerCircleStrokeWidth="4"
+                            custom:roadOuterCircleColor="#ffffff"
+                            custom:roadOuterCircleStrokeWidth="4"
+                            custom:arcLoadingColor="#000000"
+                            custom:arcLoadingStrokeWidth="20"
+                            custom:arcLoadingDashLength="10"
+                            custom:arcLoadingDistanceBetweenDashes="5"
+                            custom:arcLoadingStartAngle="270"
+                            custom:textColor="#ffffff"/>
+
+                        <ec.com.yacare.y4all.lib.util.ViewReloj
+                            android:layout_width="125dp"
+                            android:layout_height="125dp"
+                            android:id="@+id/circleProgress1"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            custom:roadColor="#2E7CA8"
+                            custom:roadStrokeWidth="60"
+                            custom:roadInnerCircleColor="#802E7CA8"
+                            custom:roadInnerCircleStrokeWidth="4"
+                            custom:roadOuterCircleColor="#ffffff"
+                            custom:roadOuterCircleStrokeWidth="4"
+                            custom:arcLoadingColor="#2E7CA8"
+                            custom:arcLoadingStrokeWidth="20"
+                            custom:arcLoadingDashLength="10"
+                            custom:arcLoadingDistanceBetweenDashes="5"
+                            custom:arcLoadingStartAngle="270"
+                            custom:textColor="#ffffff"/>
+
+                        <ec.com.yacare.y4all.lib.util.ViewRelojHora
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:id="@+id/circleProgress2"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            custom:roadColor="#000000"
+                            custom:roadStrokeWidth="60"
+                            custom:roadInnerCircleColor="#80E550BA"
+                            custom:roadInnerCircleStrokeWidth="4"
+                            custom:roadOuterCircleColor="#ffffff"
+                            custom:roadOuterCircleStrokeWidth="4"
+                            custom:arcLoadingColor="#E550BA"
+                            custom:arcLoadingStrokeWidth="20"
+                            custom:arcLoadingDashLength="10"
+                            custom:arcLoadingDistanceBetweenDashes="5"
+                            custom:arcLoadingStartAngle="270"
+                            custom:textColor="#ffffff"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <ec.com.yacare.y4all.lib.util.DigitalClock
+                    android:id="@+id/digitalClock1"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.08"
+                    android:text="DigitalClock" />
+                <TextView
+                    android:id="@+id/txtYacare"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.05"
+                    android:textSize="11dp"
+                    android:text="Yacare Technology"
+                    android:textColor="#000000"
+                    android:gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="1dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:id="@+id/tabInferior"
+            android:layout_height="0dp"
+            android:layout_weight="0.09"
+            android:orientation="horizontal"
+            android:background="@color/colorprincipal"
+            android:gravity="center_vertical|center_horizontal">
+            <RelativeLayout
+                android:id="@+id/badge_layout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:gravity="center_vertical"
+                android:layout_gravity="fill">
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btnHoy"
+                        android:layout_width="100dip"
+                        android:layout_height="65dip"
+                        android:textSize="18dp"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/colorprincipal"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@id/relative_layout4"
+                    android:background="@drawable/badge_item_count"
+                    android:textColor="@color/colorprincipal"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/badge_layout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorprincipal"
+                android:gravity="center_vertical"
+                android:layout_gravity="fill">
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageButton
+                        android:id="@+id/btnVisitas"
+                        android:layout_width="100dip"
+                        android:layout_height="65dip"
+                        android:src="@drawable/visitas"
+                        android:background="@color/colorprincipal"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/badgeVisitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@id/relative_layout"
+                    android:background="@drawable/badge_item_count"
+                    android:textColor="@color/colorprincipal"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="3dp"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/badge2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorprincipal"
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/badge_layout1"
+                android:layout_gravity="fill">
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/btnVideo"
+                        android:layout_width="100dip"
+                        android:layout_height="65dip"
+                        android:src="@drawable/buzon"
+                        android:background="@color/colorprincipal" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/badgeVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_alignRight="@id/relative_layout1"
+                    android:background="@drawable/badge_item_count"
+                    android:textColor="@color/colorprincipal"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/badge3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@color/colorprincipal"
+                android:layout_toRightOf="@+id/badge2"
+                android:layout_gravity="fill">
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/btnSensor"
+                        android:layout_width="100dip"
+                        android:layout_height="65dip"
+                        android:src="@drawable/sensor"
+                        android:background="@color/colorprincipal" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/badgeSensor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_alignRight="@id/relative_layout2"
+                    android:background="@drawable/badge_item_count"
+                    android:textColor="@color/colorprincipal"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/badge4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@color/colorprincipal"
+                android:layout_toRightOf="@+id/badge2"
+                android:layout_gravity="fill">
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/btnDispositivos"
+                        android:layout_width="100dip"
+                        android:layout_height="65dip"
+                        android:src="@drawable/dispositivos"
+                        android:background="@color/colorprincipal" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/badgeDispositivos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_alignRight="@id/relative_layout3"
+                    android:background="@drawable/badge_item_count"
+                    android:textColor="@color/colorprincipal"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+        </GridLayout>
+        <LinearLayout
+            android:id="@+id/detalleTab"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.18"
+            android:orientation="horizontal">
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+            </ListView>
+            <ListView
+                android:id="@+id/listVisitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone">
+            </ListView>
+            <ListView
+                android:id="@+id/listBuzon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone">
+            </ListView>
+            <ListView
+                android:id="@+id/listSensor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone">
+            </ListView>
+            <ListView
+                android:id="@+id/listDispositivos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone">
+            </ListView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutVacio"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imgVacio"
+                    android:src="@drawable/lista_visitas_vacia"
+                    android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:id="@+id/txtVacio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Parece que no ha tenido visitas hoy"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <GridLayout
+            android:id="@+id/layout_inferior"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.07"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|center_horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/y4home_celeste"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/logo"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/txtCopyright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="Copyright Yacaré Technology"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/question"
+                android:id="@+id/question"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+        </GridLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\ac_programar_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\ac_programar_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\ac_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\ac_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\ingresar_clave_cuenta.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\ingresar_clave_cuenta.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\fragment_screen_slide_page.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\fragment_screen_slide_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\ac_y4home.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\ac_y4home.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\activity_inicio.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\activity_inicio.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\dispositivo_list.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\dispositivo_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\evento_list_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\evento_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\activity_llamada_entrante_portero.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\activity_llamada_entrante_portero.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\design_layout_snackbar.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout-sw600dp\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\vi_nueva_respuesta.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\vi_nueva_respuesta.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\li_programacion.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\li_programacion.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\activity_splash.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\ac_detalle_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\ac_detalle_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\li_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\li_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\activity_respuesta.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\activity_respuesta.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\activity_base.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\activity_base.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\activity_dispositivo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\activity_dispositivo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\ac_portero.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\ac_portero.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\ac_preferences.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\ac_preferences.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\ac_video_play.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\ac_video_play.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\configuracion_list.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\configuracion_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\configuracion_list_botones.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\configuracion_list_botones.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\activity_llamada_entrante.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\activity_llamada_entrante.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\visitante_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\visitante_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\li_evento.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout-sw600dp\\li_evento.xml"
+    }
+]

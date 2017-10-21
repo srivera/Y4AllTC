@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\fab_add.png",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.github.clans\\fab\\1.6.4\\res\\drawable-xhdpi-v4\\fab_add.png"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\text_rounded.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-xhdpi\\text_rounded.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\multiline_rounded.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-xhdpi\\multiline_rounded.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\item_unselected.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-xhdpi\\item_unselected.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\fondo_reloj_noche.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-xhdpi\\fondo_reloj_noche.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\item_selected.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-xhdpi\\item_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\toggle_selector.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-xhdpi\\toggle_selector.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\fondo_reloj_tarde.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-xhdpi\\fondo_reloj_tarde.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\fondo_reloj_dia.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-xhdpi\\fondo_reloj_dia.xml"
+    }
+]

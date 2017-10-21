@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\menu\\popup_router.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\menu\\popup_router.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\menu\\main.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\release\\menu\\popup.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\menu\\popup.xml"
+    }
+]

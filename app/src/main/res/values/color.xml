@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="float_transparent">#00000000</color>
+    <color name="sweet_dialog_bg_color">#FFFFFF</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="gray_btn_bg_color">#D0D0D0</color>
+    <color name="gray_btn_bg_pressed_color">#B6B6B6</color>
+    <color name="blue_btn_bg_color">#AEDEF4</color>
+    <color name="blue_btn_bg_pressed_color">#96BFD2</color>
+    <color name="red_btn_bg_color">#DD6B55</color>
+    <color name="red_btn_bg_pressed_color">#CD5B55</color>
+    <color name="error_stroke_color">#F27474</color>
+    <color name="success_stroke_color">#A5DC86</color>
+    <color name="trans_success_stroke_color">#33A5DC86</color>
+    <color name="warning_stroke_color">#F8BB86</color>
+    <color name="event_color_01">#EF9A9A</color>
+    <color name="event_color_02">#9FA8DA</color>
+    <color name="event_color_03">#80CBC4</color>
+    <color name="event_color_04">#F48FB1</color>
+    <color name="toolbar">#efefef</color>
+    <color name="toolbar_text">#8f000000</color>
+    <color name="accent">#2789e4</color>
+
+    <color name="transparent">#00ffffff</color>
+    <color name="circle_color_default_blue">#4184F3</color>
+    <color name="circle_color_default_gray">#BDBDBD</color>
+    <color name="text_title">#444444</color>
+    <color name="text_description">#7e7e7e</color>
+
+    <color name="colorprincipal">#26C6DA</color>
+    <color name="colorprincipaltransparente">#8000BCD4</color>
+    <color name="colorprincipal200">#80DEEA</color>
+    <color name="colorsecundario400">#78909C</color>
+    <color name="white">#ffffff</color>
+    <color name="feed_item_border">#c2c3c8</color>
+    <color name="rojoAlfa">#26FF0000</color>
+    <color name="amarilloAlfa">#26FFFF00</color>
+    <color name="verdeAlfa">#1A01DF01</color>
+    <color name="principalAlfa">#2680DEEA</color>
+
+    <color name="light_gray_header_color">#445d57</color>
+
+    <color name="f_oscuro">#050c14</color>
+    <color name="f_claro">#a2b099</color>
+    <color name="f_interclaro">#d3d6db</color>
+    <color name="f_gris">#6E6E6E</color>
+
+    <color name="primaryDarkColor">#00ACC1</color>
+    <color name="primaryColor">#00BCD4</color>
+
+    <color name="color_light">#484848</color>
+    <color name="colorPrimary">#394255</color>
+</resources>

@@ -1,0 +1,37 @@
+<resources>
+
+    <dimen name="fab_size_normal">30dp</dimen>
+
+    <dimen name="alert_width">290dp</dimen>
+    <dimen name="common_circle_width">3dp</dimen>
+    <dimen name="progress_circle_radius">34dp</dimen>
+
+    <dimen name="item_circle_width_height">24dp</dimen>
+    <dimen name="item_circle_text_size">12sp</dimen>
+
+    <dimen name="item_line_first_height">14dp</dimen>
+    <dimen name="item_line_first_margin">8dp</dimen>
+
+    <dimen name="item_margin_left_right">24dp</dimen>
+    <dimen name="item_text_margin_left">12dp</dimen>
+    <dimen name="item_text_margin_top">24dp</dimen>
+    <dimen name="item_margin_bottom_inactive">40dp</dimen>
+
+    <dimen name="item_frame_margin_top_bottom">16dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+ 	 <!-- Default -->
+    <dimen name="padding_default">2dp</dimen>
+ 	 <dimen name="font_size_title">17sp</dimen>
+    <dimen name="font_size_description">15sp</dimen>
+     <dimen name="height_list">45dp</dimen>
+
+    <dimen name="feed_item_border_width">1dp</dimen>     
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="espacio_norma_1">16dp</dimen>
+    <dimen name="espacio_norma_2">8dp</dimen>
+
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="dialog_default_title">Here\'s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="action_today">Hoy</string>
+    <string name="action_day_view">1 dia</string>
+    <string name="action_three_day_view">3 dias</string>
+    <string name="action_week_view">Semana</string>
+
+	<string name="icon_replay">&#xf122;</string>
+	
+	<string name="icon_localizar">&#xf041;</string>
+	<string name="icon_buscar">&#xf1e5;</string>
+	<string name="icon_escuchar_auto">&#xf1b9;</string>
+	<string name="icon_retroceder">&#xf04a;</string>
+	<string name="icon_escuchar_actual">&#xf04b;</string>
+	<string name="icon_siguiente">&#xf04e;</string>
+	<string name="icon_responder_mensaje">&#xf112;</string>
+	<string name="icon_usuario">&#xf007;</string>
+	<string name="icon_mensaje_sobre">&#xf0e0;</string>
+
+    <string name="icon_play">&#xf01d;</string>
+
+    <string-array name="meses">
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </string-array>
+
+    <string-array name="dias">
+        <item>Domingo</item>
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+    </string-array>
+
+    <string name="app_name">Y4Home</string>
+    <string name="email">Email</string>
+    <string name="clave">Clave</string>
+    <string name="pref_nombre_dispositivo">Mi nombre</string>
+    <string name="repetir_clave">Repetir clave</string>
+    <string name="numero_confirmacion">Num. Confirmación</string>
+    <string name="usa_wifi">   Mi equipo va a utilizar WIFI</string>
+    <string name="nombre_red">Nombre de su red wifi</string>
+    <string name="clave_red">Clave de su red wifi</string>
+    <string name="title_activity_ingresar_serie">Agregar Equipo</string>
+    <string name="www_yacare">www.yacaretech.com</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar</string>
+    <string name="reproducir">Reproducir</string>
+    <string name="responder">Responder</string>
+    <string name="rechazar">Rechazar</string>
+
+    <string name="transition_album_cover">transition_album_cover</string>
+
+    <string name="step_continue">Siguiente</string>
+    <string name="step_finish">Finalizar</string>
+    <string name="step_cancel">Cancelar</string>
+</resources>

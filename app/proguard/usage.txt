@@ -1,0 +1,124 @@
+com.serenegiant.encoder.MediaAudioEncoder:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final java.lang.String MIME_TYPE
+    private static final int SAMPLE_RATE
+    private static final int BIT_RATE
+com.serenegiant.encoder.MediaEncoder:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    protected static final int TIMEOUT_USEC
+    protected static final int MSG_FRAME_AVAILABLE
+    protected static final int MSG_STOP_RECORDING
+com.serenegiant.encoder.MediaMuxerWrapper:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final java.lang.String DIR_NAME
+com.serenegiant.encoder.MediaSurfaceEncoder:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final java.lang.String MIME_TYPE
+    private static final int VIDEO_WIDTH
+    private static final int VIDEO_HEIGHT
+    private static final int FRAME_RATE
+    private static final float BPP
+    50:52:public MediaSurfaceEncoder(com.serenegiant.encoder.MediaMuxerWrapper,com.serenegiant.encoder.MediaEncoder$MediaEncoderListener)
+com.serenegiant.encoder.MediaVideoEncoder:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final java.lang.String MIME_TYPE
+    private static final int VIDEO_WIDTH
+    private static final int VIDEO_HEIGHT
+    private static final int FRAME_RATE
+    private static final float BPP
+com.serenegiant.glutils.EGLBase:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final int EGL_RECORDABLE_ANDROID
+    116:119:public com.serenegiant.glutils.EGLBase$EglSurface createOffscreen(int,int)
+    248:266:private android.opengl.EGLSurface createOffscreenSurface(int,int)
+    247:247:static synthetic android.opengl.EGLSurface access$1(com.serenegiant.glutils.EGLBase,int,int)
+com.serenegiant.glutils.EGLBase$EglSurface:
+    66:70:EGLBase$EglSurface(com.serenegiant.glutils.EGLBase,int,int)
+com.serenegiant.glutils.GLDrawer2D:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final java.lang.String vss
+    private static final java.lang.String fss
+    private static final int FLOAT_SZ
+    private static final int VERTEX_NUM
+    private static final int VERTEX_SZ
+com.serenegiant.glutils.RenderHandler:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    84:85:public final void draw()
+    88:89:public final void draw(int)
+    110:110:public boolean isValid()
+com.serenegiant.usb.DeviceFilter:
+    private static final java.lang.String TAG
+    79:90:public DeviceFilter(android.hardware.usb.UsbDevice)
+    319:340:public boolean matches(com.serenegiant.usb.DeviceFilter)
+com.serenegiant.usb.IFrameCallback:
+    public abstract void onFrame(java.nio.ByteBuffer)
+com.serenegiant.usb.USBMonitor:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final java.lang.String ACTION_USB_PERMISSION_BASE
+    160:160:public synchronized boolean isRegistered()
+    168:169:public void setDeviceFilter(com.serenegiant.usb.DeviceFilter)
+    212:216:public java.util.Iterator getDevices()
+    223:243:public final void dumpDevices()
+    251:251:public boolean hasPermission(android.hardware.usb.UsbDevice)
+com.serenegiant.usb.USBMonitor$UsbControlBlock:
+    426:426:public android.hardware.usb.UsbDeviceConnection getUsbDeviceConnection()
+    434:434:public byte[] getRawDescriptors()
+    448:448:public synchronized java.lang.String getSerial()
+    458:469:public synchronized android.hardware.usb.UsbInterface open(int)
+    477:485:public void close(int)
+com.serenegiant.usbcameratest3.BuildConfig
+com.serenegiant.usbcameratest3.CameraDialog:
+    75:82:public static com.serenegiant.usbcameratest3.CameraDialog showDialog(android.app.Fragment)
+com.serenegiant.usbcameratest3.MainActivity:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final boolean USE_SURFACE_ENCODER
+    private static final int PREVIEW_WIDTH
+    private static final int PREVIEW_HEIGHT
+    private static final int PREVIEW_MODE
+com.serenegiant.usbcameratest3.MainActivity$CameraHandler:
+    private static final int MSG_OPEN
+    private static final int MSG_CLOSE
+    private static final int MSG_PREVIEW_START
+    private static final int MSG_PREVIEW_STOP
+    private static final int MSG_CAPTURE_STILL
+    private static final int MSG_CAPTURE_START
+    private static final int MSG_CAPTURE_STOP
+    private static final int MSG_MEDIA_UPDATE
+    private static final int MSG_RELEASE
+com.serenegiant.usbcameratest3.MainActivity$CameraHandler$CameraThread:
+    private static final java.lang.String TAG_THREAD
+com.serenegiant.usbcameratest3.R
+com.serenegiant.usbcameratest3.R$attr
+com.serenegiant.usbcameratest3.R$color
+com.serenegiant.usbcameratest3.R$dimen
+com.serenegiant.usbcameratest3.R$drawable
+com.serenegiant.usbcameratest3.R$id
+com.serenegiant.usbcameratest3.R$layout
+com.serenegiant.usbcameratest3.R$raw
+com.serenegiant.usbcameratest3.R$string
+com.serenegiant.usbcameratest3.R$style
+com.serenegiant.usbcameratest3.R$xml
+com.serenegiant.widget.CameraViewInterface:
+    public abstract boolean hasSurface()
+com.serenegiant.widget.CheckableLinearLayout
+com.serenegiant.widget.UVCCameraTextureView:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    177:177:public boolean hasSurface()
+com.serenegiant.widget.UVCCameraTextureView$RenderHandler:
+    private static final int MSG_REQUEST_RENDER
+    private static final int MSG_SET_ENCODER
+    private static final int MSG_CREATE_SURFACE
+    private static final int MSG_TERMINATE
+com.serenegiant.widget.UVCCameraTextureView2:
+    138:138:public boolean hasSurface()

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\.gradle\caches\modules-2\files-2.1\io.socket\engine.io-client\0.8.2\2b23f3e731f21c2009ab0a10da8254a69693767d\engine.io-client-0.8.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2b23f3e731f21c2009ab0a10da8254a69693767d">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\engine.io-client-0.8.2_7b2865a6a028a5f52a7aba9ffb1847b04476f515\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea579447f9afb1fbcb28e150e1cd4bfe7f56e75b">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support.constraint-constraint-layout-1.0.0-alpha1_1e21600a606fa1341a0ba068e66e43c96ff28b99\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-7.8.0_e7dcc0ca891d77fb3f24da142ec1eee96de98a7f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.github.clans\fab\1.6.4\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.clans-fab-1.6.4_9eaf2972adda7a7a36710301b9fe871588adaecc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-7.8.0_45259eda1720f544069d5ba7b0ebc8ef625b7d79\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-7.8.0_1a4adddc567ba12d7e8eeb451ac83a0766d81973\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-7.8.0_ea3cd39f816baab9177b434766d218971f0d0994\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-7.8.0_3d3cb5a90d5f10978f13f2bc71aa4e10525460f0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8c046c952177602c858ed41c8fc492c939bde9aa">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-23.0.1_1160ffd102447b7f13e8cb3943fae874e26977de\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.0.1_1cb194ba1e7b657e7560b2bb7f29947cef84ac26\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-plus-7.8.0_aa9b40f7bf1d1953fd739c4d0dcbf13681a867ca\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\.gradle\caches\modules-2\files-2.1\io.socket\socket.io-client\0.8.2\96fd0e4a99e71d688b7267e12d2a5a137519d92e\socket.io-client-0.8.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="96fd0e4a99e71d688b7267e12d2a5a137519d92e">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\socket.io-client-0.8.2_8455ab961110d66cf4dd4dbbaff9b44d80d0cdb7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\libs\isoparser-1.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4f7b32dbeb03766e2d4f2a54d33bb9d6d583460d">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\2\isoparser-1.0.1_5dc86df38048de8c0b55a126a0ddf73ccbeb2af8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.1_a0ff88b6bc9ed76efabe756e7f761ff53ea0944d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.0.1_2773656358d99cc9145ed1b30ffd9e25752a317d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\library-2.4.0_dadfa1b9369fe8042580445e5019a057eeb4cd78\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-7.8.0_e5a4f1cd2ea6b4bb5fce09283a20408ad37777e1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e3d2638f124848f0ba1117887505d24b98e99062">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_cacdd8939be65c8a9df077944a8c0cd44f887f2d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a0c456a59e1edab84702b48a626705aa1d830ccc">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.1_5bc2413b0fcf76f1459b334a150c7b3c51eef9e4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.4.1\c7c4f9e35c2fd5900da24f9872e3971801f08ce0\okhttp-3.4.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.4.1_fbcc849bc9ebca9b5bdb5b94ec1540d38f13183a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appstate-7.8.0_3a1ce195ac8cdecb74e050a279db0e1b2406be5d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-7.8.0_490d2c846ffcb62b8aacff455e088c1fbdbb18cc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_33181855c6630a2ce3c20d3d43cab462d5e78bd4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="27f362c88a4b17672dbfc9186adf1c060363d0c6">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7a5f5e6c954795f9b98d2012ef51d25c2431550e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.0.1_31726c611519bbdf34c4f9a7bfb9a407942de2ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-7.8.0_5320926c9d4a601c4e04a8ecd452772725d421f1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-ws\3.4.1\8ace66ef7002d98f633377c9e67daeeb196d8c3b\okhttp-ws-3.4.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8ace66ef7002d98f633377c9e67daeeb196d8c3b">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-ws-3.4.1_2c9a9899e4d069a7c0207bd176800ad0f68807c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-7.8.0_797c933fa0707579d5f161882e1217429f529746\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-7.8.0_85027fcfa7a1f3fe222d338ae520629f1891deaf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-7.8.0_7a88f94bbfb11ce3c6f099559dbdf354a6eda2e0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-7.8.0_440b18634d5e14586ef7d69bfa7d60a4fe244e3e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\libs\aspectjrt-1.7.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a1efcd30e7c12f0c0d5b0df412c7304c735035ed">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\2\aspectjrt-1.7.3_f8e6fe232697d57f6260247ff6da7843d1646003\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-7.8.0_4d75180d50bf4d0be2f2666044ddb4f05164f0f7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_83b4540af6f14c6e358ec4e0aeaefdedd936bf17\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-7.8.0_183189faecc93d9ce1d0afcb82d646a8c605769b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha1\constraint-layout-solver-1.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="78d61c347aa5002119e3c17bffcbebf28fe07b0b">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-alpha1_c496f07cb2ae5c1b41b0dad07921b42a0eef15b6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\libs\apache-httpcomponents-httpcore.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="33fc26c02f8043ab0ede19eadc8c9885386b255c">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\2\apache-httpcomponents-httpcore_780afd4ca1f0972f60fa76001a2ad1343785a270\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.0.1_b92fcf4595a39cb346e33741ce62a70ac13570c6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\libs\httpclient-4.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="fcacc35075d9c3114da4c4122b42d78786135c90">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpclient-4.0.3_0f0203bddd952c1cd2104accd69378837ff158b2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-7.8.0_326d01c57ca283ee53553c52f63abe8cef7f45f2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.0.1_6c1c78e0f5714596bbbda37b4d6e436d41fe669a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.0.1_93569960297601ae67e37112bb5ea0a876aa5648\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.9.0_20f34daed7d00aa026489e8bbc5ec7c51a64085b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-7.8.0_c200b2fef1a886ca6ef0f6248e8a9b9fdd2d802e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-7.8.0_3345a48ed03d85736b85b8d58ffe1089154e4adb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-7.8.0_c1da41bf9eb603dcc37d045d231fc16a22647278\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-22.2.0_4c1784ce9ffee621c25391180702520c6c477dde\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-7.8.0_a9d9d71bb794f1006596bba03cd5e06045ab12fd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.github.ozodrukh\CircularReveal\1.0.4\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="57c231461bd4ab97550b0b053c159e4f13ffc869">
+        <dex dex="C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.ozodrukh-CircularReveal-1.0.4_f7478d46a88ff42a475b88d14123b1f570a8a7c0\classes.dex" />
+    </item>
+
+</items>

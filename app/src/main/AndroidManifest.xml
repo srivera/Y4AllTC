@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ec.com.yacare.y4all.activities"
+    android:versionCode="2"
+    android:versionName="2.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <!-- ?sdcard???/??????? ?????? -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+   <!-- wifi???? -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+	 <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" >
+    </uses-permission>
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    
+    <!--<uses-permission android:name="android.permission.BLUETOOTH"/>-->
+	<!--<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>-->
+
+    <!-- GCM connects to Google Services. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+     Creates a custom permission so only this app can receive its messages.
+
+     NOTE: the permission *must* be called PACKAGE.permission.C2D_MESSAGE,
+           where PACKAGE is the application's package name.
+    -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <permission
+        android:name="ec.com.yacare.y4all.activities.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="ec.com.yacare.y4all.activities.permission.C2D_MESSAGE" />
+
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <application
+        android:name="ec.com.yacare.y4all.activities.DatosAplicacion"
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:icon="@drawable/logo8"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme"
+        android:label="Y4Home">
+
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="face"/>
+
+        <!-- Required for applications which use Google Play Services. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCnYiobIC2G2kv9yY8GgFMlV8s3z_a-yNk" />
+
+        <!--<receiver-->
+            <!--android:name="ec.com.yacare.y4all.activities.GcmBroadcastReceiver"-->
+            <!--android:permission="com.google.android.c2dm.permission.SEND" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.google.android.c2dm.intent.RECEIVE" />-->
+                <!--<category android:name="ec.com.yacare.y4all.activities" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <!--<service android:name="ec.com.yacare.y4all.activities.GcmIntentService" />-->
+
+        <activity
+            android:name="ec.com.yacare.y4all.activities.SplashActivity"
+            android:noHistory="true"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/SplashTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".principal.Y4HomeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".socket.MonitorIOActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.InicioActivity"
+            android:noHistory="true"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.LoginActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:label="Ingrese sus credenciales"
+            android:noHistory="true">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.instalacion.InstalarEquipoActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_ingresar_serie"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.luces.ColoresAmbienteActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.dispositivo.DispositivoActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.cuenta.IngresarClaveActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:configChanges="orientation|screenSize"
+            android:label="Mi Cuenta"
+            android:noHistory="true"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.evento.EventosActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.recomendacion.RecomendarActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.evento.ImageSliderActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.respuesta.AdministrarRespuestasActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".respuesta.NuevaRespuestaActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name="ec.com.yacare.y4all.activities.focos.calendar.BasicActivity"
+            android:theme="@style/AppTheme1">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.luces.LucesFragment"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.luces.DetalleLucesFragment"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.focos.ProgramacionActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme3" >
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.PreferenciasActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.focos.calendar.CalendarioFragment"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".evento.PlayVideoActivity"
+            android:label="Buzón de Mensajes"
+            android:theme="@style/AppTheme.Dark">
+        </activity>
+
+        <activity
+            android:name="ec.com.yacare.y4all.activities.cuenta.CuentaActivity"
+            android:theme="@style/AppTheme" >
+        </activity>
+      <activity
+            android:name="ec.com.yacare.y4all.activities.dispositivo.ChatActivity"
+            android:label="Chat"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:noHistory="true">
+        </activity>
+
+        <activity
+            android:name="ec.com.yacare.y4all.activities.dispositivo.MapaActivity"
+            android:label="Mapa"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:noHistory="true">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.portero.EtiquetarVisitanteActivity"
+            android:label="Foto del Visitante"
+            android:theme="@android:style/Theme.Holo.Light">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.dispositivo.LlamadaEntranteActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.Holo.Light">
+        </activity>      
+        <activity
+            android:name="ec.com.yacare.y4all.activities.dispositivo.LlamadaActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light">
+        </activity>
+        <activity
+            android:name="ec.com.yacare.y4all.activities.dispositivo.BuscarTelefonoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light">
+        </activity>
+
+        <activity
+            android:name="ec.com.yacare.y4all.activities.portero.LlamadaEntrantePorteroActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+
+        <!-- [START gcm_receiver] -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="activities.riesgo.yacare.com.ec.appriesgo" />
+            </intent-filter>
+        </receiver>
+        <!-- [END gcm_receiver] -->
+
+        <!-- [START gcm_listener] -->
+        <service
+            android:name="ec.com.yacare.y4all.gcm.MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <!-- [END gcm_listener] -->
+        <!-- [START instanceId_listener] -->
+        <service
+            android:name="ec.com.yacare.y4all.gcm.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+        <!-- [END instanceId_listener] -->
+        <service
+            android:name="ec.com.yacare.y4all.gcm.RegistrationIntentService"
+            android:exported="false">
+        </service>
+
+        <service android:name="io.xlink.wifi.sdk.XlinkUdpService" />
+
+        <!-- XLINK ???? -->
+
+        <service android:name="io.xlink.wifi.sdk.XlinkTcpService" />
+
+    </application>
+</manifest>

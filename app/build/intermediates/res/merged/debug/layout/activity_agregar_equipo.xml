@@ -1,0 +1,127 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingRight="10dp"
+        android:background="#FFFFFF">
+        <TableLayout
+            android:id="@+id/tablaPrimerPaso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:padding="5dip"
+            android:scrollbars="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*" >
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center_vertical|left">
+
+                <TextView android:id="@+id/txtMensajeTipoEquipo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seleccione el tipo de equipo"
+                    android:textSize="12sp"
+                    android:layout_below="@android:id/title"
+                    android:layout_alignLeft="@android:id/title"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:maxLines="4" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="left|center_horizontal"
+                android:paddingTop="16dp">
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spnTipoEquipo"
+                    android:textSize="20sp"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center_vertical|left">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:paddingTop="16dp"
+                    android:layout_height="72dp">
+                    <EditText android:id="@+id/editNombreEquipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:inputType="textCapWords"
+                        android:hint="Nombre del equipo" />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center_vertical|left"
+                android:paddingTop="16dp">
+
+                <CheckBox
+                    android:id="@+id/checkBoxWiFi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:paddingLeft="10dp"
+                    android:button="@android:drawable/checkbox_off_background"
+                    android:text="@string/usa_wifi"
+                    android:textColor="?android:attr/textColorSecondary"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center_vertical|left">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:paddingTop="16dp"
+                    android:layout_height="72dp">
+                    <EditText android:id="@+id/editNombreWifi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:hint="@string/nombre_red" />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center_vertical|left">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:paddingTop="16dp"
+                    android:layout_height="72dp">
+                    <EditText android:id="@+id/editClaveWiFi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:hint="@string/clave_red"/>
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center_vertical|left"
+                android:layout_marginBottom="5dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:id="@+id/btnConfigurar"
+                    android:layout_height="35dp"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="3dp"
+                    android:padding="5dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:background="@drawable/boton_celeste"
+                    android:text="Siguiente"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
+
+
+

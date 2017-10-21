@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="fab_size_normal">30dp</dimen>
+    	<dimen name="size_button_lista">40dp</dimen>
+    <dimen name="size_button_pequeno">30dp</dimen>
+</resources>

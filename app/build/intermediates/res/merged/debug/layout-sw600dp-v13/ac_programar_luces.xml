@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top"
+    app:orientation="vertical"
+    android:gravity="top">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:layout_weight="0.08">
+
+            <View android:id="@+id/rectangle_at_the_top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/gradient"
+                android:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/fabSalir"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:src="@drawable/salir"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="8dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"/>
+            <TextView
+                android:id="@+id/txtNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crear Evento"
+                android:textAllCaps="true"
+                android:textSize="14dp"
+                android:textColor="#FFFFFF"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+
+        <FrameLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_margin="5dp"
+                            android:textColor="#000000"
+                            android:text="Seleccione la hora y los días de activación"/>
+                        <TimePicker
+                            android:id="@+id/timePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="#000000"
+                            android:numbersSelectorColor="#006064"
+                            android:numbersTextColor="#000000"
+                            android:background="#ffffff"
+                            android:backgroundTint="#ffffff"
+                            android:numbersBackgroundColor="#ffffff"
+                            android:headerBackground="#ffffff"
+                            android:theme="@android:style/Theme.DeviceDefault.Light"
+                            android:timePickerMode="clock"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+                        <ToggleButton
+                            android:layout_width="0dp"
+                            android:layout_weight="0.14"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tDomingo"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/toggle_dia_selector"
+                            android:textOn="D"
+                            android:textOff="D"/>
+
+                        <ToggleButton
+                            android:layout_width="0dp"
+                            android:layout_weight="0.14"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tLunes"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/toggle_dia_selector"
+                            android:textOn="L"
+                            android:textOff="L"/>
+
+                        <ToggleButton
+                            android:layout_width="0dp"
+                            android:layout_weight="0.14"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tMartes"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/toggle_dia_selector"
+                            android:textOn="M"
+                            android:textOff="M"/>
+                        <ToggleButton
+                            android:layout_width="0dp"
+                            android:layout_weight="0.14"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tMiercoles"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/toggle_dia_selector"
+                            android:textOn="M"
+                            android:textOff="M"/>
+                        <ToggleButton
+                            android:layout_width="0dp"
+                            android:layout_weight="0.14"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tJueves"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/toggle_dia_selector"
+                            android:textOn="J"
+                            android:textOff="J"/>
+                        <ToggleButton
+                            android:layout_width="0dp"
+                            android:layout_weight="0.14"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tViernes"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/toggle_dia_selector"
+                            android:textOn="V"
+                            android:textOff="V"/>
+                        <ToggleButton
+                            android:layout_width="0dp"
+                            android:layout_weight="0.14"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tSabado"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/toggle_dia_selector"
+                            android:textOn="S"
+                            android:textOff="S"/>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duración (horas)"
+                        android:textColor="#000000"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/txtDuracion"/>
+
+                    <SeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/seekDuracion"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:textColor="#ffffff"
+                        android:layout_marginBottom="10dp"
+                        android:max="96"/>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:paddingTop="16dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="72dp">
+                        <EditText android:id="@+id/editNombreProgramacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="#000000"
+                            android:textColorHint="#000000"
+                            android:hint="Nombre de la alarma" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1">
+           <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:orientation="horizontal">
+                <Button
+                    android:text="Programar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/boton_celeste"
+                    android:id="@+id/btnProgramar" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

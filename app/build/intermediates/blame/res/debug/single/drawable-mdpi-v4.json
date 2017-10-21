@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\boton_blanco.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-mdpi\\boton_blanco.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\lightcontroller_list_selector_background_transition_holo_dark.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-mdpi\\lightcontroller_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\boton_celeste.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-mdpi\\boton_celeste.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\lightcontroller_item_background_holo_dark.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\drawable-mdpi\\lightcontroller_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\fab_add.png",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.github.clans\\fab\\1.6.4\\res\\drawable-mdpi-v4\\fab_add.png"
+    }
+]

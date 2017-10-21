@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:gravity="top"
+    android:background="#FFFFFF"
+    android:weightSum="1">
+    <TextView
+        android:id="@+id/dia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="3dp"
+        android:textSize="45dp"
+        android:textColor="#000000"
+        android:text="DD"/>
+   <LinearLayout
+        android:id="@+id/relative_layout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+       <TextView
+           android:id="@+id/mes"
+           android:text="MMMMMMMM"
+           android:textColor="#000000"
+           android:textAllCaps="true"
+           android:textSize="14dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+       <TextView
+           android:id="@+id/anio"
+           android:text="AAAA"
+           android:textSize="14dp"
+           android:textColor="#000000"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nombredia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:gravity="center_vertical|right"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/colorprincipal"
+        android:text="NOMBRE DIA" />
+</LinearLayout>
+    

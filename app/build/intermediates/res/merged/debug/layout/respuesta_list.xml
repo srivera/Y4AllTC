@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/swipelist_backview"
+        style="@style/ListBackContent"
+        android:tag="back" >
+
+        <Button
+            android:id="@+id/btneditar"
+            style="@style/ListButtonAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editar" />
+
+        <Button
+            android:id="@+id/btnreproducir"
+            style="@style/ListButtonAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reproducir" />
+
+        <Button
+            android:id="@+id/btnborrar"
+            style="@style/ListButtonAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eliminar" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/swipelist_frontview"
+        style="@style/ListFrontContent"
+        android:orientation="vertical"
+        android:tag="front" >
+
+        <TextView
+            android:id="@+id/nombreRespuesta"
+            style="@style/ListTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tipoRespuesta"
+            style="@style/ListDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nombreRespuesta" />
+    </RelativeLayout>
+
+</FrameLayout>

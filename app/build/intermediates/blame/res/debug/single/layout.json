@@ -1,0 +1,490 @@
+[
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_llamada_entrante.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_llamada_entrante.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\alert_dialog.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\alert_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_agregar_equipo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_agregar_equipo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\gridview_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\gridview_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inicio.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_inicio.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\config_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\config_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_preferences.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_preferences.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_lista_equipo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_lista_equipo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mensaje_voz_right_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\mensaje_voz_right_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_screen_slide_page.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\fragment_screen_slide_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dispositivo_list.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\dispositivo_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_mapa.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_mapa.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_login.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\equipo_list.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\equipo_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mensaje_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\mensaje_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_respuesta.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_respuesta.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_dispositivo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_dispositivo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_programar_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_programar_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_video_play.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_video_play.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_llamada.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_llamada.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ingresar_clave_cuenta.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ingresar_clave_cuenta.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_lista_dispositivo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_lista_dispositivo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_dispositivo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_dispositivo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\vi_foto_preview.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\vi_foto_preview.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_navigation_item_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_registro.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_registro.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_navigation_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_perfil.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_perfil.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\seleccionar_equipo_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\seleccionar_equipo_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_fullscreen_view.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_fullscreen_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_y4home_simple.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_y4home_simple.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_contacto.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_contacto.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_stepper.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\content_stepper.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_portero.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_portero.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_list_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\layout\\mr_media_route_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_respuesta.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_respuesta.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_luces_ambiente.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_luces_ambiente.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\seleccionar_equipo_titulo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\seleccionar_equipo_titulo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_buscar_telefono.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_buscar_telefono.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_recomendar.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_recomendar.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_base.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_base.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\seleccionar_respuesta_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\seleccionar_respuesta_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mensaje_voz_left_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\mensaje_voz_left_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_cuenta_paginada.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_cuenta_paginada.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_mensaje_texto.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_mensaje_texto.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_evento_paginada.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_evento_paginada.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_chooser_dialog.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\layout\\mr_media_route_chooser_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\configuracion_list_vacio.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\configuracion_list_vacio.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\evento_list_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\evento_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\vi_mascolores.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\vi_mascolores.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_icon.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_etiquetar_visitante.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_etiquetar_visitante.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_llamada_entrante_portero.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_llamada_entrante_portero.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_detalle_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_detalle_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\configuracion_list_botones.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\configuracion_list_botones.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_validar_registro.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_validar_registro.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\evento_section.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\evento_section.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_chat.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_chat.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\seleccionar_equipo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\seleccionar_equipo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_instalar_equipo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\activity_instalar_equipo.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_navigation_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_portero_menu_principal.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_portero_menu_principal.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\steppers_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\steppers_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_y4home.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_y4home.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_text.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_layout_tab_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\vi_seek_bar.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\vi_seek_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar_include.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.0.1\\res\\layout\\design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_evento.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_evento.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mensaje_right_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\mensaje_right_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout_fullscreen_image.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\layout_fullscreen_image.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\visitante_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\visitante_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\configuracion_list.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\configuracion_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_luces.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_luces.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\vi_nueva_respuesta.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\vi_nueva_respuesta.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\steppers_item_expanded.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\steppers_item_expanded.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ac_feedback.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\ac_feedback.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_zona.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_zona.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\respuesta_list.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\respuesta_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_controller_material_dialog_b.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\layout\\mr_media_route_controller_material_dialog_b.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_programacion.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_programacion.xml"
+    },
+    {
+        "merged": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\res\\merged\\debug\\layout\\li_equipo.xml",
+        "source": "C:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\src\\main\\res\\layout\\li_equipo.xml"
+    }
+]
