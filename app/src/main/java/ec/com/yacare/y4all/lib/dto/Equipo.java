@@ -48,6 +48,9 @@ public class Equipo implements Serializable{
 	private Integer volumen;
 	private Device device;
 
+	private String tipoPortero;
+	private String numeroDepartamento;
+
 	private Equipo equipoPadre;
 
 	//No persistentes
@@ -368,5 +371,21 @@ public class Equipo implements Serializable{
 
 	public void setDevice(Device device) {
 		this.device = device;
+	}
+
+	public String getNumeroDepartamento() {
+		return numeroDepartamento;
+	}
+
+	public void setNumeroDepartamento(String numeroDepartamento) {
+		this.numeroDepartamento = numeroDepartamento;
+	}
+
+	public String getTipoPortero() {
+		return tipoPortero;
+	}
+
+	public void setTipoPortero(String tipoPortero) {
+		this.tipoPortero = tipoPortero;
 	}
 }

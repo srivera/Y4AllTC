@@ -169,15 +169,23 @@ public class WifiBox {
             0x00, 0x08, 0x05,
             0x00, 0x00, 0x00,
             0x00};
-    public static byte[] TRAMA_WHITE_6W = {(byte) 0x31, (byte) 0x00,
-            (byte) 0x00, (byte) 0x08, (byte) 0x05,
+    public static byte[] TRAMA_WHITE_CONTROL_8ZONAS = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x02,
             (byte) 0x64, (byte) 0x00, (byte) 0x00,
             (byte) 0x00};
-    public static Integer[] TRAMA_WHITE_6W_INT = { 0x31, 0x00,
-            0x00, 0x08, 0x05,
+    public static Integer[] TRAMA_WHITE_8ZONAS_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x02,
             0x64, 0x00, 0x00,
             0x00};
 
+    public static byte[] TRAMA_WHITE_CALID_8ZONAS = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x02,
+            (byte) 0x00, (byte) 0x00, (byte) 0x00,
+            (byte) 0x00};
+    public static Integer[] TRAMA_WHITE_CALID_8ZONAS_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x02,
+            0x00, 0x00, 0x00,
+            0x00};
     public static byte[] TRAMA_WHITE_BOX = {(byte) 0x31, (byte) 0x00,
             (byte) 0x00, (byte) 0x00, (byte) 0x03,
             (byte) 0x05, (byte) 0x00, (byte) 0x00,
@@ -335,6 +343,102 @@ public class WifiBox {
             0x00, 0x08, 0x00,
             0x00, 0x00, 0x00,
             0x00};
+
+    //TRAMAS TIRA LED
+    public static byte[] TRAMA_ENCENDER_TIRA = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x06,
+            (byte) 0x01, (byte) 0x00, (byte) 0x00,
+            (byte) 0x00};
+    public static Integer[] TRAMA_ENCENDER_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x06,
+            0x01, 0x00, 0x00,
+            0x00};
+
+
+    public static byte[] TRAMA_APAGAR_TIRA = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x06,
+            (byte) 0x02, (byte) 0x00, (byte) 0x00,
+            (byte) 0x00};
+    public static Integer[] TRAMA_APAGAR_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x06,
+            0x02, 0x00, 0x00,
+            0x00};
+
+
+    public static byte[] TRAMA_WHITE_TIRA = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x06,
+            (byte) 0x05, (byte) 0x00, (byte) 0x00,
+            (byte) 0x00};
+    public static Integer[] TRAMA_WHITE_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x06,
+            0x05, 0x00, 0x00,
+            0x00};
+
+
+    public static byte[] TRAMA_COLOR_TIRA = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x01};
+    public static Integer[] TRAMA_COLOR_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x01};
+
+    public static byte[] TRAMA_BRIGHTNESS_TIRA = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x04};
+    public static Integer[] TRAMA_BRIGHTNESS_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x04};
+
+
+    public static byte[] TRAMA_SATURATION_TIRA = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x03};
+
+    public static Integer[] TRAMA_SATURATION_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x03};
+
+
+    public static byte[] TRAMA_MODE_TIRA = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x05};
+    public static Integer[] TRAMA_MODE_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x05};
+
+
+    public static byte[] TRAMA_DISCO_FASTER_TIRA = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x03,
+            (byte) 0x03, (byte) 0x00, (byte) 0x00,
+            (byte) 0x00};
+    public static Integer[] TRAMA_DISCO_FASTER_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x06,
+            0x03, 0x00, 0x00,
+            0x00};
+
+
+    public static byte[] TRAMA_DISCO_SLOWLER_TIRA  = {(byte) 0x31, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x06,
+            (byte) 0x04, (byte) 0x00, (byte) 0x00,
+            (byte) 0x00};
+    public static Integer[] TRAMA_DISCO_SLOWLER_TIRA_INT = { 0x31, 0x00,
+            0x00, 0x0A, 0x06,
+            0x04, 0x00, 0x00,
+            0x00};
+
+
+    public static byte[] TRAMA_UNLINK_TIRA = {(byte) 0x3E, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x00,
+            (byte) 0x00, (byte) 0x00, (byte) 0x00,
+            (byte) 0x00};
+    public static Integer[] TRAMA_UNLINK_TIRA_INT = {0x3E, 0x00,
+            0x00, 0x0A, 0x00,
+            0x00, 0x00, 0x00,
+            0x00};
+
+
+
+    public static byte[] TRAMA_LINK_TIRA = {(byte) 0x3D, (byte) 0x00,
+            (byte) 0x00, (byte) 0x0A, (byte) 0x00,
+            (byte) 0x00, (byte) 0x00, (byte) 0x00,
+            (byte) 0x00};
+    public static Integer[] TRAMA_LINK_TIRA_INT = {0x3D, 0x00,
+            0x00, 0x0A, 0x00,
+            0x00, 0x00, 0x00,
+            0x00};
+
     public static final int GROUP_ALL = 0x00;
     public static final int GROUP_1 = 0x01;
     public static final int GROUP_2 = 0x02;
@@ -608,46 +712,35 @@ public class WifiBox {
     };
 
     public boolean sendData(final byte[] bs, String name) {
-//		if (!isOnline) {
-//			connectDevice();
-//			return false;
-//		}
-
         DatosAplicacion datosAplicacion = (DatosAplicacion) context;
-        int ret = XlinkAgent.getInstance().sendPipeData(datosAplicacion.getEquipoSeleccionado().getDevice().getXDevice(), bs, pipeListener);
-        if (ret < 0) {
-            switch (ret) {
-                case XlinkCode.NO_CONNECT_SERVER:
-                    XlinkUtils.shortTips("No se conecto al servidor");
-                    break;
-                case XlinkCode.NETWORD_UNAVAILABLE:
-                    XlinkUtils.shortTips("red no disponible");
-                    break;
-                case XlinkCode.NO_DEVICE:
-                    XlinkUtils.shortTips("no encontro device");
-                    XlinkAgent.getInstance().initDevice(datosAplicacion.getEquipoSeleccionado().getDevice().getXDevice());
-                    break;
-                default:
-                    XlinkUtils.shortTips("Otro error：" + ret);
-                    break;
-            }
+        if(datosAplicacion.getEquipoSeleccionado() != null && datosAplicacion.getEquipoSeleccionado().getDevice() != null && datosAplicacion.getEquipoSeleccionado().getDevice().getXDevice() != null) {
+            int ret = XlinkAgent.getInstance().sendPipeData(datosAplicacion.getEquipoSeleccionado().getDevice().getXDevice(), bs, pipeListener);
+            Log.i("PUSH LUCES", "sendData " + ret);
 
+            if (ret < 0) {
+                switch (ret) {
+                    case XlinkCode.NO_CONNECT_SERVER:
+                        XlinkUtils.shortTips("No se conecto al servidor");
+                        break;
+                    case XlinkCode.NETWORD_UNAVAILABLE:
+                        XlinkUtils.shortTips("red no disponible");
+                        break;
+                    case XlinkCode.NO_DEVICE:
+                        XlinkUtils.shortTips("no encontro device");
+                        XlinkAgent.getInstance().initDevice(datosAplicacion.getEquipoSeleccionado().getDevice().getXDevice());
+                        break;
+                    default:
+                        XlinkUtils.shortTips("Otro error：" + ret);
+                        break;
+                }
+
+                return false;
+            }
+        }else{
             return false;
-        } else {
-//			if (name != null) {
-//				Log("发送数据,msgId:" + ret + " data:(" + name + ")"
-//						+ bytesToHex(bs));
-//				if(name.equals("开")) {
-//					CmdManage.sesionFocos = new byte[2];
-//					CmdManage.sesionFocos[0] = bs[19];
-//					CmdManage.sesionFocos[1] = bs[20];
-//				}
-//			} else {
-//				Log("发送数据,msgId:" + ret + " data:"
-//						+ bytesToHex(bs));
-//			}
         }
         return true;
+
     }
 
 
@@ -762,7 +855,7 @@ public class WifiBox {
 //                XlinkUtils.shortTips("antes del if");
 //            }
 //        });
-        if (((DatosAplicacion)context).getEquipoSeleccionado().getLuzWifi().equals("WIFI")) {
+        if (((DatosAplicacion)context).getEquipoSeleccionado() != null && ((DatosAplicacion)context).getEquipoSeleccionado().getLuzWifi() != null && ((DatosAplicacion)context).getEquipoSeleccionado().getLuzWifi().equals("WIFI")) {
 //            ((DatosAplicacion)context).getCurrentActivity().runOnUiThread(new Runnable() {
 //                @Override
 //                public void run() {
@@ -939,6 +1032,17 @@ public class WifiBox {
         }
     }
 
+    private void sendMessageConfigsConexion(byte[] trama, Integer[] sumar, int group, int config, String imac) throws IOException {
+
+            Integer[] coloresI = {config,  0x00,  0x00, 0x00  };
+            byte[] grupo = {(byte)group, (byte) 0x00, (byte) (sumHexa(sumar,  coloresI, group )) };
+            byte[] colores = {(byte)config, (byte) 0x00, (byte) 0x00, (byte) 0x00  };
+            byte[] tramaCompleta = concat(CABECERA,  CmdManage.sesionFocos, SECUENCIA, trama, colores, grupo );
+        Log.d("estado focos", "Antes de enviar ..");
+            sendData(tramaCompleta, "comando");
+        Log.d("estado focos", "Despues de enviar ..");
+
+    }
 
     public void off(String grupo, String imac) throws IOException, IllegalArgumentException {
         int group = convertirGrupo(grupo);
@@ -955,6 +1059,12 @@ public class WifiBox {
             e.printStackTrace();
         }
         sendMessage(TRAMA_APAGAR_WW, TRAMA_APAGAR_WW_INT, group, imac);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sendMessage(TRAMA_APAGAR_TIRA, TRAMA_APAGAR_TIRA_INT, group, imac);
     }
 
     public void offBox(String imac) throws IOException, IllegalArgumentException {
@@ -985,7 +1095,12 @@ public class WifiBox {
         }
         sendMessage(TRAMA_ENCENDER_WW, TRAMA_ENCENDER_WW_INT, group, imac);
 
-
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sendMessage(TRAMA_ENCENDER_TIRA, TRAMA_ENCENDER_TIRA_INT, group, imac);
     }
 
     public void on(int group, String imac) throws IOException, IllegalArgumentException {
@@ -1003,7 +1118,12 @@ public class WifiBox {
         }
         sendMessage(TRAMA_ENCENDER_WW, TRAMA_ENCENDER_WW_INT, group, imac);
 
-
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sendMessage(TRAMA_ENCENDER_TIRA, TRAMA_ENCENDER_TIRA_INT, group, imac);
     }
 
     public void blink(String grupo, String imac) throws IOException, IllegalArgumentException {
@@ -1070,15 +1190,21 @@ public class WifiBox {
 
     public void unlink(String grupo, String imac) throws IOException, IllegalArgumentException {
         int group = convertirGrupo(grupo);
+        sendMessage(TRAMA_UNLINK_DICROICO, TRAMA_UNLINK_DICROICO_INT, group, imac);
+        sendMessage(TRAMA_UNLINK_TIRA, TRAMA_UNLINK_TIRA_INT, group, imac);
         sendMessage(TRAMA_UNLINK_WW, TRAMA_UNLINK_WW_INT, group, imac);
         sendMessage(TRAMA_UNLINK, TRAMA_UNLINK_INT, group, imac);
-        sendMessage(TRAMA_UNLINK_DICROICO, TRAMA_UNLINK_DICROICO_INT, group, imac);
+
     }
-    public void link(String grupo, String imac) throws IOException, IllegalArgumentException {
+    public void link(String grupo, String imac, String tipoLink) throws IOException, IllegalArgumentException {
         int group = convertirGrupo(grupo);
-        sendMessage(TRAMA_LINK_WW, TRAMA_LINK_WW_INT, group, imac);
-        sendMessage(TRAMA_LINK, TRAMA_LINK_INT, group, imac);
-        sendMessage(TRAMA_LINK_DICROICO, TRAMA_LINK_DICROICO_INT, group, imac);
+        if(tipoLink.equals("1")){
+            sendMessage(TRAMA_LINK_TIRA, TRAMA_LINK_TIRA_INT, group, imac);
+        }else if(tipoLink.equals("2")){
+            sendMessage(TRAMA_LINK_WW, TRAMA_LINK_WW_INT, group, imac);
+        }else if(tipoLink.equals("3")){
+            sendMessage(TRAMA_LINK, TRAMA_LINK_INT, group, imac);
+        }
     }
     /**
      * Switch all lights in all groups to the white mode. Note that the messages
@@ -1092,7 +1218,6 @@ public class WifiBox {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-// TODO Auto-generated catch block
             e.printStackTrace();
         }
         sendMessage(TRAMA_WHITE_WW, TRAMA_WHITE_WW_INT, group, imac);
@@ -1106,11 +1231,26 @@ public class WifiBox {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-// TODO Auto-generated catch block
             e.printStackTrace();
         }
-// abrirSesionFocos(imac);
+
         sendMessage(TRAMA_WHITE, TRAMA_WHITE_INT, group, imac);
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        sendMessage(TRAMA_WHITE_TIRA, TRAMA_WHITE_TIRA_INT, group, imac);
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        sendMessage(TRAMA_WHITE_CONTROL_8ZONAS, TRAMA_WHITE_8ZONAS_INT, group, imac);
     }
 
     public void whiteCalid(String grupo, String imac) throws IOException, IllegalArgumentException {
@@ -1119,7 +1259,6 @@ public class WifiBox {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-// TODO Auto-generated catch block
             e.printStackTrace();
         }
         sendMessage(TRAMA_WHITE_CALID_WW, TRAMA_WHITE_CALID_WW_INT, group, imac);
@@ -1133,11 +1272,22 @@ public class WifiBox {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-// TODO Auto-generated catch block
             e.printStackTrace();
         }
-// abrirSesionFocos(imac);
         sendMessage(TRAMA_WHITE_CALID_WW, TRAMA_WHITE_CALID_WW_INT, group, imac);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sendMessage(TRAMA_WHITE_TIRA, TRAMA_WHITE_TIRA_INT, group, imac);
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sendMessage(TRAMA_WHITE_CALID_8ZONAS, TRAMA_WHITE_CALID_8ZONAS_INT, group, imac);
     }
 
     public void whiteBox(String imac) throws IOException, IllegalArgumentException {
@@ -1170,6 +1320,12 @@ public class WifiBox {
             e.printStackTrace();
         }
         sendMessage(TRAMA_DISCO_FASTER_WW, TRAMA_DISCO_FASTER_WW_INT, group, imac);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sendMessage(TRAMA_DISCO_FASTER_TIRA, TRAMA_DISCO_FASTER_TIRA_INT, group, imac);
     }
 
     public void discoModeFasterBox(String imac) throws IOException {
@@ -1191,6 +1347,12 @@ public class WifiBox {
             e.printStackTrace();
         }
         sendMessage(TRAMA_DISCO_SLOWLER_WW, TRAMA_DISCO_SLOWLER_WW_INT, group, imac);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sendMessage(TRAMA_DISCO_SLOWLER_TIRA, TRAMA_DISCO_SLOWLER_TIRA_INT, group, imac);
     }
 
     public void discoModeSlowerBox(String imac) throws IOException {
@@ -1230,6 +1392,7 @@ public class WifiBox {
 
         sendMessageConfigs(TRAMA_BRIGHTNESS, TRAMA_BRIGHTNESS_INT, group, valorHex, imac);
         sendMessageConfigs(TRAMA_BRIGHTNESS_WW, TRAMA_BRIGHTNESS_WW_INT, group, valorHex, imac);
+        sendMessageConfigs(TRAMA_BRIGHTNESS_TIRA, TRAMA_BRIGHTNESS_TIRA_INT, group, valorHex, imac);
     }
 
     public void saturation( int value, int group, String imac) throws IOException,
@@ -1250,6 +1413,7 @@ public class WifiBox {
         }
 
         sendMessageConfigs(TRAMA_SATURATION, TRAMA_SATURATION_INT, group, valorHex, imac);
+        sendMessageConfigs(TRAMA_SATURATION_TIRA, TRAMA_SATURATION_TIRA_INT, group, valorHex, imac);
     }
     public void brightnessBox( int value, String imac) throws IOException,
             IllegalArgumentException {
@@ -1270,10 +1434,22 @@ public class WifiBox {
             e.printStackTrace();
         }
         sendMessageConfigs(TRAMA_MODE_WW, TRAMA_MODE_WW_INT, group, value, imac);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sendMessageConfigs(TRAMA_MODE_TIRA, TRAMA_MODE_TIRA_INT, group, value, imac);
     }
     public void modeBox( int value, String imac) throws IOException,
             IllegalArgumentException {
         sendMessageConfigs(TRAMA_MODE_BOX, TRAMA_MODE_BOX_INT, GROUP_ALL, value, imac);
+    }
+
+    public void modeBoxConexion( int value, String imac) throws IOException,
+            IllegalArgumentException {
+        Log.d("estado focos", "wifiIbox conexion ..");
+        sendMessageConfigsConexion(TRAMA_MODE_BOX, TRAMA_MODE_BOX_INT, GROUP_ALL, value, imac);
     }
     /**
      * Set the color value for the currently active group of lights (the
@@ -1290,27 +1466,26 @@ public class WifiBox {
      */
     public void color(int value, Integer group, String imac) throws IOException,
             IllegalArgumentException {
-// check argument
+
         if (value < 0 || value > MAX_COLOR) {
             throw new IllegalArgumentException(
                     "The color value should be between 0 and WiFiBox.MAX_COLOR");
         }
-//        on(group, imac);
-// send message to the WiFi box
+
         sendMessageColor(TRAMA_COLOR, TRAMA_COLOR_INT, group, value, imac);
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        sendMessageColor(TRAMA_COLOR, TRAMA_COLOR_INT, group, value, imac);
+        sendMessageColor(TRAMA_COLOR_WW, TRAMA_COLOR_WW_INT, group, value, imac);
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        sendMessageColor(TRAMA_COLOR, TRAMA_COLOR_INT, group, value, imac);
+        sendMessageColor(TRAMA_COLOR_TIRA, TRAMA_COLOR_TIRA_INT, group, value, imac);
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
@@ -1323,6 +1498,14 @@ public class WifiBox {
             e.printStackTrace();
         }
         sendMessageColor(TRAMA_COLOR_WW, TRAMA_COLOR_WW_INT, group, value, imac);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        sendMessageColor(TRAMA_COLOR_TIRA, TRAMA_COLOR_TIRA_INT, group, value, imac);
+
     }
     public void colorBox(int value, String imac) throws IOException,
             IllegalArgumentException {

@@ -1,6 +1,7 @@
 package ec.com.yacare.y4all.activities.principal;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -53,7 +55,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -71,6 +73,7 @@ import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -84,7 +87,6 @@ import ec.com.yacare.y4all.activities.evento.EventosActivity;
 import ec.com.yacare.y4all.activities.instalacion.InstalarEquipoActivity;
 import ec.com.yacare.y4all.activities.luces.LucesFragment;
 import ec.com.yacare.y4all.activities.portero.LlamadaEntrantePorteroActivity;
-import ec.com.yacare.y4all.activities.recomendacion.RecomendarActivity;
 import ec.com.yacare.y4all.activities.respuesta.AdministrarRespuestasActivity;
 import ec.com.yacare.y4all.activities.socket.MonitorIOActivity;
 import ec.com.yacare.y4all.adapter.ConfiguracionArrayAdapter;
@@ -93,7 +95,9 @@ import ec.com.yacare.y4all.adapter.EventoListaArrayAdapter;
 import ec.com.yacare.y4all.adapter.EventoListaBuzonArrayAdapter;
 import ec.com.yacare.y4all.adapter.SeleccionarEquipoAdapter;
 import ec.com.yacare.y4all.asynctask.ws.InvitarCuentaAsyncTask;
+import ec.com.yacare.y4all.asynctask.ws.RecomendarEmailAsyncTask;
 import ec.com.yacare.y4all.lib.asynctask.RecibirComandoRemotoAsyncTask;
+import ec.com.yacare.y4all.lib.asynctask.hotspot.ComandoCambiarWIFIScheduledTask;
 import ec.com.yacare.y4all.lib.asynctask.io.ComandoIOScheduledTask;
 import ec.com.yacare.y4all.lib.dto.Dispositivo;
 import ec.com.yacare.y4all.lib.dto.Equipo;
@@ -119,15 +123,15 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 	private ImageView mimageView;
 
-	private static final String[] opciones =
-			new String[]{"0:Botones", "1:Controlar la luz", "2:Contestación automática", "3:Revisar mis visitas", "4:Recomienda Wii Bell", "5:Intégralo a tu barrio", "6:Acerca de"};
+//	private static final String[] opciones =
+//			new String[]{"0:Botones", "2:Contestación automática", "3:Revisar mis visitas", "4:Recomienda Wii Bell", "5:Intégralo a tu barrio", "6:Acerca de"};
 
+	private static final String[] opciones =
+			new String[]{"0:Botones:botones", "7:Enviar mensaje al visitante:el texto se convertirá en voz", "4:Recomendar WiiBell:agradecemos su recomendación", "6:Acerca de:conozca a los creadores"};
 
 	public Equipo equipoSeleccionado;
 	private ArrayList<Evento> eventoCol;
-
-	private TextView minuto1;
-	private SeekBar seekbarExterno;
+	private TextView txtCopyright;
 
 	private Typeface fontRegular;
 
@@ -169,7 +173,7 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 	public TextView txtMensaje;
 
-	private FloatingActionButton btnCuenta, btnRespuesta, btnPreferencias, btnAplicacion, btnNuevo, btnCompartir, btnVista;
+	private FloatingActionButton btnCuenta, btnRespuesta, btnPreferencias, btnAplicacion, btnNuevo, btnCompartir, btnVista, btnCerradura, btnAlarma, btnCerrarSesion;
 	private FloatingActionMenu menuDown;
 
 	private ListView listVisitas, listBuzon, listDispositivos, listSensor;
@@ -181,8 +185,6 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 	private static int REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 	private int numeroPermisos = 0;
-
-	private int numeroVisitasAnterior = 0;
 
 	public static ViewRelojSegundo circleProgressSegundo;
 	public static ViewReloj circleProgressMinuto;
@@ -234,7 +236,7 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 		super.onCreate(savedInstanceState);
 		if (!isScreenLarge()) {
 			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-			vistaAvanzada = sharedPrefs.getBoolean("prefVistaAvanzada", false);
+			vistaAvanzada = sharedPrefs.getBoolean("prefVistaAvanzada", true);
 			if (vistaAvanzada) {
 				setContentView(R.layout.ac_y4home);
 			} else {
@@ -254,6 +256,9 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 		int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 		decorView.setSystemUiVisibility(uiOptions);
+
+		txtCopyright = (TextView) findViewById(R.id.txtCopyright);
+		txtCopyright.setTypeface(fontRegular);
 
 		AudioQueu.isInBackground = false;
 
@@ -396,11 +401,6 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 	private void ingresarY4Home() {
 
-//		AudioQueu.isInBackground = true;
-//
-//		VerificarRedAsyncTask checkearRedAsyncTask = new VerificarRedAsyncTask(Y4HomeActivity.this);
-//		checkearRedAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
 		circleProgressSegundo = (ViewRelojSegundo) findViewById(R.id.circleProgress);
 		circleProgressMinuto = (ViewReloj) findViewById(R.id.circleProgress1);
 		circleProgressHora = (ViewRelojHora) findViewById(R.id.circleProgress2);
@@ -424,7 +424,6 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 		badge4 = (RelativeLayout) findViewById(R.id.badge4);
 
 
-//		layoutEstado = (RelativeLayout) findViewById(R.id.layoutEstado);
 		question.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -479,85 +478,21 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 		});
 
 		if(btnAbrirPuerta != null){
+			if(equipoSeleccionado.getPuerta() != null && !equipoSeleccionado.getPuerta().equals("1")){
+				btnAbrirPuerta.setEnabled(false);
+
+			}
 			btnAbrirPuerta.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
+
 					if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
 						//Wifi
-						new SweetAlertDialog(Y4HomeActivity.this, SweetAlertDialog.WARNING_TYPE)
-								.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
-								.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
-								.setCancelText("NO")
-								.setConfirmText("SI")
-								.showCancelButton(true)
-								.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-
-									}
-								})
-								.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_UDP + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "" + ";";
-//										EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null, null,
-//												null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//										enviarComandoThread.start();
-
-										AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
-												YACSmartProperties.COM_ABRIR_PUERTA_UDP + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "" + ";");
-										AudioQueu.contadorComandoEnviado++;
-										sDialog.cancel();
-
-									}
-								})
-								.show();
+						abrirPuertaWifi();
 					}else{
 						//Internet
-						new SweetAlertDialog(Y4HomeActivity.this, SweetAlertDialog.WARNING_TYPE)
-								.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
-								.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
-								.setCancelText("NO")
-								.setConfirmText("SI")
-								.showCancelButton(true)
-
-								.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-
-									}
-								})
-								.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-										AlertDialog.Builder alert = new AlertDialog.Builder(Y4HomeActivity.this);
-										alert.setTitle("Ingrese su clave");
-										final EditText input = new EditText(Y4HomeActivity.this);
-										input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_TEXT_VARIATION_PASSWORD);
-										input.setRawInputType(Configuration.KEYBOARD_12KEY);
-										alert.setView(input);
-										alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-											public void onClick(DialogInterface dialog, int whichButton) {
-												AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
-														YACSmartProperties.COM_ABRIR_PUERTA + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + YACSmartProperties.Encriptar(input.getText().toString()) + ";");
-												AudioQueu.contadorComandoEnviado++;
-											}
-										});
-										alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-											public void onClick(DialogInterface dialog, int whichButton) {
-												//Put actions for CANCEL button here, or leave in blank
-											}
-										});
-										alert.show();
-
-									}
-								})
-								.show();
+						abrirPuertaInternet();
 					}
-
 
 
 				}
@@ -572,15 +507,40 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 			});
 		}
 		if(btnEncenderLuz != null){
+			if(equipoSeleccionado.getLuzWifi() != null && !equipoSeleccionado.getLuzWifi().equals("1")){
+				btnEncenderLuz.setEnabled(false);
+			}
+			btnEncenderLuz.setText("encender luz");
+
 			btnEncenderLuz.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-//					String datosConfT = "C70" + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "-1" + ";";
-					String datosConfT = YACSmartProperties.COM_ENCENDER_LUZ + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "-1" + ";";
-					if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
-						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null,
-								null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-						enviarComandoThread.start();
+					if(AudioQueu.encenderLuz) {
+						AudioQueu.encenderLuz = false;
+						btnEncenderLuz.setText("apagar luz");
+						String datosConfT = YACSmartProperties.COM_ENCENDER_LUZ_WIFI + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "-1" + ";";
+						if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+							EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null,
+									null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+							enviarComandoThread.start();
+						} else {
+							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+									datosConfT);
+							AudioQueu.contadorComandoEnviado++;
+						}
+					}else{
+						AudioQueu.encenderLuz = true;
+						btnEncenderLuz.setText("encender luz");
+						String datosConfT = YACSmartProperties.COM_APAGAR_LUZ_WIFI + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "-1" + ";";
+						if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+							EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null,
+									null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+							enviarComandoThread.start();
+						} else {
+							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+									datosConfT);
+							AudioQueu.contadorComandoEnviado++;
+						}
 					}
 				}
 			});
@@ -605,10 +565,11 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 		btnNuevo = (FloatingActionButton) findViewById(R.id.btnNuevo);
 		btnCompartir = (FloatingActionButton) findViewById(R.id.btnCompartir);
 		btnVista = (FloatingActionButton) findViewById(R.id.btnVista);
-
+		btnCerradura = (FloatingActionButton) findViewById(R.id.btnCerradura);
+		btnCerrarSesion = (FloatingActionButton) findViewById(R.id.btnCerrarSesion);
+		btnAlarma = (FloatingActionButton) findViewById(R.id.btnAlarma);
 
 		btnCuenta = (FloatingActionButton) findViewById(R.id.btnCuenta);
-		//btnTelefono = (FloatingActionButton) findViewById(R.id.btnTelefono);
 		btnRespuesta = (FloatingActionButton) findViewById(R.id.btnRespuesta);
 		btnPreferencias = (FloatingActionButton) findViewById(R.id.btnPreferencias);
 		txtEstado  = (TextView) findViewById(R.id.txtEstado);
@@ -623,7 +584,8 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 		txtVacio = (TextView) findViewById(R.id.txtVacio);
 		imgVacio = (ImageView) findViewById(R.id.imgVacio);
 
-		txtEstado.setText("buscando red...");
+		txtEstado.setText("buscando red..." );
+		txtCopyright.setText("Copyright Yacaré Technology V"+ AudioQueu.version);
 		txtNombreEquipo.setText(equipoSeleccionado.getNombreEquipo());
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM");
@@ -632,30 +594,13 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		nombreDispositivo = sharedPrefs.getString("prefNombreDispositivo", "");
 
+
+
 		if(btnVista != null) {
 			btnVista.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-//					String titulo = " Avanzada";
-//					if (vistaAvanzada) {
-//						titulo = " Simplificada";
-//					}
-//					new SweetAlertDialog(Y4HomeActivity.this, SweetAlertDialog.WARNING_TYPE)
-//							.setTitleText(YACSmartProperties.intance.getMessageForKey("cambiar.vista"))
-//							.setContentText(YACSmartProperties.intance.getMessageForKey("cambiar.vista.subtitulo") + titulo)
-//							.setCancelText("NO")
-//							.setConfirmText("SI")
-//							.showCancelButton(true)
-//							.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//								@Override
-//								public void onClick(SweetAlertDialog sDialog) {
-//									sDialog.cancel();
-//									menuDown.close(true);
-//								}
-//							})
-//							.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//								@Override
-//								public void onClick(SweetAlertDialog sDialog) {
+
 									SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 									if (vistaAvanzada) {
@@ -677,10 +622,6 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 									finish();
 									Intent i = new Intent(Y4HomeActivity.this, SplashActivity.class);
 									startActivity(i);
-
-//								}
-//							})
-//							.show();
 
 				}
 			});
@@ -787,7 +728,6 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 					EventoDataSource eventoDataSource = new EventoDataSource(getApplicationContext());
 					eventoDataSource.open();
 					eventosHoy = eventoDataSource.getEventosEquipoHoy(equipoSeleccionado.getId());
-//				eventoDataSource.deleteEventoMayorHoy();
 					String lista = eventoDataSource.getIdEventosEquipoHoy(equipoSeleccionado.getId());
 					eventoDataSource.close();
 
@@ -811,10 +751,6 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 						}
 					}
 
-//					for(int i = 0; i <50;i++){
-//						AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, YACSmartProperties.COM_SINCRONIZAR_TIMBRE + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";0;");
-//						AudioQueu.contadorComandoEnviado++;
-//					}
 
 				}
 			});
@@ -854,20 +790,28 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 					EventoDataSource eventoDataSource = new EventoDataSource(getApplicationContext());
 					eventoDataSource.open();
 					eventosHoy = eventoDataSource.getEventosEquipoSensorHoy(equipoSeleccionado.getId());
+					String lista = eventoDataSource.getIdEventosEquipoHoy(equipoSeleccionado.getId());
 					eventoDataSource.close();
 					eventoListaBuzonArrayAdapter = new EventoListaBuzonArrayAdapter(getApplicationContext(), eventosHoy, Y4HomeActivity.this);
 					listSensor.setAdapter(eventoListaBuzonArrayAdapter);
 					listSensor.setClickable(true);
 					listSensor.setOnItemClickListener(Y4HomeActivity.this);
 
+
+
 					if (eventosHoy.size() == 0 && numeroSensor == 0) {
 						layoutVacio.setVisibility(View.VISIBLE);
 						listSensor.setVisibility(View.GONE);
 						imgVacio.setImageResource(R.drawable.lista_sensor_vacia);
 						txtVacio.setText("No hay registros de apertura de puerta");
-					} else if (eventosHoy.size() != numeroSensor) {
-						AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, YACSmartProperties.COM_SINCRONIZAR_TIMBRE + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";0;");
-						AudioQueu.contadorComandoEnviado++;
+					} else if (eventosHoy.size() 	!= numeroSensor) {
+						if (!lista.equals("")){
+							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, YACSmartProperties.COM_SINCRONIZAR_TIMBRE + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";IDE;" + lista + "");
+							AudioQueu.contadorComandoEnviado++;
+						}else{
+							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, YACSmartProperties.COM_SINCRONIZAR_TIMBRE + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";FEC;0;");
+							AudioQueu.contadorComandoEnviado++;
+						}
 					}
 
 				}
@@ -964,6 +908,60 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 				}
 			});
 
+			btnCerradura.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = getPackageManager().getLaunchIntentForPackage("com.tongtongsuo.app");
+					if (intent != null) {
+						// We found the activity now start the activity
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+					} else {
+						// Bring user to the market or let them choose an app?
+						intent = new Intent(Intent.ACTION_VIEW);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						intent.setData(Uri.parse("market://details?id=" + "com.tongtongsuo.app"));
+						startActivity(intent);
+					}
+				}
+			});
+			btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					try {
+						// clearing app data
+						if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
+							((ActivityManager)getSystemService(ACTIVITY_SERVICE)).clearApplicationUserData(); // note: it has a return value!
+						} else {
+							String packageName = getApplicationContext().getPackageName();
+							Runtime runtime = Runtime.getRuntime();
+							runtime.exec("pm clear "+packageName);
+						}
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
+			btnAlarma.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = getPackageManager().getLaunchIntentForPackage("com.dinsafer.nova");
+					if (intent != null) {
+						// We found the activity now start the activity
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+					} else {
+						// Bring user to the market or let them choose an app?
+						intent = new Intent(Intent.ACTION_VIEW);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						intent.setData(Uri.parse("market://details?id=" + "com.dinsafer.nova"));
+						startActivity(intent);
+					}
+				}
+			});
+
 			btnCompartir.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -1026,8 +1024,51 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 			btnAplicacion.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-//					ReiniciarEquipoAsyncTask crearEquiposAsyncTask = new ReiniciarEquipoAsyncTask(datosAplicacion.getEquipoSeleccionado());
-//					crearEquiposAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+					menuDown.close(true);
+					TableLayout ll = new TableLayout(Y4HomeActivity.this);
+					final EditText input1 = new EditText(Y4HomeActivity.this);
+					LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(
+							LinearLayout.LayoutParams.MATCH_PARENT,
+							LinearLayout.LayoutParams.MATCH_PARENT);
+					input1.setLayoutParams(lp1);
+					input1.setHint("Nombre WIFI");
+					input1.setInputType(InputType.TYPE_CLASS_TEXT);
+					ll.addView(input1, new LinearLayout.LayoutParams(
+							ViewGroup.LayoutParams.MATCH_PARENT,
+							ViewGroup.LayoutParams.MATCH_PARENT,
+							0));
+					final EditText input2 = new EditText(Y4HomeActivity.this);
+					LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(
+							LinearLayout.LayoutParams.MATCH_PARENT,
+							LinearLayout.LayoutParams.MATCH_PARENT);
+					input2.setLayoutParams(lp2);
+					input2.setHint("Clave WIFI");
+					input2.setInputType(InputType.TYPE_CLASS_TEXT);
+
+					ll.addView(input2, new LinearLayout.LayoutParams(
+							ViewGroup.LayoutParams.MATCH_PARENT,
+							ViewGroup.LayoutParams.MATCH_PARENT,
+							0));
+					final AlertDialog d1 = new AlertDialog.Builder(Y4HomeActivity.this)
+							.setTitle("Datos de WIFI")
+							.setCancelable(true)
+							.setView(ll)
+							.setPositiveButton("OK",
+									new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog, int which) {
+											if (!input1.getText().toString().equals("")) {
+												TimeZone tz = TimeZone.getDefault();
+												String comando = YACSmartProperties.HOTSPOT_WIFI + ";" + "1	" + ";" + input1.getText().toString().trim() + ";" + input2.getText().toString().trim()
+														+ ";" + " " + ";" + tz.getID() + ";";
+
+												ComandoCambiarWIFIScheduledTask genericoAsyncTask = new ComandoCambiarWIFIScheduledTask(Y4HomeActivity.this, comando);
+												genericoAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+											}
+										}
+									}).create();
+
+					d1.show();
 				}
 			});
 //		try {
@@ -1062,8 +1103,7 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 			textoNombre.setText(sharedPrefs.getString("prefNombreDispositivo", "").toString());
 
-			TextView txtCopyright = (TextView) findViewById(R.id.txtCopyright);
-			txtCopyright.setTypeface(fontRegular);
+
 
 			listOpciones = (ListView) findViewById(android.R.id.list);
 			configuracionArrayAdapter = new ConfiguracionArrayAdapter(Y4HomeActivity.this, opciones);
@@ -1072,135 +1112,158 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-					if (position == 1) {
-						TextView titulo1;
-						LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-						View layout = inflater.inflate(R.layout.vi_seek_bar, (ViewGroup) findViewById(R.id.root));
-						seekbarExterno = (SeekBar) layout.findViewById(R.id.seekExterno);
-						titulo1 = (TextView) layout.findViewById(R.id.txtTitulo1);
-						minuto1 = (TextView) layout.findViewById(R.id.txtMinuto1);
-
-						titulo1.setTypeface(fontRegular);
-						minuto1.setTypeface(fontRegular);
-						seekbarExterno.setProgress(0);
-
-						//Externas
-						seekbarExterno.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-							@Override
-							public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-								minuto1.setText(progress + " min. ");
-							}
-
-							@Override
-							public void onStartTrackingTouch(SeekBar seekBar) {
-
-							}
-
-							@Override
-							public void onStopTrackingTouch(SeekBar seekBar) {
-
-							}
-						});
-
-						AlertDialog.Builder adb = new AlertDialog.Builder(Y4HomeActivity.this);
-
-						adb.setView(layout);
-						adb.setPositiveButton("Encender", new
-								DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										if (seekbarExterno.getProgress() > 0 || seekbarExterno.getProgress() > 0) {
-											Long tiempoE = Long.valueOf(seekbarExterno.getProgress()) * 60000;
-											String datosConfT = YACSmartProperties.COM_ENCENDER_LUZ + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + String.valueOf(tiempoE) + ";";
-											if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
-												EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null,
-														null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-												enviarComandoThread.start();
-											} else {
-												AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
-												AudioQueu.contadorComandoEnviado++;
+					if (position == 2) {
+						//Recomendar
+						final EditText input1 = new EditText(Y4HomeActivity.this);
+						LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(
+								LinearLayout.LayoutParams.MATCH_PARENT,
+								LinearLayout.LayoutParams.MATCH_PARENT);
+						input1.setLayoutParams(lp1);
+						input1.setHint("ingrese el correo");
+						input1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+						final AlertDialog d1 = new AlertDialog.Builder(Y4HomeActivity.this)
+								.setTitle(YACSmartProperties.intance.getMessageForKey("email.recomendado"))
+								.setCancelable(true)
+								.setView(input1)
+								.setPositiveButton("OK",
+										new DialogInterface.OnClickListener() {
+											public void onClick(DialogInterface dialog, int which) {
+												if (!input1.getText().toString().equals("")) {
+													RecomendarEmailAsyncTask recomendarEmailAsyncTask = new RecomendarEmailAsyncTask(Y4HomeActivity.this,
+															equipoSeleccionado.getNumeroSerie(),
+															datosAplicacion.getCuenta().getEmail(), input1.getText().toString(), datosAplicacion.getToken());
+													recomendarEmailAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+													dialog.cancel();
+												}
 											}
-										}
+										}).create();
 
-									}
+						d1.show();
+					} else if (position == 1) {
+						//Mensaje
 
-								});
-						adb.setNegativeButton("Cerrar", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
+						LinearLayout layout = new LinearLayout(Y4HomeActivity.this);
+						LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+						layout.setOrientation(LinearLayout.VERTICAL);
+						layout.setLayoutParams(parms);
+
+						layout.setGravity(Gravity.CLIP_VERTICAL);
+						layout.setPadding(2, 2, 2, 2);
 
 
-							}
-						});
-						adb.setNeutralButton("Apagar", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
+						final EditText input1 = new EditText(Y4HomeActivity.this);
+						final EditText input2 = new EditText(Y4HomeActivity.this);
+						final EditText input3 = new EditText(Y4HomeActivity.this);
 
-								String datosConfT = YACSmartProperties.COM_APAGAR_LUZ + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + ";";
+						LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(
+								LinearLayout.LayoutParams.MATCH_PARENT,
+								LinearLayout.LayoutParams.MATCH_PARENT);
+						input2.setLayoutParams(lp1);
+						input2.setHint("de (opcional)");
+						input2.setTextSize(12);
 
-								if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
-									EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null,
-											null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-									enviarComandoThread.start();
-								} else {
-									AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
-									AudioQueu.contadorComandoEnviado++;
-								}
-							}
-						});
-						adb.show();
-					} else if (position == 2) {
+						input3.setLayoutParams(lp1);
+						input3.setHint("para (opcional)");
+						input3.setTextSize(12);
 
-						String datosConfT = YACSmartProperties.COM_CONFIGURAR_BUZON + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
+						input1.setLayoutParams(lp1);
+						input1.setHint("mensaje corto");
+						input1.setTextSize(12);
 
-						if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
-							if (equipoSeleccionado.getBuzon() != null && equipoSeleccionado.getBuzon().equals("1")) {
-								EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT + "0" + ";" + equipoSeleccionado.getNumeroSerie(), null,
-										null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-								enviarComandoThread.start();
-							} else {
-								EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT + "1" + ";" + equipoSeleccionado.getNumeroSerie(), null,
-										null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-								enviarComandoThread.start();
-							}
-						} else {
-							if (equipoSeleccionado.getBuzon() != null && equipoSeleccionado.getBuzon().equals("1")) {
-								AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT + "0" + ";" + equipoSeleccionado.getNumeroSerie() + ";");
-								AudioQueu.contadorComandoEnviado++;
-							} else {
-								AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT + "1" + ";" + equipoSeleccionado.getNumeroSerie() + ";");
-								AudioQueu.contadorComandoEnviado++;
-							}
-						}
+						layout.addView(input2);
+						layout.addView(input3);
+						layout.addView(input1);
+							final AlertDialog d1 = new AlertDialog.Builder(Y4HomeActivity.this)
+								.setTitle(YACSmartProperties.intance.getMessageForKey("ingrese.mensaje"))
+								.setCancelable(true)
+								.setView(layout)
+								.setPositiveButton("Enviar",
+										new DialogInterface.OnClickListener() {
+											public void onClick(DialogInterface dialog, int which) {
+												if (!input1.getText().toString().equals("")) {
+													String textoInicial = ";Tengo un mensaje para usted, " + input1.getText().toString() +  ", fin del mensaje	;";
+													if(!input2.getText().toString().equals("")){
+														textoInicial = ";Tengo un mensaje de " + input2.getText().toString() + " para usted, " + input1.getText().toString() +  ", fin del mensaje	;";
+													}
+													if(!input3.getText().toString().equals("")){
+														textoInicial = ";Tengo un mensaje para " + input3.getText().toString() + ", " + input1.getText().toString() +  ", fin del mensaje	;";
+													}
+													if(!input3.getText().toString().equals("") && !input2.getText().toString().equals("")){
+														textoInicial = ";Tengo un mensaje de " + input2.getText().toString() + " para " + input3.getText().toString() + ", " + input1.getText().toString() +  ", fin del mensaje	;";
+													}
+													String datosConfS = YACSmartProperties.COM_REPRODUCIR_TEXTO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + textoInicial + "-1" + ";" +  "-" + ";";
+
+													Log.d("textoInicial", textoInicial);
+													if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+														EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfS, null,
+																null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+														enviarComandoThread.start();
+													} else {
+														AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfS);
+														AudioQueu.contadorComandoEnviado++;
+													}
+
+													dialog.cancel();
+												}
+											}
+										})
+								.setNegativeButton("Cancelar",
+										new DialogInterface.OnClickListener() {
+											public void onClick(DialogInterface dialog, int which) {
+												dialog.cancel();
+											}
+										})
+
+								.create();
+
+						d1.show();
+
+
 					} else if (position == 3) {
-						AudioQueu.monitorearPortero = true;
-						Intent i = new Intent(Y4HomeActivity.this, EventosActivity.class);
-						startActivity(i);
+						//Acerca de
 
-					} else if (position == 4) {
-						AudioQueu.monitorearPortero = true;
-						Intent i = new Intent(Y4HomeActivity.this, RecomendarActivity.class);
-						startActivity(i);
 
-					} else if (position == 5) {
-						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, "V07;" + "E" + ";" + equipoSeleccionado.getNumeroSerie() + ";"  , null,
-								null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-						enviarComandoThread.start();
-					} else if (position == 6) {
-						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, "V07;" + "C" + ";" + equipoSeleccionado.getNumeroSerie(), null,
-								null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-						enviarComandoThread.start();
-//					for(int i = 101; i < 300; i++){
-//						TestIOScheduledTask comandoIOScheduledTask = new TestIOScheduledTask("Cuarto" + i);
-//						comandoIOScheduledTask.start();
-//					}
-
-//					HSVColorPickerDialog mydialog = new HSVColorPickerDialog(getApplicationContext(), 1, Y4HomeActivity.this );
-//					mydialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-//					mydialog.show();
-//					Intent i = new Intent(Y4HomeActivity.this, FocosActivity.class);
-//					Intent i = new Intent(Y4HomeActivity.this, AdministrarRoutersActivity.class);
-
+//					} else if (position == 2) {
+//
+//						String datosConfT = YACSmartProperties.COM_CONFIGURAR_BUZON + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
+//
+//						if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+//							if (equipoSeleccionado.getBuzon() != null && equipoSeleccionado.getBuzon().equals("1")) {
+//								EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT + "0" + ";" + equipoSeleccionado.getNumeroSerie(), null,
+//										null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+//								enviarComandoThread.start();
+//							} else {
+//								EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT + "1" + ";" + equipoSeleccionado.getNumeroSerie(), null,
+//										null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+//								enviarComandoThread.start();
+//							}
+//						} else {
+//							if (equipoSeleccionado.getBuzon() != null && equipoSeleccionado.getBuzon().equals("1")) {
+//								AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT + "0" + ";" + equipoSeleccionado.getNumeroSerie() + ";");
+//								AudioQueu.contadorComandoEnviado++;
+//							} else {
+//								AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT + "1" + ";" + equipoSeleccionado.getNumeroSerie() + ";");
+//								AudioQueu.contadorComandoEnviado++;
+//							}
+//						}
+//					} else if (position == 3) {
+//						AudioQueu.monitorearPortero = true;
+//						Intent i = new Intent(Y4HomeActivity.this, EventosActivity.class);
+//						startActivity(i);
+//
+//					} else if (position == 4) {
+//						AudioQueu.monitorearPortero = true;
+//						Intent i = new Intent(Y4HomeActivity.this, RecomendarActivity.class);
+//						startActivity(i);
+//
+//					} else if (position == 5) {
+//						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, "V07;" + "E" + ";" + equipoSeleccionado.getNumeroSerie() + ";"  , null,
+//								null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+//						enviarComandoThread.start();
+//					} else if (position == 6) {
+//						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, "V07;" + "C" + ";" + equipoSeleccionado.getNumeroSerie(), null,
+//								null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+//						enviarComandoThread.start();
 					}
 				}
 			});
@@ -1216,6 +1279,14 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 			btnMonitorearSimple.setTransformationMethod(null);
 			btnAbrirPuertaSimple.setTransformationMethod(null);
 			btnHistorialSimple.setTransformationMethod(null);
+
+			if(!equipoSeleccionado.getLuzWifi().equals("1")){
+				btnEncenderLuzSimple.setEnabled(false);
+			}
+			if(!equipoSeleccionado.getPuerta().equals("1")){
+				btnAbrirPuertaSimple.setEnabled(false);
+
+			}
 
 			Spannable spannable = new SpannableString("L\nEnciende la Luz");
 			spannable.setSpan(new RelativeSizeSpan(2.8f), 0, 1,Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -1269,81 +1340,11 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 				public void onClick(View v) {
 					if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
 						//Wifi
-						new SweetAlertDialog(Y4HomeActivity.this, SweetAlertDialog.WARNING_TYPE)
-								.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
-								.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
-								.setCancelText("NO")
-								.setConfirmText("SI")
-								.showCancelButton(true)
-								.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-
-									}
-								})
-								.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_UDP + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "" + ";";
-//										EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null, null,
-//												null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//										enviarComandoThread.start();
-//
-
-										AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
-												YACSmartProperties.COM_ABRIR_PUERTA_UDP + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" );
-										AudioQueu.contadorComandoEnviado++;
-										sDialog.cancel();
-
-									}
-								})
-								.show();
-					}else{
+						abrirPuertaWifi();
+					}else {
 						//Internet
-						new SweetAlertDialog(Y4HomeActivity.this, SweetAlertDialog.WARNING_TYPE)
-								.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
-								.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
-								.setCancelText("NO")
-								.setConfirmText("SI")
-								.showCancelButton(true)
-
-								.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-
-									}
-								})
-								.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-										AlertDialog.Builder alert = new AlertDialog.Builder(Y4HomeActivity.this);
-										alert.setTitle("Ingrese su clave");
-										final EditText input = new EditText(Y4HomeActivity.this);
-										input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_TEXT_VARIATION_PASSWORD);
-										input.setRawInputType(Configuration.KEYBOARD_12KEY);
-										alert.setView(input);
-										alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-											public void onClick(DialogInterface dialog, int whichButton) {
-												AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
-														YACSmartProperties.COM_ABRIR_PUERTA + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + YACSmartProperties.Encriptar(input.getText().toString()) + ";");
-												AudioQueu.contadorComandoEnviado++;
-											}
-										});
-										alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-											public void onClick(DialogInterface dialog, int whichButton) {
-												//Put actions for CANCEL button here, or leave in blank
-											}
-										});
-										alert.show();
-
-									}
-								})
-								.show();
+						abrirPuertaInternet();
 					}
-
 				}
 			});
 
@@ -1373,7 +1374,6 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 				if (equipos != null && !equipos.isEmpty() && equipos.size() > 1) {
 					alertDialog = new AlertDialog.Builder(Y4HomeActivity.this);
-//					alertDialog = new AlertDialog.Builder(new ContextThemeWrapper(Y4HomeActivity.this, android.R.style.Theme_Dialog));
 					LayoutInflater inflater1 = getLayoutInflater();
 					View convertView = (View) inflater1.inflate(R.layout.seleccionar_equipo, null);
 
@@ -1521,6 +1521,230 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 		setupWindowAnimations();
 	}
 
+	private void abrirPuertaInternet() {
+		if(Integer.valueOf(equipoSeleccionado.getTimbreExterno())  <= 2) {
+			new SweetAlertDialog(Y4HomeActivity.this, SweetAlertDialog.WARNING_TYPE)
+				.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
+				.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
+				.setCancelText("NO")
+				.setConfirmText("SI")
+				.showCancelButton(true)
+
+				.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+					@Override
+					public void onClick(SweetAlertDialog sDialog) {
+						sDialog.cancel();
+
+					}
+				})
+				.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+					@Override
+					public void onClick(SweetAlertDialog sDialog) {
+						sDialog.cancel();
+						AlertDialog.Builder alert = new AlertDialog.Builder(Y4HomeActivity.this);
+						alert.setTitle("Ingrese su clave");
+						final EditText input = new EditText(getApplicationContext());
+						input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+						input.setRawInputType(Configuration.KEYBOARD_12KEY);
+						alert.setView(input);
+						alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int whichButton) {
+								SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+								dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+								String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date())  + ";",
+										datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+								String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA
+										+ ";"+ nombreDispositivo + ";" +  cadenaEnc + ";"
+										+ YACSmartProperties.Encriptar(input.getText().toString(), equipoSeleccionado.getNumeroSerie()) + ";";
+
+								AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+										datosConfT);
+								AudioQueu.contadorComandoEnviado++;
+							}
+						});
+						alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int whichButton) {
+								//Put actions for CANCEL button here, or leave in blank
+							}
+						});
+						alert.show();
+
+					}
+				})
+				.show();
+		}else{
+			//2 puertas
+			AlertDialog.Builder builder = new AlertDialog.Builder(Y4HomeActivity.this);
+			builder.setTitle("Abrir Puerta");
+			builder.setMessage("Seleccione la puerta que desea abrir o presione cancelar?");
+			// add the buttons
+			builder.setPositiveButton("Puerta Principal", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+					AlertDialog.Builder alert = new AlertDialog.Builder(Y4HomeActivity.this);
+					alert.setTitle("Ingrese su clave");
+					final EditText input = new EditText(getApplicationContext());
+					input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+					input.setRawInputType(Configuration.KEYBOARD_12KEY);
+					alert.setView(input);
+					alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+							String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date())  + ";",
+									datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+							String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA
+									+ ";"+ nombreDispositivo + ";" +  cadenaEnc + ";"
+									+ YACSmartProperties.Encriptar(input.getText().toString(), equipoSeleccionado.getNumeroSerie()) + ";";
+
+							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+									datosConfT);
+							AudioQueu.contadorComandoEnviado++;
+						}
+					});
+					alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							//Put actions for CANCEL button here, or leave in blank
+						}
+					});
+					alert.show();
+
+				}
+			});
+			builder.setNegativeButton("Puerta Secundaria", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+					AlertDialog.Builder alert = new AlertDialog.Builder(Y4HomeActivity.this);
+					alert.setTitle("Ingrese su clave");
+					final EditText input = new EditText(getApplicationContext());
+					input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+					input.setRawInputType(Configuration.KEYBOARD_12KEY);
+					alert.setView(input);
+					alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+							String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date())  + ";",
+									datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+							String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_OPCIONAL
+									+ ";"+ nombreDispositivo + ";" +  cadenaEnc + ";"
+									+ YACSmartProperties.Encriptar(input.getText().toString(), equipoSeleccionado.getNumeroSerie()) + ";";
+
+							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+									datosConfT);
+							AudioQueu.contadorComandoEnviado++;
+						}
+					});
+					alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							//Put actions for CANCEL button here, or leave in blank
+						}
+					});
+					alert.show();
+
+				}
+			});
+			builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			});
+			// create and show the alert dialog
+			AlertDialog dialog = builder.create();
+			dialog.show();
+		}
+	}
+
+	private void abrirPuertaWifi() {
+		if (Integer.valueOf(equipoSeleccionado.getTimbreExterno()) <= 2) {
+			new SweetAlertDialog(Y4HomeActivity.this, SweetAlertDialog.WARNING_TYPE)
+					.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
+					.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
+					.setCancelText("NO")
+					.setConfirmText("SI")
+					.showCancelButton(true)
+					.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+						@Override
+						public void onClick(SweetAlertDialog sDialog) {
+							sDialog.cancel();
+
+						}
+					})
+					.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+						@Override
+						public void onClick(SweetAlertDialog sDialog) {
+							SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+							String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date()) + ";",
+									datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+							String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_UDP
+									+ ";" + nombreDispositivo + ";" + cadenaEnc + ";";
+
+							EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null, null,
+									null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+							enviarComandoThread.start();
+
+							sDialog.cancel();
+						}
+					})
+					.show();
+		} else {
+			//2 puertas
+			AlertDialog.Builder builder = new AlertDialog.Builder(Y4HomeActivity.this);
+			builder.setTitle("Abrir Puerta");
+			builder.setMessage("Seleccione la puerta que desea abrir o presione cancelar?");
+			// add the buttons
+			builder.setPositiveButton("Puerta Principal", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// do something like...
+					SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+					String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date()) + ";",
+							datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+					String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_UDP
+							+ ";" + nombreDispositivo + ";" + cadenaEnc + ";";
+
+					EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null, null,
+							null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+					enviarComandoThread.start();
+
+					dialog.cancel();
+				}
+			});
+			builder.setNegativeButton("Puerta Secundaria", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// do something like...
+					SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+					String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date()) + ";",
+							datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+					String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_OPCIONAL_UDP
+							+ ";" + nombreDispositivo + ";" + cadenaEnc + ";";
+
+					EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null, null,
+							null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+					enviarComandoThread.start();
+
+					dialog.cancel();
+				}
+			});
+			builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			});
+			// create and show the alert dialog
+			AlertDialog dialog = builder.create();
+			dialog.show();
+		}
+	}
+
 	public void monitorear() {
 		if(PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) &&
                 PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO)) {
@@ -1542,7 +1766,6 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
             AudioQueu.monitorearPortero = true;
             Intent i = new Intent(Y4HomeActivity.this, MonitorIOActivity.class);
             i.putExtra("monitorear", true);
-//						transitionToActivity(MonitorIOActivity.class, opciones[position]);
             startActivity(i);
         }
 	}
@@ -1642,6 +1865,26 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 	}
 
+	public void actualizarPagerListaDetalle(Evento evento) {
+		Log.d("actualizarPager", "actualizarPager");
+
+				EventoDataSource datasource = new EventoDataSource(getApplicationContext());
+				datasource.open();
+				eventoCol = datasource.getPaginaEventosFoto(0, 4, equipoSeleccionado.getId());
+				datasource.close();
+
+				ArrayList<Evento> eventoColOrden = new ArrayList<Evento>();
+				eventoColOrden.add(evento);
+
+				for(Evento e: eventoCol){
+					eventoColOrden.add(e);
+				}
+				((FotosPagerAdapter) (mPager.getAdapter())).notifyDataSetChanged();
+				mPagerAdapter = new FotosPagerAdapter(Y4HomeActivity.this, eventoColOrden);
+				mPager.setAdapter(mPagerAdapter);
+
+
+	}
 
 	Boolean wifi;
 	public String estadoWifi = "5";
@@ -1655,11 +1898,12 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 			public void run() {
 
 				if(wifi){
-					txtEstado.setText("conexión wifi");
-				}else{
-					txtEstado.setText("conexión internet");
-				}
+					txtEstado.setText("en casa ");
 
+				}else{
+					txtEstado.setText("internet ");
+				}
+				txtCopyright.setText("Copyright Yacaré Technology V"+ AudioQueu.version);
 				if(respuesta[34].equals("1")) {
 					estadoWifi = respuesta[4];
 					if (!respuesta[4].equals("")) {
@@ -1714,6 +1958,16 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 
 	}
 
+	public void mostrarMensaje(final String texto) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				txtMensaje.setText(texto);
+				mostrarMensaje();
+			}
+		});
+
+	}
 	private void mostrarMensaje() {
 		constraintLayout.bringToFront();
 		if (!isScreenLarge()) {
@@ -1907,19 +2161,18 @@ public class Y4HomeActivity extends AppCompatActivity implements AdapterView.OnI
 			AudioQueu.setComandoEnviado(new ConcurrentHashMap<Integer, String>());
 		}
 
-//		AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, YACSmartProperties.COM_NOTIFICAR_IP_ACTUALIZADO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";"+ UUID.randomUUID().toString() + ";");
-//		AudioQueu.contadorComandoEnviado++;
 
 		if (!esComunicacionDirecta) {
 			AudioQueu.setTipoConexion(TipoConexionEnum.INTERNET.getCodigo());
-			AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, YACSmartProperties.COM_NOTIFICAR_IP_ACTUALIZADO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";"+ UUID.randomUUID().toString() + ";");
+			AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, YACSmartProperties.COM_NOTIFICAR_IP_ACTUALIZADO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";"+ UUID.randomUUID().toString() + ";" + equipoSeleccionado.getNombreEquipo() + ";");
 			AudioQueu.contadorComandoEnviado++;
 		} else {
 
 
 //			AudioQueu.socketComando = false;
 			AudioQueu.setTipoConexion(TipoConexionEnum.WIFI.getCodigo());
-			txtEstado.setText("conexión wifi");
+			txtEstado.setText("en casa ");
+			txtCopyright.setText("Copyright Yacaré Technology V"+ AudioQueu.version);
 			if(AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())){
 				String datosConfT = YACSmartProperties.COM_TOMAR_FOTO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() + ";0;";
 				EnviarComandoThread enviarComandoThread = new EnviarComandoThread(Y4HomeActivity.this, datosConfT, null, null,
@@ -2111,7 +2364,6 @@ class VerificarRedAsyncTask extends AsyncTask<String, Float,  Boolean> {
 			InetAddress ipEquipo = null;
 			Integer puertoComando = YACSmartProperties.PUERTO_COMANDO_DEFECTO;
 			ipEquipo = InetAddress.getByName(equipo.getIpLocal());
-//			puertoComando = equipo.getPuertoComando();
 
 
 			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(y4HomeActivity.getApplicationContext());

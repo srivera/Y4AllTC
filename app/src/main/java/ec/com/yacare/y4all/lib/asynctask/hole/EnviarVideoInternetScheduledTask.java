@@ -66,7 +66,7 @@ public class EnviarVideoInternetScheduledTask  extends Thread {
 		byte[] datosRecibir = new byte[512];
 
 		try {
-			ipEquipo = InetAddress.getByName(YACSmartProperties.ipComunicacion);
+			ipEquipo = InetAddress.getByName(YACSmartProperties.IP_CORP_P);
 
 			//Envia el paquete para establecer la comunicacion
 			byte[] datosConfB = "PING;".getBytes();

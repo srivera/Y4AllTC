@@ -63,7 +63,7 @@ public class EnviarAudioInternetScheduledTask  extends Thread {
 		Integer puertoPaquete = null;
 
 		try {
-			ipEquipo = InetAddress.getByName(YACSmartProperties.ipComunicacion);
+			ipEquipo = InetAddress.getByName(YACSmartProperties.IP_CORP_P);
 
 			//Envia el paquete para establecer la comunicacion
 			byte[] datosConfB = "PING;".getBytes();

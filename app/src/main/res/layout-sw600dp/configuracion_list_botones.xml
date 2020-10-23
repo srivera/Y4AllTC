@@ -16,25 +16,6 @@
         android:layout_marginRight="40dp"
         android:gravity="center"
         android:orientation="horizontal">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="0.45"
-            android:text="luz"
-            android:textSize="16dp"
-            android:background="@drawable/back_boton_izq"
-            android:textColor="#FFFFFF"
-            android:textAllCaps="false"
-            android:id="@+id/btnEncenderLuz"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
-        <ImageButton
-            android:id="@+id/btnMonitorear"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:background="@drawable/circle_button"
-            android:src="@drawable/monitor"
-            android:textColor="#fff" />
 
         <Button
             android:layout_width="0dp"
@@ -49,5 +30,25 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
 
+        <ImageButton
+            android:id="@+id/btnMonitorear"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/circle_button"
+            android:src="@drawable/monitor"
+            android:textColor="#fff" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.45"
+            android:text="luz"
+            android:textSize="16dp"
+            android:background="@drawable/back_boton_izq"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:id="@+id/btnEncenderLuz"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
     </LinearLayout>
 </LinearLayout>

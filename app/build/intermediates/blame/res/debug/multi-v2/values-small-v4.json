@@ -1,0 +1,81 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\RESPALDO\\Yacare\\versionportero\\Y4AllTC\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\RESPALDO\\Yacare\\versionportero\\Y4AllTC\\app\\src\\main\\res\\values-small\\themes_lightcontroller.xml",
+                    "from": {
+                        "startLines": "4,5",
+                        "startColumns": "4,4",
+                        "startOffsets": "217,283",
+                        "endLines": "4,15",
+                        "endColumns": "65,12",
+                        "endOffsets": "278,998"
+                    },
+                    "to": {
+                        "startLines": "38,39",
+                        "startColumns": "4,4",
+                        "startOffsets": "2533,2599",
+                        "endLines": "38,49",
+                        "endColumns": "65,12",
+                        "endOffsets": "2594,3308"
+                    }
+                },
+                {
+                    "source": "C:\\RESPALDO\\Yacare\\versionportero\\Y4AllTC\\app\\src\\main\\res\\values-small\\colors_lightcontroller.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,108,157",
+                        "endColumns": "52,48,41",
+                        "endOffsets": "103,152,194"
+                    },
+                    "to": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "100,153,202",
+                        "endColumns": "52,48,41",
+                        "endOffsets": "148,197,239"
+                    }
+                },
+                {
+                    "source": "C:\\RESPALDO\\Yacare\\versionportero\\Y4AllTC\\app\\src\\main\\res\\values-small\\styles_lightcontroller.xml",
+                    "from": {
+                        "startLines": "34,41,54,68,78,50,58,82,46,64,91,86,21,73,97",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1780,2223,2915,3763,4321,2701,3124,4507,2498,3543,5001,4703,801,4061,5439",
+                        "endLines": "39,44,56,70,80,52,62,84,48,66,95,89,32,76,99",
+                        "endColumns": "12,12,12,12,12,12,12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "2217,2491,3117,3971,4501,2909,3533,4697,2694,3753,5433,4995,1774,4315,5625"
+                    },
+                    "to": {
+                        "startLines": "8,14,18,21,24,27,30,35,50,53,56,61,65,77,81",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "391,833,1106,1313,1526,1711,1924,2338,3313,3514,3729,4166,4463,5441,5700",
+                        "endLines": "13,17,20,23,26,29,34,37,52,55,60,64,76,80,83",
+                        "endColumns": "12,12,12,12,12,12,12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "828,1101,1308,1521,1706,1919,2333,2528,3509,3724,4161,4458,5436,5695,5886"
+                    }
+                },
+                {
+                    "source": "C:\\RESPALDO\\Yacare\\versionportero\\Y4AllTC\\app\\src\\main\\res\\values-small\\dimens.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,5,4",
+                        "startOffsets": "19,68,118",
+                        "endColumns": "46,49,50",
+                        "endOffsets": "61,112,164"
+                    },
+                    "to": {
+                        "startLines": "5,6,7",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "244,291,340",
+                        "endColumns": "46,48,50",
+                        "endOffsets": "286,335,386"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -73,7 +73,7 @@ public class LinkFocosAsyncTask extends AsyncTask<String, Float, String> {
 		return respStr;
 	}
 
-	protected void onPostExecute(String resultado) {
-		detalleLucesFragment.verificarLinkFocos(resultado, trama);
-	}
+//	protected void onPostExecute(String resultado) {
+//		detalleLucesFragment.verificarLinkFocos(resultado, trama);
+//	}
 }

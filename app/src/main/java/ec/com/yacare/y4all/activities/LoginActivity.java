@@ -19,9 +19,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.gms.common.ConnectionResult;
+/*import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.android.gms.gcm.GoogleCloudMessaging;*/
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +50,7 @@ import ec.com.yacare.y4all.lib.sqllite.EquipoDataSource;
 import ec.com.yacare.y4all.lib.util.AudioQueu;
 import io.xlink.wifi.pipe.util.XlinkUtils;
 
-import static com.google.android.gms.plus.PlusOneDummyView.TAG;
+//import static com.google.android.gms.plus.PlusOneDummyView.TAG;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
 	private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	private BroadcastReceiver mRegistrationBroadcastReceiver;
-	private GoogleCloudMessaging gcm;
+	//private GoogleCloudMessaging gcm;
 
 	public static String SENDER_ID = "850213101412";
 
@@ -162,6 +162,7 @@ public class LoginActivity extends AppCompatActivity {
 //		}
 	}
 
+	Boolean verificarGuardarDispositivo = false;
 
 	public void verificarLoginCuenta(String respuesta) {
 		XlinkUtils.shortTips("Entro a verificarLoginCuenta");
@@ -210,9 +211,11 @@ public class LoginActivity extends AppCompatActivity {
 						obtenerDatosCuentaAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 					}
+
 				}
 			}else if(respuesta.contains("SAG02")){
 					//Guardar en el Shared el nombre del dispositivo
+					verificarGuardarDispositivo = true;
 					XlinkUtils.shortTips("SAG02");
 					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 					SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -267,18 +270,19 @@ public class LoginActivity extends AppCompatActivity {
 	}
 
 	public void verificarGuardarDispositivo(String respuesta) {
-		if(!respuesta.equals(YACSmartProperties.getInstance().getMessageForKey("error.general"))){
-			String resultToken = null;
-			Boolean status = null;
-			JSONObject respuestaJSON = null;
-			try {
-				respuestaJSON = new JSONObject(respuesta);
-				status = respuestaJSON.getBoolean("statusFlag");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+		if(verificarGuardarDispositivo) {
+			if (!respuesta.equals(YACSmartProperties.getInstance().getMessageForKey("error.general"))) {
+				String resultToken = null;
+				Boolean status = null;
+				JSONObject respuestaJSON = null;
+				try {
+					respuestaJSON = new JSONObject(respuesta);
+					status = respuestaJSON.getBoolean("statusFlag");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 
-			if(status != null && status) {
+				if (status != null && status) {
 				/*try {
 					respuestaJSON = new JSONObject(respuesta);
 					resultToken = respuestaJSON.getString("token");
@@ -294,14 +298,29 @@ public class LoginActivity extends AppCompatActivity {
 					obtenerDatosCuentaAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 				}*/
-				LoginCuentaAsyncTask loginCuentaAsyncTask = new LoginCuentaAsyncTask(LoginActivity.this);
-				loginCuentaAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+					LoginCuentaAsyncTask loginCuentaAsyncTask = new LoginCuentaAsyncTask(LoginActivity.this);
+					loginCuentaAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-			}else{
+				} else {
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+							LoginActivity.this);
+					alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
+							.setMessage(YACSmartProperties.intance.getMessageForKey("sin.conexion"))
+							.setCancelable(false)
+							.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+								}
+							});
+
+					AlertDialog alertDialog = alertDialogBuilder.create();
+					alertDialog.show();
+				}
+			} else {
+				//Error general
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 						LoginActivity.this);
 				alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-						.setMessage(YACSmartProperties.intance.getMessageForKey("sin.conexion"))
+						.setMessage(YACSmartProperties.intance.getMessageForKey("verificar.internet"))
 						.setCancelable(false)
 						.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
@@ -311,20 +330,6 @@ public class LoginActivity extends AppCompatActivity {
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
 			}
-		}else{
-			//Error general
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					LoginActivity.this);
-			alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-					.setMessage(YACSmartProperties.intance.getMessageForKey("verificar.internet"))
-					.setCancelable(false)
-					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-						}
-					});
-
-			AlertDialog alertDialog = alertDialogBuilder.create();
-			alertDialog.show();
 		}
 	}
 	public void verificarDatosCuenta(String respuesta) {
@@ -387,6 +392,9 @@ public class LoginActivity extends AppCompatActivity {
 						editor.putString("prefNombreDispositivo", nombreDispositivo.getText().toString());
 						editor.apply();
 						editor.commit();
+
+						GuardarDispositivoAsyncTask guardarDispositivoAsyncTask = new GuardarDispositivoAsyncTask(getApplicationContext(), null, LoginActivity.this, null);
+						guardarDispositivoAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 					} catch (JSONException e) {
 						e.printStackTrace();
@@ -458,18 +466,18 @@ public class LoginActivity extends AppCompatActivity {
 	 * the Google Play Store or enable it in the device's system settings.
 	 */
 	private boolean checkPlayServices() {
-		GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+		/*GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
 		int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
 		if (resultCode != ConnectionResult.SUCCESS) {
 			if (apiAvailability.isUserResolvableError(resultCode)) {
 				apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
 						.show();
 			} else {
-				Log.i(TAG, "This device is not supported.");
+				//Log.i(TAG, "This device is not supported.");
 				finish();
 			}
 			return false;
-		}
+		}*/
 		return true;
 	}
 

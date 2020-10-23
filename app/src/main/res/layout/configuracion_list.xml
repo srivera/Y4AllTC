@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_height="50dp"
+    android:layout_height="60dp"
     android:layout_width="fill_parent"
     android:layout_gravity="center_horizontal"
     android:layout_margin="10dp"
@@ -17,7 +17,7 @@
         android:src="@drawable/monitorp"/>
 
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/swipelist_frontview"
         style="@style/ListFrontContent"
         android:orientation="vertical"
@@ -33,12 +33,21 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="1dp"
             android:layout_width="fill_parent"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:layout_height="wrap_content"
-            android:text="a" />
+            android:text="Nombre" />
 
-
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/descripcionOpcion"
+            style="@style/ListTitle"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="1dp"
+            android:layout_width="fill_parent"
+            android:textSize="12dp"
+            android:layout_height="wrap_content"
+            android:text="Descripcion" />
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/layout"
         style="@style/ListFrontContent"

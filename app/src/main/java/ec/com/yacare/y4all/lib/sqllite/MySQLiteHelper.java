@@ -84,6 +84,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_MENSAJE_PUERTA = "mensajePuerta";
     public static final String COLUMN_TIEMPO_ENCENDIDO_LUZ = "tiempoEncendidoLuz";
     public static final String COLUMN_VOLUMEN = "volumen";
+    public static final String COLUMN_TIPO_PORTERO = "tipoPortero";
+    public static final String COLUMN_NUM_DEPTO = "numeroDepartamento";
 
     public static final String TABLA_DISPOSITIVO = "dispositivo";
     public static final String COLUMN_DISPOSITIVO_ID = "_id";
@@ -210,7 +212,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + " text, " +  COLUMN_MENSAJE_PUERTA
             + " text, " +  COLUMN_TIEMPO_ENCENDIDO_LUZ
             + " integer, " +  COLUMN_VOLUMEN
-            + " integer  );";
+            + " integer, " +  COLUMN_TIPO_PORTERO
+            + " text, " +  COLUMN_NUM_DEPTO
+            + " text  );";
 
     private static final String CREATE_RESPUESTA = "create table "
             + TABLA_RESPUESTAS + "(" + COLUMN_RESPUESTA_ID

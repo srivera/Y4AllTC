@@ -8,10 +8,6 @@ import android.util.SparseArray;
 import android.widget.ListView;
 
 
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.face.FaceDetector;
-import com.google.android.gms.vision.face.Face;
-
 import java.util.ArrayList;
 
 import ec.com.yacare.y4all.activities.R;
@@ -35,7 +31,7 @@ public class EtiquetarVisitanteActivity extends Activity {
 
 	private VisitanteArrayAdapter visitanteArrayAdapter;
 
-	private SparseArray<Face> faces ;
+	//private SparseArray<Face> faces ;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +47,7 @@ public class EtiquetarVisitanteActivity extends Activity {
 		String nombreFoto = getIntent().getExtras().getString("nombreFoto");
 		bitmap = BitmapFactory.decodeFile(nombreFoto);
 
-		FaceDetector detector = new FaceDetector.Builder(getApplicationContext())
+	/*	FaceDetector detector = new FaceDetector.Builder(getApplicationContext())
 				.setTrackingEnabled(false)
 				.setLandmarkType(FaceDetector.ALL_LANDMARKS)
 				.setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
@@ -66,7 +62,7 @@ public class EtiquetarVisitanteActivity extends Activity {
 
 		fotoVisitante.setContent(bitmap, faces);
 
-		detector.release();
+		detector.release();*/
 
 		listaVisitantes = (ListView) findViewById(android.R.id.list);
 
@@ -113,7 +109,7 @@ public class EtiquetarVisitanteActivity extends Activity {
 		ArrayList<Visitante> visitantes = new ArrayList<Visitante>();
 
 
-		for(int i = 0; i < faces.size(); i++) {
+		/*for(int i = 0; i < faces.size(); i++) {
 			Face face = faces.valueAt(i);
 			if(face != null) {
 				Visitante visitante = new Visitante();
@@ -125,7 +121,7 @@ public class EtiquetarVisitanteActivity extends Activity {
 				visitantes.add(visitante);
 			}
 
-		}
+		}*/
 		visitanteArrayAdapter = new VisitanteArrayAdapter(EtiquetarVisitanteActivity.this, visitantes);
 		listaVisitantes.setAdapter(visitanteArrayAdapter);
 	}

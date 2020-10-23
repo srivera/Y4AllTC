@@ -116,6 +116,7 @@ public class EventoListaArrayAdapter extends ArrayAdapter<Evento> {
 
 		}else{
 			if(evento.getEstado().equals("ERR")){
+				imgButtonVideoInicial.setImageResource(R.drawable.download);
 				if(evento.isSeleccionado()){
 					imgButtonVideoInicial.setColorFilter(y4HomeActivity.getResources().getColor(R.color.white));
 				}
@@ -136,7 +137,7 @@ public class EventoListaArrayAdapter extends ArrayAdapter<Evento> {
 			texHoy.setTextColor(y4HomeActivity.getResources().getColor(R.color.colorprincipal));
 			textFecha.setTextColor(y4HomeActivity.getResources().getColor(R.color.colorprincipal));
 			txtAmPm.setTextColor(y4HomeActivity.getResources().getColor(R.color.colorprincipal));
-
+			y4HomeActivity.actualizarPagerListaDetalle(evento);
 
 		}else{
 			layoutFila.setBackgroundResource(R.color.white);

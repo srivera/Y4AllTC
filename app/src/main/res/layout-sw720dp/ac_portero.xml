@@ -7,7 +7,7 @@
     android:layout_gravity="top"
     android:gravity="top"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FFFFFF">
+    android:background="#000000">
 
     <RelativeLayout
         android:id="@+id/layoutInicial"
@@ -40,47 +40,34 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/layoutMensaje"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="top"
-        android:orientation="horizontal"
         android:layout_weight="0.07"
+        android:orientation="horizontal"
+        android:id="@+id/layoutMensaje"
+        android:gravity="center_horizontal"
         android:padding="5dp">
-
-        <EditText
-            android:id="@+id/editMensajeCorto"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:textSize="13dp"
-            android:background="@drawable/text_rounded"
-            android:hint="mensaje corto" />
-
-        <ImageButton
-            android:id="@+id/fabMensajeM"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/txtEmpresa"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:background="@android:drawable/screen_background_light_transparent"
-            android:src="@drawable/yacchatmujer"
-            android:layout_gravity="center_horizontal"
-            android:adjustViewBounds="true" />
+            android:text="Yacaré Technology"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#AAAAAA"/>
 
-        <ImageButton
-            android:id="@+id/fabMensajeH"
-            android:layout_width="0dp"
+        <ImageView
+            android:id="@+id/imagensenal"
+            android:layout_width="18dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:background="@android:drawable/screen_background_light_transparent"
-            android:src="@drawable/yacchathombre"
-            android:layout_gravity="center_horizontal"
-            android:adjustViewBounds="true" />
-    </LinearLayout>
+            android:background="#000000"
+            android:src="@drawable/menuinternet"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerInside"/>
+    </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/layoutDetalle"
@@ -175,6 +162,15 @@
                     android:background="@android:color/transparent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"/>
+                <ec.com.yacare.y4all.lib.util.indicator.AVLoadingIndicatorView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/indicatorMic"
+                    app:indicatorName="BallScaleMultipleIndicator"
+                    style="@style/AVLoadingIndicatorView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"/> />
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="100dp"
@@ -210,6 +206,63 @@
             android:orientation="vertical"
             android:background="@color/principalAlfa"
             android:layout_weight="0.5">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageButton
+                    android:id="@+id/btnMensaje"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/circle_button"
+                    android:src="@drawable/menumensaje"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"/>
+                <ImageButton
+                    android:id="@+id/btnLuz"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/circle_button"
+                    android:src="@drawable/menuluces"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"/>
+                <Button
+                    android:id="@+id/fabCerrar"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.25"
+                    android:layout_height="match_parent"
+                    android:text="Cerrar"
+                    android:textSize="18dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textAllCaps="false"
+                    android:background="@drawable/framerojo"/>
+
+                <ImageButton
+                    android:id="@+id/fabPuerta"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/circle_button"
+                    android:src="@drawable/menupuerta"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_horizontal"/>
+
+                <ImageButton
+                    android:id="@+id/fabSpeaker"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/circle_button"
+                    android:src="@drawable/menuspeaker"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -242,82 +295,7 @@
                     android:layout_toRightOf="@+id/txtAudio"
                     android:layout_toEndOf="@+id/txtAudio" />
 
-                <ImageButton
-                    android:id="@+id/fabCerrar"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/circle_button"
-                    android:src="@drawable/decline"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:elevation="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_alignParentEnd="true" />
 
-                <ImageButton
-                    android:id="@+id/btnLuz"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/circle_button"
-                    android:src="@drawable/flash"
-                    android:elevation="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@+id/fabCerrar"
-                    android:layout_toStartOf="@+id/fabCerrar" />
-
-                <ImageButton
-                    android:id="@+id/btnCamera"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/circle_button"
-                    android:src="@drawable/camera"
-                    android:elevation="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@+id/btnLuz"
-                    android:layout_toStartOf="@+id/btnLuz" />
-
-                <ImageButton
-                    android:id="@+id/fabPuerta"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/circle_button"
-                    android:src="@drawable/opendoor"
-                    android:elevation="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@+id/btnCamera"
-                    android:layout_toStartOf="@+id/btnCamera" />
-
-                <ImageButton
-                    android:id="@+id/fabSpeaker"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/circle_button"
-                    android:src="@drawable/speaker"
-                    android:elevation="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@+id/fabPuerta"
-                    android:layout_toStartOf="@+id/fabPuerta" />
             </RelativeLayout>
 
             <LinearLayout android:layout_height="wrap_content"
@@ -326,66 +304,12 @@
                 android:paddingTop="15dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent">
-
-                <LinearLayout android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical"
-                    android:layout_weight="0.2"
-                    android:layout_width="0dp">
-                    <RadioGroup
-                        android:id="@+id/radioTipo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/border_radio"
-                        android:orientation="vertical">
-
-                        <RadioButton
-                            android:id="@+id/fabMensajes"
-                            android:background="@drawable/toggle_widget_background"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:checked="true"
-                            android:layout_gravity="center_horizontal"
-                            android:text="Texto"
-                            android:textColor="@color/white" />
-
-                        <RadioButton
-                            android:id="@+id/fabRespuesta"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5"
-                            android:background="@drawable/toggle_widget_background"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:layout_gravity="center_horizontal"
-                            android:text="Voz"
-                            android:textColor="@color/white" />
-                    </RadioGroup>
-                </LinearLayout>
-
-
-
                 <ListView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/respuestasTexto"
                     android:layout_weight="0.6"/>
-
-                <ImageButton
-                    android:id="@+id/fabEnviarMensaje"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2"
-                    android:background="@color/principalAlfa"
-                    android:src="@drawable/botonlista"
-                    android:layout_gravity="center_horizontal"
-                    android:adjustViewBounds="true" />
-
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 

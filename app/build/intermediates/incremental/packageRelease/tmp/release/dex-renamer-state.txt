@@ -1,0 +1,4 @@
+#Sun Sep 01 15:54:43 COT 2019
+base.0=C\:\\RESPALDO\\Yacare\\versionportero\\Y4AllTC\\app\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex

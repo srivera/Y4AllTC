@@ -48,7 +48,7 @@ public class RecibirVideoInternetScheduledTask  extends Thread {
 		Integer puertoLocal = null;
 
 		try {
-			ipEquipo = InetAddress.getByName(YACSmartProperties.ipComunicacion);
+			ipEquipo = InetAddress.getByName(YACSmartProperties.IP_CORP_P);
 
 			//Envia el paquete para establecer la comunicacion
 			byte[] datosConfB = "PING;".getBytes();
@@ -108,7 +108,7 @@ public class RecibirVideoInternetScheduledTask  extends Thread {
 				}
 
 				clientSocket.send(sendPacketConf);
-				Log.d("PAQUETE ENVIADO VIDEO", "VIDEO" + paqRecibido + "/" + YACSmartProperties.ipComunicacion + " / " + puerto + " PUERTO RECIBIR " + clientSocket.getLocalPort());
+				Log.d("PAQUETE ENVIADO VIDEO", "VIDEO" + paqRecibido + "/" + YACSmartProperties.IP_CORP_P + " / " + puerto + " PUERTO RECIBIR " + clientSocket.getLocalPort());
 			} catch (UnknownHostException e1) {
 				e1.printStackTrace();
 				Log.d("PAQUETE ENVIADO VIDEO", "IOException");
@@ -127,7 +127,7 @@ public class RecibirVideoInternetScheduledTask  extends Thread {
 					try {
 						clientSocket.setSoTimeout(5000);
 						clientSocket.receive(receivePacket);
-						Log.d("PAQUETE RECIBIDO VIDEO", "VIDEO11" + paqRecibido + "/" + YACSmartProperties.ipComunicacion + " / " + puerto + " PUERTO RECIBIR " + clientSocket.getLocalPort());
+						Log.d("PAQUETE RECIBIDO VIDEO", "VIDEO11" + paqRecibido + "/" + YACSmartProperties.IP_CORP_P + " / " + puerto + " PUERTO RECIBIR " + clientSocket.getLocalPort());
 						byte[] datos = descomprimirGZIP(receivePacket.getData(), receivePacket.getLength());
 
 						bmp = BitmapFactory.decodeByteArray(datos, 0, datos.length);

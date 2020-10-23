@@ -36,7 +36,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/menu_apps"
             fab:fab_size="mini"
-            fab:fab_label="Necesito una aplicación móvil"
+            android:visibility="gone"
+            fab:fab_label="Configurar WIFI"
             style="@style/MenuButtonsSmall"/>
 
         <com.github.clans.fab.FloatingActionButton
@@ -45,17 +46,19 @@
             android:layout_height="wrap_content"
             android:src="@drawable/menu_compartir"
             fab:fab_size="mini"
+            android:visibility="gone"
             fab:fab_label="Compartir mi equipo"
             style="@style/MenuButtonsSmall"/>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/btnNuevo"
+            android:id="@+id/btnCerrarSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/menu_nuevo"
+            android:src="@drawable/salir"
             fab:fab_size="mini"
-            fab:fab_label="Agregar un equipo"
+            fab:fab_label="Cerrar sesión"
             style="@style/MenuButtonsSmall"/>
+
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/btnPreferencias"
@@ -65,6 +68,33 @@
             fab:fab_size="mini"
             fab:fab_label="Preferencias"
             style="@style/MenuButtonsSmall"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnCerradura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cerradura"
+            fab:fab_size="mini"
+            fab:fab_label="Cerradura Inteligente"
+            style="@style/MenuButtonsSmall"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnAlarma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/siren"
+            fab:fab_size="mini"
+            fab:fab_label="Alarma"
+            style="@style/MenuButtonsSmall"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnNuevo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_nuevo"
+            fab:fab_size="mini"
+            fab:fab_label="Nuevo dispositivo/volver a configurar"
+            style="@style/MenuButtonsSmall"/>
+
+
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/btnRespuesta"
@@ -72,6 +102,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/menu_respuesta"
             fab:fab_size="mini"
+            android:visibility="gone"
             fab:fab_label="Mis respuestas"
             style="@style/MenuButtonsSmall"/>
 
@@ -82,6 +113,7 @@
             android:src="@drawable/menu_cuenta"
             fab:fab_shadowColor="#cc585858"
             fab:fab_size="mini"
+            android:visibility="gone"
             fab:fab_label="Mi cuenta"
             style="@style/MenuButtonsSmall"/>
 
@@ -498,6 +530,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorprincipal"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 android:layout_toRightOf="@+id/badge_layout1"
                 android:layout_gravity="fill">
 
@@ -570,6 +603,7 @@
                 android:gravity="center_vertical"
                 android:background="@color/colorprincipal"
                 android:layout_toRightOf="@+id/badge2"
+                android:visibility="gone"
                 android:layout_gravity="fill">
 
                 <RelativeLayout

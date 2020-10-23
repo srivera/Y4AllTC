@@ -75,6 +75,7 @@ public class LlamadaEntrantePorteroActivity extends Activity {
 
 	Ringtone r;
 	Bitmap bmImg;
+	String ip;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,8 @@ public class LlamadaEntrantePorteroActivity extends Activity {
 
 		esComunicacionDirecta = getIntent().getExtras().getBoolean("esComunicacionDirecta");
 
+		ip = getIntent().getExtras().getString("ip");
+
 		llamadaAtendida = false;
 
 		AudioQueu.imagenRecibida = false;
@@ -155,7 +158,7 @@ public class LlamadaEntrantePorteroActivity extends Activity {
 			public void onClick(View arg0) {
 				llamadaAtendida = true;
 				AudioQueu.llamadaEntrante = false;
-				Log.d("AudioQueu.llamadaEntrante","false");
+				Log.d("llamadaEntrante","false");
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -337,7 +340,7 @@ public class LlamadaEntrantePorteroActivity extends Activity {
 					Log.d("vecesFoto", "" + vecesFoto);
 					if(!imagen){
 						if(vecesFoto == 500){
-							ObtenerFotoAsyncTask genericoAsyncTask = new ObtenerFotoAsyncTask(LlamadaEntrantePorteroActivity.this, llamadaEntrantePorteroActivity.getIntent().getExtras().getString("idEvento"));
+							ObtenerFotoAsyncTask genericoAsyncTask = new ObtenerFotoAsyncTask(LlamadaEntrantePorteroActivity.this, llamadaEntrantePorteroActivity.getIntent().getExtras().getString("idEvento"), ip);
 							genericoAsyncTask.start();
 							vecesFoto = 0;
 						}else{

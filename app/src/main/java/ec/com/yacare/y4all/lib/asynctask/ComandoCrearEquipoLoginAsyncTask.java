@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Environment;
 
-import com.google.android.gms.gcm.GcmPubSub;
+//import com.google.android.gms.gcm.GcmPubSub;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.TimeZone;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -116,7 +117,12 @@ public class ComandoCrearEquipoLoginAsyncTask extends AsyncTask<String, Float, S
 						equipo.setSocketComando(equipoInArray.getString("rutaSocketIo"));
 					}
 
-
+					if(equipoInArray.has("numero")){
+						equipo.setNumeroDepartamento(equipoInArray.getString("numero"));
+					}
+					if(equipoInArray.has("tipoPortero")){
+						equipo.setTipoPortero(equipoInArray.getString("tipoPortero"));
+					}
 
 					equipo.setNumeroSerie(equipoInArray.getString("numeroSerie"));
 					equipo.setTipoEquipo(equipoInArray.getString("tipoEquipo").trim());
@@ -212,6 +218,16 @@ public class ComandoCrearEquipoLoginAsyncTask extends AsyncTask<String, Float, S
 				}else{
 					Equipo equipo = equipoBusqueda;
 					if(equipoBusqueda.getEstadoEquipo().equals(EstadoDispositivoEnum.INSTALADO.getCodigo())){
+
+						List<Equipo> equiposDuplicados = equipoDatasource.getEquiposNumeroSerie(equipoBusqueda);
+						if(equiposDuplicados != null && equiposDuplicados.size() > 0){
+							for (Equipo e: equiposDuplicados){
+								if(!e.getId().equals(equipoBusqueda.getId())){
+									equipoDatasource.deleteEquipo(e.getId());
+								}
+							}
+						}
+
 						//Verificar si debe actualizarse
 						if(!equipoBusqueda.getNombreEquipo().equals(equipoInArray.getString("nombre").trim())){
 							equipoBusqueda.setNombreEquipo(equipoInArray.getString("nombre").trim());
@@ -222,7 +238,12 @@ public class ComandoCrearEquipoLoginAsyncTask extends AsyncTask<String, Float, S
 						if(equipoInArray.has("ipLocal") && (equipoBusqueda.getIpLocal() == null || equipoBusqueda.getIpLocal().equals("") ||  !equipoBusqueda.getIpLocal().equals(equipoInArray.getString("ipLocal")) )){
 							equipoBusqueda.setIpLocal(equipoInArray.getString("ipLocal").trim());
 						}
-						
+						if(equipoInArray.has("numero")){
+							equipoBusqueda.setNumeroDepartamento(equipoInArray.getString("numero"));
+						}
+						if(equipoInArray.has("tipoPortero")){
+							equipoBusqueda.setTipoPortero(equipoInArray.getString("tipoPortero"));
+						}
 						if(equipoInArray.has("ipPublica") && (equipoBusqueda.getIpPublica() == null || equipoBusqueda.getIpPublica().equals(""))
 								||  !equipoBusqueda.getIpPublica().equals(equipoInArray.getString("ipPublica").trim())){
 							equipoBusqueda.setIpPublica(equipoInArray.getString("ipPublica").trim());
@@ -424,7 +445,7 @@ public class ComandoCrearEquipoLoginAsyncTask extends AsyncTask<String, Float, S
 			if (loginActivity != null) {
 				loginActivity.verificarCrearEquipos();
 				XlinkUtils.shortTips("termino de crear equipos ");
-			} else {
+			} else if (splashActivity != null) {
 				XlinkUtils.shortTips("validarIngreso 10");
 				splashActivity.verificarCrearEquipos();
 			}
@@ -436,10 +457,10 @@ public class ComandoCrearEquipoLoginAsyncTask extends AsyncTask<String, Float, S
 		equipoDataSource.open();
 		ArrayList<Equipo> equipos = equipoDataSource.getAllEquipo();
 		equipoDataSource.close();
-		GcmPubSub pubSub = GcmPubSub.getInstance(activity);
+	/*	GcmPubSub pubSub = GcmPubSub.getInstance(activity);
 		for (Equipo equipo  : equipos) {
 			pubSub.subscribe(token, "/topics/" + equipo.getNumeroSerie(), null);
-		}
+		}*/
 	}
 
 	/**

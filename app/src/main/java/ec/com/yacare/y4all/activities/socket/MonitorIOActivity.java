@@ -8,19 +8,11 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.media.AudioManager;
-import android.media.MediaActionSound;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
@@ -30,32 +22,25 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -65,6 +50,7 @@ import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 import java.util.zip.GZIPInputStream;
 
@@ -72,29 +58,20 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import ec.com.yacare.y4all.activities.DatosAplicacion;
 import ec.com.yacare.y4all.activities.R;
 import ec.com.yacare.y4all.activities.principal.Y4HomeActivity;
-import ec.com.yacare.y4all.adapter.GridViewAdapter;
 import ec.com.yacare.y4all.adapter.MensajeTextoArrayAdapter;
-import ec.com.yacare.y4all.adapter.SeleccionarRespuestaAdapter;
-import ec.com.yacare.y4all.lib.asynctask.hole.EnviarAudioInternetScheduledTask;
 import ec.com.yacare.y4all.lib.asynctask.io.RecibirVideoIOScheduledTask;
 import ec.com.yacare.y4all.lib.dto.Equipo;
-import ec.com.yacare.y4all.lib.dto.Evento;
-import ec.com.yacare.y4all.lib.dto.ImageItem;
 import ec.com.yacare.y4all.lib.dto.MensajeTexto;
-import ec.com.yacare.y4all.lib.dto.Respuesta;
-import ec.com.yacare.y4all.lib.enumer.EstadoEventoEnum;
 import ec.com.yacare.y4all.lib.enumer.TipoConexionEnum;
 import ec.com.yacare.y4all.lib.enumer.TipoEquipoEnum;
-import ec.com.yacare.y4all.lib.enumer.TipoEventoEnum;
 import ec.com.yacare.y4all.lib.resources.YACSmartProperties;
 import ec.com.yacare.y4all.lib.sqllite.EquipoDataSource;
-import ec.com.yacare.y4all.lib.sqllite.EventoDataSource;
 import ec.com.yacare.y4all.lib.sqllite.MensajeTextoDataSource;
-import ec.com.yacare.y4all.lib.sqllite.RespuestaDataSource;
 import ec.com.yacare.y4all.lib.tareas.EnviarComandoThread;
 import ec.com.yacare.y4all.lib.tareas.RecibirAudiowfThread;
 import ec.com.yacare.y4all.lib.tareas.RecibirVideoThread;
 import ec.com.yacare.y4all.lib.util.AudioQueu;
+import ec.com.yacare.y4all.lib.util.indicator.AVLoadingIndicatorView;
 import ec.com.yacare.y4all.lib.ws.MonitoreoPorteroIOAsyncTask;
 
 import static ec.com.yacare.y4all.lib.util.AudioQueu.esComunicacionDirecta;
@@ -102,14 +79,12 @@ import static ec.com.yacare.y4all.lib.util.AudioQueu.esComunicacionDirecta;
 
 public class MonitorIOActivity extends AppCompatActivity implements  View.OnClickListener {
 
-//}, SensorEventListener {
-
 	//Imagenes y video
 	public ImageView imagenInicial;
 
 	//Botones
 	private ImageButton btnLuz;
-	private ImageButton btnCamera;
+	private ImageButton btnMensaje;
 
 	//DataSources respuestas
 //	private RespuestaDataSource datasource;
@@ -126,26 +101,18 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 	private ArrayList<Equipo> equipos;
 	private DatosAplicacion datosAplicacion;
 
-	private ImageButton fabSpeaker, fabCerrar, fabMic, fabMensajeH, fabMensajeM, fabPuerta, fabSalir, fabEnviarMensaje;
-	private RadioButton fabRespuesta, fabTexto;
+	private ImageButton fabSpeaker, fabMic, fabPuerta, fabSalir;
 
-	public GridView gridView;
-	public GridViewAdapter gridAdapter;
-	public ArrayList<ImageItem> imageItems;
-
+	private Button fabCerrar;
 	public RelativeLayout videoPanel;
 	public LinearLayout loadingPanel;
 	public RelativeLayout constraintLayout;
 
-	public TextView txtMensaje;
-	private TextView minuto1;
-	private SeekBar seekbarExterno;
+	public TextView txtMensaje, txtMensajeMicrofono, txtAudio, txtVideo;
 
 	private Typeface fontRegular;
 
 	private String nombreDispositivo;
-
-	private EditText editMensajeCorto;
 
 	private ListView respuestasTexto;
 
@@ -156,20 +123,15 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 	private long timeSwapBuff = 0L;
 	private long updatedTime = 0L;
 
-	private Bitmap imageBitmap;
+//	private Bitmap imageBitmap;
 
 	private ArrayList<MensajeTexto> mensajes;
 	private MensajeTextoArrayAdapter mensajeTextoArrayAdapter;
-	private String idMensaje ="-1";
 
-	private ArrayList<Respuesta> respuestas;
-	private SeleccionarRespuestaAdapter respuestaAdapter;
-	private Boolean botonTexto = true;
-	private Integer indiceReproducir = -1;
+//	private ArrayList<Respuesta> respuestas;
+//	private SeleccionarRespuestaAdapter respuestaAdapter;
+//	private Boolean botonTexto = true;
 
-	//
-//	private SensorManager mSensorManager;
-//	private Sensor mSensor;
 	private WakeLock wl;
 	private PowerManager pm;
 
@@ -177,6 +139,8 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 	private KeyguardLock kl;
 
 	public String idMonitoreo;
+	private ImageView imagensenal;
+	private AVLoadingIndicatorView indicatorMic;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -192,8 +156,6 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 		datosAplicacion = (DatosAplicacion) getApplicationContext();
 		datosAplicacion.setMonitorIOActivity(MonitorIOActivity.this);
 
-		//mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-		//mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 		pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
 		kl = km.newKeyguardLock("INFO");
@@ -232,159 +194,107 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 		textoTimer.bringToFront();
 
 		respuestasTexto = (ListView) findViewById(R.id.respuestasTexto);
+		imagensenal = (ImageView) findViewById(R.id.imagensenal);
+		indicatorMic = (AVLoadingIndicatorView) findViewById(R.id.indicatorMic);
 
 		MensajeTextoDataSource mensajeTextoDataSource = new MensajeTextoDataSource(getApplicationContext());
 		mensajeTextoDataSource.open();
 		mensajes = mensajeTextoDataSource.getAllMensajes();
 		mensajeTextoDataSource.close();
 
-		mensajeTextoArrayAdapter = new MensajeTextoArrayAdapter(getApplicationContext(), mensajes, MonitorIOActivity.this);
-
+		mensajeTextoArrayAdapter = new MensajeTextoArrayAdapter(getApplicationContext(), mensajes, MonitorIOActivity.this, nombreDispositivo);
 		respuestasTexto.setAdapter(mensajeTextoArrayAdapter);
-		respuestasTexto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				indiceReproducir = position;
-				if (botonTexto) {
-					for (MensajeTexto mensajeTexto : mensajes) {
-						mensajeTexto.setEsSeleccionado(false);
-					}
-					mensajes.get(position).setEsSeleccionado(true);
-					mensajeTextoArrayAdapter.notifyDataSetChanged();
-				} else {
-					for (Respuesta respuesta : respuestas) {
-						respuesta.setEsSeleccionado(false);
-					}
-					respuestas.get(position).setEsSeleccionado(true);
-					respuestaAdapter.notifyDataSetChanged();
-				}
-			}
-		});
 
-		txtMensaje = (TextView) findViewById(R.id.txtMensaje);
-
-		editMensajeCorto = (EditText) findViewById(R.id.editMensajeCorto);
 		imagenInicial = (ImageView) findViewById(R.id.imagenInicialFoto);
 
-		btnCamera = (ImageButton) findViewById(R.id.btnCamera);
-		btnCamera.setOnClickListener(new View.OnClickListener() {
+		txtAudio = (TextView) findViewById(R.id.txtAudio);
+
+		txtVideo = (TextView) findViewById(R.id.txtVideo);
+
+		txtMensaje = (TextView) findViewById(R.id.txtMensaje);
+		btnMensaje = (ImageButton) findViewById(R.id.btnMensaje);
+		btnMensaje.setColorFilter(Color.WHITE);
+		btnMensaje.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				MediaActionSound sound = null;
-				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-					sound = new MediaActionSound();
-					sound.play(MediaActionSound.SHUTTER_CLICK);
-				}
-				AudioQueu.guardarFoto = true;
+				final EditText input1 = new EditText(MonitorIOActivity.this);
+				LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.MATCH_PARENT);
+				input1.setLayoutParams(lp1);
+				input1.setTextSize(12);
+				final AlertDialog d1 = new AlertDialog.Builder(MonitorIOActivity.this)
+						.setTitle(YACSmartProperties.intance.getMessageForKey("ingrese.mensaje")).setIcon(R.drawable.mail)
+						.setCancelable(true)
+						.setView(input1)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int which) {
+										if (!input1.getText().toString().equals("")) {
+											String datosConfT = YACSmartProperties.COM_REPRODUCIR_TEXTO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + input1.getText().toString() + ";" + "-1" + ";" +  YACSmartProperties.VOZ_HOMBRE1 + ";";
+											if (esComunicacionDirecta) {
+												EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
+														MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+												enviarComandoThread.start();
+											} else {
+												attemptComando(datosConfT);
+											}
+											dialog.cancel();
+										}
+									}
+								}).create();
+
+				d1.show();
 			}
 		});
+
 		btnLuz = (ImageButton) findViewById(R.id.btnLuz);
+		btnLuz.setColorFilter(Color.WHITE);
 		btnLuz.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				TextView titulo1;
-				LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-				View layout = inflater.inflate(R.layout.vi_seek_bar, (ViewGroup) findViewById(R.id.root));
-				seekbarExterno = (SeekBar) layout.findViewById(R.id.seekExterno);
-				titulo1 = (TextView) layout.findViewById(R.id.txtTitulo1);
-				minuto1 = (TextView) layout.findViewById(R.id.txtMinuto1);
 
-				titulo1.setTypeface(fontRegular);
-				minuto1.setTypeface(fontRegular);
-				seekbarExterno.setProgress(0);
-
-				//Externas
-				seekbarExterno.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-					@Override
-					public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-						minuto1.setText(progress + " minutos ");
+				if(AudioQueu.encenderLuz) {
+					AudioQueu.encenderLuz = false;
+					//btnEncenderLuz.setText("apagar luz");
+					String datosConfT = YACSmartProperties.COM_ENCENDER_LUZ_WIFI + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "-1" + ";";
+					if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
+								null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+						enviarComandoThread.start();
+					} else {
+						AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+								datosConfT);
+						AudioQueu.contadorComandoEnviado++;
 					}
-
-					@Override
-					public void onStartTrackingTouch(SeekBar seekBar) {
-
+				}else{
+					AudioQueu.encenderLuz = true;
+					//btnEncenderLuz.setText("encender luz");
+					String datosConfT = YACSmartProperties.COM_APAGAR_LUZ_WIFI + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "-1" + ";";
+					if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
+								null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+						enviarComandoThread.start();
+					} else {
+						AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+								datosConfT);
+						AudioQueu.contadorComandoEnviado++;
 					}
-
-					@Override
-					public void onStopTrackingTouch(SeekBar seekBar) {
-
-					}
-				});
-
-
-				AlertDialog.Builder adb = new AlertDialog.Builder(MonitorIOActivity.this);
-
-
-				adb.setView(layout);
-				adb.setPositiveButton("Encender", new
-						DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-
-								if (seekbarExterno.getProgress() > 0) {
-									Long tiempoE = Long.valueOf(seekbarExterno.getProgress()) * 60000;
-									String datosConfT = YACSmartProperties.COM_ENCENDER_LUZ + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + String.valueOf(tiempoE) + ";";
-									if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
-										EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-												null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-										enviarComandoThread.start();
-									} else {
-										AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
-										AudioQueu.contadorComandoEnviado++;
-									}
-								}
-
-							}
-
-						});
-				adb.setNegativeButton("Cerrar", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
-
-					}
-				});
-				adb.setNeutralButton("Apagar", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						String datosConfT = YACSmartProperties.COM_APAGAR_LUZ + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + ";";
-
-						if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
-							EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-									null, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-							enviarComandoThread.start();
-						} else {
-							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
-							AudioQueu.contadorComandoEnviado++;
-						}
-					}
-				});
-				adb.show();
+				}
 			}
 		});
 
-		fabEnviarMensaje = (ImageButton) findViewById(R.id.fabEnviarMensaje);
 		fabSpeaker = (ImageButton) findViewById(R.id.fabSpeaker);
-		fabCerrar = (ImageButton) findViewById(R.id.fabCerrar);
+		fabSpeaker.setColorFilter(Color.WHITE);
+		fabCerrar = (Button) findViewById(R.id.fabCerrar);
 		fabMic = (ImageButton) findViewById(R.id.fabMic);
-		fabMensajeH = (ImageButton) findViewById(R.id.fabMensajeH);
-		fabMensajeM = (ImageButton) findViewById(R.id.fabMensajeM);
 		fabPuerta = (ImageButton) findViewById(R.id.fabPuerta);
-		fabRespuesta = (RadioButton) findViewById(R.id.fabRespuesta);
-		fabTexto = (RadioButton) findViewById(R.id.fabMensajes);
-
+		fabPuerta.setColorFilter(Color.WHITE);
 		fabSalir = (ImageButton) findViewById(R.id.fabSalir);
 		fabSpeaker.setOnClickListener(this);
-
-		fabEnviarMensaje.setOnClickListener(this);
 		fabCerrar.setOnClickListener(this);
 		fabMic.setOnClickListener(this);
-		fabMensajeH.setOnClickListener(this);
-		fabMensajeM.setOnClickListener(this);
 		fabPuerta.setOnClickListener(this);
-		fabTexto.setOnClickListener(this);
-		fabRespuesta.setOnClickListener(this);
-
 		fabSalir.setOnClickListener(this);
 		fabSalir.bringToFront();
 		fabMic.bringToFront();
@@ -397,38 +307,30 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 		videoPanel.setVisibility(View.GONE);
 		imagenInicial.setVisibility(View.GONE);
 
-
 		fabMic.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (AudioQueu.hablar) {
-
-
 					String datosConfT = YACSmartProperties.COM_TERMINAR_HABLAR + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
 
 					if (esComunicacionDirecta) {
 						EnviarComandoThread enviarComandoThread1 = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
 								MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
 						enviarComandoThread1.start();
-
 					} else {
 						attemptComando(datosConfT);
-
 					}
 					AudioQueu.hablar = false;
 
 					fabMic.setImageResource(R.drawable.micceleste);
 				} else {
-
 					String datosConfT = YACSmartProperties.COM_INICIAR_HABLAR + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
-
 					if (esComunicacionDirecta) {
 						EnviarComandoThread enviarComandoThread1 = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
 								MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
 						enviarComandoThread1.start();
 					} else {
 						attemptComando(datosConfT);
-
 					}
 					AudioQueu.hablar = true;
 
@@ -449,14 +351,14 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 			wl.acquire();
 
 			AudioQueu.llamadaEntrante = true;
-			Log.d("AudioQueu.llamadaEntrante3","true");
+			Log.d("llamadaEntrante3","true");
 			CheckearRedIOAsyncTask checkearRedAsyncTask = new CheckearRedIOAsyncTask(MonitorIOActivity.this);
 			checkearRedAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 		} else {
 			if (getIntent().getExtras() != null && getIntent().getExtras().get("monitorear") != null) {
 				AudioQueu.llamadaEntrante = true;
-				Log.d("AudioQueu.llamadaEntrante4","true");
+				Log.d("llamadaEntrante4","true");
 				getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 				getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 				wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "INFO");
@@ -469,7 +371,6 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 		}
 	}
 
-	public Boolean orientacionPortrait = false;
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -486,7 +387,7 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 			LinearLayout.LayoutParams paramsR = (LinearLayout.LayoutParams) layoutInicial.getLayoutParams();
 			paramsR.weight =0.09f;
 
-			LinearLayout layoutMensaje = (LinearLayout) findViewById(R.id.layoutMensaje);
+			RelativeLayout layoutMensaje = (RelativeLayout) findViewById(R.id.layoutMensaje);
 			LinearLayout.LayoutParams paramsL = (LinearLayout.LayoutParams) layoutMensaje.getLayoutParams();
 			paramsL.weight =0.08f;
 
@@ -502,7 +403,7 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 			LinearLayout.LayoutParams paramsR = (LinearLayout.LayoutParams) layoutInicial.getLayoutParams();
 			paramsR.weight =0.05f;
 
-			LinearLayout layoutMensaje = (LinearLayout) findViewById(R.id.layoutMensaje);
+			RelativeLayout layoutMensaje = (RelativeLayout) findViewById(R.id.layoutMensaje);
 			LinearLayout.LayoutParams paramsL = (LinearLayout.LayoutParams) layoutMensaje.getLayoutParams();
 			paramsL.weight =0.05f;
 
@@ -510,82 +411,88 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 
 	}
 
-
-
+	String mensajeDesplegar;
 	public void mostrarMensaje(String mensaje) {
-		constraintLayout.bringToFront();
-		txtMensaje.setText(mensaje);
-		if (!isScreenLarge()) {
-			ViewGroup.LayoutParams params = constraintLayout.getLayoutParams();
-			params.height = 200;
-			params.width = 500;
-			constraintLayout.setLayoutParams(params);
+		mensajeDesplegar = mensaje;
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				constraintLayout.bringToFront();
+				txtMensaje.setText(mensajeDesplegar);
+				if (!isScreenLarge()) {
+					ViewGroup.LayoutParams params = constraintLayout.getLayoutParams();
+					params.height = 200;
+					params.width = 500;
+					constraintLayout.setLayoutParams(params);
 
-			Animation scaleAnimation = new ScaleAnimation(0, 1, 1, 1, Animation.RELATIVE_TO_SELF, 1, Animation.RELATIVE_TO_SELF, 0);
-			scaleAnimation.setDuration(750);
-			scaleAnimation.setFillEnabled(true);
-			scaleAnimation.setFillAfter(true);
-
-			constraintLayout.startAnimation(scaleAnimation);
-			scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
-				@Override
-				public void onAnimationStart(Animation animation) {
-
-				}
-
-				@Override
-				public void onAnimationEnd(Animation animation) {
-
-					Animation scaleAnimation = new ScaleAnimation(1, 0, 1, 1, Animation.RELATIVE_TO_SELF, 1, Animation.RELATIVE_TO_SELF, 0);
+					Animation scaleAnimation = new ScaleAnimation(0, 1, 1, 1, Animation.RELATIVE_TO_SELF, 1, Animation.RELATIVE_TO_SELF, 0);
 					scaleAnimation.setDuration(750);
 					scaleAnimation.setFillEnabled(true);
 					scaleAnimation.setFillAfter(true);
-					scaleAnimation.setStartOffset(3000);
+
 					constraintLayout.startAnimation(scaleAnimation);
+					scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
+						@Override
+						public void onAnimationStart(Animation animation) {
 
-				}
+						}
 
-				@Override
-				public void onAnimationRepeat(Animation animation) {
+						@Override
+						public void onAnimationEnd(Animation animation) {
 
-				}
-			});
-		} else {
-			ViewGroup.LayoutParams params = constraintLayout.getLayoutParams();
-			params.height = 200;
-			params.width = 500;
-			constraintLayout.setLayoutParams(params);
+							Animation scaleAnimation = new ScaleAnimation(1, 0, 1, 1, Animation.RELATIVE_TO_SELF, 1, Animation.RELATIVE_TO_SELF, 0);
+							scaleAnimation.setDuration(750);
+							scaleAnimation.setFillEnabled(true);
+							scaleAnimation.setFillAfter(true);
+							scaleAnimation.setStartOffset(3000);
+							constraintLayout.startAnimation(scaleAnimation);
 
-			Animation scaleAnimation = new ScaleAnimation(0, 1, 1, 1, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1);
-			scaleAnimation.setDuration(750);
-			scaleAnimation.setFillEnabled(true);
-			scaleAnimation.setFillAfter(true);
+						}
 
-			constraintLayout.startAnimation(scaleAnimation);
-			scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
-				@Override
-				public void onAnimationStart(Animation animation) {
+						@Override
+						public void onAnimationRepeat(Animation animation) {
 
-				}
+						}
+					});
+				} else {
+					ViewGroup.LayoutParams params = constraintLayout.getLayoutParams();
+					params.height = 200;
+					params.width = 500;
+					constraintLayout.setLayoutParams(params);
 
-				@Override
-				public void onAnimationEnd(Animation animation) {
-
-					Animation scaleAnimation = new ScaleAnimation(1, 0, 1, 1, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1);
+					Animation scaleAnimation = new ScaleAnimation(0, 1, 1, 1, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1);
 					scaleAnimation.setDuration(750);
 					scaleAnimation.setFillEnabled(true);
 					scaleAnimation.setFillAfter(true);
-					scaleAnimation.setStartOffset(3000);
+
 					constraintLayout.startAnimation(scaleAnimation);
+					scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
+						@Override
+						public void onAnimationStart(Animation animation) {
 
+						}
+
+						@Override
+						public void onAnimationEnd(Animation animation) {
+
+							Animation scaleAnimation = new ScaleAnimation(1, 0, 1, 1, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1);
+							scaleAnimation.setDuration(750);
+							scaleAnimation.setFillEnabled(true);
+							scaleAnimation.setFillAfter(true);
+							scaleAnimation.setStartOffset(3000);
+							constraintLayout.startAnimation(scaleAnimation);
+
+						}
+
+						@Override
+						public void onAnimationRepeat(Animation animation) {
+
+						}
+					});
 				}
+			}
+		});
 
-				@Override
-				public void onAnimationRepeat(Animation animation) {
-
-				}
-			});
-		}
 	}
 
 
@@ -593,12 +500,23 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 
 		if (!encenderAltavoz) {
 			audioManager.setSpeakerphoneOn(true);
-			fabSpeaker.setColorFilter(Color.argb(255, 255, 0, 0));
+			fabSpeaker.setImageResource(R.drawable.menuspeaker);
 			encenderAltavoz = true;
+			AudioQueu.speakerExterno = true;
 		} else {
 			audioManager.setSpeakerphoneOn(false);
-			fabSpeaker.setColorFilter(Color.argb(255, 255, 255, 255));
+			fabSpeaker.setImageResource(R.drawable.menumute);
 			encenderAltavoz = false;
+			AudioQueu.speakerExterno = false;
+			String datosConfT = YACSmartProperties.COM_INICIAR_HABLAR + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
+			if (esComunicacionDirecta) {
+				EnviarComandoThread enviarComandoThread1 = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
+						MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+				enviarComandoThread1.start();
+			} else {
+				attemptComando(datosConfT);
+			}
+			AudioQueu.hablar = true;
 		}
 
 		startTime = 0L;
@@ -611,336 +529,397 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 
 		AudioQueu.setComunicacionAbierta(true);
 		imagenInicial.setVisibility(View.VISIBLE);
-		fabMensajeH.setEnabled(true);
-		fabMensajeM.setEnabled(true);
-		fabTexto.setEnabled(true);
-		fabRespuesta.setEnabled(true);
 		fabSpeaker.setEnabled(true);
 		fabPuerta.setEnabled(true);
 		fabMic.setEnabled(true);
-		btnCamera.setEnabled(true);
+		btnMensaje.setEnabled(true);
 		btnLuz.setEnabled(true);
-		fabCerrar.setImageResource(R.drawable.decline);
-		fabCerrar.setColorFilter(Color.argb(255, 255, 0, 0));
 
 	}
 
+	int secsanterior = 0;
 	private Runnable updateTimerThread = new Runnable() {
 		public void run() {
-			timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+			timeInMilliseconds = (SystemClock.uptimeMillis() - startTime) / 1000;
 			updatedTime = timeSwapBuff + timeInMilliseconds;
-			int secs = (int) (updatedTime / 1000);
+			int secs = (int) (updatedTime);
 			int mins = secs / 60;
 			secs = secs % 60;
+			Log.i("segundos", "secs " + secs + " secsanterior " + secsanterior);
+
+			secsanterior = secs;
 			textoTimer.setText("" + mins + ":"
 					+ String.format("%02d", secs));
-			customHandler.postDelayed(this, 0);
+			customHandler.postDelayed(this, 1000);
+
+			txtVideo.setText("v: " + AudioQueu.paqRecibidoVideo);
+			AudioQueu.paqRecibidoVideo = 0;
+
+			txtAudio.setText("a: " + AudioQueu.paqRecibido + " ") ;
+			if(AudioQueu.paqRecibido > 65){
+				//orange
+				imagensenal.setColorFilter(Color.parseColor("#FFA500"));
+				indicatorMic.setIndicatorColor(Color.parseColor("#FFA500"));
+			}else if(AudioQueu.paqRecibido <= 65 && AudioQueu.paqRecibido > 35){
+				//verde
+				imagensenal.setColorFilter(Color.GREEN);
+				indicatorMic.setIndicatorColor(Color.GREEN);
+			}else if(AudioQueu.paqRecibido <= 35 && AudioQueu.paqRecibido > 30){
+				//amarillo
+				imagensenal.setColorFilter(Color.YELLOW);
+				indicatorMic.setIndicatorColor(Color.YELLOW);
+			}else if(AudioQueu.paqRecibido <= 30 && AudioQueu.paqRecibido > 20){
+				//orange
+				imagensenal.setColorFilter(Color.parseColor("#FFA500"));
+				indicatorMic.setIndicatorColor(Color.parseColor("#FFA500"));
+			}else if(AudioQueu.paqRecibido < 20){
+				//rojo
+				imagensenal.setColorFilter(Color.RED);
+				indicatorMic.setIndicatorColor(Color.RED);
+			}
+			AudioQueu.paqRecibido = 0;
+
+
+
+
 		}
 	};
 
 
-	public void showImage(Bitmap imageBitmap1, String titulo) {
-		imageBitmap = imageBitmap1;
-		Typeface fontRegular = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
-
-		LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-		View layout = inflater.inflate(R.layout.vi_foto_preview, (ViewGroup) findViewById(R.id.root));
-
-
-		Bitmap blurred = YACSmartProperties.fastblur(imageBitmap, 1, 10);//second parametre is radius
-		BitmapDrawable ob = new BitmapDrawable(getResources(), blurred);
-		layout.setBackgroundDrawable(ob);
-
-
-		ImageView imagen = (ImageView) layout.findViewById(R.id.preview_foto);
-		imagen.setImageBitmap(imageBitmap);
-
-		TextView leyenda = (TextView) layout.findViewById(R.id.txtFechaPreview);
-		leyenda.setText(titulo);
-		leyenda.setTypeface(fontRegular);
-
-		AlertDialog.Builder adb = new AlertDialog.Builder(this);
-
-		adb.setView(layout);
-		adb.setPositiveButton("Cerrar", new
-				DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
-					}
-
-					public void nClick(DialogInterface dialog, int which) {
-					}
-				});
-		adb.setNeutralButton("Guardar", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-
-				EventoDataSource datasource = new EventoDataSource(getApplicationContext());
-				datasource.open();
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-				Date date = new Date();
-				Evento evento = new Evento();
-				evento.setOrigen(TipoEquipoEnum.PORTERO.getDescripcion() + ": " + equipoSeleccionado.getNombreEquipo());
-				evento.setId(UUID.randomUUID().toString());
-				evento.setFecha(dateFormat.format(date));
-				evento.setEstado(EstadoEventoEnum.RECIBIDO.getCodigo());
-				evento.setComando("FOTO");
-				evento.setTipoEvento(TipoEventoEnum.FOTO.getCodigo());
-				evento.setIdEquipo(equipoSeleccionado.getId());
-
-				FileOutputStream fileOuputStream = null;
-				try {
-
-					ByteArrayOutputStream stream = new ByteArrayOutputStream();
-					imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-					fileOuputStream = new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + evento.getId() + ".jpg");
-					fileOuputStream.write(stream.toByteArray());
-					fileOuputStream.close();
-					evento.setMensaje("S");
-					datasource.createEvento(evento);
-					datasource.close();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		adb.show();
-	}
+//	public void showImage(Bitmap imageBitmap1, String titulo) {
+//		imageBitmap = imageBitmap1;
+//		Typeface fontRegular = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
+//
+//		LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+//		View layout = inflater.inflate(R.layout.vi_foto_preview, (ViewGroup) findViewById(R.id.root));
+//
+//
+//		Bitmap blurred = YACSmartProperties.fastblur(imageBitmap, 1, 10);//second parametre is radius
+//		BitmapDrawable ob = new BitmapDrawable(getResources(), blurred);
+//		layout.setBackgroundDrawable(ob);
+//
+//
+//		ImageView imagen = (ImageView) layout.findViewById(R.id.preview_foto);
+//		imagen.setImageBitmap(imageBitmap);
+//
+//		TextView leyenda = (TextView) layout.findViewById(R.id.txtFechaPreview);
+//		leyenda.setText(titulo);
+//		leyenda.setTypeface(fontRegular);
+//
+//		AlertDialog.Builder adb = new AlertDialog.Builder(this);
+//
+//		adb.setView(layout);
+//		adb.setPositiveButton("Cerrar", new
+//				DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//
+//					}
+//
+//					public void nClick(DialogInterface dialog, int which) {
+//					}
+//				});
+//		adb.setNeutralButton("Guardar", new DialogInterface.OnClickListener() {
+//			@Override
+//			public void onClick(DialogInterface dialog, int which) {
+//
+//				EventoDataSource datasource = new EventoDataSource(getApplicationContext());
+//				datasource.open();
+//				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//				Date date = new Date();
+//				Evento evento = new Evento();
+//				evento.setOrigen(TipoEquipoEnum.PORTERO.getDescripcion() + ": " + equipoSeleccionado.getNombreEquipo());
+//				evento.setId(UUID.randomUUID().toString());
+//				evento.setFecha(dateFormat.format(date));
+//				evento.setEstado(EstadoEventoEnum.RECIBIDO.getCodigo());
+//				evento.setComando("FOTO");
+//				evento.setTipoEvento(TipoEventoEnum.FOTO.getCodigo());
+//				evento.setIdEquipo(equipoSeleccionado.getId());
+//
+//				FileOutputStream fileOuputStream = null;
+//				try {
+//
+//					ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//					imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//					fileOuputStream = new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + evento.getId() + ".jpg");
+//					fileOuputStream.write(stream.toByteArray());
+//					fileOuputStream.close();
+//					evento.setMensaje("S");
+//					datasource.createEvento(evento);
+//					datasource.close();
+//				} catch (FileNotFoundException e) {
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//		adb.show();
+//	}
 
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
 		switch (id) {
 			case R.id.fabCerrar:
-				if (!AudioQueu.getComunicacionAbierta() && !AudioQueu.llamadaEntrante) {
-					AudioQueu.llamadaEntrante = true;
-					Log.d("AudioQueu.llamadaEntrante2","true");
-					CheckearRedIOAsyncTask checkearRedAsyncTask = new CheckearRedIOAsyncTask(MonitorIOActivity.this);
-					checkearRedAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-				} else {
-					onBackPressed();
-				}
+				cerrarComunicacion(false);
+				finish();
 				break;
 			case R.id.fabSpeaker:
 				if (!encenderAltavoz) {
 					audioManager.setSpeakerphoneOn(true);
-					fabSpeaker.setColorFilter(Color.argb(255, 255, 0, 0));
+					fabSpeaker.setImageResource(R.drawable.menuspeaker);
 					encenderAltavoz = true;
+					AudioQueu.speakerExterno = true;
 				} else {
 					audioManager.setSpeakerphoneOn(false);
-					fabSpeaker.setColorFilter(Color.argb(255, 255, 255, 255));
+					fabSpeaker.setImageResource(R.drawable.menumute);
 					encenderAltavoz = false;
-				}
-
-				break;
-
-			case R.id.fabMensajeH:
-				if (!editMensajeCorto.getText().toString().equals("")) {
-					String datosConfT = YACSmartProperties.COM_REPRODUCIR_TEXTO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + editMensajeCorto.getText().toString() + ";" + idMensaje + ";" +  YACSmartProperties.VOZ_HOMBRE1 + ";";
-					if (esComunicacionDirecta) {
-						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-								MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-						enviarComandoThread.start();
-					} else {
-						attemptComando(datosConfT);
-					}
-
-					editMensajeCorto.setText("");
-
-				}
-				break;
-			case R.id.fabMensajeM:
-				if (!editMensajeCorto.getText().toString().equals("")) {
-					String datosConfT = YACSmartProperties.COM_REPRODUCIR_TEXTO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + editMensajeCorto.getText().toString() + ";" + idMensaje + ";" +  YACSmartProperties.VOZ_MUJER1 + ";";
-					if (esComunicacionDirecta) {
-						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-								MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-						enviarComandoThread.start();
-					} else {
-						attemptComando(datosConfT);
-					}
-
-					editMensajeCorto.setText("");
-
+					AudioQueu.speakerExterno = false;
 				}
 				break;
 			case R.id.fabPuerta:
 				if (esComunicacionDirecta) {
 					//Wifi
-					new SweetAlertDialog(MonitorIOActivity.this, SweetAlertDialog.WARNING_TYPE)
-							.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
-							.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
-							.setCancelText("NO")
-							.setConfirmText("SI")
-							.showCancelButton(true)
-							.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-								@Override
-								public void onClick(SweetAlertDialog sDialog) {
-									sDialog.cancel();
-
-								}
-							})
-							.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-								@Override
-								public void onClick(SweetAlertDialog sDialog) {
-									String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_UDP + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + "" + ";";
-									EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null, null,
-											null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-									enviarComandoThread.start();
-									sDialog.cancel();
-
-								}
-							})
-							.show();
+					abrirPuertaWifi();
 				}else{
 					//Internet
-					new SweetAlertDialog(MonitorIOActivity.this, SweetAlertDialog.WARNING_TYPE)
-							.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
-							.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
-							.setCancelText("NO")
-							.setConfirmText("SI")
-							.showCancelButton(true)
-
-							.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-								@Override
-								public void onClick(SweetAlertDialog sDialog) {
-									sDialog.cancel();
-
-								}
-							})
-							.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-								@Override
-								public void onClick(SweetAlertDialog sDialog) {
-									sDialog.cancel();
-									AlertDialog.Builder alert = new AlertDialog.Builder(MonitorIOActivity.this);
-									alert.setTitle("Ingrese su clave");
-									final EditText input = new EditText(MonitorIOActivity.this);
-									input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_TEXT_VARIATION_PASSWORD);
-									input.setRawInputType(Configuration.KEYBOARD_12KEY);
-									alert.setView(input);
-									alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog, int whichButton) {
-											AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
-													YACSmartProperties.COM_ABRIR_PUERTA + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + YACSmartProperties.Encriptar(input.getText().toString()) + ";");
-											AudioQueu.contadorComandoEnviado++;
-										}
-									});
-									alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog, int whichButton) {
-											//Put actions for CANCEL button here, or leave in blank
-										}
-									});
-									alert.show();
-
-								}
-							})
-							.show();
-				}
-
-//				final EditText input1 = new EditText(MonitorIOActivity.this);
-//				LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(
-//						LinearLayout.LayoutParams.MATCH_PARENT,
-//						LinearLayout.LayoutParams.MATCH_PARENT);
-//				input1.setLayoutParams(lp1);
-//				input1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-//				final AlertDialog d1 = new AlertDialog.Builder(MonitorIOActivity.this)
-//						.setTitle(YACSmartProperties.intance.getMessageForKey("ingrese.clave.abrir.puerta"))
-//						.setCancelable(true)
-//						.setView(input1)
-//						.setPositiveButton("OK",
-//								new DialogInterface.OnClickListener() {
-//									public void onClick(DialogInterface dialog, int which) {
-//										if (!input1.getText().toString().equals("")) {
-//											String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + YACSmartProperties.Encriptar(input1.getText().toString()) + ";";
-//											if (esComunicacionDirecta) {
-//												EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null, MonitorIOActivity.this,
-//														null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//												enviarComandoThread.start();
-//											} else {
-//												attemptComando(datosConfT);
-//											}
-//											dialog.cancel();
-//										}
-//									}
-//								}).create();
-//
-//				d1.show();
-				break;
-			case R.id.fabRespuesta:
-				indiceReproducir = -1;
-				idMensaje = "-1";
-				botonTexto = false;
-				RespuestaDataSource respuestaDataSource = new RespuestaDataSource(getApplicationContext());
-				respuestaDataSource.open();
-				Respuesta respuestaBusqueda = new Respuesta();
-				respuestaBusqueda.setIdEquipo(equipoSeleccionado.getId());
-				respuestas = respuestaDataSource.getRespuestasEquipo(respuestaBusqueda);
-				respuestaDataSource.close();
-				if(respuestas.size() > 0) {
-					respuestaAdapter = new SeleccionarRespuestaAdapter(getApplicationContext(), respuestas);
-					respuestasTexto.setAdapter(respuestaAdapter);
-				}else{
-					Respuesta respuesta = new Respuesta();
-					respuesta.setNombre("No tiene respuestas personalizadas");
-					ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
-					respuestas.add(respuesta);
-					respuestaAdapter = new SeleccionarRespuestaAdapter(getApplicationContext(), respuestas);
-					respuestasTexto.setAdapter(respuestaAdapter);
+					abrirPuertaInternet();
 				}
 				break;
 			case R.id.fabSalir:
 				cerrarComunicacion(false);
 				finish();
 				break;
-			case R.id.fabMensajes:
-				indiceReproducir = -1;
-				idMensaje = "-1";
-				botonTexto = true;
-				MensajeTextoDataSource mensajeTextoDataSource = new MensajeTextoDataSource(getApplicationContext());
-				mensajeTextoDataSource.open();
-				mensajes = mensajeTextoDataSource.getAllMensajes();
-				mensajeTextoDataSource.close();
-				mensajeTextoArrayAdapter = new MensajeTextoArrayAdapter(getApplicationContext(), mensajes, MonitorIOActivity.this);
-				respuestasTexto.setAdapter(mensajeTextoArrayAdapter);
-				break;
-			case R.id.fabEnviarMensaje:
-				if (indiceReproducir != -1) {
-					if (botonTexto) {
-						MensajeTexto mensajeTexto = mensajes.get(indiceReproducir);
-						editMensajeCorto.setText(mensajeTexto.getTexto());
-						idMensaje = mensajeTexto.getId();
-//						String voz = YACSmartProperties.VOZ_MUJER1;
-//						if (datosAplicacion.getEquipoSeleccionado().getVozMensaje() != null) {
-//							voz = datosAplicacion.getEquipoSeleccionado().getVozMensaje();
-//						}
-//						MensajeTexto mensajeTexto = mensajes.get(indiceReproducir);
-//						String datosConfT = YACSmartProperties.COM_REPRODUCIR_TEXTO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + mensajeTexto.getTexto() + ";" + mensajeTexto.getId() + ";" + voz + ";";
-//						if (esComunicacionDirecta) {
-//							EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-//									MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//							enviarComandoThread.start();
-//						} else {
-//							attemptComando(datosConfT);
-//						}
-					} else {
-						if(respuestas.size() > 0) {
-							Respuesta respuesta = respuestas.get(indiceReproducir);
-							String datosConfT = YACSmartProperties.COM_REPRODUCIR_RESPUESTA + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + respuesta.getId() + ";";
-							if (esComunicacionDirecta) {
-								EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this,
-										datosConfT, null, MonitorIOActivity.this, null,
-										equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-								enviarComandoThread.start();
-							} else {
-								attemptComando(datosConfT);
-							}
+		}
+	}
+
+	private void abrirPuertaInternet() {
+		if (Integer.valueOf(equipoSeleccionado.getTimbreExterno()) <= 2) {
+			new SweetAlertDialog(MonitorIOActivity.this, SweetAlertDialog.WARNING_TYPE)
+					.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
+					.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
+					.setCancelText("NO")
+					.setConfirmText("SI")
+					.showCancelButton(true)
+
+					.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+						@Override
+						public void onClick(SweetAlertDialog sDialog) {
+							sDialog.cancel();
+
 						}
-					}
+					})
+					.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+						@Override
+						public void onClick(SweetAlertDialog sDialog) {
+							sDialog.cancel();
+							AlertDialog.Builder alert = new AlertDialog.Builder(MonitorIOActivity.this);
+							alert.setTitle("Ingrese su clave");
+							final EditText input = new EditText(getApplicationContext());
+							input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+							input.setRawInputType(Configuration.KEYBOARD_12KEY);
+							alert.setView(input);
+							alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int whichButton) {
+									SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+									dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+									String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date()) + ";",
+											datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+									String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA
+											+ ";" + nombreDispositivo + ";" + cadenaEnc + ";"
+											+ YACSmartProperties.Encriptar(input.getText().toString(), equipoSeleccionado.getNumeroSerie()) + ";";
+
+									AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+											datosConfT);
+									AudioQueu.contadorComandoEnviado++;
+
+
+								}
+							});
+							alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int whichButton) {
+									//Put actions for CANCEL button here, or leave in blank
+								}
+							});
+							alert.show();
+
+						}
+					})
+					.show();
+		}else{
+			//2 puertas
+			AlertDialog.Builder builder = new AlertDialog.Builder(MonitorIOActivity.this);
+			builder.setTitle("Abrir Puerta");
+			builder.setMessage("Seleccione la puerta que desea abrir o presione cancelar?");
+			// add the buttons
+			builder.setPositiveButton("Puerta Principal", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+					AlertDialog.Builder alert = new AlertDialog.Builder(MonitorIOActivity.this);
+					alert.setTitle("Ingrese su clave");
+					final EditText input = new EditText(getApplicationContext());
+					input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+					input.setRawInputType(Configuration.KEYBOARD_12KEY);
+					alert.setView(input);
+					alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+							String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date())  + ";",
+									datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+							String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA
+									+ ";"+ nombreDispositivo + ";" +  cadenaEnc + ";"
+									+ YACSmartProperties.Encriptar(input.getText().toString(), equipoSeleccionado.getNumeroSerie()) + ";";
+
+							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+									datosConfT);
+							AudioQueu.contadorComandoEnviado++;
+
+
+						}
+					});
+					alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							//Put actions for CANCEL button here, or leave in blank
+						}
+					});
+					alert.show();
 				}
-				break;
+			});
+			builder.setNegativeButton("Puerta Secundaria", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+					AlertDialog.Builder alert = new AlertDialog.Builder(MonitorIOActivity.this);
+					alert.setTitle("Ingrese su clave");
+					final EditText input = new EditText(getApplicationContext());
+					input.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+					input.setRawInputType(Configuration.KEYBOARD_12KEY);
+					alert.setView(input);
+					alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+							String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date())  + ";",
+									datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+							String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_OPCIONAL
+									+ ";"+ nombreDispositivo + ";" +  cadenaEnc + ";"
+									+ YACSmartProperties.Encriptar(input.getText().toString(), equipoSeleccionado.getNumeroSerie()) + ";";
+
+							AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado,
+									datosConfT);
+							AudioQueu.contadorComandoEnviado++;
+
+
+						}
+					});
+					alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							//Put actions for CANCEL button here, or leave in blank
+						}
+					});
+					alert.show();
+				}
+			});
+			builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			});
+			// create and show the alert dialog
+			AlertDialog dialog = builder.create();
+			dialog.show();
+		}
+	}
+
+	private void abrirPuertaWifi() {
+		if (Integer.valueOf(equipoSeleccionado.getTimbreExterno()) <= 2) {
+			new SweetAlertDialog(MonitorIOActivity.this, SweetAlertDialog.WARNING_TYPE)
+				.setTitleText(YACSmartProperties.intance.getMessageForKey("abrir.puerta"))
+				.setContentText(YACSmartProperties.intance.getMessageForKey("abrir.puerta.subtitulo"))
+				.setCancelText("NO")
+				.setConfirmText("SI")
+				.showCancelButton(true)
+				.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+					@Override
+					public void onClick(SweetAlertDialog sDialog) {
+						sDialog.cancel();
+
+					}
+				})
+				.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+					@Override
+					public void onClick(SweetAlertDialog sDialog) {
+						SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+						String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date())  + ";",
+								datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+						String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_UDP
+								+ ";"+ nombreDispositivo + ";" +  cadenaEnc + ";";
+
+						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null, null,
+								null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+						enviarComandoThread.start();
+
+						sDialog.cancel();
+
+					}
+				})
+				.show();
+		} else {
+			//2 puertas
+			AlertDialog.Builder builder = new AlertDialog.Builder(MonitorIOActivity.this);
+			builder.setTitle("Abrir Puerta");
+			builder.setMessage("Seleccione la puerta que desea abrir o presione cancelar?");
+			// add the buttons
+			builder.setPositiveButton("Puerta Principal", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+					String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date())  + ";",
+							datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+					String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_UDP
+							+ ";"+ nombreDispositivo + ";" +  cadenaEnc + ";";
+
+					EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null, null,
+							null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+					enviarComandoThread.start();
+
+					dialog.cancel();
+
+				}
+			});
+			builder.setNeutralButton("Puerta Secundaria", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+					String cadenaEnc = YACSmartProperties.Encriptar("ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";" + dateFormatGmt.format(new Date())  + ";",
+							datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+					String datosConfT = YACSmartProperties.COM_ABRIR_PUERTA_OPCIONAL_UDP
+							+ ";"+ nombreDispositivo + ";" +  cadenaEnc + ";";
+
+					EnviarComandoThread enviarComandoThread = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null, null,
+							null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+					enviarComandoThread.start();
+
+					dialog.cancel();
+
+				}
+			});
+			builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			});
+			// create and show the alert dialog
+			AlertDialog dialog = builder.create();
+			dialog.show();
 		}
 	}
 
@@ -955,30 +934,19 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 				customHandler.removeCallbacks(updateTimerThread);
 
 				if (imagenInicial.getVisibility() != View.VISIBLE) {
-					//No se cargo el video
-					//loadingPanel.setVisibility(View.GONE);
-				//	videoPanel.setVisibility(View.VISIBLE);
 					imagenInicial.setVisibility(View.VISIBLE);
-
 				}
 				AudioQueu.hablar = false;
 				fabMic.setImageResource(R.drawable.micceleste);
 				AudioQueu.llamadaEntrante = false;
 
-				fabMensajeM.setEnabled(false);
-				fabMensajeH.setEnabled(false);
-				fabRespuesta.setEnabled(false);
-				fabTexto.setEnabled(false);
 				fabSpeaker.setEnabled(false);
 				audioManager.setSpeakerphoneOn(false);
 				fabPuerta.setEnabled(false);
 				fabMic.setEnabled(false);
-				btnCamera.setEnabled(false);
+				btnMensaje.setEnabled(false);
 				btnLuz.setEnabled(false);
 				encenderAltavoz = false;
-
-				fabCerrar.setImageResource(R.drawable.decline);
-				fabCerrar.setColorFilter(Color.argb(255, 0, 153, 51));
 
 				DatosAplicacion datosAplicacion = ((DatosAplicacion) getApplicationContext());
 				Equipo equipo = datosAplicacion.getEquipoSeleccionado();
@@ -1000,7 +968,6 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 						attemptComando(datosConfS);
 					}
 				}
-				fabCerrar.setImageResource(R.drawable.answer);
 
 			}
 		});
@@ -1016,7 +983,6 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 		if (wl!= null && wl.isHeld()) {
 			wl.release();
 		}
-//		mSensorManager.unregisterListener(this);
 	}
 
 	@Override
@@ -1024,8 +990,6 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 		super.onResume();
 		AudioQueu.setSegundoPlano(false);
 		Log.d("resume", "resume");
-//		mSensorManager.registerListener(this, mSensor,
-//				SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
 	public void verificarResultadoMonitoreoSocket(String respuesta) {
@@ -1047,10 +1011,7 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 						+ ";" + rutas[0] + ";" + rutas[1] + ";" + tipoComunicacion + ";" + idDispositivo + ";" + "SOCKET" + ";" + idMonitoreo + ";");
 				AudioQueu.contadorComandoEnviado++;
 
-
-				Toast.makeText(getApplicationContext(), "Inicia Socket io",
-						Toast.LENGTH_SHORT).show();
-				AudioQueu.setTipoConexion(TipoConexionEnum.INTERNET.getCodigo());
+			AudioQueu.setTipoConexion(TipoConexionEnum.INTERNET.getCodigo());
 				esComunicacionDirecta = false;
 				activarComunicacion();
 
@@ -1094,102 +1055,6 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 		}
 	}
 
-	public void verificarResultadoMonitoreo(String respuesta) {
-		if (!respuesta.equals(YACSmartProperties.getInstance().getMessageForKey("error.general"))) {
-			String resultPuerto = null;
-			try {
-				JSONObject respuestaJSON = new JSONObject(respuesta);
-				resultPuerto = respuestaJSON.getString("resultado");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-
-			if (resultPuerto != null) {
-
-				Toast.makeText(getApplicationContext(), "Inicia Hole",
-						Toast.LENGTH_SHORT).show();
-				AudioQueu.setTipoConexion(TipoConexionEnum.INTERNET.getCodigo());
-				try {
-
-					String[] puertos = resultPuerto.split(";");
-					AudioQueu.setComunicacionAbierta(true);
-
-					AudioQueu.setPuertoComunicacionIntercomIndirecto(Integer.parseInt(puertos[0]));
-					AudioQueu.setPuertoComunicacionIntercomIndirectoVideo(Integer.parseInt(puertos[1]));
-					AudioQueu.setPuertoComunicacionIntercomIndirectoComando(Integer.parseInt(puertos[2]));
-
-					fabMensajeH.setEnabled(true);
-					fabMensajeM.setEnabled(true);
-					fabRespuesta.setEnabled(true);
-					fabTexto.setEnabled(true);
-					fabSpeaker.setEnabled(true);
-					audioManager.setSpeakerphoneOn(false);
-					fabPuerta.setEnabled(true);
-					fabMic.setEnabled(true);
-					btnCamera.setEnabled(true);
-					btnLuz.setEnabled(true);
-
-					fabCerrar.setImageResource(R.drawable.decline);
-					fabCerrar.setColorFilter(Color.argb(255, 255, 0, 0));
-
-					EnviarAudioInternetScheduledTask enviarAudioInternetAsyncTask = new EnviarAudioInternetScheduledTask(audioManager,
-							null, AudioQueu.getPuertoComunicacionIntercomIndirecto(), MonitorIOActivity.this, null);
-					enviarAudioInternetAsyncTask.start();
-
-					audioManager.setSpeakerphoneOn(false);
-
-					imagenInicial.setVisibility(View.VISIBLE);
-				} catch (NumberFormatException e) {
-					e.printStackTrace();
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-							MonitorIOActivity.this);
-					alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-							.setMessage(YACSmartProperties.intance.getMessageForKey("err.puertos"))
-							.setCancelable(false)
-							.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-								}
-							});
-
-					AlertDialog alertDialog = alertDialogBuilder.create();
-					alertDialog.show();
-					AudioQueu.llamadaEntrante = false;
-
-				}
-			} else {
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						MonitorIOActivity.this);
-				alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-						.setMessage(YACSmartProperties.intance.getMessageForKey("sin.conexion"))
-						.setCancelable(false)
-						.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-							}
-						});
-
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
-				AudioQueu.llamadaEntrante = false;
-			}
-		} else {
-			//Error general
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					MonitorIOActivity.this);
-			alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-					.setMessage(YACSmartProperties.intance.getMessageForKey("verificar.internet"))
-					.setCancelable(false)
-					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-						}
-					});
-
-			AlertDialog alertDialog = alertDialogBuilder.create();
-			alertDialog.show();
-			AudioQueu.llamadaEntrante = false;
-		}
-
-
-	}
 
 	public void verificarResultadoDirecto(String respuesta) {
 		if (!respuesta.equals(YACSmartProperties.getInstance().getMessageForKey("error.general"))) {
@@ -1259,18 +1124,13 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 			recibirVideoThread.start();
 
 			activarComunicacion();
+			imagensenal.setImageResource(R.drawable.menuwifi);
 
 		} else if (esComunicacionDirecta.equals("false")) {
 			//Llamar WS monitorearPortero
 			AudioQueu.setTipoConexion(TipoConexionEnum.INTERNET.getCodigo());
-			if (equipoSeleccionado.getPuertoActivo() != null && equipoSeleccionado.getPuertoActivo().equals("0")) {
-				MonitoreoPorteroIOAsyncTask monitorearPorteroAsyncTask = new MonitoreoPorteroIOAsyncTask(MonitorIOActivity.this);
-				monitorearPorteroAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-			} else {
-				EnviarComandoConexionDirecta enviarComandoConexionDirecta = new EnviarComandoConexionDirecta(MonitorIOActivity.this);
-				enviarComandoConexionDirecta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-			}
+			MonitoreoPorteroIOAsyncTask monitorearPorteroAsyncTask = new MonitoreoPorteroIOAsyncTask(MonitorIOActivity.this);
+			monitorearPorteroAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} else {
 			//En uso
 			if (!esComunicacionDirecta.equals(nombreDispositivo)) {
@@ -1304,27 +1164,6 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 
 	}
 
-	public void verificarConexionDirecta(String esComunicacionDirecta) {
-		Log.d("esComunicacionDirecta", esComunicacionDirecta);
-		if (esComunicacionDirecta.equals("true")) {
-			RecibirAudiowfThread enviarAudioThread = new RecibirAudiowfThread(MonitorIOActivity.this, null,
-					audioManager, null, equipoSeleccionado.getIpPublica(), YACSmartProperties.PUERTO_AUDIO_DEFECTO);
-			enviarAudioThread.start();
-
-			RecibirVideoThread recibirVideoThread = new RecibirVideoThread(getApplicationContext(), imagenInicial, null, YACSmartProperties.PUERTO_VIDEO_DEFECTO, equipoSeleccionado.getIpPublica(), MonitorIOActivity.this);
-			recibirVideoThread.start();
-
-			activarComunicacion();
-
-		} else if (esComunicacionDirecta.equals("false")) {
-
-		} else {
-			//En uso
-			if (!esComunicacionDirecta.equals(nombreDispositivo)) {
-				porteroOcupado(esComunicacionDirecta);
-			}
-		}
-	}
 
 	public void attemptComando(String comando) {
 		Log.d("ComandoEnviado ", comando + AudioQueu.contadorComandoEnviado);
@@ -1332,20 +1171,10 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 		AudioQueu.contadorComandoEnviado++;
 	}
 
-//	public void cerrarSocket() {
-//		String datosConfS = YACSmartProperties.COM_CERRAR_COMUNICACION + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
-//		AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfS);
-//		AudioQueu.contadorComandoEnviado++;
-//		AudioQueu.setComunicacionAbierta(false);
-//	}
-
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		datosAplicacion.setMonitorIOActivity(null);
-//		if (AudioQueu.mSocket != null) {
-//			cerrarSocket();
-//		}
 		if (wl!= null) {
 			try {
 			Thread.sleep(200);
@@ -1361,9 +1190,6 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 				e.printStackTrace();
 			}
 		}
-//		mSensorManager.unregisterListener(this);
-//		mSensorManager = null;
-//		mSensor = null;
 		AudioQueu.monitorearPortero = false;
 	}
 
@@ -1476,104 +1302,10 @@ public class MonitorIOActivity extends AppCompatActivity implements  View.OnClic
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		//se cierra comunicacion
-//		DatosAplicacion datosAplicacion = (DatosAplicacion) getApplicationContext();
-//		String datosConfS = YACSmartProperties.COM_CERRAR_COMUNICACION + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
-//		EnviarComandoThread genericoAsyncTask = new EnviarComandoThread(MonitorIOActivity.this, datosConfS, null, null, null, datosAplicacion.getEquipoSeleccionado().getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//		genericoAsyncTask.start();
 		cerrarComunicacion(false);
 		finish();
 	}
 
-//	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-//	}
-//
-//	public void onSensorChanged(SensorEvent event) {
-//
-//		float distance = event.values[0];
-//
-//		if(event.sensor.getType()==Sensor.TYPE_PROXIMITY) {
-//			pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-//			wl = pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "l");
-//
-//			if (distance < 7 && wl!=null){
-//				if (!wl.isHeld()){
-//					wl.acquire();
-//				}
-//				audioManager.setSpeakerphoneOn(false);
-//				AudioQueu.speakerExterno = false;
-//				String datosConfT = YACSmartProperties.COM_SPEAKER_INTERNO+ ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
-//
-//				if (esComunicacionDirecta) {
-//					EnviarComandoThread enviarComandoThread1 = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-//							MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//					enviarComandoThread1.start();
-//				} else {
-//					attemptComando(datosConfT);
-//
-//				}
-//			}else if (wl!=null){
-//				if (wl.isHeld()) {
-//					wl.release();
-//					getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-//					getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-//				}
-//				audioManager.setSpeakerphoneOn(true);
-//				AudioQueu.speakerExterno = true;
-//				String datosConfT = YACSmartProperties.COM_SPEAKER_EXTERNO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
-//
-//				if (esComunicacionDirecta) {
-//					EnviarComandoThread enviarComandoThread1 = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-//							MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//					enviarComandoThread1.start();
-//				} else {
-//					attemptComando(datosConfT);
-//
-//				}
-//
-//			}
-
-//		}
-
-
-//		if (event.values[0] == 0) {
-//			//cerca
-//			wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "tag");
-//			wl.acquire();
-//
-////			wl.release();
-//
-//			audioManager.setSpeakerphoneOn(false);
-//			AudioQueu.speakerExterno = false;
-//			String datosConfT = YACSmartProperties.COM_SPEAKER_INTERNO+ ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
-//
-//			if (AudioQueu.esComunicacionDirecta) {
-//				EnviarComandoThread enviarComandoThread1 = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-//						MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//				enviarComandoThread1.start();
-//			} else {
-//				attemptComando(datosConfT);
-//
-//			}
-//		} else {
-//			//lejos
-//			wl = pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "tag");
-//			wl.acquire();
-//			audioManager.setSpeakerphoneOn(true);
-//			AudioQueu.speakerExterno = true;
-//			String datosConfT = YACSmartProperties.COM_SPEAKER_EXTERNO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipoSeleccionado.getNumeroSerie() + ";";
-//
-//			if (AudioQueu.esComunicacionDirecta) {
-//				EnviarComandoThread enviarComandoThread1 = new EnviarComandoThread(MonitorIOActivity.this, datosConfT, null,
-//						MonitorIOActivity.this, null, equipoSeleccionado.getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-//				enviarComandoThread1.start();
-//			} else {
-//				attemptComando(datosConfT);
-//
-//			}
-//		}
-
-//	}
 }
 
 
@@ -1648,77 +1380,5 @@ class CheckearRedIOAsyncTask extends AsyncTask<String, Float,  String> {
 	@Override
 	protected void onPostExecute(String  esComunicacionDirecta) {
 		monitorActivity.verificarRed(esComunicacionDirecta);
-	}
-}
-
-class EnviarComandoConexionDirecta extends AsyncTask<String, Float,  String> {
-
-	private MonitorIOActivity monitorActivity;
-
-	public EnviarComandoConexionDirecta(MonitorIOActivity monitorActivity) {
-		super();
-		this.monitorActivity = monitorActivity;
-	}
-
-	@Override
-	protected String doInBackground(String... params) {
-		DatagramSocket clientSocket = null;
-		try {
-			clientSocket = new DatagramSocket();
-			DatosAplicacion datosAplicacion = ((DatosAplicacion)monitorActivity.getApplicationContext());
-			Equipo equipo = datosAplicacion.getEquipoSeleccionado();
-			InetAddress ipEquipo = null;
-			Integer puertoComando = YACSmartProperties.PUERTO_COMANDO_DEFECTO;
-			ipEquipo = InetAddress.getByName(equipo.getIpPublica());
-
-			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(monitorActivity.getApplicationContext());
-
-			String nombreDispositivo = sharedPrefs.getString("prefNombreDispositivo", "");
-
-			String datosConfS = YACSmartProperties.COM_DISPOSITIVO_CONTESTO + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipo.getNumeroSerie() + ";"  + monitorActivity.idMonitoreo + ";" ;
-
-			byte[] datosConfB = datosConfS.getBytes();
-			byte[] datosComando = new byte[512];
-
-			System.arraycopy(datosConfB, 0, datosComando, 0, datosConfB.length);
-
-			DatagramPacket sendPacketConf = new DatagramPacket(datosComando,
-					datosComando.length, ipEquipo,
-					puertoComando);
-
-			clientSocket.send(sendPacketConf);
-
-			byte[] datos = new byte[512];
-			DatagramPacket receivePacket = new DatagramPacket(datos,
-					datos.length);
-
-			clientSocket.setSoTimeout(1000);
-
-			clientSocket.receive(receivePacket);
-			clientSocket.close();
-			String[] resultado = (new String(receivePacket.getData())).split(";");
-			if(resultado[1].equals("OK")){
-				return "true";
-			}else{
-				return resultado[2];
-			}
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-			clientSocket.close();
-			return "false";
-		} catch (SocketTimeoutException e) {
-			e.printStackTrace();
-			clientSocket.close();
-			return "false";
-		} catch (IOException e) {
-			e.printStackTrace();
-			clientSocket.close();
-			return "false";
-		}
-	}
-
-	@Override
-	protected void onPostExecute(String  esComunicacionDirecta) {
-		monitorActivity.verificarConexionDirecta(esComunicacionDirecta);
 	}
 }

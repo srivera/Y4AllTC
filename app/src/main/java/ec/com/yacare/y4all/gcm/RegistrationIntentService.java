@@ -23,9 +23,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.google.android.gms.gcm.GcmPubSub;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +32,8 @@ import ec.com.yacare.y4all.activities.SplashActivity;
 import ec.com.yacare.y4all.lib.dto.Equipo;
 import ec.com.yacare.y4all.lib.sqllite.EquipoDataSource;
 
-public class RegistrationIntentService extends IntentService {
+public class RegistrationIntentService {
+        /*extends IntentService {
 
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
@@ -66,7 +64,7 @@ public class RegistrationIntentService extends IntentService {
 
             datosAplicacion.setRegId(token);
             // Subscribe to topic channels
-//            subscribeTopics(token);
+            subscribeTopics(token);
 
             // You should store a boolean that indicates whether the generated token has been
             // sent to your server. If the boolean is false, send the token to your server,
@@ -92,9 +90,9 @@ public class RegistrationIntentService extends IntentService {
      *
      * @param token The new token.
      */
-    private void sendRegistrationToServer(String token) {
+    //private void sendRegistrationToServer(String token) {
         // Add custom implementation, as needed.
-    }
+   // }
 
     /**
      * Subscribe to any GCM topics of interest, as defined by the TOPICS constant.
@@ -103,7 +101,7 @@ public class RegistrationIntentService extends IntentService {
      * @throws IOException if unable to reach the GCM PubSub service
      */
     // [START subscribe_topics]
-    private void subscribeTopics(String token) throws IOException {
+    /*private void subscribeTopics(String token) throws IOException {
         EquipoDataSource equipoDataSource = new EquipoDataSource(getApplicationContext());
         equipoDataSource.open();
         ArrayList<Equipo> equipos = equipoDataSource.getAllEquipo();
@@ -116,6 +114,6 @@ public class RegistrationIntentService extends IntentService {
             pubSub.subscribe(token, "/topics/" + equipo.getNumeroSerie(), null);
         }
     }
-    // [END subscribe_topics]
+    // [END subscribe_topics]*/
 
 }

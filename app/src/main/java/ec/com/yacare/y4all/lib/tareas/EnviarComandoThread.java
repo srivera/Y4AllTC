@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.zip.GZIPInputStream;
 
 import ec.com.yacare.y4all.activities.DatosAplicacion;
+import ec.com.yacare.y4all.activities.principal.Y4HomeActivity;
 import ec.com.yacare.y4all.activities.respuesta.AdministrarRespuestasActivity;
 import ec.com.yacare.y4all.activities.respuesta.NuevaRespuestaActivity;
 import ec.com.yacare.y4all.activities.socket.MonitorIOActivity;
@@ -130,7 +131,7 @@ public class EnviarComandoThread extends Thread  {
 				try{
 					DatagramPacket receivePacket = new DatagramPacket(recibido,
 							recibido.length);
-					clientSocket.setSoTimeout(2000);
+					clientSocket.setSoTimeout(8000);
 					clientSocket.receive(receivePacket);
 					clientSocket.close();
 					EquipoDataSource dataSource = new EquipoDataSource(datosAplicacion);
@@ -140,22 +141,22 @@ public class EnviarComandoThread extends Thread  {
 					equipoBusqueda.setNumeroSerie(valores[3]);
 					equipoBusqueda = dataSource.getEquipoNumSerie(equipoBusqueda);
 					if(equipoBusqueda != null && equipoBusqueda.getId() != null) {
-						equipoBusqueda.setLuz(valores[7]);
-						equipoBusqueda.setLuzWifi(valores[8]);
+						///equipoBusqueda.setLuz(valores[7]);
+						//equipoBusqueda.setLuzWifi(valores[8]);
 						equipoBusqueda.setPuerta(valores[4]);
 						equipoBusqueda.setSensor(valores[6]);
-						equipoBusqueda.setMensajeInicial(valores[9]);
-						equipoBusqueda.setPuertoActivo(valores[11]);
-						equipoBusqueda.setTimbreExterno(valores[15]);
+						equipoBusqueda.setMensajeInicial(valores[7]);
+						equipoBusqueda.setPuertoActivo(valores[9]);
+						equipoBusqueda.setTimbreExterno(valores[13]);
 
-						if(valores.length > 15) {
-							equipoBusqueda.setMensajeApertura(valores[16]);
-						}
-						if(recibido.length > 16) {
-							equipoBusqueda.setMensajePuerta(valores[17]);
-						}
-						equipoBusqueda.setVolumen(Integer.valueOf(valores[20]));
-						equipoBusqueda.setTiempoEncendidoLuz(Integer.valueOf(valores[19]));
+						//if(valores.length > 15) {
+							equipoBusqueda.setMensajeApertura(valores[14]);
+						//}
+						//if(recibido.length > 16) {
+							equipoBusqueda.setMensajePuerta(valores[15]);
+						//}
+						equipoBusqueda.setVolumen(Integer.valueOf(valores[18]));
+						//equipoBusqueda.setTiempoEncendidoLuz(Integer.valueOf(valores[19]));
 
 						if(datosAplicacion.getEquipoSeleccionado() != null && datosAplicacion.getEquipoSeleccionado().getNumeroSerie().equals(equipoBusqueda.getNumeroSerie())){
 							datosAplicacion.setEquipoSeleccionado(equipoBusqueda);
@@ -202,6 +203,54 @@ public class EnviarComandoThread extends Thread  {
 					});
 				}
 
+			}else if(comandoInicial.equals(YACSmartProperties.COM_CONFIGURAR_PARAMETROS_EDIFICIO)){
+
+				byte[] recibido = new byte[256];
+				try{
+					DatagramPacket receivePacket = new DatagramPacket(recibido,
+							recibido.length);
+					clientSocket.setSoTimeout(8000);
+					clientSocket.receive(receivePacket);
+					clientSocket.close();
+
+					datosAplicacion.getY4HomeActivity().runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+									datosAplicacion.getY4HomeActivity());
+							alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.informacion"))
+									.setMessage("Su configuración fue actualizada")
+									.setCancelable(false)
+									.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog, int id) {
+
+										}
+									});
+							AlertDialog alertDialog = alertDialogBuilder.create();
+							alertDialog.show();
+						}
+					});
+				} catch (SocketTimeoutException e) {
+					e.printStackTrace();
+					clientSocket.close();
+					datosAplicacion.getY4HomeActivity().runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+									datosAplicacion.getY4HomeActivity());
+							alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
+									.setMessage("Error al actualizar la configuración. Intente en un momento")
+									.setCancelable(false)
+									.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog, int id) {
+
+										}
+									});
+							AlertDialog alertDialog = alertDialogBuilder.create();
+							alertDialog.show();
+						}
+					});
+				}
 			}else if(comandoInicial.equals(YACSmartProperties.HOTSPOT_MODO_HOTSPOT)){
 
 				byte[] recibido = new byte[256];
@@ -349,6 +398,22 @@ public class EnviarComandoThread extends Thread  {
 							}
 						});
 					}
+				}
+			} else if (comandoInicial.equals(YACSmartProperties.COM_REPRODUCIR_TEXTO)){
+				byte[] recibido = new byte[256];
+				try{
+					DatagramPacket receivePacket = new DatagramPacket(recibido,
+							recibido.length);
+					clientSocket.setSoTimeout(2000);
+					clientSocket.receive(receivePacket);
+					clientSocket.close();
+					if(activity instanceof Y4HomeActivity){
+						((Y4HomeActivity) activity).mostrarMensaje("Su mensaje fue enviado");
+					}
+
+				} catch (SocketTimeoutException e) {
+					e.printStackTrace();
+
 				}
 			} else if (comandoInicial.equals(YACSmartProperties.COM_SOLICITAR_FOTO_INICIAL)){
 				byte[] recibido = new byte[1024 * 64];
@@ -666,198 +731,33 @@ public class EnviarComandoThread extends Thread  {
 						clientSocket.close();
 					}
 				}
+			}else if(comandoInicial.equals(YACSmartProperties.COM_ABRIR_PUERTA_UDP)){
+				byte[] recibido = new byte[256];
+				try{
+					DatagramPacket receivePacket = new DatagramPacket(recibido,
+							recibido.length);
+					clientSocket.setSoTimeout(8000);
+					clientSocket.receive(receivePacket);
+					clientSocket.close();
+					String[] resultado = new String(receivePacket.getData()).split(";");
+					Log.d("resultado", "respuestas:" + resultado);
+					if(activity instanceof Y4HomeActivity){
+						if(resultado[2].equals("ERR")){
+							((Y4HomeActivity) activity).mostrarMensaje(resultado[3]);
+						}else{
+							((Y4HomeActivity) activity).mostrarMensaje("Puerta activada");
+						}
 
-//			}else if(comandoInicial.equals(YACSmartProperties.COM_LINK_ROUTER) && !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante){
-//
-//				byte[] recibidoBytes = new byte[256];
-//				try{
-//					DatagramPacket receivePacket = new DatagramPacket(recibidoBytes,
-//							recibidoBytes.length);
-//					clientSocket.setSoTimeout(4000);
-//					clientSocket.receive(receivePacket);
-//					clientSocket.close();
-//					String[] recibido = (new String(recibidoBytes)).split(";");
-//					EquipoDataSource routerDataSource = new EquipoDataSource(datosAplicacion);
-//					routerDataSource.open();
-//
-//					Equipo equipoBusqueda = new Equipo();
-//					equipoBusqueda.setNumeroSerie(recibido[5]);
-//					Equipo routerLuces = routerDataSource.getEquipoNumSerie(equipoBusqueda);
-//					if(routerLuces == null){
-//						routerLuces = new Equipo();
-//						routerLuces.setEstadoEquipo("INS");
-//						routerLuces.setNumeroSerie(recibido[5]);
-//						routerLuces.setNombreEquipo(recibido[6]);
-//						routerLuces.setIpLocal(recibido[4]);
-//						routerLuces.setId(recibido[5]);
-//						routerLuces.setTipoEquipo(TipoEquipoEnum.LUCES.getCodigo());
-//						//routerLuces.setIdEquipo(datosAplicacion.getEquipoSeleccionado().getId());
-//						routerDataSource.createEquipo(routerLuces);
-//					}else{
-//						routerLuces.setEstadoEquipo("INS");
-//						routerLuces.setNumeroSerie(recibido[5]);
-//						routerLuces.setNombreEquipo(recibido[6]);
-//						routerLuces.setIpLocal(recibido[4]);
-//						//routerLuces.setIdEquipo(datosAplicacion.getEquipoSeleccionado().getId());
-//						routerDataSource.updateEquipo(routerLuces);
-//					}
-//					routerDataSource.close();
-//
-//					if(datosAplicacion.getAdministrarRoutersActivity() != null){
-//						datosAplicacion.getAdministrarRoutersActivity().verificarRouter(YACSmartProperties.COM_LINK_ROUTER, true);
-//					}
-//				} catch (SocketTimeoutException e) {
-//					e.printStackTrace();
-//					clientSocket.close();
-//
-//					if(datosAplicacion.getAdministrarRoutersActivity() != null){
-//						datosAplicacion.getAdministrarRoutersActivity().verificarRouter(comandoInicial, false);
-//					}
-//				}
+					}
 
-//			}else if(comandoInicial.equals(YACSmartProperties.COM_UNLINK_ROUTER) && !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante){
-//
-//				byte[] recibidoBytes = new byte[256];
-//				try{
-//					DatagramPacket receivePacket = new DatagramPacket(recibidoBytes,
-//							recibidoBytes.length);
-//					clientSocket.setSoTimeout(4000);
-//					clientSocket.receive(receivePacket);
-//					clientSocket.close();
-//
-//					String[] recibido = (new String(recibidoBytes)).split(";");
-//					EquipoDataSource routerDataSource = new EquipoDataSource(datosAplicacion);
-//					routerDataSource.open();
-//					routerDataSource.deleteEquipo(recibido[5]);
-//					routerDataSource.close();
-//
-//					ZonaDataSource zonaDataSource = new ZonaDataSource(datosAplicacion);
-//					zonaDataSource.open();
-//					zonaDataSource.deleteZonaImac(recibido[5]);
-//					zonaDataSource.close();
-//
-//					if(datosAplicacion.getAdministrarRoutersActivity() != null){
-//						datosAplicacion.getAdministrarRoutersActivity().verificarRouter(YACSmartProperties.COM_UNLINK_ROUTER, true);
-//					}
-//				} catch (SocketTimeoutException e) {
-//					e.printStackTrace();
-//					clientSocket.close();
-//
-//					if(datosAplicacion.getAdministrarRoutersActivity() != null){
-//						datosAplicacion.getAdministrarRoutersActivity().verificarRouter(comandoInicial, false);
-//					}
-//				}
-//
-//			}else if(comandoInicial.equals(YACSmartProperties.COM_CREAR_ZONA_LUCES) && !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante){
-//
-//				byte[] recibidoBytes = new byte[256];
-//				try{
-//					DatagramPacket receivePacket = new DatagramPacket(recibidoBytes,
-//							recibidoBytes.length);
-//					clientSocket.setSoTimeout(4000);
-//					clientSocket.receive(receivePacket);
-//					clientSocket.close();
-//
-//					String[] recibido = (new String(recibidoBytes)).split(";");
-//					if(recibido[7].equals("OK")) {
-//						ZonaDataSource zonaDataSource = new ZonaDataSource(datosAplicacion);
-//						zonaDataSource.open();
-//						//zonaDataSource.deleteZonaImac(recibido[4]);
-//						ZonaLuces zonaLuces = new ZonaLuces();
-//						zonaLuces.setEncenderTimbre("0");
-//						zonaLuces.setIdRouter(recibido[4]);
-//						zonaLuces.setNombreZona(recibido[5]);
-//						zonaLuces.setId(recibido[6]);
-//						zonaLuces.setIdEquipo(datosAplicacion.getEquipoSeleccionado().getId());
-//						zonaDataSource.createZona(zonaLuces);
-//
-//						zonaDataSource.close();
-//
-//						if (datosAplicacion.getAdministrarZonasActivity() != null) {
-//							datosAplicacion.getAdministrarZonasActivity().verificarZonas(YACSmartProperties.COM_CREAR_ZONA_LUCES, true);
-//						}
-//					}else{
-//						if (datosAplicacion.getAdministrarZonasActivity() != null) {
-//							datosAplicacion.getAdministrarZonasActivity().verificarZonas(YACSmartProperties.COM_CREAR_ZONA_LUCES, false);
-//						}
-//					}
-//				} catch (SocketTimeoutException e) {
-//					e.printStackTrace();
-//					clientSocket.close();
-//
-//					if (datosAplicacion.getAdministrarZonasActivity() != null) {
-//						datosAplicacion.getAdministrarZonasActivity().verificarZonas(YACSmartProperties.COM_CREAR_ZONA_LUCES, false);
-//					}
-//				}
-//			}else if(comandoInicial.equals(YACSmartProperties.COM_ELIMINAR_ZONA_LUCES) && !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante){
-//				byte[] recibidoBytes = new byte[256];
-//				try{
-//					DatagramPacket receivePacket = new DatagramPacket(recibidoBytes,
-//							recibidoBytes.length);
-//					clientSocket.setSoTimeout(4000);
-//					clientSocket.receive(receivePacket);
-//					clientSocket.close();
-//
-//					String[] recibido = (new String(recibidoBytes)).split(";");
-//					if(recibido[6].equals("OK")) {
-//						if (datosAplicacion.getAdministrarZonasActivity() != null) {
-//							datosAplicacion.getAdministrarZonasActivity().verificarZonas(YACSmartProperties.COM_CREAR_ZONA_LUCES, true);
-//						}
-//					}
-//				} catch (SocketTimeoutException e) {
-//					e.printStackTrace();
-//					clientSocket.close();
-//
-//					if (datosAplicacion.getAdministrarZonasActivity() != null) {
-//						datosAplicacion.getAdministrarZonasActivity().verificarZonas(YACSmartProperties.COM_CREAR_ZONA_LUCES, false);
-//					}
-//				}
-//
-//
-//			}else if(comandoInicial.equals(YACSmartProperties.COM_CREAR_PROGRAMACION) && !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante){
-//
-//				byte[] recibidoBytes = new byte[256];
-//				try{
-//					DatagramPacket receivePacket = new DatagramPacket(recibidoBytes,
-//							recibidoBytes.length);
-//					clientSocket.setSoTimeout(8000);
-//					clientSocket.receive(receivePacket);
-//					clientSocket.close();
-//
-//					String[] recibido = (new String(recibidoBytes)).split(";");
-//
-//					if(recibido[12].equals("OK")) {
-//						ProgramacionDataSource programacionDataSource = new ProgramacionDataSource(datosAplicacion);
-//						programacionDataSource.open();
-//						ProgramacionLuces programacionLuces = new ProgramacionLuces();
-//						;
-//						programacionLuces.setIdRouter(recibido[4]);
-//						programacionLuces.setIdZona(recibido[5]);
-//						programacionLuces.setNombre(recibido[6]);
-//						programacionLuces.setAccion(recibido[7]);
-//						programacionLuces.setHoraInicio(recibido[8]);
-//						programacionLuces.setDuracion(recibido[9]);
-//						programacionLuces.setDias(recibido[10]);
-//						programacionLuces.setId(recibido[11]);
-//						programacionDataSource.createProgramacion(programacionLuces);
-//						programacionDataSource.close();
-//
-//						if (datosAplicacion.getProgramacionActivity() != null) {
-//							datosAplicacion.getProgramacionActivity().verificarProgramacion(YACSmartProperties.COM_CREAR_PROGRAMACION, true);
-//						}
-//					}else{
-//						if (datosAplicacion.getProgramacionActivity() != null) {
-//							datosAplicacion.getProgramacionActivity().verificarProgramacion(YACSmartProperties.COM_CREAR_PROGRAMACION, false);
-//						}
-//					}
-//				} catch (SocketTimeoutException e) {
-//					e.printStackTrace();
-//					clientSocket.close();
-//
-//					if (datosAplicacion.getProgramacionActivity() != null) {
-//						datosAplicacion.getProgramacionActivity().verificarProgramacion(YACSmartProperties.COM_CREAR_PROGRAMACION, false);
-//					}
-//				}
+				} catch (SocketTimeoutException e) {
+					e.printStackTrace();
+					clientSocket.close();
+					if(activity instanceof Y4HomeActivity){
+						((Y4HomeActivity) activity).mostrarMensaje("Intente nuevamente");
+					}
+
+				}
 			}
 			clientSocket.close();
 		} catch (UnknownHostException e1) {

@@ -4,18 +4,19 @@ import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
 
-import com.google.android.gms.maps.CameraUpdate;
+/*import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLng;*/
 
 import ec.com.yacare.y4all.activities.R;
 import ec.com.yacare.y4all.lib.util.AudioQueu;
 
-public class MapaActivity extends Activity {
+public class MapaActivity {
+	/*	extends Activity {
 
 	private GoogleMap googleMap;
 
@@ -65,5 +66,5 @@ public class MapaActivity extends Activity {
 						googleMap.animateCamera(zoom);
 			}
 		}
-	};
+	};*/
 }

@@ -1,5 +1,6 @@
 package ec.com.yacare.y4all.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -25,18 +26,24 @@ import android.widget.ImageView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+//import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import ec.com.yacare.y4all.activities.instalacion.InstalarEquipoActivity;
 import ec.com.yacare.y4all.activities.luces.LucesFragment;
 import ec.com.yacare.y4all.activities.principal.Y4HomeActivity;
+import ec.com.yacare.y4all.asynctask.ws.ConsultarDireccionAsyncTask;
 import ec.com.yacare.y4all.asynctask.ws.GuardarDispositivoAsyncTask;
 import ec.com.yacare.y4all.asynctask.ws.LoginCuentaInternoAsyncTask;
 import ec.com.yacare.y4all.asynctask.ws.ObtenerDatosCuentaAsyncTask;
@@ -52,11 +59,10 @@ import ec.com.yacare.y4all.lib.resources.YACSmartProperties;
 import ec.com.yacare.y4all.lib.sqllite.CuentaDataSource;
 import ec.com.yacare.y4all.lib.sqllite.EquipoDataSource;
 import ec.com.yacare.y4all.lib.util.AudioQueu;
-import ec.com.yacare.y4all.lib.util.ConexionInternet;
 import ec.com.yacare.y4all.lib.util.Connectivity;
 import io.xlink.wifi.pipe.util.XlinkUtils;
 
-import static com.google.android.gms.plus.PlusOneDummyView.TAG;
+//import static com.google.android.gms.plus.PlusOneDummyView.TAG;
 
 public class SplashActivity extends Activity {
 
@@ -65,11 +71,12 @@ public class SplashActivity extends Activity {
 
 	private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	private BroadcastReceiver mRegistrationBroadcastReceiver;
-	private GoogleCloudMessaging gcm;
+	//private GoogleCloudMessaging gcm;
 	Cuenta cuenta;
 	public static String SENDER_ID = "850213101412";
 
 	Boolean primerEquipo = true;
+	@SuppressLint("WrongThread")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,6 +86,38 @@ public class SplashActivity extends Activity {
 //		TimeZone mTimeZone = mCalendar.getTimeZone();
 //		int mGMTOffset = mTimeZone.getRawOffset();
 //		System.out.printf("GMT offset is %s hours", TimeUnit.HOURS.convert(mGMTOffset, TimeUnit.MILLISECONDS));
+
+		/*try {
+			FirebaseApp.initializeApp(getApplicationContext());
+			FirebaseInstanceId.getInstance().deleteInstanceId();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+		FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
+			@Override
+			public void onSuccess(InstanceIdResult instanceIdResult) {
+				String newToken = instanceIdResult.getToken();
+				//Log.e("newToken", newToken);
+				//SplashActivity.this.getPreferences(Context.MODE_PRIVATE).edit().putString("fb", newToken).apply();
+
+				DatosAplicacion datosAplicacion = (DatosAplicacion) SplashActivity.this.getApplicationContext();
+
+				datosAplicacion.setRegId(newToken);
+
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SplashActivity.this);
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString("registration_id",newToken);
+				editor.apply();
+
+			}
+		});
+
+		Log.d("newToken", getPreferences(Context.MODE_PRIVATE).getString("fb", "empty :("));
+
+		EquipoDataSource equipoDataSource = new EquipoDataSource(getApplicationContext());
+		equipoDataSource.open();
+		equipoDataSource.crearColumnas();
+		equipoDataSource.close();
 
 		setContentView(R.layout.activity_splash);
 		ImageView imageFotoLoc = (ImageView) findViewById(R.id.imageFotoLoc);
@@ -100,6 +139,23 @@ public class SplashActivity extends Activity {
 
 	private void validarIngreso() {
 		XlinkUtils.shortTips("Entro a validarIngreso()");
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		String servidorPrimarioAnterior = sharedPrefs.getString("prefservidorPrimario", "").toString();
+		String servidorSecundarioAnterior = sharedPrefs.getString("prefservidorSecundario", "").toString();
+		if(!servidorPrimarioAnterior.equals("")){
+			YACSmartProperties.IP_CORP_P = servidorPrimarioAnterior;
+			YACSmartProperties.actualizarURL();
+		}
+
+		if(!servidorSecundarioAnterior.equals("")){
+			YACSmartProperties.IP_CORP_S = servidorSecundarioAnterior;
+			YACSmartProperties.actualizarURL();
+		}
+
+		ConsultarDireccionAsyncTask consultarDireccionAsyncTask = new ConsultarDireccionAsyncTask(getApplicationContext());
+		consultarDireccionAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
 		if(isScreenLarge()) {
 
 		} else {
@@ -109,7 +165,7 @@ public class SplashActivity extends Activity {
 
 		Log.d("Densidad", "Densidad: " + getResources().getDisplayMetrics().density);
 		Boolean fast = Connectivity.isConnectedFast(getApplicationContext());
-		gcm = GoogleCloudMessaging.getInstance(this);
+		//gcm = GoogleCloudMessaging.getInstance(this);
 		mRegistrationBroadcastReceiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
@@ -118,9 +174,9 @@ public class SplashActivity extends Activity {
 				boolean sentToken = sharedPreferences
 						.getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
 				if (sentToken) {
-					Log.d(TAG, "CORRECTO");
+				//	Log.d(TAG, "CORRECTO");
 				} else {
-					Log.d(TAG, "ERROR");
+				//	Log.d(TAG, "ERROR");
 				}
 			}
 		};
@@ -161,35 +217,23 @@ public class SplashActivity extends Activity {
 		equipoDataSource.crearColumnas();
 		equipoDataSource.close();
 
-//		if (datosAplicacion.getCuenta() != null && !datosAplicacion.getCuenta().getId().equals("")) {
-//			if(datosAplicacion.getCuenta().getIp() != null) {
-//				YACSmartProperties.IP_CORP = datosAplicacion.getCuenta().getIp();
-//				YACSmartProperties.actualizarURL();
-//			}
-//		} else {
-//			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//			String ipCorp = sharedPrefs.getString("prefIpCorp", "").toString();
-//			if(ipCorp != null && !ipCorp.equals("")) {
-//				YACSmartProperties.IP_CORP = ipCorp;
-//				YACSmartProperties.actualizarURL();
-//			}
-//		}
 
 		File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) +"/Y4Home/" );
 		if(!directory.exists()) {
 			directory.mkdirs();
 		}
 		XlinkUtils.shortTips("validarIngreso 3");
+
 		if(cuenta != null && cuenta.getId() != null && cuenta.getEstadoCuenta().equals(YACSmartProperties.getInstance().getMessageForKey("cuenta.estado.activo"))){
 			//Login para verificar que el usuario y el celular este activo si hay internet
-			ConexionInternet conexion = new ConexionInternet(getApplicationContext());
-			if(conexion.isInternetOn(getApplicationContext())){
-				XlinkUtils.shortTips("validarIngreso 4");
+//			ConexionInternet conexion = new ConexionInternet(getApplicationContext());
+//			if(conexion.isInternetOn(getApplicationContext())){
+//				XlinkUtils.shortTips("validarIngreso 4");
 				LoginCuentaInternoAsyncTask loginCuentaInternoAsyncTask = new LoginCuentaInternoAsyncTask(SplashActivity.this, null, cuenta.getEmail(), cuenta.getClave());
 				loginCuentaInternoAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-			}else{
+//			}else{
 				ingresarAplicacion();
-			}
+//			}
 //		}else if(cuenta != null && cuenta.getId() != null && cuenta.getEstadoCuenta().equals(YACSmartProperties.getInstance().getMessageForKey("cuenta.estado.temporal"))){
 //			//Cuenta registrada y no enviada al web service de crearCuenta
 //			//Intentar volver a enviar
@@ -311,6 +355,8 @@ public class SplashActivity extends Activity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+
+
 			//Pueden darse 4 casos:
 			// 1. Login correcto
 			// 2. Clave invalida
@@ -362,11 +408,11 @@ public class SplashActivity extends Activity {
 
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
-			}else{
-				ingresarAplicacion();
+//			}else{
+//				ingresarAplicacion();
 			}
-		}else{
-			ingresarAplicacion();
+//		}else{
+//			ingresarAplicacion();
 		}
 	}
 
@@ -417,17 +463,17 @@ public class SplashActivity extends Activity {
 					setResult(InicioActivity.CERRAR_PANTALLA);
 				}
 
-			}else{
-				ingresarAplicacion();
+//			}else{
+//				ingresarAplicacion();
 			}
 
-		}else{
-			ingresarAplicacion();
+//		}else{
+//			ingresarAplicacion();
 		}
 	}
 	public void verificarCrearEquipos() {
 
-		ingresarAplicacion();
+//		ingresarAplicacion();
 	}
 	private void ingresarAplicacion() {
 //		Animation fade_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
@@ -555,7 +601,10 @@ public class SplashActivity extends Activity {
 						datasource.updateEquipo(datosAplicacion.getEquipoSeleccionado());
 						datasource.close();
 
-						if(datosAplicacion.getEquipoSeleccionado().getEstadoEquipo().equals(EstadoDispositivoEnum.CONFIGURACION.getCodigo())){
+						if(datosAplicacion.getEquipoSeleccionado().getEstadoEquipo().equals(EstadoDispositivoEnum.CONFIGURACION.getCodigo())
+								|| 	datosAplicacion.getEquipoSeleccionado().getEstadoEquipo().equals(EstadoDispositivoEnum.FABRICADO.getCodigo())){
+
+
 							Intent i = new Intent(SplashActivity.this, InstalarEquipoActivity.class);
 							i.putExtra("primerEquipo", primerEquipo);
 							if(cuenta != null) {
@@ -563,8 +612,15 @@ public class SplashActivity extends Activity {
 							}
 							startActivity(i);
 						}else if(datosAplicacion.getEquipoSeleccionado().getEstadoEquipo().equals(EstadoDispositivoEnum.INSTALADO.getCodigo())){
-							Intent i = new Intent(SplashActivity.this, Y4HomeActivity.class);
-							startActivity(i);
+                            if(datosAplicacion.getEquipoSeleccionado().getTipoEquipo().equals(TipoEquipoEnum.PORTERO.getCodigo())) {
+                                Intent i = new Intent(SplashActivity.this, Y4HomeActivity.class);
+                                startActivity(i);
+                            }else{
+                                ObtenerDatosCuentaAsyncTask obtenerDatosCuentaAsyncTask = new ObtenerDatosCuentaAsyncTask(null, SplashActivity.this);
+                                obtenerDatosCuentaAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                                Intent i = new Intent(SplashActivity.this, LucesFragment.class);
+                                startActivity(i);
+                            }
 						}
 					} catch (JSONException e) {
 						e.printStackTrace();
@@ -594,7 +650,7 @@ public class SplashActivity extends Activity {
 				apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
 						.show();
 			} else {
-				Log.i(TAG, "This device is not supported.");
+			//	Log.i(TAG, "This device is not supported.");
 				finish();
 			}
 			return false;

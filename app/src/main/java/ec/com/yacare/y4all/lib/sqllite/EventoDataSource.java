@@ -241,7 +241,7 @@ public class EventoDataSource {
 		Date date = new Date();
 		ArrayList<Evento> eventos = new ArrayList<Evento>();
 		Cursor cursor = database.query(MySQLiteHelper.TABLA_EVENTOS,
-				allColumns, MySQLiteHelper.COLUMN_EQUIPO_ID_T_FK + " = '" + idEquipo + "' and " + MySQLiteHelper.COLUMN_FECHA + " LIKE '" + dateFormat.format(date) + "%'" + "and " + MySQLiteHelper.COLUMN_TIPO_EVENTO + " = 'PUERTA'"
+				allColumns, MySQLiteHelper.COLUMN_EQUIPO_ID_T_FK + " = '" + idEquipo + "' and " + MySQLiteHelper.COLUMN_FECHA + " LIKE '" + dateFormat.format(date) + "%'" + "and " + MySQLiteHelper.COLUMN_TIPO_EVENTO + " IN ('PUERTA', 'MENSAJE', 'APERTURA')"
 				, null, null, null,  MySQLiteHelper.COLUMN_FECHA + " DESC");
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {

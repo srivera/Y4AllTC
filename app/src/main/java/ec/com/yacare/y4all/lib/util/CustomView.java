@@ -10,8 +10,8 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.View;
 
-import com.google.android.gms.vision.face.Face;
-import com.google.android.gms.vision.face.Landmark;
+//import com.google.android.gms.vision.face.Face;
+//import com.google.android.gms.vision.face.Landmark;
 
 /**
  * Created by echessa on 8/31/15.
@@ -19,7 +19,7 @@ import com.google.android.gms.vision.face.Landmark;
 public class CustomView extends View {
 
     private Bitmap mBitmap;
-    private SparseArray<Face> mFaces;
+  //  private SparseArray<Face> mFaces;
 
     public CustomView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -28,11 +28,11 @@ public class CustomView extends View {
     /**
      * Sets the bitmap background and the associated face detections.
      */
-   public void setContent(Bitmap bitmap, SparseArray<Face> faces) {
+ /*  public void setContent(Bitmap bitmap, SparseArray<Face> faces) {
         mBitmap = bitmap;
         mFaces = faces;
         invalidate();
-    }
+    }*/
 
     /**
      * Draws the bitmap background and the associated face landmarks.
@@ -40,12 +40,12 @@ public class CustomView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if ((mBitmap != null) && (mFaces != null)) {
+       /* if ((mBitmap != null) && (mFaces != null)) {
             double scale = drawBitmap(canvas);
             drawFaceRectangle(canvas, scale);
 //            drawFaceAnnotations(canvas, scale);
 //            detectFaceCharacteristics(canvas, scale);
-        }
+        }*/
     }
 
     /**
@@ -73,14 +73,14 @@ public class CustomView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
 
-        for (int i = 0; i < mFaces.size(); ++i) {
+        /*for (int i = 0; i < mFaces.size(); ++i) {
             Face face = mFaces.valueAt(i);
             canvas.drawRect((float)(face.getPosition().x * scale),
                     (float)(face.getPosition().y * scale),
                     (float)((face.getPosition().x + face.getWidth()) * scale),
                     (float)((face.getPosition().y + face.getHeight()) * scale),
                     paint);
-        }
+        }*/
     }
 
     /**
@@ -97,14 +97,14 @@ public class CustomView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
 
-        for (int i = 0; i < mFaces.size(); ++i) {
+        /*for (int i = 0; i < mFaces.size(); ++i) {
             Face face = mFaces.valueAt(i);
             for (Landmark landmark : face.getLandmarks()) {
                 int cx = (int) (landmark.getPosition().x * scale);
                 int cy = (int) (landmark.getPosition().y * scale);
                 canvas.drawCircle(cx, cy, 10, paint);
             }
-        }
+        }*/
 
     }
 
@@ -118,12 +118,12 @@ public class CustomView extends View {
         paint.setStrokeWidth(1);
         paint.setTextSize(25.0f);
 
-        for (int i = 0; i < mFaces.size(); ++i) {
+        /*for (int i = 0; i < mFaces.size(); ++i) {
             Face face = mFaces.valueAt(i);
             float cx = (float)(face.getPosition().x * scale);
             float cy = (float) (face.getPosition().y * scale);
             canvas.drawText(String.valueOf(face.getIsSmilingProbability()), cx, cy + 10.0f, paint);
-        }
+        }*/
     }
 
 }

@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+//import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -19,7 +19,7 @@ import ec.com.yacare.y4all.activities.DatosAplicacion;
 
 public class GSMUtil {
 
-	 public GoogleCloudMessaging gcm;
+//	 public GoogleCloudMessaging gcm;
 	 AtomicInteger msgId = new AtomicInteger();
 	 Context context;
 
@@ -132,7 +132,7 @@ public class GSMUtil {
             @Override
             protected String doInBackground(Void... params) {
                 String msg = "";
-                try {
+  /*              try {
                     if (gcm == null) {
                         gcm = GoogleCloudMessaging.getInstance(context);
                     }
@@ -157,7 +157,7 @@ public class GSMUtil {
                     // If there is an error, don't just keep trying to register.
                     // Require the user to click a button again, or perform
                     // exponential back-off.
-                }
+                }*/
                 return msg;
             }
 

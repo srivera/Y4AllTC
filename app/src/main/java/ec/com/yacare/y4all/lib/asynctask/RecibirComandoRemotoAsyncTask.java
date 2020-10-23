@@ -91,7 +91,7 @@ public class RecibirComandoRemotoAsyncTask  extends  AsyncTask<String, Float, St
 				socketGrupo.receive(receivePacket);
 
 				mensaje = (new String(receiveData)).split(";");
-				Log.d("MENSAJE", "MENSAJE" + mensaje[0] + AudioQueu.comunicacionAbierta + " /" + AudioQueu.llamadaEntrante);
+				Log.i("MENSAJE", "MENSAJE" + mensaje[0] + AudioQueu.comunicacionAbierta + " /" + AudioQueu.llamadaEntrante);
 
 				if (mensaje[0].equals(YACSmartProperties.COM_INICIAR_COMUNICACION) && !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante) {
 
@@ -153,7 +153,68 @@ public class RecibirComandoRemotoAsyncTask  extends  AsyncTask<String, Float, St
 							}
 						}
 					}
+				}else if (mensaje[0].equals(YACSmartProperties.COM_INICIAR_COMUNICACION_DEPTO)
+						&& !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante
+						&& mensaje[11].equals(datosAplicacion.getEquipoSeleccionado().getNumeroDepartamento())) {
 
+					if (PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) &&
+							PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(context, android.Manifest.permission.RECORD_AUDIO)) {
+
+						//C11;ORIGEN;MENSAJE;HORA;IP;PUERTOAUDIO;PUERTOVIDEO;PUERTOREMOTO;IDMENSAJE;NUMEROSERIE;CALIDADVIDEO;NOMBREEQUIPO
+						//Verificar si el id existe
+						//Timbrando
+						equipoDataSource = new EquipoDataSource(context);
+						equipoDataSource.open();
+						equipo = new Equipo();
+						equipo.setNumeroSerie(mensaje[9]);
+						equipo = equipoDataSource.getEquipoNumSerie(equipo);
+						equipoDataSource.close();
+
+						if (equipo != null && equipo.getId() != null) {
+							datosAplicacion.setEquipoSeleccionado(equipo);
+							eventoDataSource = new EventoDataSource(context);
+							eventoDataSource.open();
+
+							//Verificar si el id existe
+							eventoBusqueda = new Evento();
+							eventoBusqueda.setId(mensaje[8]);
+							Evento evento = eventoDataSource.getEventoId(eventoBusqueda);
+
+							guardarConfiguracionRed(mensaje);
+
+							if (evento == null) {
+								AudioQueu.llamadaEntrante = true;
+								AudioQueu.imagenRecibida = false;
+								AudioQueu.fotoTimbre = null;
+
+								date = new Date();
+								evento = new Evento();
+								evento.setOrigen(TipoEquipoEnum.PORTERO.getDescripcion() + ": " + mensaje[1]);
+								evento.setId(mensaje[8]);
+								evento.setFecha(dateFormat.format(date));
+								evento.setEstado(EstadoEventoEnum.RECIBIDO.getCodigo());
+								evento.setComando(mensaje[0]);
+								evento.setTipoEvento(TipoEventoEnum.TIMBRAR.getCodigo());
+								evento.setIdEquipo(equipo.getId());
+								eventoDataSource.createEvento(evento);
+								eventoDataSource.close();
+								AudioQueu.esComunicacionDirecta = true;
+
+								intent = new Intent(activityOrigen, activityDestino);
+								intent.putExtra("comando", mensaje[0]);
+								intent.putExtra("timbrando", true);
+								intent.removeExtra("foto");
+								intent.putExtra("idEvento", evento.getId());
+								intent.putExtra("foto", Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + evento.getId() + ".jpg");
+								intent.putExtra("esComunicacionDirecta", true);
+								intent.setAction("android.intent.action.MAIN");
+								intent.addCategory("android.intent.category.LAUNCHER");
+								activityOrigen.startActivity(intent);
+							} else {
+								eventoDataSource.close();
+							}
+						}
+					}
 				}else if (mensaje[0].equals(YACSmartProperties.COM_NOTIFICAR_BUZON) && !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante) {
 					//El portero respondio por usted
 					equipoDataSource = new EquipoDataSource(context);
@@ -190,27 +251,29 @@ public class RecibirComandoRemotoAsyncTask  extends  AsyncTask<String, Float, St
 							eventoBusqueda.setIdGrabado(mensaje[4]);
 							eventoDataSource.createEvento(eventoBusqueda);
 
+							eventoDataSource.close();
+							mBuilder =	new NotificationCompat.Builder(context)
+									.setSmallIcon(R.drawable.y4homeb)
+									.setContentTitle(equipo.getNombreEquipo())
+									.setSmallIcon(R.drawable.y4homeb)
+									.setStyle(new NotificationCompat.BigTextStyle()
+											.bigText(mensaje[2]))
+									.setContentText(mensaje[2])
+									.setSound(soundUri)
+									.setAutoCancel(true);
+
+							intent = new Intent(activityOrigen, SplashActivity.class);
+							intent.putExtra("comando", mensaje[0]);
+							intent.setAction("android.intent.action.MAIN");
+							intent.addCategory("android.intent.category.LAUNCHER");
+
+							PendingIntent contentIntent = PendingIntent.getActivity(activityOrigen, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+							mBuilder.setContentIntent(contentIntent);
+							mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+
 						}
-						eventoDataSource.close();
-						mBuilder =	new NotificationCompat.Builder(context)
-								.setSmallIcon(R.drawable.y4homeb)
-								.setContentTitle(equipo.getNombreEquipo())
-										.setSmallIcon(R.drawable.y4homeb)
-										.setStyle(new NotificationCompat.BigTextStyle()
-												.bigText(mensaje[2]))
-										.setContentText(mensaje[2])
-										.setSound(soundUri)
-										.setAutoCancel(true);
 
-						intent = new Intent(activityOrigen, SplashActivity.class);
-						intent.putExtra("comando", mensaje[0]);
-						intent.setAction("android.intent.action.MAIN");
-						intent.addCategory("android.intent.category.LAUNCHER");
-
-						PendingIntent contentIntent = PendingIntent.getActivity(activityOrigen, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-						mBuilder.setContentIntent(contentIntent);
-						mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
 					}
 
 				} else if (mensaje[0].equals(YACSmartProperties.COM_NOTIFICAR_IP_ACTUALIZADO) && !AudioQueu.comunicacionAbierta && !AudioQueu.llamadaEntrante) {
@@ -228,7 +291,11 @@ public class RecibirComandoRemotoAsyncTask  extends  AsyncTask<String, Float, St
 						datosAplicacion.getEquipoSeleccionado().setTimbreExterno(mensaje[26]);
 						datosAplicacion.getEquipoSeleccionado().setMensajeApertura(mensaje[29]);
 						datosAplicacion.getEquipoSeleccionado().setMensajePuerta(mensaje[30]);
-						datosAplicacion.getEquipoSeleccionado().setVolumen(Integer.valueOf(mensaje[38]));
+						AudioQueu.version = mensaje[5];
+						if(mensaje.length == 39){
+							datosAplicacion.getEquipoSeleccionado().setVolumen(Integer.valueOf(mensaje[38]));
+						}
+
 						datosAplicacion.getEquipoSeleccionado().setTiempoEncendidoLuz(Integer.valueOf(mensaje[37]));
 						if (mensaje[34].equals("1")) {
 							datosAplicacion.getEquipoSeleccionado().setModo(YACSmartProperties.MODO_WIFI);
@@ -330,34 +397,91 @@ public class RecibirComandoRemotoAsyncTask  extends  AsyncTask<String, Float, St
 							evento.setIdEquipo(equipo.getId());
 							evento.setMensaje(mensaje[2]);
 							eventoDataSource.createEvento(evento);
+							mBuilder =	new NotificationCompat.Builder(context)
+									.setSmallIcon(R.drawable.y4homeb)
+									.setContentTitle(mensaje[1])
+									.setStyle(new NotificationCompat.BigTextStyle()
+											.bigText(mensaje[2]))
+									.setContentText(mensaje[2])
+									.setSound(soundUri)
+									.setAutoCancel(true);
+
+							intent = new Intent(context, SplashActivity.class);
+							intent.putExtra("comando", mensaje[0]);
+							intent.setAction("android.intent.action.MAIN");
+							intent.addCategory("android.intent.category.LAUNCHER");
+
+							PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+							mBuilder.setContentIntent(contentIntent);
+
+
+							mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
 
 						}
 						eventoDataSource.close();
 
-						mBuilder =	new NotificationCompat.Builder(context)
-										.setSmallIcon(R.drawable.y4homeb)
-										.setContentTitle(mensaje[1])
-										.setStyle(new NotificationCompat.BigTextStyle()
-												.bigText(mensaje[2]))
-										.setContentText(mensaje[2])
-										.setSound(soundUri)
-										.setAutoCancel(true);
 
-						intent = new Intent(context, SplashActivity.class);
-						intent.putExtra("comando", mensaje[0]);
-						intent.setAction("android.intent.action.MAIN");
-						intent.addCategory("android.intent.category.LAUNCHER");
-
-						PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-						mBuilder.setContentIntent(contentIntent);
-
-
-						mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
 
 //						nombreDispositivo = sharedPrefs.getString("prefNombreDispositivo", "");
 //						AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, YACSmartProperties.COM_SOLICITAR_VIDEO_SENSOR + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + equipo.getNumeroSerie() + ";" + evento.getId() + ";");
 //						AudioQueu.contadorComandoEnviado++;
+					}
+				} else if (mensaje[0].equals(YACSmartProperties.COM_ACTIVACION_SENSOR_EDIFICIO) && mensaje[6].equals(datosAplicacion.getEquipoSeleccionado().getNumeroDepartamento())) {
+					equipoDataSource = new EquipoDataSource(context);
+					equipoDataSource.open();
+					equipo = new Equipo();
+					equipo.setNumeroSerie(mensaje[5]);
+					equipo = equipoDataSource.getEquipoNumSerie(equipo);
+					equipoDataSource.close();
+
+					if (equipo != null) {
+						dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+						date = new Date();
+
+						eventoDataSource = new EventoDataSource(context);
+						eventoDataSource.open();
+						eventoBusqueda = new Evento();
+						eventoBusqueda.setId(mensaje[4]);
+						Evento evento = eventoDataSource.getEventoId(eventoBusqueda);
+						if (evento == null) {
+							evento = new Evento();
+							evento.setOrigen(TipoEquipoEnum.PORTERO.getDescripcion() + ": " );
+							evento.setId(mensaje[4]);
+							evento.setFecha(dateFormat.format(date));
+							evento.setEstado(EstadoEventoEnum.RECIBIDO.getCodigo());
+							evento.setComando(mensaje[0]);
+							evento.setTipoEvento(TipoEventoEnum.PUERTA.getCodigo());
+							evento.setIdEquipo(equipo.getId());
+							evento.setMensaje(mensaje[2]);
+							eventoDataSource.createEvento(evento);
+
+							mBuilder =	new NotificationCompat.Builder(context)
+									.setSmallIcon(R.drawable.y4homeb)
+									.setContentTitle(mensaje[1])
+									.setStyle(new NotificationCompat.BigTextStyle()
+											.bigText(mensaje[2]))
+									.setContentText(mensaje[2])
+									.setSound(soundUri)
+									.setAutoCancel(true);
+
+							intent = new Intent(context, SplashActivity.class);
+							intent.putExtra("comando", mensaje[0]);
+							intent.setAction("android.intent.action.MAIN");
+							intent.addCategory("android.intent.category.LAUNCHER");
+
+							PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+							mBuilder.setContentIntent(contentIntent);
+
+
+							mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+						}
+						eventoDataSource.close();
+
+
+
+
 					}
 
 				} else if (mensaje[0].equals(YACSmartProperties.COM_PING)) {
@@ -367,13 +491,13 @@ public class RecibirComandoRemotoAsyncTask  extends  AsyncTask<String, Float, St
 							receivePacket.getAddress(),
 							receivePacket.getPort());
 					socketGrupo.send(sendPacketDestino);
-				} else {
+			/*	} else {
 					 mBuilder =	new NotificationCompat.Builder(context)
 									.setSmallIcon(R.drawable.y4homeb)
-									.setContentTitle("WiiBell")
+									.setContentTitle("Libreria USFQ")
 									.setStyle(new NotificationCompat.BigTextStyle()
-											.bigText(mensaje[2]))
-									.setContentText(mensaje[2])
+											.bigText(mensaje[1]))
+									.setContentText(mensaje[1])
 									.setSound(soundUri)
 									.setAutoCancel(true);
 
@@ -387,7 +511,7 @@ public class RecibirComandoRemotoAsyncTask  extends  AsyncTask<String, Float, St
 
 					mBuilder.setContentIntent(contentIntent);
 
-					mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+					mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());*/
 				}
 			}
 		} catch (SocketException e) {

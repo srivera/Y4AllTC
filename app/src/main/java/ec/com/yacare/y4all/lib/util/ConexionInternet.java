@@ -93,6 +93,7 @@ public class ConexionInternet {
 				urlc.setRequestProperty("User-Agent", "Test");
 				urlc.setRequestProperty("Connection", "close");
 				urlc.setConnectTimeout(500);
+				urlc.setReadTimeout(500);
 				urlc.connect();
 				return (urlc.getResponseCode() == 200);
 			} catch (Exception e) {

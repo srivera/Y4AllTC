@@ -18,20 +18,19 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.zip.GZIPInputStream;
 
-import ec.com.yacare.y4all.activities.DatosAplicacion;
 import ec.com.yacare.y4all.activities.socket.MonitorIOActivity;
 import ec.com.yacare.y4all.asynctask.ws.ContestarPorteroAsyncTask;
 import ec.com.yacare.y4all.lib.resources.YACSmartProperties;
 import ec.com.yacare.y4all.lib.util.AudioQueu;
 
+import static ec.com.yacare.y4all.lib.util.AudioQueu.paqRecibido;
+
 public class RecibirAudiowfThread extends Thread {
 
 	private MonitorIOActivity monitorActivity;
-	private DatagramSocket clientSocket;
+	//private DatagramSocket clientSocket;
 
 	private AudioTrack track;
-
-	private Integer paqRecibido = 0;
 
 	private ProgressBar audioRecibido;
 
@@ -57,13 +56,10 @@ public class RecibirAudiowfThread extends Thread {
 	
 	@Override
 	public void run() {
-		DatosAplicacion datosAplicacion = ((DatosAplicacion)monitorActivity.getApplicationContext());
 
 		//Se coloca el tamano del paquete dependiendo del ambiente
-		int TAMANO_PAKETE =1024;
+		int TAMANO_PAKETE =256 * 10;
 
-		int maxJitter = AudioTrack.getMinBufferSize(8000,
-				AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT);
 		//Aqui se instancia el track con la eliminacion de eco
 		track = new AudioTrack(AudioManager.STREAM_VOICE_CALL, 8000,
 				AudioFormat.CHANNEL_CONFIGURATION_MONO,
@@ -72,6 +68,7 @@ public class RecibirAudiowfThread extends Thread {
 
 		track.play();
 
+		paqRecibido = 0;
 		AudioQueu.hablar = false;
 		Boolean recibido = false;
 		Integer cantidadIntentos =0;
@@ -82,7 +79,8 @@ public class RecibirAudiowfThread extends Thread {
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
-		while (AudioQueu.getComunicacionAbierta()) {
+		Log.i("Paquetes Recibidos", "rec0 " );
+		while (!recibido && cantidadIntentos < 100) {
 			try {
 				if (!recibido) {
 					byte[] sendData = new byte[372];
@@ -90,7 +88,7 @@ public class RecibirAudiowfThread extends Thread {
 							sendData.length, InetAddress.getByName(ipEquipoInternet),
 							puertoAudio);
 					AudioQueu.clientSocket.send(sendPacketConf);
-
+					Log.i("Paquetes Recibidos", "rec1 " );
 				}
 
 				byte[] receiveData = new byte[TAMANO_PAKETE];
@@ -100,58 +98,61 @@ public class RecibirAudiowfThread extends Thread {
 				AudioQueu.clientSocket.setSoTimeout(timeout);
 				AudioQueu.clientSocket.receive(receivePacket);
 				recibido = true;
+				Log.i("Paquetes Recibidos", "rec2 " );
 				if(!activarEnvio){
 					timeout = 10000;
 					activarEnvio = true;
 					EnviarAudiowfThread enviarAudioThread = new EnviarAudiowfThread(monitorActivity, textoEstado,
-								audioManager, ipEquipoInternet, YACSmartProperties.PUERTO_AUDIO_DEFECTO);
-						enviarAudioThread.start();
+							audioManager, ipEquipoInternet, YACSmartProperties.PUERTO_AUDIO_DEFECTO);
+					enviarAudioThread.start();
 
 					ContestarPorteroAsyncTask contestarPorteroAsyncTask = new ContestarPorteroAsyncTask(monitorActivity);
 					contestarPorteroAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
+					Log.i("Paquetes Recibidos", "rec3 " );
 				}
-				cantidadIntentos = 0;
-
-				paqRecibido++;
-
-				//Log.d("Paquetes", "Cantidad " + paqRecibido);
-//				audioRecibido.post(new Runnable() {
-//					@Override
-//					public void run() {
-//						audioRecibido.setVisibility(View.VISIBLE);
-//						audioRecibido.setProgress(paqRecibido);
-//						if (paqRecibido > 100) {
-//							paqRecibido = 0;
-//						}
-//					}
-//				});
-
-				if(!AudioQueu.hablar || !AudioQueu.speakerExterno) {
-					byte[] data = descomprimirGZIP(receiveData, TAMANO_PAKETE);
-					track.write(data, 0, data.length);
-				}
-
 			} catch (SocketTimeoutException e){
-				if(cantidadIntentos > 50) {
+				if(cantidadIntentos > 100) {
 					AudioQueu.setComunicacionAbierta(false);
 					AudioQueu.llamadaEntrante = false;
 					monitorActivity.cerrarComunicacion(true);
 				}
-				if (!recibido) {
-					cantidadIntentos++;
-				}else{
-					AudioQueu.setComunicacionAbierta(false);
-					AudioQueu.llamadaEntrante = false;
-					monitorActivity.cerrarComunicacion(true);
-				}
+				cantidadIntentos++;
+
 			} catch (IOException e) {
 				e.printStackTrace();
 				continue;
 			}
 
 		}
-		Log.d("audio cerrado", "Cerrando audio");
+
+		while (AudioQueu.getComunicacionAbierta() && recibido) {
+			try{
+				AudioQueu.paqRecibido++;
+
+				byte[] receiveData = new byte[TAMANO_PAKETE];
+
+				DatagramPacket receivePacket = new DatagramPacket(receiveData,
+						receiveData.length);
+				AudioQueu.clientSocket.setSoTimeout(timeout);
+				AudioQueu.clientSocket.receive(receivePacket);
+				Log.i("Paquetes Recibidos", "rec4 " );
+				if(!AudioQueu.hablar || !AudioQueu.speakerExterno) {
+						byte[] data = descomprimirGZIP(receiveData, TAMANO_PAKETE);
+						track.write(data, 0, data.length);
+					   Log.i("Paquetes Recibidos", "Cantidad " + paqRecibido);
+				}
+
+			} catch (SocketTimeoutException e){
+				AudioQueu.setComunicacionAbierta(false);
+				AudioQueu.llamadaEntrante = false;
+				monitorActivity.cerrarComunicacion(true);
+			} catch (IOException e) {
+				e.printStackTrace();
+				continue;
+			}
+
+		}
+		Log.i("audio cerrado", "Cerrando audio");
 		if(AudioQueu.clientSocket.isConnected()){
 			AudioQueu.clientSocket.close();
 		} 

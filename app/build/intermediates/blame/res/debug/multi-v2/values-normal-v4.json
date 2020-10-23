@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\RESPALDO\\Yacare\\versionportero\\Y4AllTC\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-normal-v4\\values-normal-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\RESPALDO\\Yacare\\versionportero\\Y4AllTC\\app\\src\\main\\res\\values-normal\\dimens.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "19,67,117",
+                        "endColumns": "46,48,50",
+                        "endOffsets": "61,111,163"
+                    },
+                    "to": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,102,151",
+                        "endColumns": "46,48,50",
+                        "endOffsets": "97,146,197"
+                    }
+                }
+            ]
+        }
+    ]
+}

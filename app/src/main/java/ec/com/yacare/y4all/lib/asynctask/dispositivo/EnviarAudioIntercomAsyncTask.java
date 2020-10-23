@@ -53,7 +53,7 @@ public class EnviarAudioIntercomAsyncTask extends AsyncTask<String, Float, Strin
 
 		try {
 			int mSampleRate = Integer.valueOf(YACSmartProperties.getInstance().getMessageForKey("sample.rate"));
-			InetAddress ipEquipo = InetAddress.getByName(YACSmartProperties.ipComunicacion);
+			InetAddress ipEquipo = InetAddress.getByName(YACSmartProperties.IP_CORP_P);
 			int TAMANO_PAKETE = 372;
 			//Integer.valueOf(YACSmartProperties.getInstance().getMessageForKey("tamano.paquete.audio"));
 

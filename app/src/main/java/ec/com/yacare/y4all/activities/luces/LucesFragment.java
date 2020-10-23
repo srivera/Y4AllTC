@@ -11,7 +11,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -20,10 +19,8 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -52,7 +49,6 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import org.apache.http.Header;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -76,7 +72,6 @@ import ec.com.yacare.y4all.lib.sqllite.EquipoDataSource;
 import ec.com.yacare.y4all.lib.sqllite.ZonaDataSource;
 import ec.com.yacare.y4all.lib.tareas.EnviarComandoThread;
 import ec.com.yacare.y4all.lib.util.AudioQueu;
-import ec.com.yacare.y4all.lib.util.Connectivity;
 import ec.com.yacare.y4all.lib.util.ViewCircle;
 import io.xlink.wifi.pipe.Constant;
 import io.xlink.wifi.pipe.bean.Device;
@@ -160,6 +155,7 @@ public class LucesFragment extends AppCompatActivity {
 		setContentView(R.layout.ac_luces);
 		XlinkUtils.shortTips("Ingreso LucesFragment");
 		datosAplicacion = (DatosAplicacion) getApplicationContext();
+		datosAplicacion.getEquipoSeleccionado().setLuzWifi("");
 		datosAplicacion.setCurrentActivity(this);
 		if (isScreenLarge()) {
 			onConfigurationChanged(getResources().getConfiguration());
@@ -307,22 +303,33 @@ public class LucesFragment extends AppCompatActivity {
 //			}
 //		});
 
-		if(equipoSeleccionado != null) {
-			for (Device device1 : DeviceManage.getInstance().getDevices()) {
-				if (device1.getMacAddress().equals(equipoSeleccionado.getNumeroSerie())) {
-					equipoSeleccionado.setDevice(device1);
-					device = device1;
-				}
-			}
-		}
+//		if(equipoSeleccionado != null) {
+//			for (Device device1 : DeviceManage.getInstance().getDevices()) {
+//				if (device1.getMacAddress().equals(equipoSeleccionado.getNumeroSerie())) {
+//					equipoSeleccionado.setDevice(device1);
+//					device = device1;
+//				}
+//			}
+//		}
 
-		actualizarFotoPerfil();
+//		actualizarFotoPerfil();
 		ingresarRouter();
 		btnBuscarIbox.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				BuscarRutersAsyncTask buscarRutersAsyncTask = new BuscarRutersAsyncTask(LucesFragment.this);
 				buscarRutersAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+				if (!XlinkAgent.getInstance().isConnectedLocal()) {
+					XlinkAgent.getInstance().start();
+				}
+				if (!XlinkAgent.getInstance().isConnectedOuterNet()) {
+					XlinkAgent.getInstance().login(DatosAplicacion.getApp().getAppid(), DatosAplicacion.getApp().getAuth());
+				}
+
+
+				initWidget();
+
+				loginUser(SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID), SharedPreferencesUtil.queryValue(Constant.SAVE_PASSWORD_ID));
 			}
 		});
 
@@ -582,24 +589,29 @@ public class LucesFragment extends AppCompatActivity {
 			}
 		});
 
-		XlinkUtils.shortTips("Inicia manejo internet");
-
-
-		DatosAplicacion.getApp().setAppid(appid);
-		DatosAplicacion.getApp().setAuth(authKey);
-
-
-		if (!XlinkAgent.getInstance().isConnectedLocal()) {
-			XlinkAgent.getInstance().start();
-		}
-		if (!XlinkAgent.getInstance().isConnectedOuterNet()) {
-			XlinkAgent.getInstance().login(DatosAplicacion.getApp().getAppid(), DatosAplicacion.getApp().getAuth());
-		}
-
-
-		initWidget();
-
-		loginUser(SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID), SharedPreferencesUtil.queryValue(Constant.SAVE_PASSWORD_ID));
+//		XlinkUtils.shortTips("Inicia manejo internet");
+//
+//
+//		DatosAplicacion.getApp().setAppid(appid);
+//		DatosAplicacion.getApp().setAuth(authKey);
+//
+//
+//		if (!XlinkAgent.getInstance().isConnectedLocal()) {
+//			XlinkAgent.getInstance().start();
+//		}
+//		if (!XlinkAgent.getInstance().isConnectedOuterNet()) {
+//			XlinkAgent.getInstance().login(DatosAplicacion.getApp().getAppid(), DatosAplicacion.getApp().getAuth());
+//		}
+//
+//
+//		initWidget();
+//		SharedPreferences sharedPrefsLuces = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//		String registerEmail = sharedPrefsLuces.getString("prefRegisterEmail", "0");
+//		if(registerEmail.equals("0")) {
+//			loginUser("8438387D9364@futlight.com", SharedPreferencesUtil.queryValue(Constant.SAVE_PASSWORD_ID));
+//		}else{
+//			loginUser(SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID), SharedPreferencesUtil.queryValue(Constant.SAVE_PASSWORD_ID));
+//		}
 	}
 	private String id;
 
@@ -645,7 +657,9 @@ public class LucesFragment extends AppCompatActivity {
 
 				int ret = XlinkAgent.getInstance().scanDeviceByProductId(
 						Constant.PRODUCTID, scanListener);
-				if (ret < 0) {
+
+				Log.i("PUSH LUCES PANTALLA", "login ok " + ret);
+				//if (ret < 0) {
 
 						connectDevice();
 
@@ -667,9 +681,9 @@ public class LucesFragment extends AppCompatActivity {
 //							break;
 //					}
 					return;
-				} else {
+				//} else {
 
-				}
+				//}
 
 
 
@@ -689,13 +703,14 @@ public class LucesFragment extends AppCompatActivity {
 				dev.setAccessKey(device2.getAccessKey());
 			}
 			DeviceManage.getInstance().addDevice(dev);
-
+			Log.i("PUSH LUCES PANTALLA", "scanListener 1 " );
 			for(Device device1 : DeviceManage.getInstance().getDevices()){
 				if(device1.getMacAddress().equals(equipoSeleccionado.getNumeroSerie())){
 					device =device1;
-
+					Log.i("PUSH LUCES PANTALLA", "scanListener 2 " );
 					equipoSeleccionado.setDevice(device1);
 					XlinkAgent.getInstance().initDevice(device1.getXDevice());
+					Log.i("PUSH LUCES PANTALLA", "scanListener 3 " );
 					if(device1.getXDevice().getDeviceId() != 0){
 						SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 						SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -716,65 +731,77 @@ public class LucesFragment extends AppCompatActivity {
 	}
 
 
+	int intentos = 0;
 	public void connectDevice() {
 		if (isOnline) {
 			return;
 		}
-		if (device.getXDevice().getVersion() >= 3 && device.getXDevice().getSubKey() <= 0) {
-			XlinkAgent.getInstance().getInstance().getDeviceSubscribeKey(device.getXDevice(), device.getXDevice().getAccessKey(), new GetSubscribeKeyListener() {
-				@Override
-				public void onGetSubscribekey(XDevice xdevice, int code, int subKey) {
-					device.getXDevice().setSubKey(subKey);
-					DeviceManage.getInstance().updateDevice(device);
-				}
-			});
-		}
-		if (!device.isSubscribe()) {
-			XlinkAgent.getInstance().subscribeDevice(device.getXDevice(), device.getXDevice().getSubKey(), new SubscribeDeviceListener() {
-				@Override
-				public void onSubscribeDevice(XDevice xdevice, int code) {
-					if (code == XlinkCode.SUCCEED) {
-						device.setSubscribe(true);
+		if (device != null && device.getXDevice() != null) {
+			if (device != null && device.getXDevice() != null && device.getXDevice().getVersion() >= 3 && device.getXDevice().getSubKey() <= 0) {
+				XlinkAgent.getInstance().getInstance().getDeviceSubscribeKey(device.getXDevice(), device.getXDevice().getAccessKey(), new GetSubscribeKeyListener() {
+					@Override
+					public void onGetSubscribekey(XDevice xdevice, int code, int subKey) {
+						device.getXDevice().setSubKey(subKey);
+						DeviceManage.getInstance().updateDevice(device);
 					}
-				}
-			});
-		}
-
-		int ret = XlinkAgent.getInstance().connectDevice(device.getXDevice(), device.getXDevice().getAccessKey(), device.getXDevice().getSubKey(), connectDeviceListener);
-		if (ret < 0) {
-			//Debe hacer por socket
-
-			String comandoSocket;
-			String[] com = comandoPendiente.split(";");
-			int deviceId = device.getXDevice().getDeviceId();
-			if(device.getXDevice().getDeviceId() == 0){
-				SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-				deviceId = sharedPrefs.getInt(equipoSeleccionado.getNumeroSerie(), 0);
+				});
 			}
-			if(deviceId != 0) {
-				nombreZonaT.setText("internet ");
-				txtEstado.setText("esta conexión le permite SOLO\n encender o apagar las luces.");
-				if (comandoPendiente != null && !comandoPendiente.equals("")) {
-					if (comandoPendiente.startsWith(YACSmartProperties.COM_APAGAR_LUZ_WIFI)) {
-						//apagar
-						comandoSocket = YACSmartProperties.COM_APAGAR_LUZ_WIFI + ";" + deviceId + ";" + equipoSeleccionado.getNumeroSerie() + ";ANDROID;" + com[4] + ";";
-					} else {
-						//encender
-						comandoSocket = YACSmartProperties.COM_ENCENDER_LUZ_WIFI + ";" + deviceId + ";" + equipoSeleccionado.getNumeroSerie() + ";ANDROID;" + com[4] + ";";
+			if (device != null && !device.isSubscribe()) {
+				XlinkAgent.getInstance().subscribeDevice(device.getXDevice(), device.getXDevice().getSubKey(), new SubscribeDeviceListener() {
+					@Override
+					public void onSubscribeDevice(XDevice xdevice, int code) {
+						if (code == XlinkCode.SUCCEED) {
+							device.setSubscribe(true);
+						}
 					}
-					ComandoIOFocoScheduledTask comandoIOFocoScheduledTask = new ComandoIOFocoScheduledTask(comandoSocket);
-					comandoIOFocoScheduledTask.start();
-				}
+				});
 			}
 
+			intentos++;
+			int ret = XlinkAgent.getInstance().connectDevice(device.getXDevice(), device.getXDevice().getAccessKey(), device.getXDevice().getSubKey(), connectDeviceListener);
+			Log.d("estado focos ret", "ret " + ret);
+			if (ret < 0) {
+				//Debe hacer por socket
 
-			//[NSString stringWithFormat:@"%@;%d;%@;%@;%@;%d;%@;",LUZ_INTERNET_LUZ_COLOR,device.deviceID,idEquipo,nombreDispositivo,fila.zona.numeroZona,[fila.zona.numeroZona containsString:@"R"],color];
+				String comandoSocket;
+				String[] com = comandoPendiente.split(";");
+				int deviceId = device.getXDevice().getDeviceId();
+				if (device.getXDevice().getDeviceId() == 0) {
+					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+					deviceId = sharedPrefs.getInt(equipoSeleccionado.getNumeroSerie(), 0);
+				}
+				if (deviceId != 0) {
+					nombreZonaT.setVisibility(View.GONE);
+					btnBuscarIbox.setVisibility(View.VISIBLE);
+					//nombreZonaT.setText("internet ");
+					txtEstado.setText("Verifique la conexion de su iBox");
+					if (comandoPendiente != null && !comandoPendiente.equals("")) {
+						if (comandoPendiente.startsWith(YACSmartProperties.COM_APAGAR_LUZ_WIFI)) {
+							//apagar
+							comandoSocket = YACSmartProperties.COM_APAGAR_LUZ_WIFI + ";" + deviceId + ";" + equipoSeleccionado.getNumeroSerie() + ";ANDROID;" + com[4] + ";";
+						} else {
+							//encender
+							comandoSocket = YACSmartProperties.COM_ENCENDER_LUZ_WIFI + ";" + deviceId + ";" + equipoSeleccionado.getNumeroSerie() + ";ANDROID;" + com[4] + ";";
+						}
+						ComandoIOFocoScheduledTask comandoIOFocoScheduledTask = new ComandoIOFocoScheduledTask(comandoSocket);
+						comandoIOFocoScheduledTask.start();
+					}
+				}else{
+					nombreZonaT.setVisibility(View.GONE);
+					btnBuscarIbox.setVisibility(View.VISIBLE);
+					//nombreZonaT.setText("internet ");
+					txtEstado.setText("Verifique la conexión de su iBox");
+				}
 
-//		}else{
-//			if (comandoPendiente != null && !comandoPendiente.equals("")) {
-//				ComandoFoco comandoFoco = new ComandoFoco(comandoPendiente, getApplicationContext());
-//				comandoFoco.start();
-//			}
+
+				//[NSString stringWithFormat:@"%@;%d;%@;%@;%@;%d;%@;",LUZ_INTERNET_LUZ_COLOR,device.deviceID,idEquipo,nombreDispositivo,fila.zona.numeroZona,[fila.zona.numeroZona containsString:@"R"],color];
+
+				//		}else{
+				//			if (comandoPendiente != null && !comandoPendiente.equals("")) {
+				//				ComandoFoco comandoFoco = new ComandoFoco(comandoPendiente, getApplicationContext());
+				//				comandoFoco.start();
+				//			}
+			}
 		}
 	}
 
@@ -786,19 +813,18 @@ public class LucesFragment extends AppCompatActivity {
 			String pass;
 			String tips;
 
-			if(Connectivity.isConnectedMobile(getApplicationContext())) {
-				txtEstado.setText("esta conexión le permite SOLO\n encender o apagar las luces.");
-				nombreZonaT.setText("Internet");
-				mobile = true;
-			}else{
+//			if(Connectivity.isConnectedMobile(getApplicationContext())) {
 //				txtEstado.setText("esta conexión le permite SOLO\n encender o apagar las luces.");
-				txtEstado.setText("Internet");
-				nombreZonaT.setText("Internet");
-			}
+//				nombreZonaT.setText("Internet");
+//				mobile = true;
+//			}else{
+//				txtEstado.setText("esta conexión le permite SOLO\n encender o apagar las luces.");
+
+//			}
+			Log.d("estado focos", "estado " + result);
 			switch (result) {
 				case XlinkCode.DEVICE_STATE_LOCAL_LINK:
 					if(CmdManage.sesionFocos == null) {
-
 						pass = Integer.toHexString(xDevice.getSessionId());
 						CmdManage.sesionFocos = hexStringToByteArray(pass);
 						ComandoFoco comandoFoco = new ComandoFoco(comandoPendiente, getApplicationContext());
@@ -808,6 +834,11 @@ public class LucesFragment extends AppCompatActivity {
 					XlinkAgent.getInstance().sendProbe(xDevice);
 					break;
 				case XlinkCode.DEVICE_STATE_OUTER_LINK:
+					equipoSeleccionado.setLuzWifi("INTERNET");
+					txtEstado.setText("Internet.");
+					nombreZonaT.setText("Internet.");
+					nombreZonaT.setVisibility(View.VISIBLE);
+					btnBuscarIbox.setVisibility(View.GONE);
 					if(CmdManage.sesionFocos == null) {
 						pass = Integer.toHexString(xDevice.getSessionId());
 						CmdManage.sesionFocos = hexStringToByteArray(pass);
@@ -817,41 +848,82 @@ public class LucesFragment extends AppCompatActivity {
 					DeviceManage.getInstance().updateDevice(xDevice);
 					DeviceManage.getInstance().addDevice(xDevice);
 					break;
-//				case XlinkCode.CONNECT_DEVICE_INVALID_KEY:
+				case XlinkCode.CONNECT_DEVICE_INVALID_KEY:
+					if(intentos < 3){
+						connectDevice();
+					}else{
+						nombreZonaT.setVisibility(View.GONE);
+						btnBuscarIbox.setVisibility(View.VISIBLE);
+						//nombreZonaT.setText("internet ");
+						txtEstado.setText("Verifique la conexion de su iBox");
+					}
 //					setDeviceStatus(false);
 //					openDevicePassword();
 //					Log.e(TAG, "Device:" + xDevice.getMacAddress() + "设备认证失败");
-//					XlinkUtils.shortTips("设备认证失败");
-//					break;
-//				// 设备不在线
-//				case XlinkCode.CONNECT_DEVICE_OFFLINE:
+					XlinkUtils.shortTips("设备认证失败");
+					break;
+				// 设备不在线
+				case XlinkCode.CONNECT_DEVICE_OFFLINE:
+					if(intentos < 3){
+						connectDevice();
+					}else{
+						nombreZonaT.setVisibility(View.GONE);
+						btnBuscarIbox.setVisibility(View.VISIBLE);
+						//nombreZonaT.setText("internet ");
+						txtEstado.setText("Verifique la conexion de su iBox");
+					}
 //					setDeviceStatus(false);
-//					// Log.e(TAG, "Device:" + xDevice.getMacAddress() + "设备不在线");
-//					XlinkUtils.shortTips("设备不在线");
+					// Log.e(TAG, "Device:" + xDevice.getMacAddress() + "设备不在线");
+					XlinkUtils.shortTips("设备不在线");
 //					Log("设备不在线");
-//					break;
-//
-//				// 连接设备超时了，（设备未应答，或者服务器未应答）
-//				case XlinkCode.CONNECT_DEVICE_TIMEOUT:
+					break;
+
+				// 连接设备超时了，（设备未应答，或者服务器未应答）
+				case XlinkCode.CONNECT_DEVICE_TIMEOUT:
+					if(intentos < 3){
+						connectDevice();
+					}else{
+						nombreZonaT.setVisibility(View.GONE);
+						btnBuscarIbox.setVisibility(View.VISIBLE);
+						//nombreZonaT.setText("internet ");
+						txtEstado.setText("Verifique la conexion de su iBox");
+					}
 //					setDeviceStatus(false);
-//					// Log.e(TAG, "Device:" + xDevice.getMacAddress() + "连接设备超时");
-//					XlinkUtils.shortTips("连接设备超时");
-//					break;
-//
-//				case XlinkCode.CONNECT_DEVICE_SERVER_ERROR:
+					// Log.e(TAG, "Device:" + xDevice.getMacAddress() + "连接设备超时");
+					XlinkUtils.shortTips("连接设备超时");
+					break;
+
+				case XlinkCode.CONNECT_DEVICE_SERVER_ERROR:
+					if(intentos < 3){
+						connectDevice();
+					}else{
+						nombreZonaT.setVisibility(View.GONE);
+						btnBuscarIbox.setVisibility(View.VISIBLE);
+						//nombreZonaT.setText("internet ");
+						txtEstado.setText("Verifique la conexion de su iBox");
+					}
 //					setDeviceStatus(false);
-//					XlinkUtils.shortTips("连接设备失败，服务器内部错误");
-//
-//					break;
-//				case XlinkCode.CONNECT_DEVICE_OFFLINE_NO_LOGIN:
+					XlinkUtils.shortTips("连接设备失败，服务器内部错误");
+
+					break;
+				case XlinkCode.CONNECT_DEVICE_OFFLINE_NO_LOGIN:
+					if(intentos < 3){
+						connectDevice();
+					}else{
+						nombreZonaT.setVisibility(View.GONE);
+						btnBuscarIbox.setVisibility(View.VISIBLE);
+						//nombreZonaT.setText("internet ");
+						txtEstado.setText("Verifique la conexion de su iBox");
+					}
 //					setDeviceStatus(false);
-//					XlinkUtils.shortTips("连接设备失败，设备未在局域网内，且当前手机只有局域网环境");
-//
-//					break;
+					XlinkUtils.shortTips("连接设备失败，设备未在局域网内，且当前手机只有局域网环境");
+
+					break;
 				default:
 				//	XlinkUtils.shortTips("Otro error:" + result);
 					break;
 			}
+			intentos++;
 
 		}
 	};
@@ -919,27 +991,27 @@ public class LucesFragment extends AppCompatActivity {
 		return screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE
 				|| screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
 	}
-	public void actualizarFotoPerfil() {
-		File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + equipoSeleccionado.getNumeroSerie() + ".jpg");
-		if (file.exists()) {
-			Bitmap bmImg = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + equipoSeleccionado.getNumeroSerie() + ".jpg");
-			if (bmImg != null) {
-
-				File foto = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + equipoSeleccionado.getNumeroSerie() + ".jpg");
-				if (foto.exists()) {
-					bmImg = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + equipoSeleccionado.getNumeroSerie() + ".jpg");
-					if (bmImg != null) {
-						mostrarImagen(bmImg);
-
-					}
-				}
-			}
-		} else {
-			Bitmap bitmap = ((BitmapDrawable) getResources().getDrawable(R.drawable.logo8)).getBitmap();
-			mostrarImagen(bitmap);
-
-		}
-	}
+//	public void actualizarFotoPerfil() {
+//		File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + equipoSeleccionado.getNumeroSerie() + ".jpg");
+//		if (file.exists()) {
+//			Bitmap bmImg = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + equipoSeleccionado.getNumeroSerie() + ".jpg");
+//			if (bmImg != null) {
+//
+//				File foto = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + equipoSeleccionado.getNumeroSerie() + ".jpg");
+//				if (foto.exists()) {
+//					bmImg = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Y4Home/" + equipoSeleccionado.getNumeroSerie() + ".jpg");
+//					if (bmImg != null) {
+//						mostrarImagen(bmImg);
+//
+//					}
+//				}
+//			}
+//		} else {
+//			Bitmap bitmap = ((BitmapDrawable) getResources().getDrawable(R.drawable.logo8)).getBitmap();
+//			mostrarImagen(bitmap);
+//
+//		}
+//	}
 
 
 
@@ -991,7 +1063,7 @@ public class LucesFragment extends AppCompatActivity {
 					btnBuscarIbox.setVisibility(View.GONE);
 					nombreZonaT.setVisibility(View.VISIBLE);
 					equipoSeleccionado.setLuzWifi("WIFI");
-					txtEstado.setText("wifi");
+					txtEstado.setText("en casa");
 					encontro = true;
 
 					ActualizarEquipoAsyncTask actualizarEquipoAsyncTask = new ActualizarEquipoAsyncTask(equipoSeleccionado);
@@ -1002,15 +1074,24 @@ public class LucesFragment extends AppCompatActivity {
 		}
 		if(!encontro){
 
-			equipoSeleccionado.setLuzWifi("INTERNET");
-			//nombreZonaT.setVisibility(View.GONE);
-			//btnBuscarIbox.setVisibility(View.VISIBLE);
+			//equipoSeleccionado.setLuzWifi("INTERNET");
+
 		}
 
 	}
 
 	private void ingresarRouter() {
-		actualizarFotoPerfil();
+//		actualizarFotoPerfil();
+
+		if(equipoSeleccionado != null) {
+			for (Device device1 : DeviceManage.getInstance().getDevices()) {
+				if (device1.getMacAddress().equals(equipoSeleccionado.getNumeroSerie())) {
+					equipoSeleccionado.setDevice(device1);
+					device = device1;
+				}
+			}
+		}
+
 		BuscarRutersAsyncTask buscarRutersAsyncTask = new BuscarRutersAsyncTask(LucesFragment.this);
 		buscarRutersAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		equipoSeleccionado = datosAplicacion.getEquipoSeleccionado();
@@ -1044,6 +1125,76 @@ public class LucesFragment extends AppCompatActivity {
 		zonaAdapter = new LucesFragment.LucesAdapter(getApplicationContext(), zonas);
 		listZonas.setAdapter(zonaAdapter);
 
+		if(zonas.size() ==  0){
+			//Refrescar en unos segundos
+			new java.util.Timer().schedule(
+					new java.util.TimerTask() {
+						@Override
+						public void run() {
+							LucesFragment.this.runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									ZonaDataSource zonaDataSource = new ZonaDataSource(getApplicationContext());
+									zonaDataSource.open();
+									zonas = zonaDataSource.getAllZonaRouter(datosAplicacion.getEquipoSeleccionado().getNumeroSerie().trim());
+									zonaDataSource.close();
+									zonaAdapter = new LucesFragment.LucesAdapter(getApplicationContext(), zonas);
+									listZonas.setAdapter(zonaAdapter);
+									if(zonas.size() ==  0){
+										//Refrescar en unos segundos
+										new java.util.Timer().schedule(
+												new java.util.TimerTask() {
+													@Override
+													public void run() {
+														LucesFragment.this.runOnUiThread(new Runnable() {
+															@Override
+															public void run() {
+																ZonaDataSource zonaDataSource = new ZonaDataSource(getApplicationContext());
+																zonaDataSource.open();
+																zonas = zonaDataSource.getAllZonaRouter(datosAplicacion.getEquipoSeleccionado().getNumeroSerie().trim());
+																zonaDataSource.close();
+																zonaAdapter = new LucesFragment.LucesAdapter(getApplicationContext(), zonas);
+																listZonas.setAdapter(zonaAdapter);
+																if(zonas.size() ==  0){
+																	//Refrescar en unos segundos
+																	new java.util.Timer().schedule(
+																			new java.util.TimerTask() {
+																				@Override
+																				public void run() {
+																					LucesFragment.this.runOnUiThread(new Runnable() {
+																						@Override
+																						public void run() {
+																							ZonaDataSource zonaDataSource = new ZonaDataSource(getApplicationContext());
+																							zonaDataSource.open();
+																							zonas = zonaDataSource.getAllZonaRouter(datosAplicacion.getEquipoSeleccionado().getNumeroSerie().trim());
+																							zonaDataSource.close();
+																							zonaAdapter = new LucesFragment.LucesAdapter(getApplicationContext(), zonas);
+																							listZonas.setAdapter(zonaAdapter);
+																						}
+																					});
+
+																				}
+																			},
+																			2000
+																	);
+																}
+															}
+														});
+
+													}
+												},
+												2000
+										);
+									}
+								}
+							});
+
+						}
+					},
+					5000
+			);
+		}
+
 		equipoSeleccionado = datosAplicacion.getEquipoSeleccionado();
 		if (equipoSeleccionado.getEquipoPadre() != null) {
 			numeroSerieComando = datosAplicacion.getEquipoSeleccionado().getEquipoPadre().getNumeroSerie();
@@ -1067,6 +1218,30 @@ public class LucesFragment extends AppCompatActivity {
 				}
 			}
 		}).start();
+
+		XlinkUtils.shortTips("Inicia manejo internet");
+
+
+		DatosAplicacion.getApp().setAppid(appid);
+		DatosAplicacion.getApp().setAuth(authKey);
+
+
+		if (!XlinkAgent.getInstance().isConnectedLocal()) {
+			XlinkAgent.getInstance().start();
+		}
+		if (!XlinkAgent.getInstance().isConnectedOuterNet()) {
+			XlinkAgent.getInstance().login(DatosAplicacion.getApp().getAppid(), DatosAplicacion.getApp().getAuth());
+		}
+
+
+		initWidget();
+		SharedPreferences sharedPrefsLuces = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		String registerEmail = sharedPrefsLuces.getString("prefRegisterEmail", "0");
+		if(registerEmail.equals("0")) {
+			loginUser("8438387D9364@futlight.com", SharedPreferencesUtil.queryValue(Constant.SAVE_PASSWORD_ID));
+		}else{
+			loginUser(SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID), SharedPreferencesUtil.queryValue(Constant.SAVE_PASSWORD_ID));
+		}
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1784,12 +1959,15 @@ public class LucesFragment extends AppCompatActivity {
             if(datosAplicacion.getEquipoSeleccionado().getLuzWifi() != null && datosAplicacion.getEquipoSeleccionado().getLuzWifi().equals("WIFI")) {
                 //WIFI
 				//XlinkUtils.shortTips("Antes de Comando Foco");
+				Log.i("PUSH LUCES PANTALLA", "wifi " );
                 ComandoFoco comandoFoco = new ComandoFoco(datosConfT, getApplicationContext());
                 comandoFoco.start();
             }else {
 				//INTERNET
 				if (CmdManage.sesionFocos == null) {
+					Log.i("PUSH LUCES PANTALLA", "CmdManage.sesionFocos = nulll " );
 					if(device != null) {
+						Log.i("PUSH LUCES PANTALLA", "CmdManage.sesionFocos = null && device != null" );
 						comandoPendiente = datosConfT;
 						connectDevice();
 
@@ -1810,16 +1988,16 @@ public class LucesFragment extends AppCompatActivity {
 					}
 
 				} else {
-					//Controlando con xLink desde internet
-					if (mobile){
-						if(datosConfT.startsWith(YACSmartProperties.COM_APAGAR_LUZ_WIFI ) || datosConfT.startsWith(YACSmartProperties.COM_ENCENDER_LUZ_WIFI)) {
-							ComandoFoco comandoFoco = new ComandoFoco(datosConfT, getApplicationContext());
-							comandoFoco.start();
-						}
-					}else{
+//					//Controlando con xLink desde internet
+//					if (mobile){
+//						if(datosConfT.startsWith(YACSmartProperties.COM_APAGAR_LUZ_WIFI ) || datosConfT.startsWith(YACSmartProperties.COM_ENCENDER_LUZ_WIFI)) {
+//							ComandoFoco comandoFoco = new ComandoFoco(datosConfT, getApplicationContext());
+//							comandoFoco.start();
+//						}
+//					}else{
 						ComandoFoco comandoFoco = new ComandoFoco(datosConfT, getApplicationContext());
 						comandoFoco.start();
-					}
+//					}
 				}
 			}
 

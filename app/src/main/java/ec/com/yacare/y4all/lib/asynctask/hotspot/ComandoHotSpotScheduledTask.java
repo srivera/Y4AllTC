@@ -44,7 +44,7 @@ public class ComandoHotSpotScheduledTask extends AsyncTask<String, Float, String
 			try{
 				DatagramPacket receivePacket = new DatagramPacket(recibido,
 						recibido.length);
-				clientSocket.setSoTimeout(5000);
+				clientSocket.setSoTimeout(20000);
 				clientSocket.receive(receivePacket);
 
 				clientSocket.close();

@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "850213101412",
+    "firebase_url": "https://y4home-produccion.firebaseio.com",
+    "project_id": "y4home-produccion",
+    "storage_bucket": "y4home-produccion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850213101412:android:1aadc0c574279411",
+        "android_client_info": {
+          "package_name": "ec.com.emergency.activities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850213101412-opf99efpnqiv79fk8bd87qsm1cu3if3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvEyuXgbgbUk-ogrt7ntWo1mwGmpIM_vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850213101412-opf99efpnqiv79fk8bd87qsm1cu3if3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850213101412:android:aa023d9ed6ad47ac",
+        "android_client_info": {
+          "package_name": "ec.com.yacare.y4all.activities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850213101412-opf99efpnqiv79fk8bd87qsm1cu3if3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvEyuXgbgbUk-ogrt7ntWo1mwGmpIM_vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850213101412-opf99efpnqiv79fk8bd87qsm1cu3if3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850213101412:android:2df1733337716636",
+        "android_client_info": {
+          "package_name": "prueba.com.ec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850213101412-opf99efpnqiv79fk8bd87qsm1cu3if3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvEyuXgbgbUk-ogrt7ntWo1mwGmpIM_vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850213101412-opf99efpnqiv79fk8bd87qsm1cu3if3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

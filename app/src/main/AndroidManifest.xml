@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ec.com.yacare.y4all.activities"
-    android:versionCode="2"
-    android:versionName="2.0" >
+    package="ec.com.yacare.y4all.activities" >
 
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
+
 
     <!-- ?sdcard???/??????? ?????? -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
@@ -27,7 +23,7 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    
+
     <!--<uses-permission android:name="android.permission.BLUETOOTH"/>-->
 	<!--<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>-->
 
@@ -37,8 +33,6 @@
     <!-- GCM requires a Google account. -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
-    <!-- Keeps the processor from sleeping when a message is received. -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <!--
@@ -48,14 +42,8 @@
            where PACKAGE is the application's package name.
     -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <permission
-        android:name="ec.com.yacare.y4all.activities.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="ec.com.yacare.y4all.activities.permission.C2D_MESSAGE" />
 
     <!-- This app has permission to register and receive data message. -->
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:name="ec.com.yacare.y4all.activities.DatosAplicacion"
@@ -238,7 +226,7 @@
             android:name="ec.com.yacare.y4all.activities.dispositivo.LlamadaEntranteActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@android:style/Theme.Holo.Light">
-        </activity>      
+        </activity>
         <activity
             android:name="ec.com.yacare.y4all.activities.dispositivo.LlamadaActivity"
             android:configChanges="orientation|screenSize"
@@ -257,39 +245,19 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
 
-        <!-- [START gcm_receiver] -->
-        <receiver
-            android:name="com.google.android.gms.gcm.GcmReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+       <!-- <service
+            android:name="ec.com.yacare.y4all.gcm.MyInstanceIDListenerService">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="activities.riesgo.yacare.com.ec.appriesgo" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </receiver>
-        <!-- [END gcm_receiver] -->
 
-        <!-- [START gcm_listener] -->
+        </service>-->
+
         <service
-            android:name="ec.com.yacare.y4all.gcm.MyGcmListenerService"
-            android:exported="false" >
+            android:name="ec.com.yacare.y4all.gcm.MyGcmListenerService">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-        <!-- [END gcm_listener] -->
-        <!-- [START instanceId_listener] -->
-        <service
-            android:name="ec.com.yacare.y4all.gcm.MyInstanceIDListenerService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
-            </intent-filter>
-        </service>
-        <!-- [END instanceId_listener] -->
-        <service
-            android:name="ec.com.yacare.y4all.gcm.RegistrationIntentService"
-            android:exported="false">
         </service>
 
         <service android:name="io.xlink.wifi.sdk.XlinkUdpService" />
@@ -297,6 +265,8 @@
         <!-- XLINK ???? -->
 
         <service android:name="io.xlink.wifi.sdk.XlinkTcpService" />
+
+        <service android:enabled="true" android:name="ec.com.yacare.y4all.gcm.DeleteTokenService" />
 
     </application>
 </manifest>

@@ -78,7 +78,8 @@ public class EnviarAudiowfThread extends Thread {
 			bytes_read =audio_recorder.read(bufferB, 0, TAMANO_PAKETE);
 
 			try {
-				if(AudioQueu.hablar || !AudioQueu.speakerExterno) {
+				//if(AudioQueu.hablar || !AudioQueu.speakerExterno) {
+				if(AudioQueu.hablar ) {
 					datosEnviar = comprimirGZIP(bufferB, TAMANO_PAKETE);
 					Log.d("AUDIO ENVIADO ", "TAMANO " + datosEnviar.length + " / " +  bufferB.length);
 				}else{

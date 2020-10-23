@@ -23,6 +23,7 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import ec.com.yacare.y4all.activities.DatosAplicacion;
 import ec.com.yacare.y4all.activities.portero.LlamadaEntrantePorteroActivity;
 import ec.com.yacare.y4all.activities.principal.Y4HomeActivity;
@@ -192,22 +193,22 @@ public class ComandoIOScheduledTask extends Thread {
 						equipoBusqueda = equipoDataSource.getEquipoNumSerie(equipoBusqueda);
 						if(equipoBusqueda != null && equipoBusqueda.getId() != null) {
 
-							equipoBusqueda.setLuz(recibido[7]);
-							equipoBusqueda.setLuzWifi(recibido[8]);
+							//equipoBusqueda.setLuz(recibido[7]);
+							//equipoBusqueda.setLuzWifi(recibido[8]);
 							equipoBusqueda.setPuerta(recibido[4]);
 							equipoBusqueda.setSensor(recibido[6]);
-							equipoBusqueda.setMensajeInicial(recibido[9].trim());
-							equipoBusqueda.setPuertoActivo(recibido[11]);
-							equipoBusqueda.setTimbreExterno(recibido[15]);
-							if(recibido.length > 15) {
-								equipoBusqueda.setMensajeApertura(recibido[16]);
-							}
-							if(recibido.length > 16) {
-								equipoBusqueda.setMensajePuerta(recibido[17]);
-							}
-							equipoBusqueda.setVolumen(Integer.valueOf(recibido[20]));
-							equipoBusqueda.setTiempoEncendidoLuz(Integer.valueOf(recibido[19]));
-							equipoBusqueda.setTimbreExterno(recibido[15]);
+							equipoBusqueda.setMensajeInicial(recibido[7].trim());
+							equipoBusqueda.setPuertoActivo(recibido[9]);
+							equipoBusqueda.setTimbreExterno(recibido[13]);
+						//	if(recibido.length > 15) {
+								equipoBusqueda.setMensajeApertura(recibido[14]);
+						//	}
+						//	if(recibido.length > 16) {
+								equipoBusqueda.setMensajePuerta(recibido[15]);
+						//	}
+							equipoBusqueda.setVolumen(Integer.valueOf(recibido[18]));
+						//	equipoBusqueda.setTiempoEncendidoLuz(Integer.valueOf(recibido[19]));
+						//	equipoBusqueda.setTimbreExterno(recibido[15]);
 							equipoDataSource.updateEquipo(equipoBusqueda);
 							if(datosAplicacion.getEquipoSeleccionado() != null && datosAplicacion.getEquipoSeleccionado().getNumeroSerie().equals(equipoBusqueda.getNumeroSerie())){
 								datosAplicacion.setEquipoSeleccionado(equipoBusqueda);
@@ -233,6 +234,28 @@ public class ComandoIOScheduledTask extends Thread {
 						});
 					}
 
+				}else if( recibido[0].startsWith(YACSmartProperties.COM_CONFIGURAR_PARAMETROS_EDIFICIO + YACSmartProperties.CONSTANTE_RESPUESTA_COMANDO)){
+
+					if(nombreDispositivo.equals(recibido[1])) {
+
+						y4HomeActivity.runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+										y4HomeActivity);
+								alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.informacion"))
+										.setMessage("Su configuración fue actualizada")
+										.setCancelable(false)
+										.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+											public void onClick(DialogInterface dialog, int id) {
+
+											}
+										});
+								AlertDialog alertDialog = alertDialogBuilder.create();
+								alertDialog.show();
+							}
+						});
+					}
 				}else if(recibido[0].equals(YACSmartProperties.COM_ACTIVAR_ZONA_TIMBRE + YACSmartProperties.CONSTANTE_RESPUESTA_COMANDO)){
 
 					ZonaDataSource zonaDataSource = new ZonaDataSource(datosAplicacion);
@@ -321,6 +344,15 @@ public class ComandoIOScheduledTask extends Thread {
 							}
 						});
 					}
+				} else if (recibido[0].equals(YACSmartProperties.COM_REPRODUCIR_TEXTO + YACSmartProperties.CONSTANTE_RESPUESTA_COMANDO)){
+					if(y4HomeActivity != null && !AudioQueu.comunicacionAbierta) {
+						y4HomeActivity.mostrarMensaje("Su mensaje fue enviado");
+					}
+				} else if (recibido[0].equals(YACSmartProperties.COM_ABRIR_PUERTA + YACSmartProperties.CONSTANTE_RESPUESTA_COMANDO)){
+					if(y4HomeActivity != null && !AudioQueu.comunicacionAbierta) {
+
+						y4HomeActivity.mostrarMensaje(recibido[2]);
+					}
 				}else if( recibido[0].startsWith(YACSmartProperties.COM_TERMINAR_HABLAR  + YACSmartProperties.CONSTANTE_RESPUESTA_COMANDO)){
 					if(datosAplicacion.getMonitorIOActivity() != null) {
 						datosAplicacion.getMonitorIOActivity().verificarResultadoHablar(YACSmartProperties.COM_TERMINAR_HABLAR + YACSmartProperties.CONSTANTE_RESPUESTA_COMANDO, true);
@@ -350,6 +382,7 @@ public class ComandoIOScheduledTask extends Thread {
 						datosAplicacion.getEquipoSeleccionado().setMensajePuerta(recibido[30]);
 						datosAplicacion.getEquipoSeleccionado().setVolumen(Integer.valueOf(recibido[38]));
 						datosAplicacion.getEquipoSeleccionado().setTiempoEncendidoLuz(Integer.valueOf(recibido[37]));
+						AudioQueu.version = recibido[5];
 						if(recibido[34].equals("1")) {
 							datosAplicacion.getEquipoSeleccionado().setModo(YACSmartProperties.MODO_WIFI);
 						}else{

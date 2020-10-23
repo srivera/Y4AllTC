@@ -1,9 +1,7 @@
 package ec.com.yacare.y4all.activities.luces;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -18,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,12 +33,14 @@ import ec.com.yacare.y4all.activities.R;
 import ec.com.yacare.y4all.activities.focos.ProgramacionActivity;
 import ec.com.yacare.y4all.asynctask.ws.EliminarProgramacionAsyncTask;
 import ec.com.yacare.y4all.asynctask.ws.GuardarZonaAsyncTask;
-import ec.com.yacare.y4all.asynctask.ws.LinkFocosAsyncTask;
+import ec.com.yacare.y4all.lib.asynctask.io.ComandoIOEncenderLucesScheduledTask;
 import ec.com.yacare.y4all.lib.dto.Equipo;
 import ec.com.yacare.y4all.lib.dto.ProgramacionLuces;
 import ec.com.yacare.y4all.lib.dto.ZonaLuces;
+import ec.com.yacare.y4all.lib.enumer.TipoEquipoEnum;
 import ec.com.yacare.y4all.lib.focos.ComandoFoco;
 import ec.com.yacare.y4all.lib.resources.YACSmartProperties;
+import ec.com.yacare.y4all.lib.sqllite.EquipoDataSource;
 import ec.com.yacare.y4all.lib.sqllite.ProgramacionDataSource;
 import ec.com.yacare.y4all.lib.sqllite.ZonaDataSource;
 import ec.com.yacare.y4all.lib.util.AudioQueu;
@@ -59,16 +60,20 @@ public class DetalleLucesFragment extends AppCompatActivity {
 
 	public ListView listProgramacion;
 
-	private EditText editNombreZona, editSeriesFocos;
-	private Button btnActualizar, btnAgregar, btnEliminar, btnActivar;
-
+	private EditText editNombreZona;
+	private Button btnActualizar, btnAgregar, btnEliminar;
+	private Button btnLink1, btnLink2, btnLink3;
+	private Button btn0, btn1, btn2, btn3, btn4, btn5, btnConfigurarLuz;
 	private FloatingActionButton btnNuevaProgramacion;
 
 	private ZonaLuces zonaLuces;
 
 	private ImageButton fabSalir;
 
-	String idBorrar;
+	private String idBorrar;
+	private int linkSeleccionado, tiempoEnviar = 0;
+
+	private LinearLayout layoutLuzWifi, layoutLuzWifi2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +88,182 @@ public class DetalleLucesFragment extends AppCompatActivity {
 		}
 
 		editNombreZona = (EditText) findViewById(R.id.editNombreZona);
-		editSeriesFocos = (EditText) findViewById(R.id.editSeriesFocos);
 		btnActualizar = (Button) findViewById(R.id.btnActualizar);
 		btnAgregar = (Button) findViewById(R.id.btnAgregar);
+		btnAgregar.setEnabled(false);
 		btnEliminar = (Button) findViewById(R.id.btnEliminar);
-		btnActivar = (Button) findViewById(R.id.btnActivar);
 		fabSalir = (ImageButton) findViewById(R.id.fabSalir);
+
+		btnLink1 = (Button) findViewById(R.id.btnLink1);
+		btnLink2 = (Button) findViewById(R.id.btnLink2);
+		btnLink3 = (Button) findViewById(R.id.btnLink3);
+		btnLink1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				linkSeleccionado = 1;
+				btnAgregar.setEnabled(true);
+				btnLink1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_seleccionado));
+				btnLink1.setTextColor(Color.parseColor("#FEFE03"));
+				btnLink2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_no_seleccionado));
+				btnLink2.setTextColor(Color.parseColor("#AAAAAA"));
+				btnLink3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_no_seleccionado));
+				btnLink3.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+		btnLink2.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				linkSeleccionado = 2;
+				btnAgregar.setEnabled(true);
+				btnLink2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_seleccionado));
+				btnLink2.setTextColor(Color.parseColor("#FEFE03"));
+				btnLink1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_no_seleccionado));
+				btnLink1.setTextColor(Color.parseColor("#AAAAAA"));
+				btnLink3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_no_seleccionado));
+				btnLink3.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+		btnLink3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				linkSeleccionado = 3;
+				btnAgregar.setEnabled(true);
+				btnLink3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_seleccionado));
+				btnLink3.setTextColor(Color.parseColor("#FEFE03"));
+				btnLink2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_no_seleccionado));
+				btnLink2.setTextColor(Color.parseColor("#AAAAAA"));
+				btnLink1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_no_seleccionado));
+				btnLink1.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+
+		btn0 = (Button) findViewById(R.id.btn0);
+		btn1 = (Button) findViewById(R.id.btn1);
+		btn2 = (Button) findViewById(R.id.btn2);
+		btn3 = (Button) findViewById(R.id.btn3);
+		btn4 = (Button) findViewById(R.id.btn4);
+		btn5 = (Button) findViewById(R.id.btn5);
+		btnConfigurarLuz = (Button) findViewById(R.id.btnConfigurarLuz);
+
+		btn0.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tiempoEnviar = 0;
+				btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+				btn0.setTextColor(Color.parseColor("#FEFE03"));
+				btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn1.setTextColor(Color.parseColor("#AAAAAA"));
+				btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn2.setTextColor(Color.parseColor("#AAAAAA"));
+				btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn3.setTextColor(Color.parseColor("#AAAAAA"));
+				btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn4.setTextColor(Color.parseColor("#AAAAAA"));
+				btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn5.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+		btn1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tiempoEnviar = 1 * 60 * 1000;
+				btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+				btn1.setTextColor(Color.parseColor("#FEFE03"));
+				btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn0.setTextColor(Color.parseColor("#AAAAAA"));
+				btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn2.setTextColor(Color.parseColor("#AAAAAA"));
+				btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn3.setTextColor(Color.parseColor("#AAAAAA"));
+				btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn4.setTextColor(Color.parseColor("#AAAAAA"));
+				btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn5.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+		btn2.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tiempoEnviar = 2 * 60 * 1000;
+				btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+				btn2.setTextColor(Color.parseColor("#FEFE03"));
+				btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn1.setTextColor(Color.parseColor("#AAAAAA"));
+				btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn0.setTextColor(Color.parseColor("#AAAAAA"));
+				btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn3.setTextColor(Color.parseColor("#AAAAAA"));
+				btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn4.setTextColor(Color.parseColor("#AAAAAA"));
+				btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn5.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+		btn3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tiempoEnviar = 3 * 60 * 1000;
+				btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+				btn3.setTextColor(Color.parseColor("#FEFE03"));
+				btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn1.setTextColor(Color.parseColor("#AAAAAA"));
+				btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn2.setTextColor(Color.parseColor("#AAAAAA"));
+				btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn0.setTextColor(Color.parseColor("#AAAAAA"));
+				btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn4.setTextColor(Color.parseColor("#AAAAAA"));
+				btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn5.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+		btn4.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tiempoEnviar = 4 * 60 * 1000;
+				btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+				btn4.setTextColor(Color.parseColor("#FEFE03"));
+				btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn1.setTextColor(Color.parseColor("#AAAAAA"));
+				btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn2.setTextColor(Color.parseColor("#AAAAAA"));
+				btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn3.setTextColor(Color.parseColor("#AAAAAA"));
+				btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn0.setTextColor(Color.parseColor("#AAAAAA"));
+				btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn5.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+		btn5.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tiempoEnviar = 5 * 60 * 1000;
+				btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+				btn5.setTextColor(Color.parseColor("#FEFE03"));
+				btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn1.setTextColor(Color.parseColor("#AAAAAA"));
+				btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn2.setTextColor(Color.parseColor("#AAAAAA"));
+				btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn3.setTextColor(Color.parseColor("#AAAAAA"));
+				btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn4.setTextColor(Color.parseColor("#AAAAAA"));
+				btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+				btn0.setTextColor(Color.parseColor("#AAAAAA"));
+			}
+		});
+
+
+		layoutLuzWifi = (LinearLayout) findViewById(R.id.layoutLuzWifi);
+		layoutLuzWifi2 = (LinearLayout) findViewById(R.id.layoutLuzWifi2);
+		if (!datosAplicacion.getPorteroInstalado()) {
+			layoutLuzWifi.setVisibility(View.GONE);
+			layoutLuzWifi2.setVisibility(View.GONE);
+		}else{
+			layoutLuzWifi.setVisibility(View.VISIBLE);
+			layoutLuzWifi2.setVisibility(View.VISIBLE);
+		}
 
 		fabSalir.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -113,6 +288,92 @@ public class DetalleLucesFragment extends AppCompatActivity {
 		programacionAdapter = new DetalleLucesFragment.ProgramacionAdapter(getApplicationContext(), programaciones);
 		listProgramacion.setAdapter(programacionAdapter);
 
+		if(zonaLuces.getEncenderTimbre() != null && !zonaLuces.getEncenderTimbre().equals("")){
+			String valorLuz[] = zonaLuces.getEncenderTimbre().split(";");
+			if(valorLuz[0].equals("1")){
+				int valor = Integer.valueOf(valorLuz[1]) / 60 / 1000;
+				if(valor == 0){
+					btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+					btn0.setTextColor(Color.parseColor("#FEFE03"));
+					btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn1.setTextColor(Color.parseColor("#AAAAAA"));
+					btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn2.setTextColor(Color.parseColor("#AAAAAA"));
+					btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn3.setTextColor(Color.parseColor("#AAAAAA"));
+					btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn4.setTextColor(Color.parseColor("#AAAAAA"));
+					btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn5.setTextColor(Color.parseColor("#AAAAAA"));
+				}else if(valor == 1){
+					btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+					btn1.setTextColor(Color.parseColor("#FEFE03"));
+					btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn0.setTextColor(Color.parseColor("#AAAAAA"));
+					btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn2.setTextColor(Color.parseColor("#AAAAAA"));
+					btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn3.setTextColor(Color.parseColor("#AAAAAA"));
+					btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn4.setTextColor(Color.parseColor("#AAAAAA"));
+					btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn5.setTextColor(Color.parseColor("#AAAAAA"));
+				}else if(valor == 2){
+					btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+					btn2.setTextColor(Color.parseColor("#FEFE03"));
+					btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn1.setTextColor(Color.parseColor("#AAAAAA"));
+					btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn0.setTextColor(Color.parseColor("#AAAAAA"));
+					btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn3.setTextColor(Color.parseColor("#AAAAAA"));
+					btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn4.setTextColor(Color.parseColor("#AAAAAA"));
+					btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn5.setTextColor(Color.parseColor("#AAAAAA"));
+				}else if(valor == 3){
+					btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+					btn3.setTextColor(Color.parseColor("#FEFE03"));
+					btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn1.setTextColor(Color.parseColor("#AAAAAA"));
+					btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn2.setTextColor(Color.parseColor("#AAAAAA"));
+					btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn0.setTextColor(Color.parseColor("#AAAAAA"));
+					btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn4.setTextColor(Color.parseColor("#AAAAAA"));
+					btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn5.setTextColor(Color.parseColor("#AAAAAA"));
+				}else if(valor == 4){
+					btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+					btn4.setTextColor(Color.parseColor("#FEFE03"));
+					btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn1.setTextColor(Color.parseColor("#AAAAAA"));
+					btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn2.setTextColor(Color.parseColor("#AAAAAA"));
+					btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn3.setTextColor(Color.parseColor("#AAAAAA"));
+					btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn0.setTextColor(Color.parseColor("#AAAAAA"));
+					btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn5.setTextColor(Color.parseColor("#AAAAAA"));
+				}else if(valor == 5){
+					btn5.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_seleccionado));
+					btn5.setTextColor(Color.parseColor("#FEFE03"));
+					btn1.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn1.setTextColor(Color.parseColor("#AAAAAA"));
+					btn2.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn2.setTextColor(Color.parseColor("#AAAAAA"));
+					btn3.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn3.setTextColor(Color.parseColor("#AAAAAA"));
+					btn4.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn4.setTextColor(Color.parseColor("#AAAAAA"));
+					btn0.setBackgroundDrawable( getResources().getDrawable(R.drawable.borde_boton_redondo_no_seleccionado));
+					btn0.setTextColor(Color.parseColor("#AAAAAA"));
+				}
+			}
+		}
+
 		equipoSeleccionado = datosAplicacion.getEquipoSeleccionado();
 
 		btnActualizar.setOnClickListener(new View.OnClickListener() {
@@ -124,61 +385,7 @@ public class DetalleLucesFragment extends AppCompatActivity {
 				}
 			}
 		});
-		btnActivar.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if(!editSeriesFocos.getText().toString().equals("")) {
-					String datosConfT = COM_LINK_FOCOS + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() + ";" + zonaLuces.getNumeroZona() + ";" + zonaLuces.getIdRouter() + ";";
-					if (equipoSeleccionado.getLuzWifi() != null && datosAplicacion.getEquipoSeleccionado().getLuzWifi().equals("WIFI")) {
-						LinkFocosAsyncTask linkFocosAsyncTask = new LinkFocosAsyncTask(DetalleLucesFragment.this, editSeriesFocos.getText().toString(), datosConfT);
-						linkFocosAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-					}else{
-						new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.ERROR_TYPE)
-								.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-								.setContentText(YACSmartProperties.intance.getMessageForKey("red.link.focos"))
-								.setConfirmText("Aceptar")
-								.showCancelButton(true)
-								.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
 
-									}
-								})
-								.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-
-									}
-								})
-								.show();
-					}
-
-				}else{
-					new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.ERROR_TYPE)
-							.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-							.setContentText(YACSmartProperties.intance.getMessageForKey("ingrese.serie.focos"))
-							.setConfirmText("Aceptar")
-							.showCancelButton(true)
-							.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-								@Override
-								public void onClick(SweetAlertDialog sDialog) {
-									sDialog.cancel();
-
-								}
-							})
-							.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-								@Override
-								public void onClick(SweetAlertDialog sDialog) {
-									sDialog.cancel();
-
-								}
-							})
-							.show();
-				}
-			}
-		});
 		btnAgregar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -198,7 +405,7 @@ public class DetalleLucesFragment extends AppCompatActivity {
 						.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
 							@Override
 							public void onClick(SweetAlertDialog sDialog) {
-								String datosConfT = COM_LINK_FOCOS + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() + ";" + zonaLuces.getNumeroZona() + ";" + zonaLuces.getIdRouter() + ";";
+								String datosConfT = COM_LINK_FOCOS + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() + ";" + zonaLuces.getNumeroZona() + ";" + zonaLuces.getIdRouter() + ";" + linkSeleccionado + ";";
 								ComandoFoco comandoFoco = new ComandoFoco(datosConfT, getApplicationContext());
 								comandoFoco.start();
 
@@ -240,20 +447,65 @@ public class DetalleLucesFragment extends AppCompatActivity {
 			}
 		});
 
+		btnConfigurarLuz.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (datosAplicacion.getPorteroInstalado()) {
+					String valorLuz;
+					if (tiempoEnviar > 0) {
+						//Enviar trama activo y guardar en la tabla zona
+						valorLuz = "1;" + tiempoEnviar + ";";
+					} else {
+						//Enviar trama desactivo y guardar en la tabla zona
+						valorLuz = "0;0;";
+					}
+					String datosConfT = YACSmartProperties.COM_ACTIVAR_ZONA_TIMBRE + ";"
+							+ nombreDispositivo + ";"
+							+ "ANDROID" + ";"
+							+ equipoSeleccionado.getNumeroSerie() + ";"
+							+ zonaLuces.getNumeroZona() + ";"
+							+ valorLuz + ";";
+
+					EquipoDataSource equipoDataSource = new EquipoDataSource(getApplicationContext());
+					equipoDataSource.open();
+					Equipo equipoBusqueda = new Equipo();
+					equipoBusqueda.setTipoEquipo(TipoEquipoEnum.PORTERO.getCodigo());
+					ArrayList<Equipo> equipos = equipoDataSource.getEquipoTipoEquipo(equipoBusqueda);
+					equipoDataSource.close();
+
+					ComandoIOEncenderLucesScheduledTask comandoIOEncenderLucesScheduledTask = new ComandoIOEncenderLucesScheduledTask(datosConfT, equipos );
+					comandoIOEncenderLucesScheduledTask.start();
+					new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.SUCCESS_TYPE)
+							.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.informacion"))
+							.setContentText("La zona fue actualizada")
+							.setConfirmText("Aceptar")
+							.showCancelButton(true)
+							.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+								@Override
+								public void onClick(SweetAlertDialog sDialog) {
+									sDialog.cancel();
+
+								}
+							})
+							.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+								@Override
+								public void onClick(SweetAlertDialog sDialog) {
+									sDialog.cancel();
+
+								}
+							})
+							.show();
+
+				}
+			}
+		});
+
 		btnNuevaProgramacion.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				new AlertDialog.Builder(DetalleLucesFragment.this)
-//						.setMessage("Para utilizar esta opción debe abrir el puerto 5987 a su router de luces. Favor contacte a su proveedor de internet")
-//						.setPositiveButton("Cerrar", new DialogInterface.OnClickListener() {
-//							@Override
-//							public void onClick(DialogInterface dialog, int which) {
-								Intent i = new Intent(DetalleLucesFragment.this, ProgramacionActivity.class);
-								i.putExtra("zona", zonaLuces);
-								startActivityForResult(i, 1);
-//							}
-//						}).show();
-
+				Intent i = new Intent(DetalleLucesFragment.this, ProgramacionActivity.class);
+				i.putExtra("zona", zonaLuces);
+				startActivityForResult(i, 1);
 			}
 		});
 
@@ -295,38 +547,77 @@ public class DetalleLucesFragment extends AppCompatActivity {
 							zonaLuces.setNombreZona(zonaJSON.get("nombre").toString());
 							zonaDataSource.updateZona(zonaLuces);
 							zonaDataSource.close();
-							}
+							new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.SUCCESS_TYPE)
+									.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.informacion"))
+									.setContentText("La zona fue actualizada")
+									.setConfirmText("Aceptar")
+									.showCancelButton(true)
+									.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+										@Override
+										public void onClick(SweetAlertDialog sDialog) {
+											sDialog.cancel();
+
+										}
+									})
+									.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+										@Override
+										public void onClick(SweetAlertDialog sDialog) {
+											sDialog.cancel();
+
+										}
+									})
+									.show();
+
+						}
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
 				}
 			}else{
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						DetalleLucesFragment.this);
-				alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-						.setMessage(YACSmartProperties.intance.getMessageForKey("error.router"))
-						.setCancelable(false)
-						.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-							}
-						});
+				new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.ERROR_TYPE)
+						.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.error"))
+						.setContentText(YACSmartProperties.intance.getMessageForKey("error.router"))
+						.setConfirmText("Aceptar")
+						.showCancelButton(true)
+						.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+							@Override
+							public void onClick(SweetAlertDialog sDialog) {
+								sDialog.cancel();
 
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
+							}
+						})
+						.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+							@Override
+							public void onClick(SweetAlertDialog sDialog) {
+								sDialog.cancel();
+
+							}
+						})
+						.show();
+
 			}
 		}else{
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					DetalleLucesFragment.this);
-			alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-					.setMessage(YACSmartProperties.intance.getMessageForKey("error.router"))
-					.setCancelable(false)
-					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-						}
-					});
+			new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.ERROR_TYPE)
+					.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.error"))
+					.setContentText(YACSmartProperties.intance.getMessageForKey("error.router"))
+					.setConfirmText("Aceptar")
+					.showCancelButton(true)
+					.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+						@Override
+						public void onClick(SweetAlertDialog sDialog) {
+							sDialog.cancel();
 
-			AlertDialog alertDialog = alertDialogBuilder.create();
-			alertDialog.show();
+						}
+					})
+					.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+						@Override
+						public void onClick(SweetAlertDialog sDialog) {
+							sDialog.cancel();
+
+						}
+					})
+					.show();
+
 		}
 	}
 
@@ -339,102 +630,6 @@ public class DetalleLucesFragment extends AppCompatActivity {
 				|| screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
 	}
 
-	public void verificarLinkFocos(String respuesta, String trama) {
-		//WIFI
-		if(!respuesta.equals(YACSmartProperties.getInstance().getMessageForKey("error.general"))){
-			Boolean status = null;
-			JSONObject respuestaJSON = null;
-			try {
-				respuestaJSON = new JSONObject(respuesta);
-				status = respuestaJSON.getBoolean("statusFlag");
-
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			if(status != null && status) {
-				try {
-					String resultado = respuestaJSON.getString("resultado");
-					if(resultado.equals("OK")){
-						ComandoFoco comandoFoco = new ComandoFoco(trama, getApplicationContext());
-						comandoFoco.start();
-					}else{
-						String errores[] = resultado.split(";");
-						String detalleErrorEstado = "";
-						String detalleErrorNoExiste = "";
-						for(String error : errores){
-							String detalle[] = error.split(":");
-							if(detalle[1].equals("EST")){
-								detalleErrorEstado = detalleErrorEstado + " " + detalle[0];
-							}else{
-								detalleErrorNoExiste = detalleErrorNoExiste + " " + detalle[0];
-							}
-						}
-						String leyenda = "";
-						if(!detalleErrorEstado.equals("")){
-							leyenda = "Series ya utilizadas: " + detalleErrorEstado + " ";
-						}
-						if(!detalleErrorNoExiste.equals("")){
-							leyenda = leyenda + " Series incorrectas: " + detalleErrorNoExiste;
-						}
-
-						new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.ERROR_TYPE)
-								.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-								.setContentText(leyenda)
-								.setConfirmText("Aceptar")
-								.showCancelButton(true)
-								.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-
-									}
-								})
-								.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-									@Override
-									public void onClick(SweetAlertDialog sDialog) {
-										sDialog.cancel();
-
-									}
-								})
-								.show();
-
-
-					}
-
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-
-			}else{
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						DetalleLucesFragment.this);
-				alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-						.setMessage(YACSmartProperties.intance.getMessageForKey("error.router"))
-						.setCancelable(false)
-						.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-							}
-						});
-
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
-			}
-		}else{
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					DetalleLucesFragment.this);
-			alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-					.setMessage(YACSmartProperties.intance.getMessageForKey("error.router"))
-					.setCancelable(false)
-					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-						}
-					});
-
-			AlertDialog alertDialog = alertDialogBuilder.create();
-			alertDialog.show();
-		}
-
-	}
 
 	public void verificarEliminarProgramacion(String respuesta) {
 		//Nueva zona
@@ -460,50 +655,76 @@ public class DetalleLucesFragment extends AppCompatActivity {
 						programacionDataSource.close();
 
 						programacionAdapter.notifyDataSetChanged();
-						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-								DetalleLucesFragment.this);
-						alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.informacion"))
-								.setMessage(YACSmartProperties.intance.getMessageForKey("exito.router"))
-								.setCancelable(false)
-								.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int id) {
-									}
-								});
+						new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.SUCCESS_TYPE)
+								.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.informacion"))
+								.setContentText(YACSmartProperties.intance.getMessageForKey("exito.router"))
+								.setConfirmText("Aceptar")
+								.showCancelButton(true)
+								.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+									@Override
+									public void onClick(SweetAlertDialog sDialog) {
+										sDialog.cancel();
 
-						AlertDialog alertDialog = alertDialogBuilder.create();
-						alertDialog.show();
+									}
+								})
+								.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+									@Override
+									public void onClick(SweetAlertDialog sDialog) {
+										sDialog.cancel();
+
+									}
+								})
+								.show();
+
+
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 
 			}else{
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						DetalleLucesFragment.this);
-				alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-						.setMessage(YACSmartProperties.intance.getMessageForKey("error.router"))
-						.setCancelable(false)
-						.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-							}
-						});
+				new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.ERROR_TYPE)
+						.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.error"))
+						.setContentText(YACSmartProperties.intance.getMessageForKey("error.router"))
+						.setConfirmText("Aceptar")
+						.showCancelButton(true)
+						.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+							@Override
+							public void onClick(SweetAlertDialog sDialog) {
+								sDialog.cancel();
 
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
+							}
+						})
+						.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+							@Override
+							public void onClick(SweetAlertDialog sDialog) {
+								sDialog.cancel();
+
+							}
+						})
+						.show();
 			}
 		}else{
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					DetalleLucesFragment.this);
-			alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.error"))
-					.setMessage(YACSmartProperties.intance.getMessageForKey("error.router"))
-					.setCancelable(false)
-					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-						}
-					});
+			new SweetAlertDialog(DetalleLucesFragment.this, SweetAlertDialog.ERROR_TYPE)
+					.setTitleText(YACSmartProperties.intance.getMessageForKey("titulo.error"))
+					.setContentText(YACSmartProperties.intance.getMessageForKey("error.router"))
+					.setConfirmText("Aceptar")
+					.showCancelButton(true)
+					.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+						@Override
+						public void onClick(SweetAlertDialog sDialog) {
+							sDialog.cancel();
 
-			AlertDialog alertDialog = alertDialogBuilder.create();
-			alertDialog.show();
+						}
+					})
+					.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+						@Override
+						public void onClick(SweetAlertDialog sDialog) {
+							sDialog.cancel();
+
+						}
+					})
+					.show();
 		}
 	}
 

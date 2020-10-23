@@ -135,7 +135,7 @@ public class EventoListaBuzonArrayAdapter extends ArrayAdapter<Evento> {
 				imgButtonVideoInicial.setImageResource(R.drawable.download);
 				textNumero.setText("1");
 			}
-		}else if(evento.getTipoEvento().equals("PUERTA")) {
+		}else if(evento.getTipoEvento().equals("PUERTA") || evento.getTipoEvento().equals("APERTURA") ) {
 			File fileVideo = new File(evento.getVideoPuerta());
 			if (fileVideo.exists()) {
 				imgButtonVideoInicial.setImageResource(R.drawable.ic_media_play);
@@ -154,6 +154,25 @@ public class EventoListaBuzonArrayAdapter extends ArrayAdapter<Evento> {
 				imageView.setImageResource(R.drawable.doorway);
 				imgButtonVideoInicial.setImageResource(R.drawable.download);
 			}
+		}else if(evento.getTipoEvento().equals("MENSAJE")) {
+			File fileVideo = new File(evento.getVideoPuerta());
+			if (fileVideo.exists()) {
+				imgButtonVideoInicial.setImageResource(R.drawable.ic_media_play);
+				if(!existeFoto){
+					Bitmap bitmap = ThumbnailUtils.createVideoThumbnail(evento.getVideoPuerta(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND);
+					if(bitmap != null) {
+						mostrarImagen(imageView, bitmap);
+						imageView.setVisibility(View.VISIBLE);
+					}else{
+						fileVideo.delete();
+						imageView.setImageResource(R.drawable.chatvideo);
+						imgButtonVideoInicial.setImageResource(R.drawable.download);
+					}
+				}
+			} else {
+				imageView.setImageResource(R.drawable.chatvideo);
+				imgButtonVideoInicial.setImageResource(R.drawable.download);
+			}
 		}
 
 
@@ -168,6 +187,7 @@ public class EventoListaBuzonArrayAdapter extends ArrayAdapter<Evento> {
 			texHoy.setTextColor(y4HomeActivity.getResources().getColor(R.color.colorprincipal));
 			textFecha.setTextColor(y4HomeActivity.getResources().getColor(R.color.colorprincipal));
 			txtAmPm.setTextColor(y4HomeActivity.getResources().getColor(R.color.colorprincipal));
+
 
 		}else{
 			layoutFila.setBackgroundResource(R.color.white);
@@ -230,7 +250,7 @@ public class EventoListaBuzonArrayAdapter extends ArrayAdapter<Evento> {
 						}
 						Toast.makeText(y4HomeActivity.getApplicationContext(), YACSmartProperties.intance.getMessageForKey("cargando.archivos.buzon"), Toast.LENGTH_LONG).show();
 					}
-				}else if(evento.getTipoEvento().equals("PUERTA")) {
+				}else  {
 					File fileVideo = new File(evento.getVideoPuerta());
 					if (fileVideo.exists()) {
 						Intent i = new Intent(y4HomeActivity, PlayVideoActivity.class);

@@ -41,7 +41,7 @@ public class EnviarAudioIOScheduledTask extends Thread {
 
 	@Override
 	public void run() {
-
+		AudioQueu.paqRecibido = 0;
 		contador = 0;
 		AudioQueu.setAudioRecibido(new ConcurrentHashMap<Integer, byte[]>());
 
@@ -85,8 +85,6 @@ public class EnviarAudioIOScheduledTask extends Thread {
 			bufferB = new byte[TAMANO_PAKETE];
 			bytes_read = AudioQueu.audio_recorder.read(bufferB, 0, TAMANO_PAKETE);
 			AudioQueu.mSocket.emit("chat message", bufferB);
-			//Log.d("ENVIANDO AUDIO", "ENVIANDO AUDIO");
-
 		}
 
 		AudioQueu.mSocket.disconnect();
@@ -133,11 +131,12 @@ public class EnviarAudioIOScheduledTask extends Thread {
 			if(!AudioQueu.hablar) {
 				AudioQueu.getAudioRecibido().put(contador, (byte[]) args[0]);
 				contador++;
+
 			}
+			AudioQueu.paqRecibido++;
 			if(!recibido){
 				recibido  = true;
-//				ContestarPorteroAsyncTask contestarPorteroAsyncTask = new ContestarPorteroAsyncTask(context);
-//				contestarPorteroAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+				context.mostrarMensaje("PRESIONE el botón para hablar y suba el volumen");
 			}
 
 		}

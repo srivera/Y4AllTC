@@ -27,18 +27,20 @@ public class ObtenerFotoAsyncTask extends Thread {
 
 	private Activity context;
 	private String idEvento;
+	private String ip;
 
 
-	public ObtenerFotoAsyncTask(Activity context, String idEvento) {
+	public ObtenerFotoAsyncTask(Activity context, String idEvento, String ip) {
 		super();
 		this.context = context;
 		this.idEvento = idEvento;
+		this.ip = ip;
 	}
 
 	public void run() {
 		AudioQueu.buscandoFoto = true;
 		DatosAplicacion datosAplicacion = ((DatosAplicacion) context.getApplicationContext());
-		String respuesta = ObtenerFoto.obtenerFoto(datosAplicacion.getToken(), datosAplicacion.getEquipoSeleccionado().getNumeroSerie(), idEvento);
+		String respuesta = ObtenerFoto.obtenerFoto(datosAplicacion.getToken(), datosAplicacion.getEquipoSeleccionado().getNumeroSerie(), idEvento, ip);
 		Log.d("ws: obtenerFoto", respuesta);
 
 		if (!respuesta.equals(YACSmartProperties.getInstance().getMessageForKey("error.general"))) {
@@ -97,6 +99,9 @@ public class ObtenerFotoAsyncTask extends Thread {
 			//Error pedir por
 
 			String datosConfT = YACSmartProperties.COM_SOLICITAR_FOTO_INICIAL + ";" + nombreDispositivo + ";" + "ANDROID" + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() + ";" + idEvento + ";";
+
+			AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
+			AudioQueu.contadorComandoEnviado++;
 
 			EnviarComandoThread enviarComandoThread = new EnviarComandoThread(context, datosConfT, null,
 					null, null, null, YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);

@@ -35,7 +35,8 @@ public class EquipoDataSource {
 			MySQLiteHelper.COLUMN_TIMBRE_EXTERNO, MySQLiteHelper.COLUMN_VERSION_FOTO,
 			MySQLiteHelper.COLUMN_MODO, MySQLiteHelper.COLUMN_MENSAJE_APERTURA,
 			MySQLiteHelper.COLUMN_VOZ_MENSAJE, MySQLiteHelper.COLUMN_MENSAJE_PUERTA,
-			MySQLiteHelper.COLUMN_TIEMPO_ENCENDIDO_LUZ, MySQLiteHelper.COLUMN_VOLUMEN
+			MySQLiteHelper.COLUMN_TIEMPO_ENCENDIDO_LUZ, MySQLiteHelper.COLUMN_VOLUMEN,
+			MySQLiteHelper.COLUMN_TIPO_PORTERO, MySQLiteHelper.COLUMN_NUM_DEPTO
 	};
 
 	public EquipoDataSource(Context context) {
@@ -89,6 +90,8 @@ public class EquipoDataSource {
 		values.put(MySQLiteHelper.COLUMN_MENSAJE_PUERTA, equipo.getMensajePuerta());
 		values.put(MySQLiteHelper.COLUMN_TIEMPO_ENCENDIDO_LUZ, equipo.getTiempoEncendidoLuz());
 		values.put(MySQLiteHelper.COLUMN_VOLUMEN, equipo.getVolumen());
+		values.put(MySQLiteHelper.COLUMN_TIPO_PORTERO, equipo.getTipoPortero());
+		values.put(MySQLiteHelper.COLUMN_NUM_DEPTO, equipo.getNumeroDepartamento());
 
 		database.insert(MySQLiteHelper.TABLA_EQUIPO, null, values);
 		Cursor cursor = database.query(MySQLiteHelper.TABLA_EQUIPO,
@@ -146,6 +149,8 @@ public class EquipoDataSource {
 		values.put(MySQLiteHelper.COLUMN_MENSAJE_PUERTA, equipo.getMensajePuerta());
 		values.put(MySQLiteHelper.COLUMN_TIEMPO_ENCENDIDO_LUZ, equipo.getTiempoEncendidoLuz());
 		values.put(MySQLiteHelper.COLUMN_VOLUMEN, equipo.getVolumen());
+		values.put(MySQLiteHelper.COLUMN_TIPO_PORTERO, equipo.getTipoPortero());
+		values.put(MySQLiteHelper.COLUMN_NUM_DEPTO, equipo.getNumeroDepartamento());
 		database.update(MySQLiteHelper.TABLA_EQUIPO, values,  MySQLiteHelper.COLUMN_EQUIPO_ID + " = '" + equipo.getId() + "'", null);
 	}
 
@@ -188,6 +193,8 @@ public class EquipoDataSource {
 		values.put(MySQLiteHelper.COLUMN_MENSAJE_PUERTA, equipo.getMensajePuerta());
 		values.put(MySQLiteHelper.COLUMN_TIEMPO_ENCENDIDO_LUZ, equipo.getTiempoEncendidoLuz());
 		values.put(MySQLiteHelper.COLUMN_VOLUMEN, equipo.getVolumen());
+		values.put(MySQLiteHelper.COLUMN_TIPO_PORTERO, equipo.getTipoPortero());
+		values.put(MySQLiteHelper.COLUMN_NUM_DEPTO, equipo.getNumeroDepartamento());
 		database.update(MySQLiteHelper.TABLA_EQUIPO, values,  MySQLiteHelper.COLUMN_EQUIPO_ID + " = '" + idAnterior + "'", null);
 	}
 	public ArrayList<Equipo> getAllEquipo() {
@@ -245,6 +252,8 @@ public class EquipoDataSource {
 		equipo.setMensajePuerta(cursor.getString(34));
 		equipo.setTiempoEncendidoLuz(cursor.getInt(35));
 		equipo.setVolumen(cursor.getInt(36));
+		equipo.setTipoPortero(cursor.getString(37));
+		equipo.setNumeroDepartamento(cursor.getString(38));
 		return equipo;
 	}
 	
@@ -279,8 +288,23 @@ public class EquipoDataSource {
 		}
 		cursor.close();
 		return equipos;
-	} 
-	
+	}
+
+	public ArrayList<Equipo> getEquiposNumeroSerie(Equipo equipoBusqueda) {
+		ArrayList<Equipo> equipos = new ArrayList<Equipo>();
+
+		Cursor cursor = database.query(MySQLiteHelper.TABLA_EQUIPO,
+				allColumns, MySQLiteHelper.COLUMN_NUMERO_SERIE + " = '" + equipoBusqueda.getNumeroSerie() + "'", null, null, null, null);
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			Equipo equipo = cursorToEquipo(cursor);
+			equipos.add(equipo);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return equipos;
+	}
+
 	public Equipo getEquipoNumSerie(Equipo equipoBusqueda) {
 		Equipo equipo = new Equipo();
 		Cursor cursor = database.query(MySQLiteHelper.TABLA_EQUIPO,
@@ -310,14 +334,14 @@ public class EquipoDataSource {
 		Cursor cursor = null;
 		try {
 			cursor = database.rawQuery("SELECT * FROM " + "equipo" + " LIMIT 0", null);
-			if (cursor.getColumnIndex("tiempoEncendidoLuz") != -1) {
+			if (cursor.getColumnIndex("tipoPortero") != -1) {
 
 			}else {
-				database.execSQL("ALTER TABLE equipo ADD COLUMN volumen integer;");
-				database.execSQL("UPDATE equipo SET volumen=1;");
+				database.execSQL("ALTER TABLE equipo ADD COLUMN tipoPortero text;");
+				database.execSQL("UPDATE equipo SET tipoPortero='CAS';");
 
-				database.execSQL("ALTER TABLE equipo ADD COLUMN tiempoEncendidoLuz integer;");
-				database.execSQL("UPDATE equipo SET tiempoEncendidoLuz=300000;");
+				database.execSQL("ALTER TABLE equipo ADD COLUMN numeroDepartamento text;");
+				database.execSQL("UPDATE equipo SET numeroDepartamento='0';");
 			}
 
 		} catch (SQLiteException Exp) {

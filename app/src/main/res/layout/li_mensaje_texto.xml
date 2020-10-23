@@ -1,14 +1,35 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:descendantFocusability="blocksDescendants"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp" android:id="@+id/nombreMensaje"
-    android:textSize="14dp"
-    android:layout_width="210dp"
-    android:textColor="#000000"
-    >
-
-
-
-
-</TextView>
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp" android:id="@+id/nombreMensaje"
+        android:textSize="12dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.75"
+        android:textColor="#AAAAAA">
+    </TextView>
+    <ImageButton
+        android:id="@+id/fabMensajeM"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.12"
+        android:src="@drawable/yacchatmujer"
+        android:background="@color/transparent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:adjustViewBounds="true" />
+    <ImageButton
+        android:id="@+id/fabMensajeH"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.13"
+        android:background="@color/transparent"
+        android:src="@drawable/yacchathombre"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:adjustViewBounds="true" />
+</LinearLayout>

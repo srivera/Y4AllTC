@@ -28,10 +28,12 @@ public class AudioQueu {
 	public static DatagramSocket socketFocos;
 	public static byte[] sesionFocos;
 
+	public static Integer paqRecibido = 0;
+	public static Integer paqRecibidoVideo = 0;
+
 	public static HashMap<String, String> imacRouter = new HashMap<String, String>();
 
-	//public static DatagramSocket socketComandoInternet = null;
-	
+	public static String version = "1";
 	private static String tipoConexion = "INTERNET";
 
 	public static Boolean socketComando = false;
@@ -39,6 +41,8 @@ public class AudioQueu {
 	public static Boolean llamadaEntrante = false;
 
 	public static Boolean speakerExterno = true;
+
+	public static Boolean encenderLuz = true;
 
 	public static Boolean buscandoFoto = false;
 
@@ -60,10 +64,6 @@ public class AudioQueu {
 	public static Boolean monitorearPortero = false;
 
 	public static Boolean modoCamaraLuces = false;
-
-	//public static String tiempoRespuesta =   "0";
-
-	//public static Integer puertoComunicacionHole = 0;
 
 	public static String ipComunicacionHole;
 
@@ -92,24 +92,6 @@ public class AudioQueu {
 	//Paquetes de audio totales que se han enviado
 	public static Integer paqueteAudioEnviado = 0;
 	
-	//Cada 2000 paquetes de audio enviados se enviara el comando 
-//	public final static Integer frecuenciaEnvioComando = 2000;
-	
-	//Cantidad de paquetes que representan un segundo de audio
-//	public final static Integer paquetesAudioSegundo = 30;
-
-	//Cantidad maxima de paquetes que me puedo saltar por segundo sin que se deteriore la calidad del audio
-	//Si la variable saltarPaquetes es mayor que esta constante se debe enviar un mensaje que la calidad de la red no es buena, vamos a intentar resolver el problema
-//	public final static Integer maximoPaquetesSaltar = 3;
-	
-	//Diferencia que me envia el raspberry de lo que ha recibido de mi audio, siempre debe ser positivo
-//	public static Integer diferenciaPaqueteAudio = 0;
-	
-	//Cantidad de paquetes que se calculo que debo saltar por segundo de audio
-//	public static Integer saltarPaquetes = 0;
-
-	//Bandera que indica si esta en proceso de sincronzacion
-//	public static Boolean sincronizando = false;
 
 	//Indica si esta abierta la comunicacion
 	public static Boolean comunicacionAbierta = false;
@@ -122,25 +104,15 @@ public class AudioQueu {
 	private static ConcurrentHashMap<Integer, String> comandoEnviado = new ConcurrentHashMap<Integer,String>();
 	private static ConcurrentHashMap<Integer, byte[]> videoRecibido = new ConcurrentHashMap<Integer, byte[]>();
 
-	//private static HashMap<Integer, short[]> audioEnviado = new HashMap<Integer, short[]>();
-
-//	private static Integer contadorRecibir;
 	private static Integer contadorReproducir;
-//	private static Integer contadorEnviar;
-
 	public static Boolean falloHotSpot = true;
 
 	public static Boolean verificarHotSpot = false;
 
-	public static Boolean getSegundoPlano() {
-		return segundoPlano;
-	}
 
 	public static void setSegundoPlano(Boolean segundoPlano) {
 		AudioQueu.segundoPlano = segundoPlano;
 	}
-
-
 
 	public static Boolean getComunicacionAbierta() {
 		return comunicacionAbierta;
@@ -149,14 +121,6 @@ public class AudioQueu {
 	public static void setComunicacionAbierta(Boolean comunicacionAbierta) {
 		AudioQueu.comunicacionAbierta = comunicacionAbierta;
 	}
-
-//	public static Boolean getSincronizando() {
-//		return sincronizando;
-//	}
-//
-//	public static void setSincronizando(Boolean sincronizando) {
-//		AudioQueu.sincronizando = sincronizando;
-//	}
 
 	public static DatagramSocket getClientSocket() {
 		return clientSocket;
@@ -187,21 +151,6 @@ public class AudioQueu {
 		AudioQueu.paqueteAudioEnviado = paqueteAudioEnviado;
 	}
 
-//	public static Integer getDiferenciaPaqueteAudio() {
-//		return diferenciaPaqueteAudio;
-//	}
-//
-//	public static void setDiferenciaPaqueteAudio(Integer diferenciaPaqueteAudio) {
-//		AudioQueu.diferenciaPaqueteAudio = diferenciaPaqueteAudio;
-//	}
-//
-//	public static Integer getSaltarPaquetes() {
-//		return saltarPaquetes;
-//	}
-//
-//	public static void setSaltarPaquetes(Integer saltarPaquetes) {
-//		AudioQueu.saltarPaquetes = saltarPaquetes;
-//	}
 
 	public static String getTipoConexion() {
 		return tipoConexion;
@@ -271,14 +220,6 @@ public class AudioQueu {
 		AudioQueu.audioRecibido = audioRecibido;
 	}
 
-//	public static Integer getContadorRecibir() {
-//		return contadorRecibir;
-//	}
-//
-//	public static void setContadorRecibir(Integer contadorRecibir) {
-//		AudioQueu.contadorRecibir = contadorRecibir;
-//	}
-//
 	public static Integer getContadorReproducir() {
 		return contadorReproducir;
 	}
@@ -287,21 +228,6 @@ public class AudioQueu {
 		AudioQueu.contadorReproducir = contadorReproducir;
 	}
 
-//	public static HashMap<Integer, short[]> getAudioEnviado() {
-//		return audioEnviado;
-//	}
-//
-//	public static void setAudioEnviado(HashMap<Integer, short[]> audioEnviado) {
-//		AudioQueu.audioEnviado = audioEnviado;
-//	}
-
-//	public static Integer getContadorEnviar() {
-//		return contadorEnviar;
-//	}
-//
-//	public static void setContadorEnviar(Integer contadorEnviar) {
-//		AudioQueu.contadorEnviar = contadorEnviar;
-//	}
 
 	public static ConcurrentHashMap<Integer,JSONObject> getComandoRecibido() {
 		return comandoRecibido;

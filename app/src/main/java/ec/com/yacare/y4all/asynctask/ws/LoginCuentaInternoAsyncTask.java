@@ -6,6 +6,7 @@ import android.util.Log;
 
 import ec.com.yacare.y4all.activities.SplashActivity;
 import ec.com.yacare.y4all.activities.instalacion.ValidarCuentaFragment;
+import ec.com.yacare.y4all.lib.util.ConexionInternet;
 import ec.com.yacare.y4all.lib.webservice.LoginCuenta;
 import io.xlink.wifi.pipe.util.XlinkUtils;
 
@@ -28,15 +29,20 @@ public class LoginCuentaInternoAsyncTask extends AsyncTask<String, Float, String
 
 		@Override
 	protected String doInBackground(String... arg0) {
-			String idDispositivo;
-			if(validarCuentaFragment != null){
-				idDispositivo = Settings.Secure.getString(validarCuentaFragment.getActivity().getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
+			ConexionInternet conexion = new ConexionInternet(splashActivity.getApplicationContext());
+			if(conexion.isInternetOn(splashActivity.getApplicationContext())) {
+				String idDispositivo;
+				if (validarCuentaFragment != null) {
+					idDispositivo = Settings.Secure.getString(validarCuentaFragment.getActivity().getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+				} else {
+					idDispositivo = Settings.Secure.getString(splashActivity.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+				}
+				String respStr = LoginCuenta.loginCuenta(email, clave, idDispositivo, null);
+				Log.d("ws: loginCuentaInterno", respStr);
+				return respStr;
 			}else{
-				idDispositivo = Settings.Secure.getString(splashActivity.getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
+				return "ERR";
 			}
-			String respStr = LoginCuenta.loginCuenta(email, clave, idDispositivo, null);
-			Log.d("ws: loginCuentaInterno",respStr);
-			return respStr;
 	}
 	
 		

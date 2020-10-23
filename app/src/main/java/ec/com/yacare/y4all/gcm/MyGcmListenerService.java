@@ -16,6 +16,8 @@
 
 package ec.com.yacare.y4all.gcm;
 
+import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -25,7 +27,7 @@ import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -33,8 +35,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.google.android.gms.gcm.GcmListenerService;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -52,13 +55,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ec.com.yacare.y4all.activities.DatosAplicacion;
-import ec.com.yacare.y4all.activities.GcmBroadcastReceiver;
 import ec.com.yacare.y4all.activities.R;
 import ec.com.yacare.y4all.activities.SplashActivity;
 import ec.com.yacare.y4all.activities.dispositivo.BuscarTelefonoActivity;
 import ec.com.yacare.y4all.activities.dispositivo.LlamadaEntranteActivity;
 import ec.com.yacare.y4all.activities.portero.LlamadaEntrantePorteroActivity;
-import ec.com.yacare.y4all.asynctask.ws.SolicitarBuzonAsyncTask;
+import ec.com.yacare.y4all.lib.asynctask.luces.EjecutarProgramacionLucesScheduledTask;
 import ec.com.yacare.y4all.lib.dto.Dispositivo;
 import ec.com.yacare.y4all.lib.dto.Equipo;
 import ec.com.yacare.y4all.lib.dto.Evento;
@@ -67,7 +69,6 @@ import ec.com.yacare.y4all.lib.enumer.EstadoEventoEnum;
 import ec.com.yacare.y4all.lib.enumer.TipoEquipoEnum;
 import ec.com.yacare.y4all.lib.enumer.TipoEventoEnum;
 import ec.com.yacare.y4all.lib.resources.YACSmartProperties;
-import ec.com.yacare.y4all.lib.sqllite.CuentaDataSource;
 import ec.com.yacare.y4all.lib.sqllite.DispositivoDataSource;
 import ec.com.yacare.y4all.lib.sqllite.EquipoDataSource;
 import ec.com.yacare.y4all.lib.sqllite.EventoDataSource;
@@ -76,30 +77,39 @@ import ec.com.yacare.y4all.lib.util.AudioQueu;
 
 import static ec.com.yacare.y4all.lib.util.AudioQueu.esComunicacionDirecta;
 
-public class MyGcmListenerService extends GcmListenerService {
+public class MyGcmListenerService extends FirebaseMessagingService {
 
     private static final String TAG = "MyGcmListenerService";
     public static final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
     NotificationCompat.Builder builder;
 
-    /**
-     * Called when message is received.
-     *
-     * @param from SenderID of the sender.
-     * @param data Data bundle containing message data as key/value pairs.
-     *             For Set of keys use data.keySet().
-     */
-    // [START receive_message]
     @Override
-    public void onMessageReceived(String from, Bundle extras) {
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+       // String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "Refreshed token: " + s);
+        // TODO: Implement this method to send any registration to your app's servers.
+        //  sendRegistrationToServer(refreshedToken);
+        DatosAplicacion datosAplicacion = (DatosAplicacion) this.getApplicationContext();
 
-        String comando = extras.getString("comando");
-        String numeroSerie = extras.getString("numeroSerie");
-        String idMensaje = extras.getString("idMensaje");
-        String origen = extras.getString("origen");
-        String mensaje = extras.getString("mensaje");
-        String ip = extras.getString("ip");
+        datosAplicacion.setRegId(s);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("registration_id",s);
+        editor.apply();
+    }
+
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        String comando = (String) remoteMessage.getData().get("comando");
+        String numeroSerie =(String) remoteMessage.getData().get("numeroSerie");
+        String idMensaje = (String) remoteMessage.getData().get("idMensaje");
+        String origen = (String) remoteMessage.getData().get("origen");
+        String mensaje = (String) remoteMessage.getData().get("mensaje");
+        String ip = (String) remoteMessage.getData().get("ip");
 
 
         DatosAplicacion datosAplicacion = (DatosAplicacion) getApplicationContext();
@@ -107,6 +117,21 @@ public class MyGcmListenerService extends GcmListenerService {
 
         mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "101";
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "Notification", NotificationManager.IMPORTANCE_MAX);
+
+            //Configure Notification Channel
+            notificationChannel.setDescription("Game Notifications");
+            notificationChannel.enableLights(true);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
 
         //Se verifica el tipo de equipo que esta enviando el mensaje
         EquipoDataSource equipoDataSource = new EquipoDataSource(getApplicationContext());
@@ -130,7 +155,7 @@ public class MyGcmListenerService extends GcmListenerService {
                         datosAplicacion.setEquipoSeleccionado(equipo);
 
                         //Boolean esComunicacionDirecta = esComunicacionDirecta();
-                        String visitante = extras.getString("visitante");
+                        String visitante = (String) remoteMessage.getData().get("visitante");
 
                         //Timbrando
                         EventoDataSource datasource = new EventoDataSource(getApplicationContext());
@@ -144,13 +169,13 @@ public class MyGcmListenerService extends GcmListenerService {
 
                         if (evento == null) {
                             AudioQueu.llamadaEntrante = true;
-                            Log.d("AudioQueu.llamadaEntrante5","true");
+                      //      Log.d("AudioQueu.llamadaEntrante5","true");
                             AudioQueu.imagenRecibida = false;
                             AudioQueu.fotoTimbre = null;
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                             Date date = new Date();
                             evento = new Evento();
-                            evento.setOrigen(TipoEquipoEnum.PORTERO.getDescripcion() + ": " + extras.getString("nombreEquipo"));
+                            evento.setOrigen(TipoEquipoEnum.PORTERO.getDescripcion() + ": " + (String) remoteMessage.getData().get("nombreEquipo"));
                             evento.setId(idMensaje);
                             evento.setFecha(dateFormat.format(date));
                             evento.setEstado(EstadoEventoEnum.RECIBIDO.getCodigo());
@@ -192,9 +217,9 @@ public class MyGcmListenerService extends GcmListenerService {
                             Log.i("GCM", "VALOR " + String.valueOf(esComunicacionDirecta));
 
                             //Probar esta linea
-                            Log.i("MENSAJE PUSH1", "Received: " + extras.toString());
+                           // Log.i("MENSAJE PUSH1", "Received: " + extras.toString());
                             startActivity(intentOpen);
-                            Log.i("MENSAJE PUSH2", "Received: " + extras.toString());
+                            //Log.i("MENSAJE PUSH2", "Received: " + extras.toString());
 
                         } else {
                             //Ya fue capturado la timbrada localmente por el puerto remoto
@@ -214,7 +239,7 @@ public class MyGcmListenerService extends GcmListenerService {
                     Evento evento = datasource.getEventoId(eventoBusqueda);
                     if (evento != null) {
                         //Si existe ese evento se actualiza a tipo buzon
-                        evento.setIdGrabado(extras.getString("idBuzon"));
+                        evento.setIdGrabado((String) remoteMessage.getData().get("idBuzon"));
                         evento.setTipoEvento(TipoEventoEnum.BUZON.getCodigo());
                         datasource.updateEvento(evento);
                     } else {
@@ -228,7 +253,7 @@ public class MyGcmListenerService extends GcmListenerService {
                         evento.setTipoEvento(TipoEventoEnum.BUZON.getCodigo());
                         evento.setIdEquipo(equipo.getId());
                         evento.setMensaje(mensaje);
-                        evento.setIdGrabado(extras.getString("idBuzon"));
+                        evento.setIdGrabado((String) remoteMessage.getData().get("idBuzon"));
                         datasource.createEvento(evento);
 
                     }
@@ -283,7 +308,7 @@ public class MyGcmListenerService extends GcmListenerService {
                     evento.setTipoEvento(TipoEventoEnum.PUERTA.getCodigo());
                     evento.setIdEquipo(equipo.getId());
                     evento.setMensaje(mensaje);
-                    evento.setIdGrabado(extras.getString("idBuzon"));
+                    evento.setIdGrabado((String) remoteMessage.getData().get("idBuzon"));
                     datasource.createEvento(evento);
                     datasource.close();
                     // }
@@ -383,7 +408,7 @@ public class MyGcmListenerService extends GcmListenerService {
                                     .setContentTitle(TipoEquipoEnum.PORTERO.getDescripcion() + ": " + equipo.getNombreEquipo())
                                     .setStyle(new NotificationCompat.BigTextStyle()
                                             .bigText(mensaje))
-                                    .setContentText(extras.getString("nombreEquipo") + " se  ha conectado a su portero.")
+                                    .setContentText((String) remoteMessage.getData().get("nombreEquipo") + " se  ha conectado a su portero.")
                                     .setSound(soundUri)
                                     .setAutoCancel(true);
 
@@ -403,17 +428,43 @@ public class MyGcmListenerService extends GcmListenerService {
                 //I01;NUMSERIE;PUERTOAUDIO;IPORIGEN
                 Intent intent = new Intent(this, LlamadaEntranteActivity.class);
                 intent.putExtra("comando", comando);
-                intent.putExtra("numeroSerie", extras.getString("numeroSerie"));
-                intent.putExtra("puertoAudio", extras.getString("puertoAudio"));
-                intent.putExtra("ipOrigen", extras.getString("ip"));
-                intent.putExtra("origen", extras.getString("origen"));
-                intent.putExtra("video", extras.getString("video"));
-                intent.putExtra("puertoVideo", extras.getString("puertoVideo"));
-                intent.putExtra("esComunicacionDirecta", esComunicacionDirecta(extras.getString("ip")));
+                intent.putExtra("numeroSerie", (String) remoteMessage.getData().get("numeroSerie"));
+                intent.putExtra("puertoAudio", (String) remoteMessage.getData().get("puertoAudio"));
+                intent.putExtra("ipOrigen", (String) remoteMessage.getData().get("ip"));
+                intent.putExtra("origen", (String) remoteMessage.getData().get("origen"));
+                intent.putExtra("video", (String) remoteMessage.getData().get("video"));
+                intent.putExtra("puertoVideo", (String) remoteMessage.getData().get("puertoVideo"));
+                intent.putExtra("esComunicacionDirecta", esComunicacionDirecta((String) remoteMessage.getData().get("ip")));
                 intent.setAction("android.intent.action.MAIN");
                 intent.addCategory("android.intent.category.LAUNCHER");
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+            } else if (comando.startsWith(YACSmartProperties.COM_ABRIR_PUERTA) || comando.startsWith(YACSmartProperties.COM_ABRIR_PUERTA_OPCIONAL)) {
+                AudioQueu.llamadaEntrante = false;
+
+                if (!AudioQueu.comunicacionAbierta) {
+                    Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(this)
+                                    .setSmallIcon(R.drawable.y4homeb)
+                                    .setContentTitle(TipoEquipoEnum.PORTERO.getDescripcion() + ": " + equipo.getNombreEquipo())
+                                    .setStyle(new NotificationCompat.BigTextStyle()
+                                            .bigText(mensaje))
+                                    .setContentText((String) remoteMessage.getData().get("mensaje"))
+                                    .setSound(soundUri)
+                                    .setAutoCancel(true);
+
+                    Intent intent = new Intent(this, SplashActivity.class);
+                    intent.putExtra("comando", comando);
+                    intent.setAction("android.intent.action.MAIN");
+                    intent.addCategory("android.intent.category.LAUNCHER");
+
+                    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    mBuilder.setContentIntent(contentIntent);
+                    mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+
+                }
 //            } else if (comando.equals(YACSmartProperties.COM_ACTUALIZAR_IP_CORP)) {
 //                if (validate(ip) && !ip.equals(YACSmartProperties.IP_CORP)) {
 //                    if (datosAplicacion.getCuenta() != null) {
@@ -436,7 +487,19 @@ public class MyGcmListenerService extends GcmListenerService {
 //                    }
 //                }
 
-            } else {
+            } else if (comando.startsWith(YACSmartProperties.COM_ENCENDER_LUZ_WIFI)) {
+                datosAplicacion.setEquipoSeleccionado(equipo);
+                String comandoCompleto[] = comando.split(";");
+                Log.i("MENSAJE PUSH ENCENDER", "Received: " + comando);
+                EjecutarProgramacionLucesScheduledTask ejecutarProgramacionLucesScheduledTask = new EjecutarProgramacionLucesScheduledTask(getApplicationContext(), comandoCompleto[4], comandoCompleto[2], "C22");
+                ejecutarProgramacionLucesScheduledTask.start();
+            } else if (comando.startsWith(YACSmartProperties.COM_APAGAR_LUZ_WIFI)) {
+                datosAplicacion.setEquipoSeleccionado(equipo);
+                String comandoCompleto[] = comando.split(";");
+                Log.i("MENSAJE PUSH APAGAR", "Received: " + comando);
+                EjecutarProgramacionLucesScheduledTask ejecutarProgramacionLucesScheduledTask = new EjecutarProgramacionLucesScheduledTask(getApplicationContext(), comandoCompleto[4], comandoCompleto[2], "C23");
+                ejecutarProgramacionLucesScheduledTask.start();
+           /* } else {
                 //Cualquier otro mensaje
                 Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
@@ -458,7 +521,7 @@ public class MyGcmListenerService extends GcmListenerService {
 
                 PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 mBuilder.setContentIntent(contentIntent);
-                mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+                mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());*/
 
             }
         }

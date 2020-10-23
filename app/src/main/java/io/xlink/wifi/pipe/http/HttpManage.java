@@ -408,8 +408,10 @@ public class HttpManage {
             if (mType == String.class) {
                 onSuccess(code, (T) msg);
             } else {
-                T o = mGson.fromJson(msg, mType);
-                onSuccess(code, o);
+                if(msg.contains("access_token")) {
+                    T o = mGson.fromJson(msg, mType);
+                    onSuccess(code, o);
+                }
             }
         }
 

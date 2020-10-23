@@ -113,7 +113,7 @@ public class ConfigurarWifiFocosAsyncTask extends AsyncTask<String, Float, Strin
 								datosRecibir2.length);
 						datagramSocket.setSoTimeout(200);
 						datagramSocket.receive(receivePacket2);
-						routerEncontradoWifi = new String(receivePacket2.getData());
+						routerEncontradoWifi = new String(receivePacket2.getData()).trim();
 						if (!routerEncontradoWifi.contains(datosRouter[1])) {
 							routerEncontradoWifi = "";
 						}
@@ -143,7 +143,7 @@ public class ConfigurarWifiFocosAsyncTask extends AsyncTask<String, Float, Strin
 				return "OK," + routerEncontradoWifi;
 			}
 		}else{
-			return "CON,Debe conectarse a la wifi " + nombreWifi + " Verifique que los datos de su wifi sean correctos. Intente apagar y encender su wifiBox.";
+			return "CON,Debe conectarse a la wifi 1 " + nombreWifi + " Verifique que los datos de su wifi sean correctos. Intente apagar y encender su wifiBox.";
 		}
 	}
 

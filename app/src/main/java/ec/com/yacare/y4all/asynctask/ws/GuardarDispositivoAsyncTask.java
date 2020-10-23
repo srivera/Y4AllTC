@@ -36,7 +36,7 @@ public class GuardarDispositivoAsyncTask extends AsyncTask<String, Float, String
 		String clave = datosAplicacion.getCuenta().getClave();
 		
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String respStr = GuardarDispositivo.guardarDispositivo(email, clave,  Settings.Secure.getString(context.getContentResolver(),Settings.Secure.ANDROID_ID), "ANDROID", sharedPrefs.getString("prefNombreDispositivo", "").toString(), datosAplicacion.getRegId());
+		String respStr = GuardarDispositivo.guardarDispositivo(email, clave,  Settings.Secure.getString(context.getContentResolver(),Settings.Secure.ANDROID_ID), "ANDROID", sharedPrefs.getString("prefNombreDispositivo", "").toString(), sharedPrefs.getString("registration_id", "").toString());
 		Log.d("ws: guardarDispositivo",respStr);
 		return respStr;
 	}

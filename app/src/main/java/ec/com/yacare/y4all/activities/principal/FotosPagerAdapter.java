@@ -81,7 +81,7 @@ class FotosPagerAdapter extends PagerAdapter {
 		Date date = new Date();
 
 		if(eventos.get(position).getFecha().startsWith(dateFormat.format(date))){
-			fecha.setText("Hoy a las " + eventos.get(position).getFecha().substring(11, 19));
+			fecha.setText(eventos.get(position).getFecha().substring(11, 19));
 		}else{
 			fecha.setText(eventos.get(position).getFecha());
 		}

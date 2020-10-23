@@ -34,7 +34,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+//import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -79,7 +79,10 @@ import static ec.com.yacare.y4all.lib.util.AudioQueu.esComunicacionDirecta;
  * service is finished, it calls {@code completeWakefulIntent()} to release the
  * wake lock.
  */
-public class GcmIntentService extends IntentService {
+public class GcmIntentService{
+	public static final int NOTIFICATION_ID = 1;
+}
+		/*extends IntentService {
     public static final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
     NotificationCompat.Builder builder;
@@ -578,4 +581,4 @@ public class GcmIntentService extends IntentService {
 			return false;
 		}
 	}
-}
+}*/

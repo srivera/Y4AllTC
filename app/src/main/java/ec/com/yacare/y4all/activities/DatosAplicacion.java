@@ -9,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
@@ -17,6 +18,7 @@ import android.util.Log;
 import org.apache.http.Header;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.util.List;
 
 import ec.com.yacare.y4all.activities.evento.EventosActivity;
@@ -55,10 +57,6 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 	private MonitorIOActivity monitorIOActivity;
 
 	private EventosActivity eventosActivity;
-
-//	private Dispositivo dispositivoChatActual;
-//
-//	private Dispositivo dispositivoOrigen;
 
 	private ProgramacionActivity programacionActivity;
 
@@ -99,30 +97,6 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 	}
 
 
-//	public Dispositivo getDispositivoChatActual() {
-//		return dispositivoChatActual;
-//	}
-//
-//	public void setDispositivoChatActual(Dispositivo dispositivoChatActual) {
-//		this.dispositivoChatActual = dispositivoChatActual;
-//	}
-//
-//	public Dispositivo getDispositivoOrigen() {
-//		return dispositivoOrigen;
-//	}
-//
-//	public void setDispositivoOrigen(Dispositivo dispositivoOrigen) {
-//		this.dispositivoOrigen = dispositivoOrigen;
-//	}
-
-//	public ChatActivity getChatActivity() {
-//		return chatActivity;
-//	}
-//
-//	public void setChatActivity(ChatActivity chatActivity) {
-//		this.chatActivity = chatActivity;
-//	}
-
 	public MonitorIOActivity getMonitorIOActivity() {
 		return monitorIOActivity;
 	}
@@ -130,22 +104,6 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 	public void setMonitorIOActivity(MonitorIOActivity monitorIOActivity) {
 		this.monitorIOActivity = monitorIOActivity;
 	}
-
-//	public AdministrarZonasActivity getAdministrarZonasActivity() {
-//		return administrarZonasActivity;
-//	}
-//
-//	public void setAdministrarZonasActivity(AdministrarZonasActivity administrarZonasActivity) {
-//		this.administrarZonasActivity = administrarZonasActivity;
-//	}
-
-//	public AdministrarRoutersActivity getAdministrarRoutersActivity() {
-//		return administrarRoutersActivity;
-//	}
-//
-//	public void setAdministrarRoutersActivity(AdministrarRoutersActivity administrarRoutersActivity) {
-//		this.administrarRoutersActivity = administrarRoutersActivity;
-//	}
 
 	public ProgramacionActivity getProgramacionActivity() {
 		return programacionActivity;
@@ -176,11 +134,8 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 	private static final String TAG = "MyApp";
 	private static DatosAplicacion application;
 
-	/**
-	 * 首选项设置
-	 */
 	public static SharedPreferences sharedPreferences;
-	// 判断程序是否正常启动
+
 	public boolean auth;
 
 	@Override
@@ -189,18 +144,14 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 		application = this;
 		auth = false;
 		Log.e(TAG, "onCreate()");
-		// bug收集
+		// bug
 		CrashHandler.init(this);
-		// 初始化sdk
+		// sdk
 		XlinkAgent.init(this);
-//        XlinkAgent.setCMServer("cm.iotbull.com", 23778);
-//        XlinkAgent.setCMServer("42.121.122.23", 23778);//测试服务器地址
-//        XlinkAgent.setCMServer("114.55.119.222",23778);
-		XlinkAgent.setCMServer("cm2.xlink.cn", 23778);//正式平台地址
+		XlinkAgent.setCMServer("cm2.xlink.cn", 23778);
 		XlinkAgent.getInstance().addXlinkListener(this);
-		//优先内网连接(谨慎使用,如果优先内网,则外网会在内网连接成功或者失败,或者超时后再进行连接,可能会比较慢)
-//        XlinkAgent.getInstance().setPreInnerServiceMode(true);
-		// 首选项 用于存储用户
+		// XlinkAgent.getInstance().setPreInnerServiceMode(true);
+
 		sharedPreferences = getSharedPreferences("XlinkOfficiaDemo", Context.MODE_PRIVATE);
 		appid = SharedPreferencesUtil.queryIntValue(Constant.SAVE_appId);
 		authKey = SharedPreferencesUtil.queryValue(Constant.SAVE_authKey, "");
@@ -213,20 +164,12 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 		if (!TextUtils.isEmpty(compayId)) {
 			HttpManage.COMPANY_ID = compayId.replace(" ", "");
 		}
-		// if (prodctid.equals("")) {
-		// SharedPreferencesUtil.keepShared("pid", Constant.PRODUCTID);
-		// } else if (prodctid.length() > 30) {
-		// Constant.PRODUCTID = prodctid;
-		// }
-		// Constant.PRODUCTID= Constant.PRODUCTID.trim();
-		// Constant.PRODUCTID=Constant.PRODUCTID.replace(" ", "");
 		initHandler();
-		for (Device device : DeviceManage.getInstance().getDevices()) {// 向sdk初始化设备
+		for (Device device : DeviceManage.getInstance().getDevices()) {
 			MyLog.e(TAG, "init device:" + device.getMacAddress());
 			XlinkAgent.getInstance().initDevice(device.getXDevice());
 		}
 
-		// 获取当前软件包版本号和版本名称
 		try {
 			PackageInfo pinfo = getPackageManager().getPackageInfo(
 					getPackageName(), 0);
@@ -239,13 +182,13 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 
 		HttpManage.COMPANY_ID="1007d2ada2c7a200";
 		SharedPreferencesUtil.keepShared(Constant.SAVE_COMPANY_ID, "1007d2ada2c7a200");
-	//	SharedPreferencesUtil.keepShared(Constant.SAVE_EMAIL_ID, "");
 		SharedPreferencesUtil.keepShared(Constant.SAVE_PRODUCTID, "985b157bf6fc43368a63467ea3b19d0d");
 
 		//Luces internet
 		String userName = SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID);
 		if (userName == null || userName.equals("")) {
 			userName = getLocalMac();
+		}
 			Log.d("debug", "wifi mac = " + getLocalMac());
 			if (userName == null || userName.equals("020000000000")) {
 				userName = "";
@@ -253,25 +196,41 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 					userName = new StringBuilder(String.valueOf(userName)).append(String.valueOf((int) (Math.random() * 10.0d))).toString();
 				}
 				Log.d("debug", "wifi mac Rand = " + userName);
+				SharedPreferencesUtil.keepShared(Constant.SAVE_EMAIL_ID, new StringBuilder(String.valueOf(userName)).append("@futlight.com").toString());
+			}else if (!userName.contains("@futlight.com")){
+				SharedPreferencesUtil.keepShared(Constant.SAVE_EMAIL_ID, new StringBuilder(String.valueOf(userName)).append("@futlight.com").toString());
 			}
-			SharedPreferencesUtil.keepShared(Constant.SAVE_EMAIL_ID, new StringBuilder(String.valueOf(userName)).append("@futlight.com").toString());
+		if(userName.contains(".com")){
+			userName = userName.substring(0, userName.indexOf(".com") + 4);
+			SharedPreferencesUtil.keepShared(Constant.SAVE_EMAIL_ID, new StringBuilder(String.valueOf(userName)).toString());
+		}else{
+			userName = SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID);
+		}
+
+
+			//SharedPreferencesUtil.keepShared(Constant.SAVE_EMAIL_ID, new StringBuilder(String.valueOf(userName)).append("@futlight.com").toString());
 			SharedPreferencesUtil.keepShared(Constant.SAVE_PASSWORD_ID, "123456789");
 			DatosAplicacion.getApp().auth = true;
 			appid = SharedPreferencesUtil.queryIntValue("appId");
 			authKey = SharedPreferencesUtil.queryValue("authKey", "");
 			//if (!isHaveAppid()) {
-				registerUser();
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		String registerEmail = sharedPrefs.getString("prefRegisterEmail", "0");
+		if(registerEmail.equals("0")) {
+			registerUser();
+		}
 
 			//}
-		} else {
+		//} else {
+		//	registerUser();
 			Log.d("debug", "wifi mac old = " + userName);
-		}
+		//}
 	}
 
 	public void registerUser() {
-//		tm = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
-//		id = XlinkUtils.MD5(tm.getDeviceId());
-		registerUserByMail(SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID), "Tablet", SharedPreferencesUtil.queryValue(Constant.SAVE_PASSWORD_ID));
+		String userName = SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID);
+		String nickname = userName.substring(0, userName.indexOf("@"));
+		registerUserByMail(SharedPreferencesUtil.queryValue(Constant.SAVE_EMAIL_ID), MD5(nickname), SharedPreferencesUtil.queryValue(Constant.SAVE_PASSWORD_ID));
 	}
 
 	public void registerUserByMail(final String uid, final String name, final String pwd) {
@@ -279,6 +238,12 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 			@Override
 			public void onError(Header[] headers, HttpManage.Error error) {
 				//loginUser(uid, pwd);
+				if(error.getMsg().equals("register email exists")){
+					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+					SharedPreferences.Editor editor = sharedPrefs.edit();
+					editor.putString("prefRegisterEmail","1");
+					editor.apply();
+				}
 
 			}
 
@@ -378,7 +343,7 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 	public void onLogin(int code) {
 		// TODO Auto-generated method stub
 		Log.e(TAG, "login code" + code);
-		sendBroad(Constant.BROADCAST_ON_LOGIN, code);
+		sendBroad(Constant.BROADCAST_ON_LOGIN, code);	
 		if (code == XlinkCode.SUCCEED) {
 			//XlinkUtils.shortTips("云端网络已可用");
 		} else if (code == XlinkCode.CLOUD_CONNECT_NO_NETWORK
@@ -393,28 +358,22 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 	@Override
 	public void onLocalDisconnect(int code) {
 		if (code == XlinkCode.LOCAL_SERVICE_KILL) {
-			// 这里是xlink服务被异常终结了（第三方清理软件，或者进入应用管理被强制停止应用/服务）
-			// 永不结束的service
-			// 除非调用 XlinkAgent.getInstance().stop（）;
 			XlinkAgent.getInstance().start();
 		}
-	//	XlinkUtils.shortTips("本地网络已经断开");
 	}
 
 
 	@Override
 	public void onDisconnect(int code) {
 		if (code == XlinkCode.CLOUD_SERVICE_KILL) {
-			// 这里是服务被异常终结了（第三方清理软件，或者进入应用管理被强制停止服务）
 			if (appid != 0 && !TextUtils.isEmpty(authKey)) {
 				XlinkAgent.getInstance().login(appid, authKey);
 			}
 		}
-		//XlinkUtils.shortTips("正在修复云端连接");
 	}
 
 	/**
-	 * 收到 局域网设备推送的pipe数据
+	 * pipe
 	 */
 	@Override
 	public void onRecvPipeData(short messageId,XDevice xdevice,  byte[] data) {
@@ -431,7 +390,7 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 	}
 
 	/**
-	 * 收到设备通过云端服务器推送的pipe数据
+	 * pipe
 	 */
 	@Override
 	public void onRecvPipeSyncData(short messageId,XDevice xdevice,  byte[] data) {
@@ -471,8 +430,6 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 	 */
 	@Override
 	public void onDeviceStateChanged(XDevice xdevice, int state) {
-		// TODO Auto-generated method stub
-
 		Log.e(TAG, "onDeviceStateChanged::" + xdevice.getMacAddress()
 				+ " state:" + state);
 		Device device = DeviceManage.getInstance().getDevice(
@@ -502,20 +459,6 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 		}
 	}
 
-//	@Override
-//	public void onDataPointUpdate(XDevice xDevice, List<DataPoint> dataPionts, int channel) {
-//		Log.e(TAG,"onDataPointUpdate:"+dataPionts.toString());
-//
-//		Device device = DeviceManage.getInstance().getDevice(xDevice.getMacAddress());
-//		if (device != null) {
-//			Intent intent = new Intent(Constant.BROADCAST_DATAPOINT_RECV);
-//			intent.putExtra(Constant.DEVICE_MAC, device.getMacAddress());
-//			if (dataPionts != null) {
-//				intent.putExtra(Constant.DATA, (Serializable) dataPionts);
-//			}
-//			DatosAplicacion.this.sendBroadcast(intent);
-//		}
-//	}
 
 	@Override
 	public void onEventNotify(EventNotify eventNotify) {
@@ -547,4 +490,25 @@ public class DatosAplicacion extends MultiDexApplication  implements XlinkNetLis
 //		XlinkUtils.longTips(str);
 	}
 
+
+	public static final String MD5(String s) {
+		char[] hexDigits = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+		try {
+			byte[] btInput = s.getBytes();
+			MessageDigest mdInst = MessageDigest.getInstance("MD5");
+			mdInst.update(btInput);
+			char[] str = new char[(16 * 2)];
+			int k = 0;
+			for (byte byte0 : mdInst.digest()) {
+				int i = k + 1;
+				str[k] = hexDigits[(byte0 >>> 4) & 15];
+				k = i + 1;
+				str[i] = hexDigits[byte0 & 15];
+			}
+			return new String(str);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

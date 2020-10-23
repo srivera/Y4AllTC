@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Base64;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Toast;

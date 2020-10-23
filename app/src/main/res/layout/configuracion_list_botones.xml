@@ -20,14 +20,15 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="0.45"
-            android:text="luz"
+            android:text="abrir puerta"
             android:textSize="14dp"
             android:background="@drawable/back_boton_izq"
             android:textColor="#FFFFFF"
+            android:id="@+id/btnAbrirPuerta"
             android:textAllCaps="false"
-            android:id="@+id/btnEncenderLuz"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
+
         <ImageButton
             android:id="@+id/btnMonitorear"
             android:layout_width="50dp"
@@ -40,12 +41,12 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="0.45"
-            android:text="abrir puerta"
+            android:text="luz"
             android:textSize="14dp"
             android:background="@drawable/back_boton_izq"
             android:textColor="#FFFFFF"
-            android:id="@+id/btnAbrirPuerta"
             android:textAllCaps="false"
+            android:id="@+id/btnEncenderLuz"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
 

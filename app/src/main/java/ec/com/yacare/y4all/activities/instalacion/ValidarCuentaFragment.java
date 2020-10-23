@@ -201,9 +201,12 @@ public class ValidarCuentaFragment extends Fragment {
 									+ ";" + Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID)
 									+ ";" + nombre
 									+ ";" + "ANDROID";
-
-							ComandoConfigurarScheduledTask genericoAsyncTask = new ComandoConfigurarScheduledTask(comando, ValidarCuentaFragment.this, null);
+							ComandoConfigurarScheduledTask genericoAsyncTask = new ComandoConfigurarScheduledTask( YACSmartProperties.COM_FINALIZAR_CONFIGURACION
+									+ ";" + equipo.getNombreEquipo().toString() + ";;;" + equipo.getNumeroSerie() +";", ValidarCuentaFragment.this, null);
 							genericoAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+							//ComandoConfigurarScheduledTask genericoAsyncTask = new ComandoConfigurarScheduledTask(comando, ValidarCuentaFragment.this, null);
+							//genericoAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 						}else{
 							FinalizarInstalacionEquipoAsyncTask instalacionAsyncTask = new FinalizarInstalacionEquipoAsyncTask(ValidarCuentaFragment.this, equipo, null);
 							instalacionAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -406,13 +409,8 @@ public class ValidarCuentaFragment extends Fragment {
 				.setCancelable(false)
 				.setPositiveButton("OK",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
-//						if(equipoSeleccionado.getTipoEquipo().equals(TipoEquipoEnum.PORTERO.getCodigo())) {
-//							Intent i = new Intent(getActivity(), Y4HomeActivity.class);
-//							startActivity(i);
-//						}else{
-//							Intent i = new Intent(getActivity(), LucesPrincipalActivity.class);
-//							startActivity(i);
-//						}
+
+
 
 						getActivity().finish();
 						Intent i = new Intent(getActivity(), SplashActivity.class);

@@ -1,20 +1,15 @@
 package ec.com.yacare.y4all.lib.resources;
 
 import android.graphics.Bitmap;
-import android.util.Base64;
 import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.util.Arrays;
 import java.util.Hashtable;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+import ec.com.yacare.y4all.lib.util.Cipher;
 
 
 public class YACSmartProperties {
@@ -81,6 +76,20 @@ public class YACSmartProperties {
 	public static String COM_LINK_FOCOS					= "C55";
 
 
+	//TRAMAS EDIFICIO
+	public static String COM_INICIAR_COMUNICACION_DEPTO	= "F01";
+	public static String COM_ACTUALIZAR_DEPARTAMENTOS	= "F02";
+	public static String COM_ACTIVACION_SENSOR_EDIFICIO = "F03";
+	public static String COM_CONFIGURAR_PARAMETROS_EDIFICIO		= "F04";
+	public static String COM_ABRIR_PUERTA_EDIFICIO		= "F05";
+	public static String COM_CREAR_CLAVE_APERTURA		= "F06";
+	public static String COM_BORRAR_CLAVE_APERTURA		= "F07";
+	public static String COM_LISTAR_CLAVE_APERTURA		= "F08";
+
+	public static String PORTERO_CASA		= "C";
+	public static String PORTERO_EDIFICIO		= "E";
+
+
 	public static String COM_CREAR_ZONA_LUCES = "C56";
 	public static String COM_ELIMINAR_ZONA_LUCES = "C57";
 	public static String COM_SINCRONIZAR_ZONA_LUCES = "C58";
@@ -106,6 +115,11 @@ public class YACSmartProperties {
 	public static String COM_TOMAR_FOTO 		= "C73";
 	public static String COM_GRABAR_LOG 		= "C74";
 	public static String COM_NOTIFICAR_BUZON 		= "C75";
+
+	public static String COM_ABRIR_PUERTA_OPCIONAL = "C79";
+	public static String COM_ABRIR_PUERTA_OPCIONAL_UDP = "C80";
+	public static String COM_LUZ_MODE_BOX_WIFI_CONEXION 			= "";
+
 	//Comandos hotsopot
 	public static String HOTSPOT_WIFI 			= "H01";
 	public static String HOTSPOT_CONEXION_OK 	= "H02";
@@ -159,7 +173,7 @@ public class YACSmartProperties {
 
 	public static String IP_CORP_P = "186.71.55.178";
 	public static String IP_CORP_S = "wiibell.cloudapp.net";
-	public static String ipComunicacion = IP_CORP_P;
+	//public static String ipComunicacion = IP_CORP_P;
 
 	public static String PUERTO_JBOSS_CORP = "10083";
 	public final static Integer PUERTO_UDP_CORP = 10084;
@@ -192,6 +206,8 @@ public class YACSmartProperties {
 	public static String URL_MONITOREAR_HOLE      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorearHolePunshing";
 	public static String URL_CONTESTAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?contestar";
 	public static String URL_MONITOREAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorear";
+	public static String URL_MONITOREAR_PORTERO_S      = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorear";
+
 	public static String URL_MONITOREAR_PORTERO_PUERTOS      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorearPuertos";
 	public static String URL_CERRAR_MONITOREAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?cerrarMonitoreo";
 
@@ -213,7 +229,7 @@ public class YACSmartProperties {
 	
 	//WS PORTERO
 	public static String URL_REPRODUCIR_RESPUESTA     = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?reproducirRespuesta";
-	public static String URL_OBTENER_FOTO     		= "http://" + ipComunicacion + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerFoto";
+	public static String URL_OBTENER_FOTO     		= "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerFoto";
 	public static String URL_ENVIAR_MENSAJE    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?enviarMensaje";
 	public static String URL_OBTENER_LISTA_DISPOSITIVOS = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerListaDispositivos";
 	public static String URL_ENVIAR_MENSAJE_CHAT    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?enviarMensajeChat";
@@ -232,7 +248,7 @@ public class YACSmartProperties {
 	public static String URL_INVITAR_CUENTA   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?invitarCuenta";
 	public static String URL_DESACTIVAR_DISPOSITIVO   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?desactivarDispositivo";
 	public static String URL_CAMBIAR_CLAVE   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?cambiarClave";
-
+	public static String URL_RECOMENDAR_EMAIL   = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?recomendarEmail";
 
 	public static String URL_ACTIVAR_FINALIZAR_EQUIPO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?activarFinalizarEquipo";
 	public static String URL_GUARDAR_FOTO_DISPOSITIVO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?guardarFotoDispositivo";
@@ -240,10 +256,12 @@ public class YACSmartProperties {
 	public static String URL_GUARDAR_FOTO_EQUIPO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?guardarFotoEquipo";
 	public static String URL_OBTENER_FOTO_EQUIPO    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerFotoEquipo";
 	public static String URL_SOCKET    = "http://" + IP_CORP_S + ":"+ "3000";
+	public static String URL_SOCKET_INSTALLER    = "http://" + IP_CORP_S + ":"+ "3002";
 	public static String URL_SOCKET_FOCOS    = "http://" + IP_CORP_S + ":"+ "3003";
 	//public static String URL_SOCKET_PRO    = "http://" + "wiibell.cloudapp.net" + ":"+ "3000";
 
 	public static void actualizarURL(){
+		//WS INSTALACION
 		URL_OBTENER_EQUIPO_NUMSERIE = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?obtenerEquipoPorNumeroSerie";
 		URL_CREAR_CUENTA = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?crearCuentaCliente";
 		URL_CONFIRMAR_CUENTA = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?activarCuentaCliente";
@@ -251,16 +269,34 @@ public class YACSmartProperties {
 		URL_LOGIN_CUENTA = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?loginCuenta";
 		URL_OBTENER_EQUIPOS_CUENTA = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?obtenerCuenta";
 		URL_GUARDAR_DISPOSITIVO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?guardarDispositivo";
+
+
+		//	public final static String URL_GUARDAR_CONFIGURACION_XML= "http://" + IP_CORP + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?guardarConfiguracionXML";
 		URL_ACTUALIZAR_EQUIPO= "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?actualizarEquipo";
+		URL_ENVIAR_COMANDO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioVersionJS?enviarComando";
 		URL_CREAR_EQUIPOS = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?crearEquipos";
+		URL_ACTIVAR_EQUIPO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?activarEquipo";
+
+
+		//WS COMUNICACION
+		URL_MONITOREAR_HOLE      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorearHolePunshing";
+		URL_CONTESTAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?contestar";
+		URL_MONITOREAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorear";
+		URL_MONITOREAR_PORTERO_S      = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorear";
+
+		URL_MONITOREAR_PORTERO_PUERTOS      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorearPuertos";
+		URL_CERRAR_MONITOREAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?cerrarMonitoreo";
+
 		URL_GUARDAR_ALERTA_UBICACION = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLocalizacionJS?guardarAlertaUbicacion";
+
+		//WS Intercomunicadpr
 		URL_GUARDAR_CONTACTO       = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioIntercomunicadorJS?guardarContacto";
 		URL_INICIAR_LLAMADA        = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioIntercomunicadorJS?iniciarLLamada";
 		URL_CONTESTAR_LLAMADA      = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioIntercomunicadorJS?contestarLLamada";
-		URL_CONTESTAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?contestar";
-		URL_MONITOREAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorear";
-		URL_REPRODUCIR_RESPUESTA     = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?reproducirRespuesta";
-		URL_OBTENER_FOTO     		= "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerFoto";
+
+		//WS PORTERO
+		URL_REPRODUCIR_RESPUESTA     = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?reproducirRespuesta";
+		URL_OBTENER_FOTO     		= "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerFoto";
 		URL_ENVIAR_MENSAJE    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?enviarMensaje";
 		URL_OBTENER_LISTA_DISPOSITIVOS = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerListaDispositivos";
 		URL_ENVIAR_MENSAJE_CHAT    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?enviarMensajeChat";
@@ -269,24 +305,26 @@ public class YACSmartProperties {
 		URL_OBTENER_CHAT_AUDIO    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerChatAudio";
 		URL_SOLICITAR_BUZON    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?solicitarBuzon";
 		URL_ETIQUETAR_FOTO    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?etiquetarFoto";
-		URL_CERRAR_MONITOREAR_PORTERO      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?cerrarMonitoreo";
-		URL_MONITOREAR_PORTERO_PUERTOS      = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?monitorearPuertos";
-		URL_ENVIAR_COMANDO_LUCES   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?ejecutarComandoLuces";
+
+		URL_ENVIAR_COMANDO_LUCES   = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?ejecutarComandoLuces";
+		URL_OBTENER_ESTADO_LUCES   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?obtenerEstadoLuces";
 		URL_GUARDAR_ZONA   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?guardarZona";
 		URL_GUARDAR_PROGRAMACION   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?guardarProgramacion";
-		URL_INVITAR_CUENTA   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?invitarCuenta";
-		URL_ACTIVAR_FINALIZAR_EQUIPO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?activarFinalizarEquipo";
-		URL_ENVIAR_COMANDO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioVersionJS?enviarComando";
+		URL_LINK_FOCOS   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?linkFocos";
 		URL_ELIMINAR_PROGRAMACION   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?eliminarProgramacion";
+		URL_INVITAR_CUENTA   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?invitarCuenta";
+		URL_DESACTIVAR_DISPOSITIVO   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?desactivarDispositivo";
+		URL_CAMBIAR_CLAVE   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?cambiarClave";
+		URL_RECOMENDAR_EMAIL   = "http://" + IP_CORP_P + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?recomendarEmail";
+
+		URL_ACTIVAR_FINALIZAR_EQUIPO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?activarFinalizarEquipo";
 		URL_GUARDAR_FOTO_DISPOSITIVO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?guardarFotoDispositivo";
 		URL_OBTENER_FOTO_DISPOSITIVO    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerFotoDispositivo";
 		URL_GUARDAR_FOTO_EQUIPO = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?guardarFotoEquipo";
 		URL_OBTENER_FOTO_EQUIPO    = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioPorteroJS?obtenerFotoEquipo";
-		URL_OBTENER_ESTADO_LUCES   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?obtenerEstadoLuces";
 		URL_SOCKET    = "http://" + IP_CORP_S + ":"+ "3000";
-		URL_DESACTIVAR_DISPOSITIVO   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?desactivarDispositivo";
-		URL_CAMBIAR_CLAVE   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioInstalacionPorteroJS?cambiarClave";
-		URL_LINK_FOCOS   = "http://" + IP_CORP_S + ":"+ PUERTO_JBOSS_CORP +"/yconference-web-1.0.0/json/servicioLucesJS?linkFocos";
+		URL_SOCKET_FOCOS    = "http://" + IP_CORP_S + ":"+ "3003";
+
 	}
 
 
@@ -400,29 +438,50 @@ public class YACSmartProperties {
 		return format(resource, args);
 	}
 
-	public static String Encriptar(String texto) {
-
-		String secretKey = "Y4hOmEyAcArETeChNoLoGy"; //llave para encriptar datos
-		String base64EncryptedString = "";
-
+	public static String Desencriptar(byte [] texto, String numeroSerie) {
+		Cipher encriptar = new Cipher(numeroSerie);
 		try {
-
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
-			byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
-
-			SecretKey key = new SecretKeySpec(keyBytes, "DESede");
-			Cipher cipher = Cipher.getInstance("DESede");
-			cipher.init(Cipher.ENCRYPT_MODE, key);
-
-			byte[] plainTextBytes = texto.getBytes("utf-8");
-			byte[] buf = cipher.doFinal(plainTextBytes);
-			byte[] base64Bytes = Base64.encode(buf, 0);
-			base64EncryptedString = new String(base64Bytes);
-
-		} catch (Exception ex) {
+			byte[] result1 = encriptar.decrypt(texto);
+			return new String(result1);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return base64EncryptedString;
+		return "";
+	}
+
+
+	public static String Encriptar(String texto, String numeroSerie) {
+		Cipher encriptar = new Cipher(numeroSerie);
+		try {
+			byte[] result1 = encriptar.encrypt(texto.getBytes("utf-8"));
+			return new String(result1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+
+
+//		String secretKey = "Y4hOmEyAcArETeChNoLoGy"; //llave para encriptar datos
+//		String base64EncryptedString = "";
+//
+//		try {
+//
+//			MessageDigest md = MessageDigest.getInstance("MD5");
+//			byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
+//			byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
+//
+//			SecretKey key = new SecretKeySpec(keyBytes, "DESede");
+//			Cipher cipher = Cipher.getInstance("DESede");
+//			cipher.init(Cipher.ENCRYPT_MODE, key);
+//
+//			byte[] plainTextBytes = texto.getBytes("utf-8");
+//			byte[] buf = cipher.doFinal(plainTextBytes);
+//			byte[] base64Bytes = Base64.encode(buf, 0);
+//			base64EncryptedString = new String(base64Bytes);
+//
+//		} catch (Exception ex) {
+//		}
+//		return base64EncryptedString;
 	}
 
 

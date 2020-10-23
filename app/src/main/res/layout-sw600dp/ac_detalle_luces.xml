@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="top"
-    app:orientation="vertical"
     android:gravity="top">
 
     <LinearLayout
@@ -82,86 +81,254 @@
                         android:layout_width="0dp"
                         android:layout_weight="0.25"
                         android:text="Actualizar"
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
                         android:layout_height="match_parent"
                         android:background="#1C94AB"
                         android:textColor="#FEFE03"/>
                 </LinearLayout>
-                <TextView
-                    android:layout_margin="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:visibility="gone"
-                    android:text="Para un correcto funcionamiento de los focos ingresar los números y activarlos"
-                    android:textColor="#ffffff"/>
                 <LinearLayout
+                    android:id="@+id/layoutLuzWifi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_margin="10dp"
-                    android:visibility="gone"
-                    android:gravity="center_horizontal">
-                    <EditText
-                        android:id="@+id/editSerieFocos"
-                        android:layout_width="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:visibility="visible"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center_horizontal|center_vertical">
+                    <TextView
+                        android:textColor="#ffffff"
+                        android:width="0dp"
                         android:layout_weight="0.75"
+                        android:textSize="14dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:gravity="start"
+                        android:textAlignment="textStart"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:background="@drawable/text_rounded"
-                        android:layout_marginRight="8dp"
-                        android:hint="número de serie del foco"
-                        android:textColor="#000000"/>
+                        android:text="Encender esta zona al timbrar o abrir la puerta entre las 18h00 y 06h00" />
+
                     <Button
-                        android:id="@+id/btnActivar"
+                        android:id="@+id/btnConfigurarLuz"
                         android:layout_width="0dp"
                         android:layout_weight="0.25"
-                        android:text="Activar"
+                        android:text="Configurar"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         android:background="#1C94AB"
-                        android:textColor="#FEFE03"/>
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
+                        android:textColor="#FEFE03"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutLuzWifi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:visibility="visible"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center_horizontal|center_vertical">
+                    <TextView
+                        android:id="@+id/txtTiempoEncenderLuz"
+                        android:textColor="#FEFE03"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:textSize="14dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|left"
+                        android:gravity="center_horizontal|left"
+                        android:text="Duración" />
+                    <Button
+                        android:id="@+id/btn0"
+                        android:layout_width="0dp"
+                        android:text="0"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.07"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:background="@drawable/borde_boton_redondo_no_seleccionado"
+                        android:textAllCaps="false"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <Button
+                        android:id="@+id/btn1"
+                        android:layout_width="0dp"
+                        android:text="1"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.07"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:background="@drawable/borde_boton_redondo_no_seleccionado"
+                        android:textAllCaps="false"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <Button
+                        android:id="@+id/btn2"
+                        android:layout_width="0dp"
+                        android:text="2"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.07"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:background="@drawable/borde_boton_redondo_no_seleccionado"
+                        android:textAllCaps="false"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <Button
+                        android:id="@+id/btn3"
+                        android:layout_width="0dp"
+                        android:text="3"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.07"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:background="@drawable/borde_boton_redondo_no_seleccionado"
+                        android:textAllCaps="false"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <Button
+                        android:id="@+id/btn4"
+                        android:layout_width="0dp"
+                        android:text="4"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.07"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:background="@drawable/borde_boton_redondo_no_seleccionado"
+                        android:textAllCaps="false"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <Button
+                        android:id="@+id/btn5"
+                        android:layout_width="0dp"
+                        android:text="5"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.07"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:background="@drawable/borde_boton_redondo_no_seleccionado"
+                        android:textAllCaps="false"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <TextView
+                        android:id="@+id/txtValorEncenderLuz"
+                        android:textColor="#FEFE03"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.1"
+                        android:textSize="14dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:layout_height="wrap_content"
+                        android:text="min." />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_margin="5dp"
                     android:gravity="center_horizontal">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.75"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:textSize="16dp"
-                        android:text="Para añadir o retirar focos de esta sección utilice la opción correspondiente"
+                        android:layout_weight="0.7"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="start"
+                        android:gravity="start"
+                        android:textSize="14dp"
+                        android:text="Para añadir focos a esta zona, seleccione el tipo de foco, luego la opción Añadir; o utilice la opción Retirar foco"
                         android:textColor="#ffffff"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="0.25"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginRight="10dp"
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
+                    <Button
+                        android:id="@+id/btnLink1"
+                        android:layout_width="match_parent"
+                        android:text="panel led, tira led, dicroico"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:background="@drawable/borde_boton_no_seleccionado"
+                        android:textAllCaps="false"
+                        android:textColor="#AAAAAA"
                         android:layout_marginLeft="10dp"
-                        android:gravity="center_horizontal">
-                        <Button
-                            android:id="@+id/btnAgregar"
-                            android:layout_width="match_parent"
-                            android:layout_weight="0.5"
-                            android:text="Añadir foco"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center"
-                            android:background="#1C94AB"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="#FEFE03"/>
-                        <Button
-                            android:id="@+id/btnEliminar"
-                            android:layout_width="match_parent"
-                            android:layout_weight="0.5"
-                            android:text="Retirar foco"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center"
-                            android:background="#1C94AB"
-                            android:textColor="#FEFE03"/>
-                    </LinearLayout>
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"/>
+                    <Button
+                        android:id="@+id/btnLink2"
+                        android:layout_width="match_parent"
+                        android:text="foco de 8w, reflector de exteriores"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/borde_boton_no_seleccionado"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <Button
+                        android:id="@+id/btnLink3"
+                        android:layout_width="match_parent"
+                        android:text="foco de 6w, 9w"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/borde_boton_no_seleccionado"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <Button
+                        android:id="@+id/btnAgregar"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:text="Añadir foco"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:background="#1C94AB"
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
+                        android:textColor="#FEFE03"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <Button
+                        android:id="@+id/btnEliminar"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:text="Retirar foco"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
+                        android:background="#1C94AB"
+                        android:textColor="#FEFE03"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

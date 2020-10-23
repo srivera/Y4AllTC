@@ -3,6 +3,7 @@ package ec.com.yacare.y4all.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.IntentService;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,11 +38,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -52,10 +55,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 import ec.com.yacare.y4all.asynctask.ws.GuardarFotoEquipoAsyncTask;
 import ec.com.yacare.y4all.lib.asynctask.hotspot.ComandoHotSpotScheduledTask;
+import ec.com.yacare.y4all.lib.asynctask.io.ComandoProbarReinicioScheduledTask;
 import ec.com.yacare.y4all.lib.enumer.TipoConexionEnum;
 import ec.com.yacare.y4all.lib.enumer.TipoEquipoEnum;
 import ec.com.yacare.y4all.lib.resources.YACSmartProperties;
@@ -69,15 +74,16 @@ public class PreferenciasActivity extends FragmentActivity {
 
 	private ToggleButton toggleApertura;
 	private ToggleButton toggleSensor;
-	private ToggleButton toggleLuzExterna;
-	private ToggleButton toggleLuzWifi;
 	private ToggleButton toggleTono;
 	private ToggleButton togglePuertos;
 	private ToggleButton toggleTimbreExterno;
 	private ToggleButton toggleModo;
 	private ToggleButton toggleWifi;
-	private ToggleButton toggleVolumenAlto;
-	private CheckBox checkBoxVecesTimbre;
+	private ToggleButton togglePorton;
+	private Spinner spinnerTiempoPorton;
+	//private ToggleButton toggleVolumenAlto;
+	//private CheckBox checkBoxVecesTimbre;
+	private TableRow rowPorton,rowPorton1, rowPorton2, rowSonido,rowSonido2,rowSonido3,rowSonido4, rowSonido5,rowSonido6;
 
 	private EditText editMensajeTimbrar;
 	private EditText editClavePuerta;
@@ -86,14 +92,17 @@ public class PreferenciasActivity extends FragmentActivity {
 	private EditText editMensajeApertura;
 	private EditText editMensajePuerta;
 
-	private TextView txtTipoVozSeleccionada, txtTiempoEncenderLuz, txtValorEncenderLuz;
+	private TextView txtTipoVozSeleccionada ;
 	private String codigoVoz;
 
 	private ArrayList<String> voces;
 	private ArrayList<String> tiempo;
 
-	private Button btnGuardarPreferencias, btnReiniciarNumeroSerie;
+	private Button btnGuardarPreferencias, btnReiniciarNumeroSerie, btnReinicio, btnActualizarVersion, btnCasa, btnEdificio;
 	private ImageButton btnPlay;
+
+	private RadioGroup opciones_timbre;
+	private RadioGroup opciones_volumen;
 
 	private DatosAplicacion datosAplicacion;
 
@@ -105,6 +114,8 @@ public class PreferenciasActivity extends FragmentActivity {
 
 	private ImageView fotoPerfilDispositivo;
 
+	private TextView txtMensaje, txtSensorPuerta,tituloTimbre,txtTimbreExterno,txtVecesTimbre,txtVolumenMensajes;
+
 	private String userChoosenTask;
 	private int REQUEST_CAMERA = 0, SELECT_FILE = 1, PIC_CROP = 2;
 
@@ -113,7 +124,6 @@ public class PreferenciasActivity extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setRequestedOrientation(AudioQueu.getRequestedOrientation());
 
 		setContentView(R.layout.ac_preferences);
 		if (isScreenLarge()) {
@@ -173,18 +183,28 @@ public class PreferenciasActivity extends FragmentActivity {
 			}
 		});
 
+		rowPorton = (TableRow) findViewById(R.id.rowPorton);
+		rowPorton1 = (TableRow) findViewById(R.id.rowPorton1);
+		rowPorton2 = (TableRow) findViewById(R.id.rowPorton2);
+
+		rowSonido = (TableRow) findViewById(R.id.rowSonido);
+		rowSonido2 = (TableRow) findViewById(R.id.rowSonido2);
+		rowSonido3 = (TableRow) findViewById(R.id.rowSonido3);
+		rowSonido4 = (TableRow) findViewById(R.id.rowSonido4);
+		rowSonido5 = (TableRow) findViewById(R.id.rowSonido5);
+		rowSonido6 = (TableRow) findViewById(R.id.rowSonido6);
+
 		toggleApertura = (ToggleButton) findViewById(R.id.toggleApertura);
 		toggleSensor = (ToggleButton) findViewById(R.id.toggleSensor);
-		toggleLuzExterna = (ToggleButton) findViewById(R.id.toggleLuzExterna);
-		toggleLuzWifi = (ToggleButton) findViewById(R.id.toggleLuzWifi);
 		toggleTono = (ToggleButton) findViewById(R.id.toggleTono);
 		togglePuertos = (ToggleButton) findViewById(R.id.togglePuertos);
 		toggleTimbreExterno = (ToggleButton) findViewById(R.id.toggleTimbreExterno);
 		toggleModo = (ToggleButton) findViewById(R.id.toggleModo);
 		toggleWifi = (ToggleButton) findViewById(R.id.toggleWifi);
-		toggleVolumenAlto = (ToggleButton) findViewById(R.id.toggleVolumenAlto);
+		togglePorton = (ToggleButton) findViewById(R.id.togglePorton);
+		//toggleVolumenAlto = (ToggleButton) findViewById(toggleVolumenAlto);
 
-		checkBoxVecesTimbre = (CheckBox) findViewById(R.id.checkBoxVecesTimbre);
+		//checkBoxVecesTimbre = (CheckBox) findViewById(checkBoxVecesTimbre);
 
 		editMensajeTimbrar = (EditText) findViewById(R.id.editMensajeTimbrar);
 		editClavePuerta = (EditText) findViewById(R.id.editClavePuerta);
@@ -192,17 +212,33 @@ public class PreferenciasActivity extends FragmentActivity {
 		editMensajeApertura = (EditText) findViewById(R.id.editMensajeApertura);
 		editClaveWifi = (EditText) findViewById(R.id.editClaveWifi);
 		editMensajePuerta = (EditText) findViewById(R.id.editMensajePuerta);
+		txtMensaje = (TextView) findViewById(R.id.txtMensaje);
+		txtSensorPuerta = (TextView) findViewById(R.id.txtSensorPuerta);
+		tituloTimbre = (TextView) findViewById(R.id.tituloTimbre);
+		txtTimbreExterno = (TextView) findViewById(R.id.txtTimbreExterno);
+		txtVecesTimbre = (TextView) findViewById(R.id.txtVecesTimbre);
+		txtVolumenMensajes = (TextView) findViewById(R.id.txtVolumenMensajes);
+		spinnerTiempoPorton = (Spinner) findViewById(R.id.spinnerTiempoPorton);
+
+		ImageButton fabSalir = (ImageButton) findViewById(R.id.fabSalir);
+		fabSalir.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 
 		editClavePuerta.setText("");
 
 		txtTipoVozSeleccionada = (TextView) findViewById(R.id.txtTipoVozSeleccionada);
-		txtTiempoEncenderLuz = (TextView) findViewById(R.id.txtTiempoEncenderLuz);
-		txtValorEncenderLuz = (TextView) findViewById(R.id.txtValorEncenderLuz);
 
 		btnPlay = (ImageButton) findViewById(R.id.btnPlay);
 
 		btnGuardarPreferencias = (Button) findViewById(R.id.btnGuardarPreferencias);
 		btnReiniciarNumeroSerie = (Button) findViewById(R.id.btnReiniciarNumeroSerie);
+		opciones_timbre = (RadioGroup) findViewById(R.id.opciones_timbre);
+		opciones_volumen = (RadioGroup) findViewById(R.id.opciones_volumen);
+		btnReinicio = (Button) findViewById(R.id.btnReinicio);
 
 		btnReiniciarNumeroSerie.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -222,86 +258,170 @@ public class PreferenciasActivity extends FragmentActivity {
 			}
 		});
 
-		if(datosAplicacion.getEquipoSeleccionado().getTiempoEncendidoLuz() == null ){
-			txtValorEncenderLuz.setText("5 min");
-		}else{
-			txtValorEncenderLuz.setText( datosAplicacion.getEquipoSeleccionado().getTiempoEncendidoLuz() / 60 / 1000 + " min" );
-		}
 
-		txtValorEncenderLuz.setOnClickListener(new View.OnClickListener() {
+		btnActualizarVersion = (Button) findViewById(R.id.btnActualizarVersion);
+
+		btnActualizarVersion.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Typeface fontRegular = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
-				AlertDialog.Builder alertDialog = new AlertDialog.Builder(PreferenciasActivity.this);
-				LayoutInflater inflater1 = getLayoutInflater();
-				View convertView = (View) inflater1.inflate(R.layout.seleccionar_equipo, null);
 
-				View convertViewTitulo = (View) inflater1.inflate(R.layout.seleccionar_equipo_titulo, null);
-				TextView titulo = (TextView) convertViewTitulo.findViewById(R.id.titulo);
-				titulo.setText("Seleccione el tiempo");
-				titulo.setTypeface(fontRegular);
-				alertDialog.setCustomTitle(convertViewTitulo);
-				alertDialog.setView(convertView);
+				if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+					String nombreDispositivo = sharedPrefs.getString("prefNombreDispositivo", "");
 
-				tiempo = new ArrayList<String>();
-				tiempo.add("1 min");
-				tiempo.add("2 min");
-				tiempo.add("3 min");
-				tiempo.add("4 min");
-				tiempo.add("5 min");
+					String datosConfT = "V01"//0
+							+ ";" + nombreDispositivo //1
+							+ ";" + "ANDROID" //2
+							+ ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() //3
+							+ ";";
 
-				ArrayAdapter<String> adapterVoces = new ArrayAdapter<String>( getApplicationContext(), R.layout.li_mensaje_texto,R.id.nombreMensaje, tiempo);
+					EnviarComandoThread enviarComandoThread = new EnviarComandoThread(PreferenciasActivity.this, datosConfT, null,
+							null, null, datosAplicacion.getEquipoSeleccionado().getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+					enviarComandoThread.start();
+				} else {
 
+					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+					String nombreDispositivo = sharedPrefs.getString("prefNombreDispositivo", "");
 
-				alertDialog.setCancelable(true);
-				alertDialog.setSingleChoiceItems(adapterVoces, 0, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						txtValorEncenderLuz.setText(tiempo.get(which));
-						datosAplicacion.getEquipoSeleccionado().setTiempoEncendidoLuz((which + 1) * 60 * 1000);
-						dialog.dismiss();
-					}
-				});
-				alertDialog.show();
+					String datosConfT =  "V01" //0
+							+ ";" + nombreDispositivo //1
+							+ ";" + "ANDROID" //2
+							+ ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() //3
+							+ ";";
+
+					AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
+					AudioQueu.contadorComandoEnviado++;
+				}
 			}
 		});
-		txtTiempoEncenderLuz.setOnClickListener(new View.OnClickListener() {
+
+		btnCasa = (Button) findViewById(R.id.btnCasa);
+
+        btnCasa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                String datosConfT = "V07"
+                        + ";" + "C" //2
+                        + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() //3
+                        + ";";
+
+                EnviarComandoThread enviarComandoThread = new EnviarComandoThread(PreferenciasActivity.this, datosConfT, null,
+                        null, null, datosAplicacion.getEquipoSeleccionado().getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+                enviarComandoThread.start();
+            }
+        });
+
+        btnEdificio = (Button) findViewById(R.id.btnEdificio);
+
+        btnEdificio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String datosConfT = "V07"
+                        + ";" + "E" //2
+                        + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() //3
+                        + ";";
+
+                EnviarComandoThread enviarComandoThread = new EnviarComandoThread(PreferenciasActivity.this, datosConfT, null,
+                        null, null, datosAplicacion.getEquipoSeleccionado().getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+                enviarComandoThread.start();
+
+            }
+        });
+		btnReinicio.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Typeface fontRegular = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
-				AlertDialog.Builder alertDialog = new AlertDialog.Builder(PreferenciasActivity.this);
-				LayoutInflater inflater1 = getLayoutInflater();
-				View convertView = (View) inflater1.inflate(R.layout.seleccionar_equipo, null);
-
-				View convertViewTitulo = (View) inflater1.inflate(R.layout.seleccionar_equipo_titulo, null);
-				TextView titulo = (TextView) convertViewTitulo.findViewById(R.id.titulo);
-				titulo.setText("Seleccione el tiempo");
-				titulo.setTypeface(fontRegular);
-				alertDialog.setCustomTitle(convertViewTitulo);
-				alertDialog.setView(convertView);
-
-				tiempo = new ArrayList<String>();
-				tiempo.add("1 min");
-				tiempo.add("2 min");
-				tiempo.add("3 min");
-				tiempo.add("4 min");
-				tiempo.add("5 min");
-
-				ArrayAdapter<String> adapterVoces = new ArrayAdapter<String>( getApplicationContext(), R.layout.li_mensaje_texto,R.id.nombreMensaje, tiempo);
 
 
-				alertDialog.setCancelable(true);
-				alertDialog.setSingleChoiceItems(adapterVoces, 0, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						txtValorEncenderLuz.setText(tiempo.get(which));
-						datosAplicacion.getEquipoSeleccionado().setTiempoEncendidoLuz((which + 1) * 60 * 1000);
-						dialog.dismiss();
-					}
-				});
-				alertDialog.show();
+				ComandoProbarReinicioScheduledTask enviarComandoThread = new ComandoProbarReinicioScheduledTask(datosAplicacion.getEquipoSeleccionado());
+				enviarComandoThread.start();
 			}
 		});
+
+//		if(datosAplicacion.getEquipoSeleccionado().getTiempoEncendidoLuz() == null ){
+//			txtValorEncenderLuz.setText("5 min");
+//		}else{
+//			txtValorEncenderLuz.setText( datosAplicacion.getEquipoSeleccionado().getTiempoEncendidoLuz() / 60 / 1000 + " min" );
+//		}
+
+//		txtValorEncenderLuz.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Typeface fontRegular = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
+//				AlertDialog.Builder alertDialog = new AlertDialog.Builder(PreferenciasActivity.this);
+//				LayoutInflater inflater1 = getLayoutInflater();
+//				View convertView = (View) inflater1.inflate(R.layout.seleccionar_equipo, null);
+//
+//				View convertViewTitulo = (View) inflater1.inflate(R.layout.seleccionar_equipo_titulo, null);
+//				TextView titulo = (TextView) convertViewTitulo.findViewById(R.id.titulo);
+//				titulo.setText("Seleccione el tiempo");
+//				titulo.setTypeface(fontRegular);
+//				alertDialog.setCustomTitle(convertViewTitulo);
+//				alertDialog.setView(convertView);
+//
+//				tiempo = new ArrayList<String>();
+//				tiempo.add("1 min");
+//				tiempo.add("2 min");
+//				tiempo.add("3 min");
+//				tiempo.add("4 min");
+//				tiempo.add("5 min");
+//
+//				ArrayAdapter<String> adapterVoces = new ArrayAdapter<String>( getApplicationContext(), R.layout.li_mensaje_texto,R.id.nombreMensaje, tiempo);
+//
+//
+//				alertDialog.setCancelable(true);
+//				alertDialog.setSingleChoiceItems(adapterVoces, 0, new DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						txtValorEncenderLuz.setText(tiempo.get(which));
+//						datosAplicacion.getEquipoSeleccionado().setTiempoEncendidoLuz((which + 1) * 60 * 1000);
+//						dialog.dismiss();
+//					}
+//				});
+//				alertDialog.show();
+//			}
+//		});
+//		txtTiempoEncenderLuz.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Typeface fontRegular = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
+//				AlertDialog.Builder alertDialog = new AlertDialog.Builder(PreferenciasActivity.this);
+//				LayoutInflater inflater1 = getLayoutInflater();
+//				View convertView = (View) inflater1.inflate(R.layout.seleccionar_equipo, null);
+//
+//				View convertViewTitulo = (View) inflater1.inflate(R.layout.seleccionar_equipo_titulo, null);
+//				TextView titulo = (TextView) convertViewTitulo.findViewById(R.id.titulo);
+//				titulo.setText("Seleccione el tiempo");
+//				titulo.setTypeface(fontRegular);
+//				alertDialog.setCustomTitle(convertViewTitulo);
+//				alertDialog.setView(convertView);
+//
+//				tiempo = new ArrayList<String>();
+//				tiempo.add("1 min");
+//				tiempo.add("2 min");
+//				tiempo.add("3 min");
+//				tiempo.add("4 min");
+//				tiempo.add("5 min");
+//
+//				ArrayAdapter<String> adapterVoces = new ArrayAdapter<String>( getApplicationContext(), R.layout.li_mensaje_texto,R.id.nombreMensaje, tiempo);
+//
+//
+//				alertDialog.setCancelable(true);
+//				alertDialog.setSingleChoiceItems(adapterVoces, 0, new DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						txtValorEncenderLuz.setText(tiempo.get(which));
+//						datosAplicacion.getEquipoSeleccionado().setTiempoEncendidoLuz((which + 1) * 60 * 1000);
+//						dialog.dismiss();
+//					}
+//				});
+//				alertDialog.show();
+//			}
+//		});
 
 		if(datosAplicacion.getEquipoSeleccionado().getPuerta() != null && datosAplicacion.getEquipoSeleccionado().getPuerta().equals("1")){
 			toggleApertura.setChecked(true);
@@ -309,55 +429,155 @@ public class PreferenciasActivity extends FragmentActivity {
 		if(datosAplicacion.getEquipoSeleccionado().getSensor() != null && datosAplicacion.getEquipoSeleccionado().getSensor().equals("1")){
 			toggleSensor.setChecked(true);
 		}
-		if(datosAplicacion.getEquipoSeleccionado().getLuz() != null && datosAplicacion.getEquipoSeleccionado().getLuz().equals("1")){
-			toggleLuzExterna.setChecked(true);
-		}
-		if(datosAplicacion.getEquipoSeleccionado().getLuzWifi() != null && datosAplicacion.getEquipoSeleccionado().getLuzWifi().equals("1")){
-			toggleLuzWifi.setChecked(true);
-		}
+//		if(datosAplicacion.getEquipoSeleccionado().getLuz() != null && datosAplicacion.getEquipoSeleccionado().getLuz().equals("1")){
+//			toggleLuzExterna.setChecked(true);
+//		}
+//		if(datosAplicacion.getEquipoSeleccionado().getLuzWifi() != null && datosAplicacion.getEquipoSeleccionado().getLuzWifi().equals("1")){
+//			toggleLuzWifi.setChecked(true);
+//		}
 		if(datosAplicacion.getEquipoSeleccionado().getTono() != null && !datosAplicacion.getEquipoSeleccionado().getTono().equals("0")){
 			toggleTono.setChecked(true);
 		}
-		if(datosAplicacion.getEquipoSeleccionado().getPuertoActivo() != null && datosAplicacion.getEquipoSeleccionado().getPuertoActivo().equals("1")){
-			togglePuertos.setChecked(true);
-		}
+//		if(datosAplicacion.getEquipoSeleccionado().getPuertoActivo() != null && datosAplicacion.getEquipoSeleccionado().getPuertoActivo().equals("1")){
+//			togglePuertos.setChecked(true);
+//		}
 		if(datosAplicacion.getEquipoSeleccionado().getVolumen() != null && datosAplicacion.getEquipoSeleccionado().getVolumen().equals(1)){
-			toggleVolumenAlto.setChecked(true);
+			opciones_volumen.check(R.id.radio_alto);
+		}else{
+			opciones_volumen.check(R.id.radio_medio);
 		}
+
+		List<String> list = new ArrayList<String>();
+		list.add("3");
+		list.add("4");
+		list.add("5");
+		list.add("6");
+		list.add("7");
+		list.add("8");
+		list.add("9");
+		list.add("10");
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, list);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerTiempoPorton.setAdapter(dataAdapter);
 
 		if(datosAplicacion.getEquipoSeleccionado().getTimbreExterno() != null && datosAplicacion.getEquipoSeleccionado().getTimbreExterno().equals("1")){
 			toggleTimbreExterno.setChecked(true);
-			checkBoxVecesTimbre.setVisibility(View.VISIBLE);
-			checkBoxVecesTimbre.setEnabled(true);
+			opciones_timbre.setVisibility(View.VISIBLE);
+			opciones_timbre.setEnabled(true);
+			opciones_timbre.check(R.id.radio_uno);
+			togglePorton.setChecked(true);
+			rowSonido.setVisibility(View.VISIBLE);
+			rowSonido2.setVisibility(View.VISIBLE);
+			rowSonido3.setVisibility(View.VISIBLE);
+			rowSonido4.setVisibility(View.VISIBLE);
+			rowSonido5.setVisibility(View.VISIBLE);
+			rowSonido6.setVisibility(View.VISIBLE);
+
+			rowPorton.setVisibility(View.GONE);
+			rowPorton1.setVisibility(View.GONE);
+			rowPorton2.setVisibility(View.GONE);
 		}else if(datosAplicacion.getEquipoSeleccionado().getTimbreExterno() != null && datosAplicacion.getEquipoSeleccionado().getTimbreExterno().equals("2")){
 			toggleTimbreExterno.setChecked(true);
-			checkBoxVecesTimbre.setButtonDrawable(android.R.drawable.checkbox_on_background);
-			checkBoxVecesTimbre.setVisibility(View.VISIBLE);
-			checkBoxVecesTimbre.setEnabled(true);
-			checkBoxVecesTimbre.setChecked(true);
+			opciones_timbre.setVisibility(View.VISIBLE);
+			opciones_timbre.setEnabled(true);
+			opciones_timbre.check(R.id.radio_dos);
+			togglePorton.setChecked(true);
+			rowSonido.setVisibility(View.VISIBLE);
+			rowSonido2.setVisibility(View.VISIBLE);
+			rowSonido3.setVisibility(View.VISIBLE);
+			rowSonido4.setVisibility(View.VISIBLE);
+			rowSonido5.setVisibility(View.VISIBLE);
+			rowSonido6.setVisibility(View.VISIBLE);
+
+			rowPorton.setVisibility(View.GONE);
+			rowPorton1.setVisibility(View.GONE);
+			rowPorton2.setVisibility(View.GONE);
+		}else if(datosAplicacion.getEquipoSeleccionado().getTimbreExterno() != null && datosAplicacion.getEquipoSeleccionado().getTimbreExterno().equals("0")){
+			togglePorton.setChecked(true);
+			toggleTimbreExterno.setChecked(false);
+			opciones_timbre.setVisibility(View.VISIBLE);
+			opciones_timbre.setEnabled(true);
+			opciones_timbre.check(R.id.radio_dos);
+			togglePorton.setChecked(true);
+			rowSonido.setVisibility(View.VISIBLE);
+			rowSonido2.setVisibility(View.VISIBLE);
+			rowSonido3.setVisibility(View.VISIBLE);
+			rowSonido4.setVisibility(View.VISIBLE);
+			rowSonido5.setVisibility(View.VISIBLE);
+			rowSonido6.setVisibility(View.VISIBLE);
+
+			rowPorton.setVisibility(View.GONE);
+			rowPorton1.setVisibility(View.GONE);
+			rowPorton2.setVisibility(View.GONE);
+		}else{
+			//Porton
+			togglePorton.setChecked(false);
+			opciones_timbre.setVisibility(View.GONE);
+			rowSonido.setVisibility(View.GONE);
+			rowSonido2.setVisibility(View.GONE);
+			rowSonido3.setVisibility(View.GONE);
+			rowSonido4.setVisibility(View.GONE);
+			rowSonido5.setVisibility(View.GONE);
+			rowSonido6.setVisibility(View.GONE);
+
+			rowPorton.setVisibility(View.VISIBLE);
+			rowPorton1.setVisibility(View.VISIBLE);
+			rowPorton2.setVisibility(View.VISIBLE);
+			spinnerTiempoPorton.setSelection(list.indexOf(datosAplicacion.getEquipoSeleccionado().getTimbreExterno()));
 		}
+
 		toggleTimbreExterno.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
-					checkBoxVecesTimbre.setVisibility(View.VISIBLE);
-					checkBoxVecesTimbre.setEnabled(true);
-				}else{
-					checkBoxVecesTimbre.setVisibility(View.GONE);
-				}
-			}
-		});
-		checkBoxVecesTimbre.setOnClickListener(new View.OnClickListener() {
+					opciones_timbre.setVisibility(View.VISIBLE);
+					opciones_timbre.setEnabled(true);
+					rowSonido4.setVisibility(View.VISIBLE);
+					rowSonido5.setVisibility(View.VISIBLE);
+					rowSonido6.setVisibility(View.VISIBLE);
 
-			@Override
-			public void onClick(View v) {
-				if (((CheckBox) v).isChecked()) {
-					checkBoxVecesTimbre.setButtonDrawable(android.R.drawable.checkbox_on_background);
 				}else{
-					checkBoxVecesTimbre.setButtonDrawable(android.R.drawable.checkbox_off_background);
+					rowSonido4.setVisibility(View.GONE);
+					rowSonido5.setVisibility(View.GONE);
+					rowSonido6.setVisibility(View.GONE);
+					opciones_timbre.setVisibility(View.GONE);
 				}
 			}
 		});
+
+		togglePorton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(isChecked){
+					opciones_timbre.setVisibility(View.VISIBLE);
+					opciones_timbre.setEnabled(true);
+					rowSonido.setVisibility(View.VISIBLE);
+					rowSonido2.setVisibility(View.VISIBLE);
+					rowSonido3.setVisibility(View.VISIBLE);
+					rowSonido4.setVisibility(View.VISIBLE);
+					rowSonido5.setVisibility(View.VISIBLE);
+					rowSonido6.setVisibility(View.VISIBLE);
+
+					rowPorton.setVisibility(View.GONE);
+					rowPorton1.setVisibility(View.GONE);
+					rowPorton2.setVisibility(View.GONE);
+				}else{
+					opciones_timbre.setVisibility(View.GONE);
+					rowSonido.setVisibility(View.GONE);
+					rowSonido2.setVisibility(View.GONE);
+					rowSonido3.setVisibility(View.GONE);
+					rowSonido4.setVisibility(View.GONE);
+					rowSonido5.setVisibility(View.GONE);
+					rowSonido6.setVisibility(View.GONE);
+
+					rowPorton.setVisibility(View.VISIBLE);
+					rowPorton1.setVisibility(View.VISIBLE);
+					rowPorton2.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+
 
 		if(datosAplicacion.getEquipoSeleccionado().getModo() != null && datosAplicacion.getEquipoSeleccionado().getModo().equals(YACSmartProperties.MODO_WIFI)){
 			toggleWifi.setChecked(true);
@@ -591,8 +811,8 @@ public class PreferenciasActivity extends FragmentActivity {
 		btnGuardarPreferencias.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
 				if(datosAplicacion.getEquipoSeleccionado().getModo().equals(YACSmartProperties.MODO_AP)){
+				//if(true){
 					if (!editNombreWifi.getText().toString().equals("") && !editClaveWifi.getText().toString().equals("") ) {
 
 
@@ -608,69 +828,147 @@ public class PreferenciasActivity extends FragmentActivity {
 					}
 
 				}else {
-					clavePuerta = "";
-					if (!editClavePuerta.getText().toString().equals("")) {
-						clavePuerta = YACSmartProperties.Encriptar(editClavePuerta.getText().toString());
-					}
+                    if(datosAplicacion.getEquipoSeleccionado().getTipoPortero() != null && !datosAplicacion.getEquipoSeleccionado().getTipoPortero().equals(YACSmartProperties.PORTERO_EDIFICIO)) {
+                        clavePuerta = "";
+                        if (!editClavePuerta.getText().toString().equals("")) {
+                            clavePuerta = YACSmartProperties.Encriptar(editClavePuerta.getText().toString(), datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+                        }
 
-					SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-					String nombreDispositivo = sharedPrefs.getString("prefNombreDispositivo", "");
-					TimeZone tz = TimeZone.getDefault();
+                        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        String nombreDispositivo = sharedPrefs.getString("prefNombreDispositivo", "");
+                        TimeZone tz = TimeZone.getDefault();
 
-					String valorTimbreExterno = "0";
-					if(toggleTimbreExterno.isChecked()){
-						if(checkBoxVecesTimbre.isChecked()){
-							valorTimbreExterno = "2";
+                        String valorTimbreExterno = "0";
+                        if(togglePorton.isChecked()) {
+							if (toggleTimbreExterno.isChecked()) {
+								if (opciones_timbre.getCheckedRadioButtonId() == R.id.radio_uno) {
+									valorTimbreExterno = "1";
+								} else {
+									valorTimbreExterno = "2";
+								}
+							}
 						}else{
-							valorTimbreExterno = "1";
+                        	//Porton
+							valorTimbreExterno = spinnerTiempoPorton.getSelectedItem().toString();
 						}
-					}
 
-					String datosConfT = YACSmartProperties.COM_CONFIGURAR_PARAMETROS //0
-							+ ";" + nombreDispositivo //1
-							+ ";" + "ANDROID" //2
-							+ ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() //3
-							+ ";" + (toggleApertura.isChecked() ? "1" : "0") //4
-							+ ";" + clavePuerta //5
-							+ ";" + (toggleSensor.isChecked() ? "1" : "0") //6
-							+ ";" + (toggleLuzExterna.isChecked() ? "1" : "0") //7
-							+ ";" + (toggleLuzWifi.isChecked() ? "1" : "0") //8
-							+ ";" + editMensajeTimbrar.getText().toString() //9
-							+ ";" + "1100" //10 Contador timbre sensibilidad para leer
-							+ ";" + (togglePuertos.isChecked() ? "1" : "0") //11
-							+ ";" + "20000" //12 Tiempo de espera del buzon
-							+ ";" + "6500" //13 Contador sensor de puerta sensibilidad
-							+ ";" + "15000" //14 Tiempo de grabacion del buzon
-//							+ ";" + (toggleTimbreExterno.isChecked() ? "1" : "0") //15
-							+ ";" + valorTimbreExterno //15
-							+ ";" + editMensajeApertura.getText().toString() //16
-							+ ";" + editMensajePuerta.getText().toString() //17
-							+ ";" + tz.getID() //18
-							+ ";" + datosAplicacion.getEquipoSeleccionado().getTiempoEncendidoLuz() //19
-							+ ";" + (toggleVolumenAlto.isChecked() ? "1" : "0") //20
-							+ ";";
+                        String volumen = "1";
+
+                        String datosConfT = YACSmartProperties.COM_CONFIGURAR_PARAMETROS //0
+                                + ";" + nombreDispositivo //1
+                                + ";" + "ANDROID" //2
+                                + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() //3
+                                + ";" + (toggleApertura.isChecked() ? "1" : "0") //4
+                                + ";" + clavePuerta //5
+                                + ";" + (toggleSensor.isChecked() ? "1" : "0") //6
+                                + ";" + editMensajeTimbrar.getText().toString() //7
+                                + ";" + "1100" //8 Contador timbre sensibilidad para leer
+                                + ";" + "2" //9
+                                + ";" + "20000" //10 Tiempo de espera del buzon
+                                + ";" + "6500" //11 Contador sensor de puerta sensibilidad
+                                + ";" + "15000" //12 Tiempo de grabacion del buzon
+                                + ";" + valorTimbreExterno //13
+                                + ";" + editMensajeApertura.getText().toString() //14
+                                + ";" + editMensajePuerta.getText().toString() //15
+                                + ";" + tz.getID() //16
+                                + ";" + datosAplicacion.getEquipoSeleccionado().getTiempoEncendidoLuz() //17
+                                + ";" + volumen //18
+                                + ";";
 
 
-					EquipoDataSource equipoDataSource = new EquipoDataSource(getApplicationContext());
-					equipoDataSource.open();
-					datosAplicacion.getEquipoSeleccionado().setTono(chosenRingtone);
-					datosAplicacion.getEquipoSeleccionado().setVozMensaje(codigoVoz);
-					equipoDataSource.updateEquipo(datosAplicacion.getEquipoSeleccionado());
-					equipoDataSource.close();
+                        EquipoDataSource equipoDataSource = new EquipoDataSource(getApplicationContext());
+                        equipoDataSource.open();
+                        datosAplicacion.getEquipoSeleccionado().setTono(chosenRingtone);
+                        datosAplicacion.getEquipoSeleccionado().setVozMensaje(codigoVoz);
+                        equipoDataSource.updateEquipo(datosAplicacion.getEquipoSeleccionado());
+                        equipoDataSource.close();
 
 
-					if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
-						EnviarComandoThread enviarComandoThread = new EnviarComandoThread(PreferenciasActivity.this, datosConfT, null,
-								null, null, datosAplicacion.getEquipoSeleccionado().getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
-						enviarComandoThread.start();
-					} else {
-						AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
-						AudioQueu.contadorComandoEnviado++;
-					}
-					finish();
+                        if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+                            EnviarComandoThread enviarComandoThread = new EnviarComandoThread(PreferenciasActivity.this, datosConfT, null,
+                                    null, null, datosAplicacion.getEquipoSeleccionado().getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+                            enviarComandoThread.start();
+                        } else {
+                            AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
+                            AudioQueu.contadorComandoEnviado++;
+                        }
+                        finish();
+                    }else{
+                        clavePuerta = "";
+                        if (!editClavePuerta.getText().toString().equals("")) {
+                            clavePuerta = YACSmartProperties.Encriptar(editClavePuerta.getText().toString(), datosAplicacion.getEquipoSeleccionado().getNumeroSerie());
+                        }
+
+                        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        String nombreDispositivo = sharedPrefs.getString("prefNombreDispositivo", "");
+                        TimeZone tz = TimeZone.getDefault();
+
+                        String valorTimbreExterno = "0";
+                        if (toggleTimbreExterno.isChecked()) {
+                            if (opciones_timbre.getCheckedRadioButtonId() == R.id.radio_uno) {
+                                valorTimbreExterno = "1";
+                            } else {
+                                valorTimbreExterno = "2";
+                            }
+                        } else {
+                            valorTimbreExterno = "10";
+                        }
+
+                        String volumen = "1";
+                        if (opciones_volumen.getCheckedRadioButtonId() == R.id.radio_alto) {
+                            valorTimbreExterno = "1";
+                        }
+                        String datosConfT = YACSmartProperties.COM_CONFIGURAR_PARAMETROS_EDIFICIO //0
+                                + ";" + nombreDispositivo //1
+                                + ";" + "ANDROID" //2
+                                + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie() //3
+                                + ";" + (toggleApertura.isChecked() ? "1" : "0") //4
+                                + ";" + clavePuerta //5
+                                + ";" + datosAplicacion.getEquipoSeleccionado().getNumeroDepartamento() //6
+                                + ";";
+
+
+                        EquipoDataSource equipoDataSource = new EquipoDataSource(getApplicationContext());
+                        equipoDataSource.open();
+                        datosAplicacion.getEquipoSeleccionado().setTono(chosenRingtone);
+                        datosAplicacion.getEquipoSeleccionado().setVozMensaje(codigoVoz);
+                        equipoDataSource.updateEquipo(datosAplicacion.getEquipoSeleccionado());
+                        equipoDataSource.close();
+
+
+                        if (AudioQueu.getTipoConexion().equals(TipoConexionEnum.WIFI.getCodigo())) {
+                            EnviarComandoThread enviarComandoThread = new EnviarComandoThread(PreferenciasActivity.this, datosConfT, null,
+                                    null, null, datosAplicacion.getEquipoSeleccionado().getIpLocal(), YACSmartProperties.PUERTO_COMANDO_DEFECTO, null);
+                            enviarComandoThread.start();
+                        } else {
+                            AudioQueu.getComandoEnviado().put(AudioQueu.contadorComandoEnviado, datosConfT);
+                            AudioQueu.contadorComandoEnviado++;
+                        }
+                        finish();
+                    }
 				}
 			}
 		});
+		if(datosAplicacion.getEquipoSeleccionado().getTipoPortero() != null && datosAplicacion.getEquipoSeleccionado().getTipoPortero().equals(YACSmartProperties.PORTERO_EDIFICIO)){
+			editMensajeTimbrar.setVisibility(View.GONE);
+			txtMensaje.setVisibility(View.GONE);
+			txtSensorPuerta.setVisibility(View.GONE);
+			tituloTimbre.setVisibility(View.GONE);
+			txtTimbreExterno.setVisibility(View.GONE);
+			txtVecesTimbre.setVisibility(View.GONE);
+			txtVolumenMensajes.setVisibility(View.GONE);
+            toggleApertura.setVisibility(View.GONE);
+            toggleSensor.setVisibility(View.GONE);
+            toggleTono.setVisibility(View.GONE);
+            togglePuertos.setVisibility(View.GONE);
+            toggleTimbreExterno.setVisibility(View.GONE);
+            toggleModo.setVisibility(View.GONE);
+            toggleWifi.setVisibility(View.GONE);
+            opciones_timbre.setVisibility(View.GONE);
+            opciones_volumen.setVisibility(View.GONE);
+			editMensajePuerta.setVisibility(View.GONE);
+			editMensajeApertura.setVisibility(View.GONE);
+		}
 	}
 
 

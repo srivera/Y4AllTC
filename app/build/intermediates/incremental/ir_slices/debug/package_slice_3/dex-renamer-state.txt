@@ -1,0 +1,4 @@
+#Tue Mar 19 19:13:16 COT 2019
+base.0=C\:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\3
+path.0=classes.dex
+renamed.0=classes.dex

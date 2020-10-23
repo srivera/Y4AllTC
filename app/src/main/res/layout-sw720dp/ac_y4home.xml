@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/menu_apps"
             fab:fab_size="mini"
-            fab:fab_label="Necesito una aplicación móvil"
+            fab:fab_label="Configurar WIFI"
             style="@style/MenuButtonsSmall"/>
 
         <com.github.clans.fab.FloatingActionButton
@@ -45,16 +45,17 @@
             android:layout_height="wrap_content"
             android:src="@drawable/menu_compartir"
             fab:fab_size="mini"
+            android:visibility="gone"
             fab:fab_label="Compartir mi equipo"
             style="@style/MenuButtonsSmall"/>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/btnNuevo"
+            android:id="@+id/btnCerrarSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/menu_nuevo"
+            android:src="@drawable/salir"
             fab:fab_size="mini"
-            fab:fab_label="Agregar un equipo"
+            fab:fab_label="Cerrar sesión"
             style="@style/MenuButtonsSmall"/>
 
         <com.github.clans.fab.FloatingActionButton
@@ -65,6 +66,32 @@
             fab:fab_size="mini"
             fab:fab_label="Preferencias"
             style="@style/MenuButtonsSmall"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnCerradura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cerradura"
+            fab:fab_size="mini"
+            fab:fab_label="Cerradura Inteligente"
+            style="@style/MenuButtonsSmall"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnAlarma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/siren"
+            fab:fab_size="mini"
+            fab:fab_label="Alarma"
+            style="@style/MenuButtonsSmall"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/btnNuevo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_nuevo"
+            fab:fab_size="mini"
+            fab:fab_label="Nuevo dispositivo/volver a configurar"
+            style="@style/MenuButtonsSmall"/>
+
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/btnRespuesta"
@@ -72,6 +99,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/menu_respuesta"
             fab:fab_size="mini"
+            android:visibility="gone"
             fab:fab_label="Mis respuestas"
             style="@style/MenuButtonsSmall"/>
 
@@ -82,6 +110,7 @@
             android:src="@drawable/menu_cuenta"
             fab:fab_shadowColor="#cc585858"
             fab:fab_size="mini"
+            android:visibility="gone"
             fab:fab_label="Mi cuenta"
             style="@style/MenuButtonsSmall"/>
 
@@ -387,27 +416,64 @@
                     </RelativeLayout>
 
                     </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal|center_vertical">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.5"
+                        android:text="alarma"
+                        android:textSize="16dp"
+                        android:background="@drawable/back_boton_izq"
+                        android:textColor="#FFFFFF"
+                        android:id="@+id/btnCerraduraPanel"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"/>
+                    <TextView
+                        android:id="@+id/txtYacare"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05"
+                        android:visibility="gone"
+                        android:textSize="11dp"
+                        android:text="Yacare Technology"
+                        android:textColor="#000000"
+                        android:gravity="right"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="1dp"/>
                 <ec.com.yacare.y4all.lib.util.DigitalClock
                     android:id="@+id/digitalClock1"
                     android:layout_width="wrap_content"
                     android:layout_gravity="center_vertical|center_horizontal"
-                    android:textSize="35dp"
+                    android:textSize="20dp"
                     android:textColor="#000000"
                     android:textStyle="bold"
                     android:layout_height="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="0.10"
                     android:text="DigitalClock" />
-                <TextView
-                    android:id="@+id/txtYacare"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.05"
-                    android:text="Yacare Technology"
-                    android:textColor="#000000"
-                    android:gravity="right"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="0.5"
+                    android:text="alarma"
+                    android:textSize="16dp"
+                    android:background="@drawable/back_boton_izq"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/btnAlarmaPanel"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
         <GridLayout
@@ -494,6 +560,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorprincipal"
                 android:layout_toRightOf="@+id/badge_layout1"
+                android:visibility="gone"
                 android:gravity="center_vertical"
                 android:layout_gravity="fill">
 
@@ -565,6 +632,7 @@
                 android:background="@color/colorprincipal"
                 android:layout_toRightOf="@+id/badge2"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 android:layout_gravity="fill">
 
                 <RelativeLayout

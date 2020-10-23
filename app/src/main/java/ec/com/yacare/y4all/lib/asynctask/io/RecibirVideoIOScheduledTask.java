@@ -70,7 +70,7 @@ public class RecibirVideoIOScheduledTask extends Thread {
 			contadorVideo = 0;
 
 			int BUF_SIZE = 1024 * 90;
-
+			AudioQueu.paqRecibidoVideo = 0;
 			try {
 				AudioQueu.mSocketVideo = IO.socket(ruta);
 				AudioQueu.mSocketVideo.on(Socket.EVENT_CONNECT, onConnectV);
@@ -196,6 +196,7 @@ public class RecibirVideoIOScheduledTask extends Thread {
 //			Log.d("video recibido", "video " + contadorVideo + " / " +  contador);
 			AudioQueu.getVideoRecibido().put(contadorVideo, (byte[]) args[0]);
 			contadorVideo++;
+			AudioQueu.paqRecibidoVideo++;
 		}
 	};
 

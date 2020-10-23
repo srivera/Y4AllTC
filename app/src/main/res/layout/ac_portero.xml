@@ -7,26 +7,18 @@
     android:layout_height="match_parent"
     android:layout_gravity="top"
     android:gravity="top"
-    android:background="#FFFFFF">
+    android:background="#000000">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="top"
         android:orientation="vertical">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="#000000"
             android:gravity="center_vertical"
             android:layout_weight="0.07">
-
-            <View android:id="@+id/rectangle_at_the_top"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/gradient"
-                android:visibility="visible" />
-
             <ImageButton
                 android:id="@+id/fabSalir"
                 android:layout_width="wrap_content"
@@ -46,51 +38,39 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.05"
+            android:layout_weight="0.04"
             android:orientation="horizontal"
+            android:gravity="center_horizontal"
             android:padding="5dp">
-            <EditText
-                android:id="@+id/editMensajeCorto"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:textSize="13dp"
-                android:background="@drawable/text_rounded"
-                android:hint="mensaje corto" />
+            <TextView
+                android:id="@+id/txtEmpresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Yacaré Technology"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="#AAAAAA"/>
 
-            <ImageButton
-                android:id="@+id/fabMensajeM"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:background="@android:drawable/screen_background_light_transparent"
-                android:src="@drawable/yacchatmujer"
-                android:layout_gravity="center_horizontal"
-                android:adjustViewBounds="true" />
-            <ImageButton
-                android:id="@+id/fabMensajeH"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:background="@android:drawable/screen_background_light_transparent"
-                android:src="@drawable/yacchathombre"
-                android:layout_gravity="center_horizontal"
-                android:adjustViewBounds="true" />
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/imagensenal"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                android:src="@drawable/menuinternet"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerInside"/>
+        </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.45"
+            android:layout_weight="0.53"
             android:gravity="center_vertical"
-            android:background="@color/color_light"
+            android:background="#000000"
             android:orientation="vertical">
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -103,7 +83,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
-                    android:layout_margin="40dp"
+                    android:layout_margin="60dp"
+                    android:alpha="0.5"
                     android:background="@drawable/image_rounded_corner_amet"
                     android:layout_span="2">
 
@@ -111,7 +92,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:id="@+id/indicator"
-                        app:indicatorColor="@color/colorprincipal"
+                        app:indicatorColor="#000000"
+                        android:layout_marginTop="10dp"
                         app:indicatorName="BallPulseSyncIndicator"
                         style="@style/AVLoadingIndicatorView" />
 
@@ -123,39 +105,38 @@
                         android:gravity="center_vertical|center_horizontal"
                         android:text="conectando un momento por favor"
                         android:textColor="#000000"
-                        android:textSize="12dp"
-                        android:layout_marginTop="9dp" />
+                        android:textSize="13dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="40dp"/>
                 </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/videoPanel"
-                android:layout_span="2">
-                <TextView
-                    android:id="@+id/textoTimer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="14dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="left"
-                    android:textColor="#000000"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-
-
-                <ImageView
-                    android:id="@+id/imagenInicialFoto"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#ffffff"
-                    android:scaleType="fitXY"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:id="@+id/videoPanel"
+                    android:layout_span="2">
+                    <TextView
+                        android:id="@+id/textoTimer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="left"
+                        android:textColor="#000000"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <ImageView
+                        android:id="@+id/imagenInicialFoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#000000"
+                        android:scaleType="fitXY"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
                 </RelativeLayout>
                 <ImageButton
                     android:id="@+id/fabMic"
@@ -165,7 +146,32 @@
                     android:src="@drawable/micceleste"
                     android:background="@android:color/transparent"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"/>
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"/>
+                <ec.com.yacare.y4all.lib.util.indicator.AVLoadingIndicatorView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/indicatorMic"
+                    app:indicatorName="BallScaleMultipleIndicator"
+                    style="@style/AVLoadingIndicatorView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"/> />
+                <TextView
+                    android:id="@+id/txtMensajeMicrofono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FF0000"
+                    android:text="pulse para hablar"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:alpha="0.5"
+                    android:layout_marginBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:textSize="8dp" />
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="100dp"
@@ -179,7 +185,7 @@
                         android:id="@+id/txtMensaje"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/back_mensaje"
+                        android:background="@drawable/back_mensaje_conexion"
                         android:text=""
                         android:textColor="#000000"
                         android:gravity="center_horizontal"
@@ -192,203 +198,95 @@
                         tools:layout_editor_absoluteX="0dp"
                         android:elevation="1dp" />
                 </RelativeLayout>
-
             </RelativeLayout>
-
         </LinearLayout>
-
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#000000"
             android:layout_weight="0.08">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:background="@color/colorprincipal"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/txtAudio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="audio"
-                android:textSize="14dp"
-                android:textColor="#FFFFFF"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"/>
-
-
-            <TextView
-                android:id="@+id/txtVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="video"
-                android:textSize="14dp"
-                android:textColor="#FFFFFF"
-                android:layout_alignBaseline="@+id/txtAudio"
-                android:layout_alignBottom="@+id/txtAudio"
-                android:layout_toRightOf="@+id/txtAudio"
-                android:layout_toEndOf="@+id/txtAudio" />
-
             <ImageButton
-                android:id="@+id/fabCerrar"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:src="@drawable/decline"
+                android:id="@+id/btnMensaje"
+                android:layout_width="0dp"
+                android:layout_weight="0.17"
+                android:layout_height="match_parent"
+                android:src="@drawable/menumensaje"
                 android:background="@android:color/transparent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
+                android:layout_gravity="center_horizontal"/>
             <ImageButton
                 android:id="@+id/btnLuz"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:src="@drawable/flash"
+                android:layout_width="0dp"
+                android:layout_weight="0.19"
+                android:layout_height="match_parent"
+                android:src="@drawable/menuluces"
                 android:background="@android:color/transparent"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/fabCerrar"
-                android:layout_toStartOf="@+id/fabCerrar" />
-
-            <ImageButton
-                android:id="@+id/btnCamera"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:src="@drawable/camera"
-                android:background="@android:color/transparent"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/btnLuz"
-                android:layout_toStartOf="@+id/btnLuz" />
-
+                android:layout_gravity="center_horizontal"/>
+            <Button
+                android:id="@+id/fabCerrar"
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
+                android:layout_height="match_parent"
+                android:text="Cerrar"
+                android:textSize="10dp"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_vertical"
+                android:textAllCaps="false"
+                android:background="@drawable/framerojo"/>
             <ImageButton
                 android:id="@+id/fabPuerta"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:src="@drawable/opendoor"
+                android:layout_width="0dp"
+                android:layout_weight="0.17"
+                android:layout_height="match_parent"
+                android:src="@drawable/menupuerta"
                 android:background="@android:color/transparent"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/btnCamera"
-                android:layout_toStartOf="@+id/btnCamera" />
-
+                android:layout_gravity="center_horizontal"/>
             <ImageButton
                 android:id="@+id/fabSpeaker"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:src="@drawable/speaker"
+                android:layout_width="0dp"
+                android:layout_weight="0.19"
+                android:layout_height="match_parent"
+                android:src="@drawable/menuspeaker"
                 android:background="@android:color/transparent"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/fabPuerta"
-                android:layout_toStartOf="@+id/fabPuerta" />
-        </RelativeLayout>
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
 
         <LinearLayout android:layout_height="0dp"
-            android:layout_weight="0.2"
+            android:layout_weight="0.25"
             android:layout_gravity="center_horizontal|center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent">
-
-            <LinearLayout android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:orientation="vertical"
-                android:layout_width="0dp">
-                <RadioGroup
-                    android:id="@+id/radioTipo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border_radio"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/fabMensajes"
-                        android:background="@drawable/toggle_widget_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:checked="true"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Texto"
-                        android:textColor="@color/white" />
-
-                    <RadioButton
-                        android:id="@+id/fabRespuesta"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/toggle_widget_background"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Voz"
-                        android:textColor="@color/white" />
-                </RadioGroup>
-                </LinearLayout>
-
-
-
             <ListView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/respuestasTexto"
                 android:layout_weight="0.6"/>
-
-            <ImageButton
-                android:id="@+id/fabEnviarMensaje"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:background="@android:drawable/screen_background_light_transparent"
-                android:src="@drawable/botonlista"
-                android:layout_gravity="center_horizontal"
-                android:adjustViewBounds="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:background="#000000"
+            android:orientation="horizontal"
+            android:layout_weight="0.03">
+            <TextView
+                android:id="@+id/txtAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="audio"
+                android:textSize="10dp"
+                android:textColor="#FFFFFF"/>
+            <TextView
+                android:id="@+id/txtVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="video"
+                android:textSize="10dp"
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
-
-
-        <TableLayout
-            android:id="@+id/TableLayoutPrincipal1"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.09"
-            android:layout_marginBottom="3dp"
-            android:layout_marginTop="3dp"
-            android:visibility="gone"
-            android:stretchColumns="*" >
-
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/rowImagenes"
-                android:padding="0dip">
-                <GridView
-                    android:id="@+id/gridView"
-                    android:background="#FFFFFF"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:columnWidth="60dp"
-                    android:drawSelectorOnTop="true"
-                    android:gravity="center"
-                    android:numColumns="auto_fit"
-                    android:stretchMode="columnWidth"
-                    android:verticalSpacing="1dp"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:layout_span="3" />
-
-
-            </TableRow>
-
-        </TableLayout>
 
     </LinearLayout>
 </RelativeLayout>

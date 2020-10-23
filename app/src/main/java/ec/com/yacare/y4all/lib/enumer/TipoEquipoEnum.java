@@ -60,7 +60,8 @@ public enum TipoEquipoEnum {
 			tipoEquipoEnum = TipoEquipoEnum.MONITORBEBE;
 		}else if(codigo.equals(TipoEquipoEnum.INTERCOMUNICADOR.getCodigo())){
 			tipoEquipoEnum = TipoEquipoEnum.INTERCOMUNICADOR;
-
+		}else if(codigo.equals(TipoEquipoEnum.LUCES.getCodigo())){
+			tipoEquipoEnum = TipoEquipoEnum.LUCES;
 		}
 			
 		

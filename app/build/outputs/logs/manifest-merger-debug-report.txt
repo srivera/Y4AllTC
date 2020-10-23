@@ -1,564 +1,816 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-302:12
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\fab-1.6.4.aar\e72cac9913ee9004c124d4738fe11c26\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\f205f161f4b0b037643ccaa847f8c622\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9ea24cf86d4fe00d68b62ae34b88b471\AndroidManifest.xml:17:1-31:12
+MERGED from [com.google.firebase:firebase-messaging:17.6.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-messaging-17.6.0.aar\d85c9c20dad13164de826ec1343faad5\AndroidManifest.xml:17:1-37:12
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.9.aar\cc603bd461213cf4b2cf53344a8b618c\AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-v13:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v13-26.1.0.aar\82aa0b9ec26f5f5572d64cdacb84a3e1\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\13ff01d0ecc3cd1af088378148ea32fd\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\727a33fde9fd457fcb91b605b3a95169\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha2.aar\6b7004e3b3c48b537fecb7758109d8fa\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:palette-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\palette-v7-26.1.0.aar\9a2d2407a856642378f0551a01d28575\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\f6ff32e88ef892099f4d254a187de6af\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\4bf6161c61ba63b907927b304f067d96\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:transition:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\2690f3de8dfe80178a154ff659d0afad\AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.firebase:firebase-analytics:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-analytics-16.5.0.aar\8fc60b2f73b2d310f5267a664b3763e0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:17:1-36:12
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:17:1-59:12
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\d18e89de28290b66b5b14923b2fe4f3c\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:2:1-19:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\c38c93907fc34bff1a4b3e09a3a3c38d\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-17.0.1.aar\dcee53060ef6f9727b684f8a7c9b65e5\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:17:1-55:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-16.5.0.aar\d6c66ccbe93e1c8c2ea5a11ee88711a3\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-stats-16.0.1.aar\135f7af3e4fc1f9e2ba6f7b0f01d59ae\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-measurement-base:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-base-16.5.0.aar\0ad98e1776b12a64179607758b25341e\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-16.0.0.aar\9f07dabde676238e43fbeb2104edac0d\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.2.0.aar\bc249257bbda6ec757e9e832bfec2816\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f7b3f337550ffe9f8d722d29f529ca27\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1ece92fe52cba6055b027531a843a873\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\4cd0901c40f120f7dc575501bd300e54\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\33834904db0d8aff7972f917dde72d1b\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\692c668a5336e86f4baf9c73d447bc89\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\570e302a5ca422b3177be0dd9b8d6d34\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f141aec88891043a754ac9ede43554c\AndroidManifest.xml:17:1-30:12
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
 	package
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:3:5-45
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:3:5-45
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:5:5-30
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
 	android:versionCode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:4:5-28
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:1-272:12
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:2:11-69
-uses-sdk
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.android.gms:play-services:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:23:5-42
-MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\AndroidManifest.xml:20:5-43
-MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\AndroidManifest.xml:4:5-42
-MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\AndroidManifest.xml:19:5-42
-MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:27:5-42
-MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:18:5-42
-MERGED from [com.android.support:support-v13:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:design:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:recyclerview-v7:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:cardview-v7:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:multidex:1.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\AndroidManifest.xml:18:5-42
-MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:palette-v7:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\palette-v7\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
-MERGED from [com.github.clans:fab:1.6.4] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.github.clans\fab\1.6.4\AndroidManifest.xml:8:5-10:41
-	android:targetSdkVersion
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:9:9-38
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
-	android:minSdkVersion
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:8:9-35
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:12:5-84
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:8:5-84
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:12:22-81
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:8:22-81
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:14:5-80
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:10:5-80
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:14:22-77
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:10:22-77
 uses-permission#android.permission.CAMERA
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:16:3-62
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:12:3-62
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:16:20-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:12:20-60
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:17:5-18:23
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:13:5-14:23
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:17:22-73
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:13:22-73
 uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:19:5-20:23
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:15:5-16:23
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:19:22-73
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:15:22-73
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:23:5-24:23
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:19:5-20:23
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:23:22-68
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:19:22-68
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:25:5-79
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:21:5-78
-MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\AndroidManifest.xml:22:5-79
-MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\AndroidManifest.xml:19:5-79
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:20:5-78
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:21:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:24:5-79
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:25:22-76
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:21:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:26:5-81
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:22:5-80
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:22:5-81
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:26:22-78
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:22:22-78
 uses-permission#android.permission.DISABLE_KEYGUARD
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:27:5-75
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:23:5-75
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:27:22-72
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:23:22-72
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:28:5-75
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:24:5-75
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:28:22-72
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:24:22-72
 uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:29:5-80
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:25:5-80
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:29:22-77
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:25:22-77
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:35:5-67
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:20:5-66
-MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\AndroidManifest.xml:21:5-67
-MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\AndroidManifest.xml:19:5-67
-MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\AndroidManifest.xml:22:5-67
-MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\AndroidManifest.xml:20:5-66
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:21:5-66
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:31:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:23:5-67
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:35:22-64
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:31:22-64
 uses-permission#android.permission.GET_ACCOUNTS
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:38:5-71
-MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\AndroidManifest.xml:21:5-70
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:34:5-71
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:38:22-68
-uses-permission#android.permission.WAKE_LOCK
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:41:5-68
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:41:22-65
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:34:22-68
 uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:43:5-98
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:37:5-98
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:43:22-95
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:37:22-95
 uses-permission#android.permission.READ_CONTACTS
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:50:5-71
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:44:5-71
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:50:22-69
-permission#ec.com.yacare.y4all.activities.permission.C2D_MESSAGE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:51:5-53:47
-	android:protectionLevel
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:53:9-44
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:52:9-77
-uses-permission#ec.com.yacare.y4all.activities.permission.C2D_MESSAGE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:55:5-93
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:55:22-90
-uses-permission#com.google.android.c2dm.permission.RECEIVE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:58:5-82
-MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\AndroidManifest.xml:21:5-82
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:58:22-79
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:44:22-69
 application
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:60:5-301:19
-MERGED from [com.google.android.gms:play-services:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:24:5-32:19
-MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\AndroidManifest.xml:24:5-20
-MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\AndroidManifest.xml:20:5-20
-MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\AndroidManifest.xml:24:5-20
-MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\AndroidManifest.xml:20:5-20
-MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\AndroidManifest.xml:5:5-20
-MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:28:5-20
-MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:20:5-24:19
-MERGED from [com.android.support:support-v13:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:cardview-v7:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha1\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:palette-v7:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\palette-v7\23.0.1\AndroidManifest.xml:22:5-23:19
-MERGED from [com.android.support:support-v4:23.0.1] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
-MERGED from [com.github.clans:fab:1.6.4] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.github.clans\fab\1.6.4\AndroidManifest.xml:12:5-20
-	android:label
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:67:9-31
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:48:5-271:19
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\fab-1.6.4.aar\e72cac9913ee9004c124d4738fe11c26\AndroidManifest.xml:12:5-20
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\fab-1.6.4.aar\e72cac9913ee9004c124d4738fe11c26\AndroidManifest.xml:12:5-20
+MERGED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9ea24cf86d4fe00d68b62ae34b88b471\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9ea24cf86d4fe00d68b62ae34b88b471\AndroidManifest.xml:25:5-29:19
+MERGED from [com.google.firebase:firebase-messaging:17.6.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-messaging-17.6.0.aar\d85c9c20dad13164de826ec1343faad5\AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-messaging:17.6.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-messaging-17.6.0.aar\d85c9c20dad13164de826ec1343faad5\AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.9.aar\cc603bd461213cf4b2cf53344a8b618c\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.9.aar\cc603bd461213cf4b2cf53344a8b618c\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v13:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v13-26.1.0.aar\82aa0b9ec26f5f5572d64cdacb84a3e1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v13:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v13-26.1.0.aar\82aa0b9ec26f5f5572d64cdacb84a3e1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\13ff01d0ecc3cd1af088378148ea32fd\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\13ff01d0ecc3cd1af088378148ea32fd\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\727a33fde9fd457fcb91b605b3a95169\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\727a33fde9fd457fcb91b605b3a95169\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha2.aar\6b7004e3b3c48b537fecb7758109d8fa\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha2.aar\6b7004e3b3c48b537fecb7758109d8fa\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:palette-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\palette-v7-26.1.0.aar\9a2d2407a856642378f0551a01d28575\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:palette-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\palette-v7-26.1.0.aar\9a2d2407a856642378f0551a01d28575\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\f6ff32e88ef892099f4d254a187de6af\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\f6ff32e88ef892099f4d254a187de6af\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\4bf6161c61ba63b907927b304f067d96\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\4bf6161c61ba63b907927b304f067d96\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\2690f3de8dfe80178a154ff659d0afad\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\2690f3de8dfe80178a154ff659d0afad\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.firebase:firebase-analytics:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-analytics-16.5.0.aar\8fc60b2f73b2d310f5267a664b3763e0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-analytics:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-analytics-16.5.0.aar\8fc60b2f73b2d310f5267a664b3763e0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:28:5-57:19
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:28:5-57:19
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\d18e89de28290b66b5b14923b2fe4f3c\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\d18e89de28290b66b5b14923b2fe4f3c\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\c38c93907fc34bff1a4b3e09a3a3c38d\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\c38c93907fc34bff1a4b3e09a3a3c38d\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-17.0.1.aar\dcee53060ef6f9727b684f8a7c9b65e5\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-17.0.1.aar\dcee53060ef6f9727b684f8a7c9b65e5\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-16.5.0.aar\d6c66ccbe93e1c8c2ea5a11ee88711a3\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-16.5.0.aar\d6c66ccbe93e1c8c2ea5a11ee88711a3\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-stats-16.0.1.aar\135f7af3e4fc1f9e2ba6f7b0f01d59ae\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-stats-16.0.1.aar\135f7af3e4fc1f9e2ba6f7b0f01d59ae\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-base:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-base-16.5.0.aar\0ad98e1776b12a64179607758b25341e\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-base-16.5.0.aar\0ad98e1776b12a64179607758b25341e\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-16.0.0.aar\9f07dabde676238e43fbeb2104edac0d\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-16.0.0.aar\9f07dabde676238e43fbeb2104edac0d\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.2.0.aar\bc249257bbda6ec757e9e832bfec2816\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.2.0.aar\bc249257bbda6ec757e9e832bfec2816\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f7b3f337550ffe9f8d722d29f529ca27\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f7b3f337550ffe9f8d722d29f529ca27\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1ece92fe52cba6055b027531a843a873\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1ece92fe52cba6055b027531a843a873\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\4cd0901c40f120f7dc575501bd300e54\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\4cd0901c40f120f7dc575501bd300e54\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\33834904db0d8aff7972f917dde72d1b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\33834904db0d8aff7972f917dde72d1b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\692c668a5336e86f4baf9c73d447bc89\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\692c668a5336e86f4baf9c73d447bc89\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\570e302a5ca422b3177be0dd9b8d6d34\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\570e302a5ca422b3177be0dd9b8d6d34\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f141aec88891043a754ac9ede43554c\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f141aec88891043a754ac9ede43554c\AndroidManifest.xml:24:5-28:19
 	android:supportsRtl
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:63:9-35
-	android:allowBackup
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:62:9-35
-	android:icon
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:64:9-39
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:51:9-35
+	android:label
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:55:9-31
 	android:largeHeap
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:65:9-33
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:53:9-33
+	android:icon
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:52:9-39
+	android:allowBackup
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:50:9-35
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:66:9-40
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:54:9-40
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:61:9-70
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:49:9-70
 meta-data#com.google.android.gms.vision.DEPENDENCIES
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:69:9-100
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:57:9-100
 	android:value
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:69:78-98
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:57:78-98
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:69:20-77
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:57:20-77
 meta-data#com.google.android.gms.version
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:72:9-74:69
-MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:21:9-23:69
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:60:9-62:69
+MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.2.0.aar\bc249257bbda6ec757e9e832bfec2816\AndroidManifest.xml:23:9-25:69
+MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.2.0.aar\bc249257bbda6ec757e9e832bfec2816\AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:74:13-66
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:62:13-66
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:73:13-58
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:61:13-58
 meta-data#com.google.android.maps.v2.API_KEY
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:75:9-77:71
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:63:9-65:71
 	android:value
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:77:13-68
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:65:13-68
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:76:13-62
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:64:13-62
 activity#ec.com.yacare.y4all.activities.SplashActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:90:9-99:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:78:9-87:20
 	android:noHistory
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:92:13-37
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:80:13-37
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:93:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:81:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:94:13-47
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:82:13-47
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:91:13-73
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:95:13-98:29
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:79:13-73
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:83:13-86:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:96:17-69
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:84:17-69
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:96:25-66
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:84:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:97:17-77
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:85:17-77
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:97:27-74
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:85:27-74
 activity#ec.com.yacare.y4all.activities.principal.Y4HomeActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:101:9-106:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:89:9-94:20
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:103:13-74
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:91:13-74
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:104:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:92:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:105:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:93:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:102:13-53
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:90:13-53
 activity#ec.com.yacare.y4all.activities.socket.MonitorIOActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:107:9-112:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:95:9-100:20
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:109:13-74
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:97:13-74
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:110:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:98:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:111:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:99:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:108:13-53
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:96:13-53
 activity#ec.com.yacare.y4all.activities.InicioActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:113:9-118:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:101:9-106:20
 	android:noHistory
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:115:13-37
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:103:13-37
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:116:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:104:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:117:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:105:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:114:13-73
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:102:13-73
 activity#ec.com.yacare.y4all.activities.LoginActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:119:9-126:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:107:9-114:20
 	android:label
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:124:13-53
-	android:noHistory
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:125:13-37
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:112:13-53
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:123:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:111:13-60
+	android:noHistory
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:113:13-37
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:122:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:110:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:121:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:109:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:120:13-72
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:108:13-72
 activity#ec.com.yacare.y4all.activities.instalacion.InstalarEquipoActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:127:9-133:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:115:9-121:20
 	android:label
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:131:13-66
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:119:13-66
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:129:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:117:13-60
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:130:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:118:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:132:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:120:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:128:13-93
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:116:13-93
 activity#ec.com.yacare.y4all.activities.luces.ColoresAmbienteActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:134:9-138:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:122:9-126:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:136:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:124:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:137:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:125:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:135:13-88
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:123:13-88
 activity#ec.com.yacare.y4all.activities.dispositivo.DispositivoActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:139:9-143:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:127:9-131:20
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:141:13-74
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:129:13-74
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:142:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:130:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:140:13-90
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:128:13-90
 activity#ec.com.yacare.y4all.activities.cuenta.IngresarClaveActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:144:9-151:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:132:9-139:20
 	android:label
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:148:13-38
-	android:noHistory
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:149:13-37
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:136:13-38
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:146:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:134:13-60
+	android:noHistory
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:137:13-37
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:147:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:135:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:150:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:138:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:145:13-87
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:133:13-87
 activity#ec.com.yacare.y4all.activities.evento.EventosActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:152:9-156:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:140:9-144:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:154:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:142:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:155:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:143:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:153:13-81
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:141:13-81
 activity#ec.com.yacare.y4all.activities.recomendacion.RecomendarActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:157:9-161:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:145:9-149:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:159:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:147:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:160:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:148:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:158:13-91
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:146:13-91
 activity#ec.com.yacare.y4all.activities.evento.ImageSliderActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:162:9-165:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:150:9-153:20
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:164:13-66
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:152:13-66
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:163:13-85
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:151:13-85
 activity#ec.com.yacare.y4all.activities.respuesta.AdministrarRespuestasActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:166:9-170:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:154:9-158:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:168:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:156:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:169:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:157:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:167:13-98
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:155:13-98
 activity#ec.com.yacare.y4all.activities.respuesta.NuevaRespuestaActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:171:9-176:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:159:9-164:20
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:175:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:163:13-60
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:174:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:162:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:173:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:161:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:172:13-61
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:160:13-61
 activity#ec.com.yacare.y4all.activities.focos.calendar.BasicActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:178:9-181:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:166:9-169:20
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:180:13-45
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:168:13-45
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:179:13-87
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:167:13-87
 activity#ec.com.yacare.y4all.activities.luces.LucesFragment
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:182:9-186:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:170:9-174:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:184:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:172:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:185:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:173:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:183:13-78
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:171:13-78
 activity#ec.com.yacare.y4all.activities.luces.DetalleLucesFragment
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:187:9-192:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:175:9-180:20
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:190:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:178:13-60
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:189:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:177:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:191:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:179:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:188:13-85
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:176:13-85
 activity#ec.com.yacare.y4all.activities.focos.ProgramacionActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:193:9-197:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:181:9-185:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:195:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:183:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:196:13-45
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:184:13-45
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:194:13-85
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:182:13-85
 activity#ec.com.yacare.y4all.activities.PreferenciasActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:198:9-203:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:186:9-191:20
 	android:windowSoftInputMode
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:200:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:188:13-60
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:201:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:189:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:202:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:190:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:199:13-79
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:187:13-79
 activity#ec.com.yacare.y4all.activities.focos.calendar.CalendarioFragment
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:204:9-208:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:192:9-196:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:206:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:194:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:207:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:195:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:205:13-92
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:193:13-92
 activity#ec.com.yacare.y4all.activities.evento.PlayVideoActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:209:9-213:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:197:9-201:20
 	android:label
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:211:13-46
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:199:13-46
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:212:13-49
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:200:13-49
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:210:13-53
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:198:13-53
 activity#ec.com.yacare.y4all.activities.cuenta.CuentaActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:215:9-218:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:203:9-206:20
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:217:13-44
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:205:13-44
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:216:13-80
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:204:13-80
 activity#ec.com.yacare.y4all.activities.dispositivo.ChatActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:219:7-224:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:207:7-212:20
 	android:label
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:221:13-33
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:209:13-33
 	android:noHistory
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:223:13-37
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:211:13-37
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:222:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:210:13-60
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:220:13-83
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:208:13-83
 activity#ec.com.yacare.y4all.activities.dispositivo.MapaActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:226:9-231:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:214:9-219:20
 	android:label
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:228:13-33
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:216:13-33
 	android:noHistory
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:230:13-37
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:218:13-37
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:229:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:217:13-60
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:227:13-83
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:215:13-83
 activity#ec.com.yacare.y4all.activities.portero.EtiquetarVisitanteActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:232:9-236:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:220:9-224:20
 	android:label
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:234:13-47
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:222:13-47
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:235:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:223:13-60
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:233:13-93
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:221:13-93
 activity#ec.com.yacare.y4all.activities.dispositivo.LlamadaEntranteActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:237:9-241:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:225:9-229:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:239:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:227:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:240:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:228:13-60
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:238:13-94
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:226:13-94
 activity#ec.com.yacare.y4all.activities.dispositivo.LlamadaActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:242:9-247:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:230:9-235:20
 	android:screenOrientation
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:245:13-49
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:233:13-49
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:244:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:232:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:246:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:234:13-60
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:243:13-86
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:231:13-86
 activity#ec.com.yacare.y4all.activities.dispositivo.BuscarTelefonoActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:248:9-252:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:236:9-240:20
 	android:screenOrientation
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:250:13-49
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:238:13-49
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:251:13-60
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:239:13-60
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:249:13-93
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:237:13-93
 activity#ec.com.yacare.y4all.activities.portero.LlamadaEntrantePorteroActivity
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:254:9-258:20
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:242:9-246:20
 	android:configChanges
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:256:13-59
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:244:13-59
 	android:theme
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:257:13-66
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:245:13-66
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:255:13-97
-receiver#com.google.android.gms.gcm.GcmReceiver
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:261:9-269:20
-	android:exported
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:263:13-36
-	android:permission
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:264:13-73
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:262:13-66
-intent-filter#activities.riesgo.yacare.com.ec.appriesgo+com.google.android.c2dm.intent.RECEIVE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:265:13-268:29
-action#com.google.android.c2dm.intent.RECEIVE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:266:17-81
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:266:25-78
-category#activities.riesgo.yacare.com.ec.appriesgo
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:267:17-86
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:267:27-83
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:243:13-97
 service#ec.com.yacare.y4all.gcm.MyGcmListenerService
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:273:9-279:19
-	android:exported
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:275:13-37
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:256:9-261:19
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:274:13-72
-intent-filter#com.google.android.c2dm.intent.RECEIVE
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:276:13-278:29
-service#ec.com.yacare.y4all.gcm.MyInstanceIDListenerService
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:282:9-288:19
-	android:exported
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:284:13-37
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:257:13-72
+intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:258:13-260:29
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:259:17-78
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:283:13-79
-intent-filter#com.google.android.gms.iid.InstanceID
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:285:13-287:29
-action#com.google.android.gms.iid.InstanceID
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:286:17-79
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:286:25-77
-service#ec.com.yacare.y4all.gcm.RegistrationIntentService
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:290:9-293:19
-	android:exported
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:292:13-37
-	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:291:13-77
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:259:25-75
 service#io.xlink.wifi.sdk.XlinkUdpService
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:295:9-69
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:263:9-69
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:295:18-66
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:263:18-66
 service#io.xlink.wifi.sdk.XlinkTcpService
-ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:299:9-69
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:267:9-69
 	android:name
-		ADDED from C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\src\main\AndroidManifest.xml:299:18-66
-activity#com.google.android.gms.ads.AdActivity
-ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:26:9-29:64
-	android:configChanges
-		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:28:13-122
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:267:18-66
+service#ec.com.yacare.y4all.gcm.DeleteTokenService
+ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:269:9-101
+	android:enabled
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:269:18-40
+	android:name
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml:269:41-98
+uses-sdk
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\fab-1.6.4.aar\e72cac9913ee9004c124d4738fe11c26\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\fab-1.6.4.aar\e72cac9913ee9004c124d4738fe11c26\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\f205f161f4b0b037643ccaa847f8c622\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\f205f161f4b0b037643ccaa847f8c622\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9ea24cf86d4fe00d68b62ae34b88b471\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9ea24cf86d4fe00d68b62ae34b88b471\AndroidManifest.xml:21:5-23:78
+MERGED from [com.google.firebase:firebase-messaging:17.6.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-messaging-17.6.0.aar\d85c9c20dad13164de826ec1343faad5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:17.6.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-messaging-17.6.0.aar\d85c9c20dad13164de826ec1343faad5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.9.aar\cc603bd461213cf4b2cf53344a8b618c\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.9.aar\cc603bd461213cf4b2cf53344a8b618c\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-v13:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v13-26.1.0.aar\82aa0b9ec26f5f5572d64cdacb84a3e1\AndroidManifest.xml:21:5-23:55
+MERGED from [com.android.support:support-v13:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v13-26.1.0.aar\82aa0b9ec26f5f5572d64cdacb84a3e1\AndroidManifest.xml:21:5-23:55
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\13ff01d0ecc3cd1af088378148ea32fd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\13ff01d0ecc3cd1af088378148ea32fd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\727a33fde9fd457fcb91b605b3a95169\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\727a33fde9fd457fcb91b605b3a95169\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha2.aar\6b7004e3b3c48b537fecb7758109d8fa\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha2.aar\6b7004e3b3c48b537fecb7758109d8fa\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:palette-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\palette-v7-26.1.0.aar\9a2d2407a856642378f0551a01d28575\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:palette-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\palette-v7-26.1.0.aar\9a2d2407a856642378f0551a01d28575\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\f6ff32e88ef892099f4d254a187de6af\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\f6ff32e88ef892099f4d254a187de6af\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\4bf6161c61ba63b907927b304f067d96\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\4bf6161c61ba63b907927b304f067d96\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\2690f3de8dfe80178a154ff659d0afad\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\2690f3de8dfe80178a154ff659d0afad\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-analytics-16.5.0.aar\8fc60b2f73b2d310f5267a664b3763e0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-analytics-16.5.0.aar\8fc60b2f73b2d310f5267a664b3763e0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\d18e89de28290b66b5b14923b2fe4f3c\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\d18e89de28290b66b5b14923b2fe4f3c\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\c38c93907fc34bff1a4b3e09a3a3c38d\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\c38c93907fc34bff1a4b3e09a3a3c38d\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-17.0.1.aar\dcee53060ef6f9727b684f8a7c9b65e5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-17.0.1.aar\dcee53060ef6f9727b684f8a7c9b65e5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-16.5.0.aar\d6c66ccbe93e1c8c2ea5a11ee88711a3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-16.5.0.aar\d6c66ccbe93e1c8c2ea5a11ee88711a3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-stats-16.0.1.aar\135f7af3e4fc1f9e2ba6f7b0f01d59ae\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-stats-16.0.1.aar\135f7af3e4fc1f9e2ba6f7b0f01d59ae\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-base-16.5.0.aar\0ad98e1776b12a64179607758b25341e\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-base-16.5.0.aar\0ad98e1776b12a64179607758b25341e\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-16.0.0.aar\9f07dabde676238e43fbeb2104edac0d\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-16.0.0.aar\9f07dabde676238e43fbeb2104edac0d\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.2.0.aar\bc249257bbda6ec757e9e832bfec2816\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.2.0.aar\bc249257bbda6ec757e9e832bfec2816\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f7b3f337550ffe9f8d722d29f529ca27\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f7b3f337550ffe9f8d722d29f529ca27\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1ece92fe52cba6055b027531a843a873\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1ece92fe52cba6055b027531a843a873\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\4cd0901c40f120f7dc575501bd300e54\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\4cd0901c40f120f7dc575501bd300e54\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\33834904db0d8aff7972f917dde72d1b\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\33834904db0d8aff7972f917dde72d1b\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\692c668a5336e86f4baf9c73d447bc89\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\692c668a5336e86f4baf9c73d447bc89\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\570e302a5ca422b3177be0dd9b8d6d34\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\570e302a5ca422b3177be0dd9b8d6d34\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f141aec88891043a754ac9ede43554c\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f141aec88891043a754ac9ede43554c\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+		ADDED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+		INJECTED from C:\RESPALDO\Yacare\versionportero\Y4AllTC\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9ea24cf86d4fe00d68b62ae34b88b471\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\9ea24cf86d4fe00d68b62ae34b88b471\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v13:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v13-26.1.0.aar\82aa0b9ec26f5f5572d64cdacb84a3e1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v13:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v13-26.1.0.aar\82aa0b9ec26f5f5572d64cdacb84a3e1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\13ff01d0ecc3cd1af088378148ea32fd\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\13ff01d0ecc3cd1af088378148ea32fd\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\727a33fde9fd457fcb91b605b3a95169\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\727a33fde9fd457fcb91b605b3a95169\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:palette-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\palette-v7-26.1.0.aar\9a2d2407a856642378f0551a01d28575\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:palette-v7:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\palette-v7-26.1.0.aar\9a2d2407a856642378f0551a01d28575\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\f6ff32e88ef892099f4d254a187de6af\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\f6ff32e88ef892099f4d254a187de6af\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\4bf6161c61ba63b907927b304f067d96\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\4bf6161c61ba63b907927b304f067d96\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\2690f3de8dfe80178a154ff659d0afad\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\2690f3de8dfe80178a154ff659d0afad\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f7b3f337550ffe9f8d722d29f529ca27\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f7b3f337550ffe9f8d722d29f529ca27\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1ece92fe52cba6055b027531a843a873\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1ece92fe52cba6055b027531a843a873\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\4cd0901c40f120f7dc575501bd300e54\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\4cd0901c40f120f7dc575501bd300e54\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\33834904db0d8aff7972f917dde72d1b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\33834904db0d8aff7972f917dde72d1b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\692c668a5336e86f4baf9c73d447bc89\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\692c668a5336e86f4baf9c73d447bc89\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\570e302a5ca422b3177be0dd9b8d6d34\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\570e302a5ca422b3177be0dd9b8d6d34\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:design:26.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\51f8c542699c99bed5be264a0f58e171\AndroidManifest.xml:27:13-51
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:17.6.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-messaging-17.6.0.aar\d85c9c20dad13164de826ec1343faad5\AndroidManifest.xml:28:9-34:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:17.6.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-messaging-17.6.0.aar\d85c9c20dad13164de826ec1343faad5\AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:17.6.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-messaging-17.6.0.aar\d85c9c20dad13164de826ec1343faad5\AndroidManifest.xml:29:13-82
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:25:5-68
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:24:22-65
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:29:9-35:19
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:28:13-84
+meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
+ADDED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:30:13-32:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:32:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-api-16.5.0.aar\07d0e39df4201d4c024b43285a0b7905\AndroidManifest.xml:31:17-139
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:26:22-79
+meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
+ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:33:17-96
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:37:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:38:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:41:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:42:25-78
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:50:9-56:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:52:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:51:13-77
+intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:53:13-55:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:53:28-51
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:54:17-80
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:17.1.2] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.1.2.aar\5990be07dba1620adda6fa103d269a32\AndroidManifest.xml:54:25-77
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:25:13-37
 	android:theme
-		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:29:13-61
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:26:13-72
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:27:13-65
-activity#com.google.android.gms.ads.purchase.InAppPurchaseActivity
-ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:30:9-31:52
-	android:theme
-		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:31:13-50
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\2db67918f931728f96fe424bc27c7a7c\AndroidManifest.xml:24:13-79
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:12:9-16:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:14:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:15:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:16:13-36
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\AndroidManifest.xml:30:19-91
-uses-permission#android.permission.USE_CREDENTIALS
-ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\AndroidManifest.xml:22:5-73
+		ADDED from [com.google.firebase:firebase-common:16.1.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\firebase-common-16.1.0.aar\d6b7f75a2f2690c9d65aa5d7ce706a48\AndroidManifest.xml:13:13-77
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:26:5-110
 	android:name
-		ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\AndroidManifest.xml:22:22-71
-uses-feature#0x00020000
-ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:23:5-25:33
-	android:glEsVersion
-		ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:24:8-40
-	android:required
-		ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\yacare\AndroidStudioProjects\Y4AllTC\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:25:8-31
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:26:22-107
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:29:9-33:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:31:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:30:13-85
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:34:9-42:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-impl-16.5.0.aar\bb455b09f2c888b15ded67faa44b8951\AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-sdk-api-16.5.0.aar\2700ed08b37257b4084546aef8c5df5e\AndroidManifest.xml:29:9-37:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:36:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:37:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:38:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:35:13-100
+intent-filter#action:name:com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:39:13-41:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:40:17-79
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:40:25-76
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:44:9-47:40
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:46:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:45:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:48:9-52:72
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:50:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:51:13-37
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:52:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:16.5.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\play-services-measurement-16.5.0.aar\b7e820b43de7d3e4bbf0df9fd641af5b\AndroidManifest.xml:49:13-87
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f141aec88891043a754ac9ede43554c\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f141aec88891043a754ac9ede43554c\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\yacare\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\4f141aec88891043a754ac9ede43554c\AndroidManifest.xml:26:13-58

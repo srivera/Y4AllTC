@@ -246,28 +246,65 @@ public class AgregarEquipoFragment extends Fragment {
 						}
 						wifi = "1";
 					}
+					WifiManager wifiMgr = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
+					WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
+					String name = wifiInfo.getSSID();
+					if(estado.equals("INI") && !name.contains("Y4HOME")){
+						grabar = false;
+						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+								getActivity());
+
+						alertDialogBuilder.setTitle(YACSmartProperties.intance.getMessageForKey("titulo.unmomento"))
+								.setMessage("Para configurar Wii Bell debe conectarse a la red Y4Home.")
+								.setCancelable(false)
+								.setPositiveButton("Cambiar de WiFi", new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										btnConfigurar.setEnabled(true);
+										startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+										dialog.cancel();
+
+									}
+								})
+								.setNegativeButton("Regresar", new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										dialog.cancel();
+									}
+								});
+
+						AlertDialog alertDialog = alertDialogBuilder.create();
+						alertDialog.show();
+					}
 				}
 
 				if(grabar){
 					btnConfigurar.setEnabled(false);
 					progress = null;
 					progress = new ProgressDialog(getActivity());
-					progress.setMessage("Conectando con su equipo. Espere un momento...");
-					progress.setCancelable(false);
-					progress.show();
+//					progress.setMessage("Conectando con su equipo. Espere un momento...");
+//					progress.setCancelable(false);
+//					progress.show();
 
 					if(spnTipoEquipo.getSelectedItemPosition() == 0){
 						//Luces
 						if (estado.equals("INI")) {
+							progress.setMessage("Conectando con su iBox. Espere un momento...");
+							progress.setCancelable(false);
+							progress.show();
 							ConfigurarFocosAsyncTask configurarFocosAsyncTask = new ConfigurarFocosAsyncTask(AgregarEquipoFragment.this, editNombreWifi.getText().toString().trim(), editClaveWiFi.getText().toString().trim());
 							configurarFocosAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 						}else{
+							progress.setMessage("Conectando con su equipo. Espere un momento...");
+							progress.setCancelable(false);
+							progress.show();
 							ConfigurarWifiFocosAsyncTask configurarFocosAsyncTask = new ConfigurarWifiFocosAsyncTask(AgregarEquipoFragment.this, editNombreWifi.getText().toString().trim(), editClaveWiFi.getText().toString().trim(), resultadoRouter);
 							configurarFocosAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 						}
 
 					}else if(spnTipoEquipo.getSelectedItemPosition() == 1){
 						//Portero
+						progress.setMessage("Conectando con su equipo. Espere un momento...");
+						progress.setCancelable(false);
+						progress.show();
 						if(datosAplicacion.getEquipoSeleccionado() != null && datosAplicacion.getEquipoSeleccionado().getEstadoEquipo().equals(EstadoDispositivoEnum.CONFIGURACION.getCodigo())) {
 
 							FinalizarInstalacionEquipoAsyncTask instalacionAsyncTask = new FinalizarInstalacionEquipoAsyncTask(null, datosAplicacion.getEquipoSeleccionado(), AgregarEquipoFragment.this);
@@ -329,7 +366,7 @@ public class AgregarEquipoFragment extends Fragment {
 			Log.d("onActivityCreated" , "if");
 			spnTipoEquipo.setSelection(1);
 			editNombreEquipo.setText(datosAplicacion.getEquipoSeleccionado().getNombreEquipo());
-			if(!datosAplicacion.getEquipoSeleccionado().getNombreWiFi().equals("")){
+			if(datosAplicacion.getEquipoSeleccionado() != null && datosAplicacion.getEquipoSeleccionado().getNombreWiFi() != null && !datosAplicacion.getEquipoSeleccionado().getNombreWiFi().equals("")){
 				checkWifi.setChecked(true);
 				editNombreWifi.setText(datosAplicacion.getEquipoSeleccionado().getNombreWiFi());
 				editClaveWiFi.setText("********");
@@ -398,7 +435,7 @@ public class AgregarEquipoFragment extends Fragment {
 
 	int  configurarWifi = 1;
 	public void verificarResultadoWifiFocos(String resultado) {
-		Log.d("COMANDO HOT SPOT", resultado);
+		Log.d("COMANDO HOT SPOT", resultado +  " " + configurarWifi);
 		String[] datos = resultado.split(",");
 		if(datos[0].equals("ERR")){
 			configurarWifi++;
@@ -428,6 +465,11 @@ public class AgregarEquipoFragment extends Fragment {
 
 
 		}else if (datos[0].equals("OK")) {
+			Log.d("COMANDO HOT SPOT",  " ok " );
+
+//			btnConfigurar.setEnabled(true);
+//			progress.dismiss();
+
 			numeroSerieText = datos[2];
 			equipo = new Equipo();
 			equipo.setIpLocal(datos[1]);
@@ -524,6 +566,8 @@ public class AgregarEquipoFragment extends Fragment {
 			equipo.setNombreEquipo(editNombreEquipo.getText().toString());
 			equipo.setTipoEquipo(TipoEquipoEnum.PORTERO.getCodigo());
 			equipo.setEstadoEquipo(EstadoDispositivoEnum.FABRICADO.getCodigo());
+			equipo.setLuzWifi("0");
+			equipo.setPuerta("0");
 			if(checkWifi.isChecked()) {
 				equipo.setModo(YACSmartProperties.MODO_WIFI);
 			}else{
@@ -758,6 +802,32 @@ public class AgregarEquipoFragment extends Fragment {
 
 						AlertDialog alertDialog = alertDialogBuilder.create();
 						alertDialog.show();
+					}
+				}else{
+					//Luces CON
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+					Date date = new Date();
+
+					try {
+						equipo.setId(equipoJSON.getString("id"));
+						equipo.setFechaFabricacion(equipoJSON.getString("fechaFabricacion"));
+						equipo.setEstadoEquipo(estadoEquipo);
+						equipo.setFechaRegistro(dateFormat.format(date));
+						equipo.setTipoEquipo(equipoJSON.getString("tipoEquipo"));
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					EquipoDataSource datasource = new EquipoDataSource(getActivity());
+					datasource.open();
+					datasource.createEquipo(equipo);
+					datasource.close();
+
+					if(datosAplicacion.getCuenta() == null) {
+						ActivarFinalizarEquipoAsyncTask activarEquipoAsyncTask = new ActivarFinalizarEquipoAsyncTask(AgregarEquipoFragment.this);
+						activarEquipoAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+					}else{
+						FinalizarInstalacionEquipoAsyncTask instalacionAsyncTask = new FinalizarInstalacionEquipoAsyncTask(null, equipo, AgregarEquipoFragment.this);
+						instalacionAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 					}
 				}
 			}else if(estadoEquipo != null && estadoEquipo.equals(respuesta.equals(YACSmartProperties.getInstance().getMessageForKey("error.general")))){

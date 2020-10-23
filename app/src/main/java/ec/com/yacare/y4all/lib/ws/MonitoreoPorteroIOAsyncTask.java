@@ -49,7 +49,7 @@ public class MonitoreoPorteroIOAsyncTask extends AsyncTask<String, Float, String
 		HttpPost httppost = new HttpPost(YACSmartProperties.URL_MONITOREAR_PORTERO);
 		httppost.setHeader("content-type", "application/x-www-form-urlencoded");
 
-
+		Boolean monitorear = false;
 
 		ConnectivityManager manager = (ConnectivityManager) monitorActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -80,12 +80,40 @@ public class MonitoreoPorteroIOAsyncTask extends AsyncTask<String, Float, String
 			httppost.setEntity(se);
 			HttpResponse resp = httpclient.execute(httppost);
 			respStr = EntityUtils.toString(resp.getEntity(), HTTP.UTF_8);
+			monitorear = true;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			return YACSmartProperties.getInstance().getMessageForKey("error.general");
+			//return YACSmartProperties.getInstance().getMessageForKey("error.general");
 		} catch (IOException e) {
 			e.printStackTrace();
-			return YACSmartProperties.getInstance().getMessageForKey("error.general");
+			//return YACSmartProperties.getInstance().getMessageForKey("error.general");
+		}
+
+		if(!monitorear){
+			httpclient = new DefaultHttpClient(httpParams);
+			 httppost = new HttpPost(YACSmartProperties.URL_MONITOREAR_PORTERO_S);
+			httppost.setHeader("content-type", "application/x-www-form-urlencoded");
+
+			 respStr = "";
+			try {
+				String json = "{\"monitorear\":{\"numeroSerie\":\"" + datosAplicacion.getEquipoSeleccionado().getNumeroSerie()
+						+ "\",\"idDispositivo\":\""+ Settings.Secure.getString(monitorActivity.getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID)
+						+ "\",\"idEvento\":\""+ monitorActivity.idMonitoreo
+						+ "\",\"tipoComunicacion\":\""+ tipoComunicacion
+						+ "\"}}";
+
+				StringEntity se = new StringEntity(json);
+				httppost.setEntity(se);
+				HttpResponse resp = httpclient.execute(httppost);
+				respStr = EntityUtils.toString(resp.getEntity(), HTTP.UTF_8);
+				monitorear = true;
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+				return YACSmartProperties.getInstance().getMessageForKey("error.general");
+			} catch (IOException e) {
+				e.printStackTrace();
+				return YACSmartProperties.getInstance().getMessageForKey("error.general");
+			}
 		}
 		return respStr;
 

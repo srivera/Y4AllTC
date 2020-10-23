@@ -34,7 +34,7 @@ public class EnviarMensajeVozScheduledTask extends Thread  {
 		InetAddress ipEquipo;
 		DatagramSocket socket = null;
 		try {
-			ipEquipo = InetAddress.getByName(YACSmartProperties.ipComunicacion);
+			ipEquipo = InetAddress.getByName(YACSmartProperties.IP_CORP_P);
 			socket = new DatagramSocket();
 
 
