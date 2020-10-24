@@ -1,7 +1,0 @@
-#Wed Oct 18 19:57:08 COT 2017
-base.0=C\:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
-base.1=C\:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
-file.0=C\:\\Users\\yacare\\AndroidStudioProjects\\Y4AllTC\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes2.dex

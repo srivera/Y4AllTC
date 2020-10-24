@@ -5280,6 +5280,15 @@
           <expand>
             <path>
               <item name="Y4AllTC" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="e9137016:NonAndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Y4AllTC" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Y4AllTC" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
@@ -5530,7 +5539,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8352668" visible="true" weight="0.21879195" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8352668" visible="true" weight="0.21879195" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Build Variants" order="2" sideWeight="0.5190476" side_tool="true" weight="0.28893661" />
       <window_info id="Captures" order="3" side_tool="true" weight="0.25" />
@@ -5546,7 +5555,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49530202" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Build" order="7" sideWeight="0.5416107" visible="true" weight="0.34560907" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.5416107" visible="true" weight="0.34560907" />
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.45838925" side_tool="true" visible="true" weight="0.34560907" />
       <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.82214767" weight="0.61331445" />
